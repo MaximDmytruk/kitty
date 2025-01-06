@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kitty/styles/icons_app.dart/icons_app.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -13,8 +15,10 @@ class _AuthScreenState extends State<AuthScreen> {
     return Scaffold(
       backgroundColor: Colors.amber,
       body: Center(
-        child: Text(
-          'Kitty',
+        child: SvgPicture.asset(
+          KittyIcons.logoKitty,
+          height: 104,
+          width: 104,
         ),
       ),
     );

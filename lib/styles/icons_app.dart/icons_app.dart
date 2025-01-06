@@ -1,3 +1,3 @@
 class KittyIcons {
-  static final logoKitty = 'kitty_logo-min.svg';
+  static final logoKitty = 'assets/icons/kitty_logo.svg';
 }
