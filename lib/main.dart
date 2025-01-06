@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'screens/auth_screen/auth_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -11,10 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Kitty',
-      // routes: {
-      //   '/authorization_first': (_) => const AuthorizationFirst(),
-      // }
-      // initialRoute: ,
+      routes: {
+        '/auth_screen': (_) => const AuthScreen(),
+      },
+      initialRoute: '/auth_screen',
     );
   }
 }

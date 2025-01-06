@@ -10,6 +10,13 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: Colors.amber,
+      body: Center(
+        child: Text(
+          'Kitty',
+        ),
+      ),
+    );
   }
 }
