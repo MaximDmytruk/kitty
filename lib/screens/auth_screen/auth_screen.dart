@@ -20,7 +20,10 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: FeeledButton(onPressed: buttonAction),
+        child: FeeledButton(
+          name: 'Button',
+          onPressed: buttonAction,
+        ),
       ),
     );
   }
