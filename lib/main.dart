@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Kitty',
       routes: {
-        '/auth_screen': (_) => const AuthScreen(),
+        AuthScreen.routeName: (_) => const AuthScreen(),
       },
-      initialRoute: '/auth_screen',
+      initialRoute: AuthScreen.routeName,
     );
   }
 }
