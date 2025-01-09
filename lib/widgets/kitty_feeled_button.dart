@@ -3,25 +3,23 @@ import 'package:kitty/styles/colors/colors_app.dart';
 
 import '../styles/font/fontstyle_app.dart';
 
-class FeeledButton extends StatefulWidget {
+class KittyFeeledButton extends StatefulWidget {
   final Function onPressed;
   final String name;
 
-  const FeeledButton({
+  const KittyFeeledButton({
     super.key,
     required this.onPressed,
     required this.name,
   });
 
   @override
-  State<FeeledButton> createState() => _FeeledButtonState();
+  State<KittyFeeledButton> createState() => _KittyFeeledButtonState();
 }
 
-class _FeeledButtonState extends State<FeeledButton> {
+class _KittyFeeledButtonState extends State<KittyFeeledButton> {
   void onPressedAction() {
     widget.onPressed();
-
-    setState(() {});
   }
 
   @override
@@ -43,7 +41,7 @@ class _FeeledButtonState extends State<FeeledButton> {
         disabledBackgroundColor: KittyColors.lightGrey224,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
-            4.0,
+            44.0,
           ),
         ),
       ),
