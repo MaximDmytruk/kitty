@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 
 import '../styles/font/fontstyle_app.dart';
@@ -19,11 +18,8 @@ class FeeledButton extends StatefulWidget {
 }
 
 class _FeeledButtonState extends State<FeeledButton> {
-  final bool _isEnabled = false;
-
   void onPressedAction() {
     widget.onPressed();
-    print('adadasdsad');
 
     setState(() {});
   }
