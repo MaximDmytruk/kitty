@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
-import 'package:kitty/styles/images/images_app.dart';
 
 import '../../styles/font/fontstyle_app.dart';
 import '../../widgets/kitty_feeled_button.dart';
@@ -25,10 +24,10 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: KittyColors.lightGrey224,
+        backgroundColor: KittyColors.lightGrey250,
         body: Padding(
           padding: const EdgeInsets.only(
-              left: 16.0, right: 16.0, top: 60.0, bottom: 16.0),
+              left: 16.0, right: 16.0, top: 120.0, bottom: 16.0),
           child: Column(
             children: [
               SvgPicture.asset(
