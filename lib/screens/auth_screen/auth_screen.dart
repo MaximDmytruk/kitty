@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kitty/screens/home_screen/home_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 
@@ -18,7 +19,7 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  void _logInAction() => {};
+  void _logInAction() => Navigator.of(context).pushNamed(HomeScreen.routeName);
   void _signUp() => {};
   void _authenticationAction() => {};
 

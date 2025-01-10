@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kitty/screens/home_screen/home_screen.dart';
 
 import 'screens/auth_screen/auth_screen.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Kitty',
       routes: {
         AuthScreen.routeName: (_) => const AuthScreen(),
+        HomeScreen.routeName: (_) => const HomeScreen(),
       },
       initialRoute: AuthScreen.routeName,
     );
