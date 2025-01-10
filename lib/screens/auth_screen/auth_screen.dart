@@ -3,7 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/screens/home_screen/home_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
+import 'package:local_auth/local_auth.dart';
 
+import '../../services/local_auth.dart';
 import '../../styles/font/fontstyle_app.dart';
 import '../../widgets/kitty_feeled_button.dart';
 import '../../widgets/kitty_texfield.dart';
@@ -19,9 +21,16 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
+  bool auth = false;
+
   void _logInAction() => Navigator.of(context).pushNamed(HomeScreen.routeName);
   void _signUp() => {};
-  void _authenticationAction() => {};
+  void _authenticationAction() async {
+    final authenticate = await LocalAuth.authenticate();
+    setState(() {
+      auth = authenticate;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
