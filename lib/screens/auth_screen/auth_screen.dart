@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/screens/home_screen/home_screen.dart';
+import 'package:kitty/screens/registration_screen/registration_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 
@@ -23,7 +24,8 @@ class _AuthScreenState extends State<AuthScreen> {
   bool auth = false;
 
   void _logInAction() => Navigator.of(context).pushNamed(HomeScreen.routeName);
-  void _signUp() => {};
+  void _signUp() =>
+      Navigator.of(context).pushNamed(RegistrationScreen.routeName);
 
   void _authenticationAction() async {
     final authenticate = await LocalAuth.authenticate();
@@ -88,6 +90,9 @@ class _AuthScreenState extends State<AuthScreen> {
                   KittyTextButton(onPressed: _signUp, name: 'Sign up'),
                   Spacer(),
                 ],
+              ),
+              SizedBox(
+                height: 40,
               ),
               IconButton(
                 onPressed: _authenticationAction,
