@@ -4,12 +4,12 @@ import 'package:kitty/styles/font/fontstyle_app.dart';
 
 class KittyTextfield extends StatefulWidget {
   final String labelText;
-  final bool obscureText;
+  final bool addObscureText;
 
   const KittyTextfield({
     super.key,
     required this.labelText,
-    this.obscureText = false,
+    this.addObscureText = false,
   });
 
   @override
@@ -17,12 +17,40 @@ class KittyTextfield extends StatefulWidget {
 }
 
 class _KittyTextfieldState extends State<KittyTextfield> {
+  bool obscureText = false;
+
+  Icon visibility = Icon(Icons.visibility);
+  Icon visibilityOff = Icon(Icons.visibility_off);
+  Icon selectedVisibilityIcon = Icon(Icons.visibility_off);
+
+  void changeVisibilityText() {
+    if (obscureText == false) {
+      selectedVisibilityIcon = visibilityOff;
+      obscureText = true;
+    } else {
+      selectedVisibilityIcon = visibility;
+      obscureText = false;
+    }
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    obscureText = widget.addObscureText;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextField(
-      obscureText: widget.obscureText,
+      obscureText: obscureText,
       cursorColor: KittyColors.blue106,
+      maxLines: 1,
       decoration: InputDecoration(
+        suffixIcon: widget.addObscureText
+            ? InkWell(
+                onTap: changeVisibilityText, child: selectedVisibilityIcon)
+            : null,
         border: OutlineInputBorder(),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
@@ -37,9 +65,10 @@ class _KittyTextfieldState extends State<KittyTextfield> {
         ),
         labelText: widget.labelText,
         labelStyle: interTextStyle(
-            fontSize: 16.0,
-            fontWeight: FontWeight.w400,
-            color: KittyColors.grey97),
+          fontSize: 16.0,
+          fontWeight: FontWeight.w400,
+          color: KittyColors.grey97,
+        ),
         floatingLabelStyle: interTextStyle(
           fontSize: 16.0,
           fontWeight: FontWeight.w400,

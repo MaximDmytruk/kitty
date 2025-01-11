@@ -70,8 +70,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   KittyTextfield(labelText: 'name'),
                   KittyTextfield(labelText: 'enter your email'),
-                  KittyTextfield(labelText: 'password'),
-                  KittyTextfield(labelText: 'repeat password'),
+                  KittyTextfield(
+                    labelText: 'password',
+                    addObscureText: true,
+                  ),
+                  KittyTextfield(
+                    labelText: 'repeat password',
+                    addObscureText: true,
+                  ),
                   Center(
                     child: KittyFeeledButton(
                         onPressed: createAccountAction, name: 'Create account'),
