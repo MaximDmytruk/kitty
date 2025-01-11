@@ -12,7 +12,7 @@ class LocalAuth {
       if (!await _canAuthenticate()) return false;
 
       return await _auth.authenticate(
-          localizedReason: 'Use sadasdsad',
+          localizedReason: 'Authenticate to access Kitty',
           options: AuthenticationOptions(
             stickyAuth: true,
             biometricOnly: false,
