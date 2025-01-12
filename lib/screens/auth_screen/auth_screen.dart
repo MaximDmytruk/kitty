@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kitty/screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'package:kitty/screens/home_screen/home_screen.dart';
 import 'package:kitty/screens/registration_screen/registration_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -23,7 +24,12 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   bool auth = false;
 
-  void _logInAction() => Navigator.of(context).pushNamed(HomeScreen.routeName);
+  void func<T>(T a) {
+    print(a);
+  }
+
+  void _logInAction() =>
+      Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
   void _signUp() =>
       Navigator.of(context).pushNamed(RegistrationScreen.routeName);
 

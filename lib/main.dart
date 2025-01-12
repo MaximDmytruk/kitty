@@ -1,8 +1,11 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:kitty/screens/home_screen/home_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 
 import 'screens/auth_screen/auth_screen.dart';
+import 'screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'screens/registration_screen/registration_screen.dart';
 
 void main() {
@@ -23,8 +26,8 @@ class MyApp extends StatelessWidget {
       title: 'Kitty',
       routes: {
         AuthScreen.routeName: (_) => const AuthScreen(),
-        HomeScreen.routeName: (_) => const HomeScreen(),
         RegistrationScreen.routeName: (_) => const RegistrationScreen(),
+        BottomNavigationScreen.routeName: (_) => const BottomNavigationScreen(),
       },
       initialRoute: AuthScreen.routeName,
     );

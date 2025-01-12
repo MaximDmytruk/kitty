@@ -20,12 +20,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: Colors.grey, // Сірий колір статус-бару
-        statusBarIconBrightness: Brightness.dark, // Світлі значки у статус-барі
-      ),
-    );
+    // SystemChrome.setSystemUIOverlayStyle(
+    //   SystemUiOverlayStyle(
+    //     statusBarColor: Colors.grey,
+    //     statusBarIconBrightness: Brightness.dark,
+    //   ),
+    // );
     return Scaffold(
       backgroundColor: KittyColors.lightGrey250,
       body: Column(

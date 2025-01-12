@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 class KittyColors {
   static const Color white = Color.fromRGBO(255, 255, 255, 1);
   static const Color black = Color.fromRGBO(33, 33, 33, 1);
+  static const Color transparent = Colors.transparent;
 
   static const Color lightGrey250 = Color.fromRGBO(250, 250, 250, 1);
   static const Color lightGrey245 = Color.fromRGBO(245, 245, 245, 1);
+  static const Color lightGrey238 = Color.fromRGBO(238, 238, 238, 1);
   static const Color lightGrey224 = Color.fromRGBO(224, 224, 224, 1);
   static const Color grey158 = Color.fromRGBO(158, 158, 158, 1);
   static const Color grey97 = Color.fromRGBO(97, 97, 97, 1);
