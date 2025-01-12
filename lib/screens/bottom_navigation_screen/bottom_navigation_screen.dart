@@ -4,6 +4,7 @@ import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 
 import '../home_screen/home_screen.dart';
+import '../setting_screen/setting_screen.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
   const BottomNavigationScreen({super.key});
@@ -20,7 +21,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   static const List<Widget> _widgetOptions = [
     Text('aaaaaaaaaaaaa'),
     HomeScreen(),
-    Text('asddddddddddddd'),
+    SettingScreen(),
   ];
 
   void onSelectedTab(int index) {

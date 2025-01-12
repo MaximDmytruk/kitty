@@ -9,7 +9,7 @@ TextStyle interTextStyle({
 }) {
   return GoogleFonts.inter(
     fontSize: fontSize,
-    fontWeight: FontWeight.w500,
+    fontWeight: fontWeight,
     color: color,
   );
 }
