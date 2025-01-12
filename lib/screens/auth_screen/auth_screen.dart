@@ -24,10 +24,6 @@ class AuthScreen extends StatefulWidget {
 class _AuthScreenState extends State<AuthScreen> {
   bool auth = false;
 
-  void func<T>(T a) {
-    print(a);
-  }
-
   void _logInAction() =>
       Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
   void _signUp() =>

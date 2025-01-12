@@ -1,7 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:kitty/screens/home_screen/home_screen.dart';
+
 import 'package:kitty/styles/colors/colors_app.dart';
 
 import 'screens/auth_screen/auth_screen.dart';
