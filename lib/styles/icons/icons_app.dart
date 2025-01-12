@@ -7,10 +7,14 @@ class KittyIcons {
   static final calendar = 'assets/icons/calendar.svg';
   static final report = 'assets/icons/report.svg';
   static final reportSelected = 'assets/icons/report_selected.svg';
-
   static final homeSelected = 'assets/icons/home_selected.svg';
   static final home = 'assets/icons/home.svg';
-
   static final setting = 'assets/icons/setting.svg';
   static final settingSelected = 'assets/icons/setting_selected.svg';
+  static final category = 'assets/icons/category.svg';
+  static final logout = 'assets/icons/logout.svg';
+  static final money = 'assets/icons/money.svg';
+  static final pdf = 'assets/icons/pdf.svg';
+  static final quiz = 'assets/icons/quiz.svg';
+  static final translate = 'assets/icons/translate.svg';
 }

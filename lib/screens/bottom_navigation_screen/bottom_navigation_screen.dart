@@ -4,7 +4,7 @@ import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 
 import '../home_screen/home_screen.dart';
-import '../setting_screen/setting_screen.dart';
+import '../setting_screen/screen/setting_screen.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
   const BottomNavigationScreen({super.key});
