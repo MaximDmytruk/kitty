@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kitty/main.dart';
 import 'package:kitty/screens/setting_screen/widgets/settings_options_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
@@ -18,6 +20,7 @@ class SettingScreen extends StatefulWidget {
 }
 
 class _SettingScreenState extends State<SettingScreen> {
+  final FlutterLocalization _localization = FlutterLocalization.instance;
   String name = 'John Doe';
   // String firstChar = name.substring(0, 1); TODO чому так не працює ?
   String email = 'john.doe@gmail.com';
@@ -26,8 +29,14 @@ class _SettingScreenState extends State<SettingScreen> {
   void manageCategoriesAction() {}
   void exportToPDFAction() {}
   void chooseCurrencyAction() {}
-  void chooseLanguageAction() {}
-  void questionsAction() {}
+  void chooseLanguageAction() {
+    _localization.translate('en');
+  }
+
+  void questionsAction() {
+    _localization.translate('km');
+  }
+
   void logoutAction() {}
 
   @override
@@ -55,7 +64,7 @@ class _SettingScreenState extends State<SettingScreen> {
               onTap: exportToPDFAction),
           SettingOptionsRow(
               leadingIconName: KittyIcons.translate,
-              name: 'Choose language',
+              name: AppLocale.title.getString(context),
               onTap: chooseLanguageAction),
           SettingOptionsRow(
               leadingIconName: KittyIcons.category,
