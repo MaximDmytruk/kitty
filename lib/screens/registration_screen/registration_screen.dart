@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 import 'package:kitty/widgets/kitty_feeled_button.dart';
@@ -47,7 +49,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 children: [
                   Center(
                     child: Text(
-                      'Create account',
+                      AppLocale.createAccount.getString(context),
                       style: interTextStyle(
                         fontSize: 32.0,
                         fontWeight: FontWeight.w500,
@@ -57,7 +59,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   ),
                   Center(
                     child: Text(
-                      'please enter your details',
+                      AppLocale.pleaseEnterYourDetails.getString(context),
                       style: interTextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.w400,
@@ -68,19 +70,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   SizedBox(
                     height: 8.0,
                   ),
-                  KittyTextfield(labelText: 'name'),
-                  KittyTextfield(labelText: 'enter your email'),
                   KittyTextfield(
-                    labelText: 'password',
+                    labelText: AppLocale.name.getString(context),
+                  ),
+                  KittyTextfield(
+                    labelText: AppLocale.enterYourEmail.getString(context),
+                  ),
+                  KittyTextfield(
+                    labelText: AppLocale.password.getString(context),
                     addObscureText: true,
                   ),
                   KittyTextfield(
-                    labelText: 'repeat password',
+                    labelText: AppLocale.repeatPassword.getString(context),
                     addObscureText: true,
                   ),
                   Center(
                     child: KittyFeeledButton(
-                        onPressed: createAccountAction, name: 'Create account'),
+                      onPressed: createAccountAction,
+                      name: AppLocale.createAccount.getString(context),
+                    ),
                   )
                 ],
               ),

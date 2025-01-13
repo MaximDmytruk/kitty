@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 
+import 'localization/app_locale.dart';
 import 'screens/auth_screen/auth_screen.dart';
 import 'screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'screens/registration_screen/registration_screen.dart';
@@ -10,20 +11,6 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterLocalization.instance.ensureInitialized();
   runApp(const MyApp());
-}
-
-mixin AppLocale {
-  static const String title = 'title';
-  static const String thisIs = 'thisIs';
-
-  static const Map<String, dynamic> EN = {
-    title: 'Localization',
-    thisIs: 'This is %a package, version %a.',
-  };
-  static const Map<String, dynamic> KM = {
-    title: 'ការធ្វើមូលដ្ឋានីយកម្ម',
-    thisIs: 'នេះគឺជាកញ្ចប់%a កំណែ%a.',
-  };
 }
 
 class MyApp extends StatefulWidget {
@@ -42,13 +29,11 @@ class _MyAppState extends State<MyApp> {
         const MapLocale(
           'en',
           AppLocale.EN,
-          countryCode: 'US',
         ),
-        const MapLocale(
-          'km',
-          AppLocale.KM,
-          countryCode: 'KH',
-        ),
+        MapLocale(
+          'ua',
+          AppLocale.UA,
+        )
       ],
       initLanguageCode: 'en',
     );

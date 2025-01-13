@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kitty/main.dart';
+
 import 'package:kitty/screens/setting_screen/widgets/settings_options_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
-import 'package:kitty/styles/font/fontstyle_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
-
 import 'package:kitty/widgets/kitty_status_bar.dart';
-
+import '../../../localization/app_locale.dart';
 import '../widgets/settings_app_bar.dart';
 import '../widgets/user_header_settings.dart';
 
@@ -30,12 +27,14 @@ class _SettingScreenState extends State<SettingScreen> {
   void exportToPDFAction() {}
   void chooseCurrencyAction() {}
   void chooseLanguageAction() {
-    _localization.translate('en');
+    if (_localization.currentLocale.toString() == 'en') {
+      _localization.translate('ua');
+    } else {
+      _localization.translate('en');
+    }
   }
 
-  void questionsAction() {
-    _localization.translate('km');
-  }
+  void questionsAction() {}
 
   void logoutAction() {}
 
@@ -56,23 +55,23 @@ class _SettingScreenState extends State<SettingScreen> {
           UserHeaderSetting(firstChar: firstChar, name: name, email: email),
           SettingOptionsRow(
               leadingIconName: KittyIcons.category,
-              name: 'Manage categories',
+              name: AppLocale.manageCategories.getString(context),
               onTap: manageCategoriesAction),
           SettingOptionsRow(
               leadingIconName: KittyIcons.pdf,
-              name: 'Export to PDF',
+              name: AppLocale.toPDF.getString(context),
               onTap: exportToPDFAction),
           SettingOptionsRow(
               leadingIconName: KittyIcons.translate,
-              name: AppLocale.title.getString(context),
+              name: AppLocale.chooseLanguage.getString(context),
               onTap: chooseLanguageAction),
           SettingOptionsRow(
               leadingIconName: KittyIcons.category,
-              name: 'Frequently asked questions',
+              name: AppLocale.frequentlyAskedQuestions.getString(context),
               onTap: questionsAction),
           SettingOptionsRow(
               leadingIconName: KittyIcons.logout,
-              name: 'Logout',
+              name: AppLocale.logout.getString(context),
               onTap: logoutAction),
         ],
       ),

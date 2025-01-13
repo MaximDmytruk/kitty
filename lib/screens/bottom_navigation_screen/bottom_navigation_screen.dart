@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 
@@ -42,19 +44,19 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             icon: _selectedPage == 0
                 ? SvgPicture.asset(KittyIcons.reportSelected)
                 : SvgPicture.asset(KittyIcons.report),
-            label: 'Report',
+            label: AppLocale.report.getString(context),
           ),
           BottomNavigationBarItem(
             icon: _selectedPage == 1
                 ? SvgPicture.asset(KittyIcons.homeSelected)
                 : SvgPicture.asset(KittyIcons.home),
-            label: 'Home',
+            label: AppLocale.home.getString(context),
           ),
           BottomNavigationBarItem(
             icon: _selectedPage == 2
                 ? SvgPicture.asset(KittyIcons.settingSelected)
                 : SvgPicture.asset(KittyIcons.setting),
-            label: 'Setting',
+            label: AppLocale.settings.getString(context),
           ),
         ],
         selectedItemColor: KittyColors.grey66,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'package:kitty/screens/registration_screen/registration_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -65,7 +67,7 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
               ),
               Text(
-                "Your expense manager",
+                AppLocale.yourExpenseManager.getString(context),
                 style: interTextStyle(
                   fontWeight: FontWeight.w400,
                   color: KittyColors.grey66,
@@ -74,21 +76,31 @@ class _AuthScreenState extends State<AuthScreen> {
               SizedBox(
                 height: 40,
               ),
-              KittyTextfield(labelText: 'login'),
+              KittyTextfield(
+                labelText: AppLocale.login.getString(context),
+              ),
               SizedBox(
                 height: 40,
               ),
-              KittyTextfield(labelText: 'password'),
+              KittyTextfield(
+                labelText: AppLocale.password.getString(context),
+              ),
               SizedBox(
                 height: 10,
               ),
               Row(
                 children: [
-                  KittyFeeledButton(onPressed: _logInAction, name: 'Log In'),
+                  KittyFeeledButton(
+                    onPressed: _logInAction,
+                    name: AppLocale.logIn.getString(context),
+                  ),
                   SizedBox(
                     width: 10.0,
                   ),
-                  KittyTextButton(onPressed: _signUp, name: 'Sign up'),
+                  KittyTextButton(
+                    onPressed: _signUp,
+                    name: AppLocale.signUp.getString(context),
+                  ),
                   Spacer(),
                 ],
               ),
