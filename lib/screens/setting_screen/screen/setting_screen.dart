@@ -24,8 +24,11 @@ class _SettingScreenState extends State<SettingScreen> {
   late String firstChar;
 
   void manageCategoriesAction() {}
+
   void exportToPDFAction() {}
+
   void chooseCurrencyAction() {}
+
   void chooseLanguageAction() {
     if (_localization.currentLocale.toString() == 'en') {
       _localization.translate('ua');
@@ -52,27 +55,36 @@ class _SettingScreenState extends State<SettingScreen> {
         children: [
           StatusBar(),
           SettingAppBar(),
-          UserHeaderSetting(firstChar: firstChar, name: name, email: email),
+          UserHeaderSetting(
+            firstChar: firstChar,
+            name: name,
+            email: email,
+          ),
           SettingOptionsRow(
-              leadingIconName: KittyIcons.category,
-              name: AppLocale.manageCategories.getString(context),
-              onTap: manageCategoriesAction),
+            leadingIconName: KittyIcons.category,
+            name: AppLocale.manageCategories.getString(context),
+            onTap: manageCategoriesAction,
+          ),
           SettingOptionsRow(
-              leadingIconName: KittyIcons.pdf,
-              name: AppLocale.toPDF.getString(context),
-              onTap: exportToPDFAction),
+            leadingIconName: KittyIcons.pdf,
+            name: AppLocale.toPDF.getString(context),
+            onTap: exportToPDFAction,
+          ),
           SettingOptionsRow(
-              leadingIconName: KittyIcons.translate,
-              name: AppLocale.chooseLanguage.getString(context),
-              onTap: chooseLanguageAction),
+            leadingIconName: KittyIcons.translate,
+            name: AppLocale.chooseLanguage.getString(context),
+            onTap: chooseLanguageAction,
+          ),
           SettingOptionsRow(
-              leadingIconName: KittyIcons.category,
-              name: AppLocale.frequentlyAskedQuestions.getString(context),
-              onTap: questionsAction),
+            leadingIconName: KittyIcons.category,
+            name: AppLocale.frequentlyAskedQuestions.getString(context),
+            onTap: questionsAction,
+          ),
           SettingOptionsRow(
-              leadingIconName: KittyIcons.logout,
-              name: AppLocale.logout.getString(context),
-              onTap: logoutAction),
+            leadingIconName: KittyIcons.logout,
+            name: AppLocale.logout.getString(context),
+            onTap: logoutAction,
+          ),
         ],
       ),
     );

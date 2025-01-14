@@ -48,7 +48,9 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           ),
           BottomNavigationBarItem(
             icon: _selectedPage == 1
-                ? SvgPicture.asset(KittyIcons.homeSelected)
+                ? SvgPicture.asset(
+                    KittyIcons.homeSelected,
+                  )
                 : SvgPicture.asset(KittyIcons.home),
             label: AppLocale.home.getString(context),
           ),

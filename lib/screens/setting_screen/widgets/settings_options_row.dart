@@ -31,29 +31,35 @@ class _SettingOptionsRowState extends State<SettingOptionsRow> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: _onTap,
-      child: Row(
-        spacing: 8.0,
-        children: [
-          SvgPicture.asset(
-            widget.leadingIconName,
-            width: 24.0,
-            height: 24.0,
-          ),
-          Text(
-            widget.name,
-            style: interTextStyle(
-              fontSize: 14.0,
-              fontWeight: FontWeight.w400,
-              color: KittyColors.black,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16.0,
+          vertical: 12.0,
+        ),
+        child: Row(
+          spacing: 8.0,
+          children: [
+            SvgPicture.asset(
+              widget.leadingIconName,
+              width: 24.0,
+              height: 24.0,
             ),
-          ),
-          Spacer(),
-          SvgPicture.asset(
-            KittyIcons.right,
-            width: 12.0,
-            height: 12.0,
-          ),
-        ],
+            Text(
+              widget.name,
+              style: interTextStyle(
+                fontSize: 14.0,
+                fontWeight: FontWeight.w400,
+                color: KittyColors.black,
+              ),
+            ),
+            Spacer(),
+            SvgPicture.asset(
+              KittyIcons.right,
+              width: 12.0,
+              height: 12.0,
+            ),
+          ],
+        ),
       ),
     );
   }
