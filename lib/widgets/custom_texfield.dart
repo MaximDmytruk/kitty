@@ -10,7 +10,8 @@ class KittyTextfield extends StatefulWidget {
   const KittyTextfield({
     super.key,
     required this.labelText,
-    this.addObscureText = false, required this.controller,
+    this.addObscureText = false,
+    required this.controller,
   });
 
   @override
@@ -47,11 +48,14 @@ class _KittyTextfieldState extends State<KittyTextfield> {
       controller: widget.controller,
       obscureText: obscureText,
       cursorColor: KittyColors.blue106,
+      
       maxLines: 1,
       decoration: InputDecoration(
         suffixIcon: widget.addObscureText
             ? InkWell(
-                onTap: changeVisibilityText, child: selectedVisibilityIcon)
+                onTap: changeVisibilityText,
+                child: selectedVisibilityIcon,
+              )
             : null,
         border: OutlineInputBorder(),
         focusedBorder: OutlineInputBorder(
@@ -76,6 +80,7 @@ class _KittyTextfieldState extends State<KittyTextfield> {
           fontWeight: FontWeight.w400,
           color: KittyColors.blue106,
         ),
+        
       ),
     );
   }

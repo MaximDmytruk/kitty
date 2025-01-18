@@ -5,14 +5,14 @@ import '../styles/colors/colors_app.dart';
 import '../styles/font/fontstyle_app.dart';
 import '../styles/icons/icons_app.dart';
 
-class KittyDatePickerAppBar extends StatefulWidget {
-  const KittyDatePickerAppBar({super.key});
+class CustomDatePickerAppBar extends StatefulWidget {
+  const CustomDatePickerAppBar({super.key});
 
   @override
-  State<KittyDatePickerAppBar> createState() => _KittyDatePickerAppBarState();
+  State<CustomDatePickerAppBar> createState() => _CustomDatePickerAppBarState();
 }
 
-class _KittyDatePickerAppBarState extends State<KittyDatePickerAppBar> {
+class _CustomDatePickerAppBarState extends State<CustomDatePickerAppBar> {
   String selectedMonth = 'May';
   String selectedYear = '2021';
 

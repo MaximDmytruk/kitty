@@ -6,7 +6,7 @@ import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
-import 'package:kitty/widgets/kitty_feeled_button.dart';
+import 'package:kitty/widgets/custom_feeled_button.dart';
 
 import '../../widgets/kitty_texfield.dart';
 
@@ -31,10 +31,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         emailController.text.isEmpty ||
         passwordController.text.isEmpty ||
         repeatPasswordController.text.isEmpty) {
-          print('Go exit =================================');
-      
       return;
-      
     }
 
     final String password = passwordController.text;
@@ -46,7 +43,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             emailController.text,
             nameController.text,
           );
-    } else {}
+    } else {
+
+      //password is incorrect 
+    }
   }
 
   @override
@@ -130,7 +130,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     addObscureText: true,
                   ),
                   Center(
-                    child: KittyFeeledButton(
+                    child: CustomFeeledButton(
                       onPressed: createAccountAction,
                       name: AppLocale.createAccount.getString(context),
                     ),

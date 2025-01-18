@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 
-class StatusBar extends StatelessWidget {
-  const StatusBar({
+class CustomStatusBar extends StatelessWidget {
+  const CustomStatusBar({
     super.key,
   });
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:kitty/screens/home_screen/widgets/total_amount.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
-import 'package:kitty/widgets/kitty_status_bar.dart';
+import 'package:kitty/widgets/custom_status_bar.dart';
 import 'package:kitty/widgets/list_group.dart';
-import '../../../widgets/kitty_date_picker_app_bar.dart';
-import '../../../widgets/kitty_home_app_bar.dart';
+import '../../../widgets/custom_date_picker_app_bar.dart';
+import '../../../widgets/custom_home_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -28,12 +28,12 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: KittyColors.white,
       body: Column(
         children: [
-          StatusBar(),
-          KittyHomeAppBar(
+          CustomStatusBar(),
+          CustomHomeAppBar(
             searchAction: searchAction,
             userAction: userAction,
           ),
-          KittyDatePickerAppBar(),
+          CustomDatePickerAppBar(),
           Padding(
             padding: const EdgeInsets.only(
               top: 16.0,

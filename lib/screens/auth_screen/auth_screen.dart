@@ -9,9 +9,9 @@ import 'package:kitty/styles/icons/icons_app.dart';
 
 import '../../services/local_auth.dart';
 import '../../styles/font/fontstyle_app.dart';
-import '../../widgets/kitty_feeled_button.dart';
+import '../../widgets/custom_feeled_button.dart';
 import '../../widgets/kitty_texfield.dart';
-import '../../widgets/kitty_text_button.dart';
+import '../../widgets/custom_text_button.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -101,14 +101,14 @@ class _AuthScreenState extends State<AuthScreen> {
               ),
               Row(
                 children: [
-                  KittyFeeledButton(
+                  CustomFeeledButton(
                     onPressed: _logInAction,
                     name: AppLocale.logIn.getString(context),
                   ),
                   SizedBox(
                     width: 10.0,
                   ),
-                  KittyTextButton(
+                  CustomTextButton(
                     onPressed: _signUp,
                     name: AppLocale.signUp.getString(context),
                   ),

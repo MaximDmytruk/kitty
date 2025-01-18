@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 
-class KittyTextButton extends StatefulWidget {
+class CustomTextButton extends StatefulWidget {
   final Function onPressed;
   final String name;
 
-  const KittyTextButton({
+  const CustomTextButton({
     super.key,
     required this.onPressed,
     required this.name,
   });
 
   @override
-  State<KittyTextButton> createState() => _KittyTextButtonState();
+  State<CustomTextButton> createState() => _CustomTextButtonState();
 }
 
-class _KittyTextButtonState extends State<KittyTextButton> {
+class _CustomTextButtonState extends State<CustomTextButton> {
   void onPressedAction() {
     widget.onPressed();
   }

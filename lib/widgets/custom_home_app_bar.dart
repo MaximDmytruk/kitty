@@ -5,21 +5,21 @@ import 'package:kitty/styles/icons/icons_app.dart';
 
 import '../styles/colors/colors_app.dart';
 
-class KittyHomeAppBar extends StatefulWidget {
+class CustomHomeAppBar extends StatefulWidget {
   final Function searchAction;
   final Function userAction;
 
-  const KittyHomeAppBar({
+  const CustomHomeAppBar({
     super.key,
     required this.searchAction,
     required this.userAction,
   });
 
   @override
-  State<KittyHomeAppBar> createState() => _KittyHomeAppBarState();
+  State<CustomHomeAppBar> createState() => _CustomHomeAppBarState();
 }
 
-class _KittyHomeAppBarState extends State<KittyHomeAppBar> {
+class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
   void searchAction() {}
   void userAction() {}
 

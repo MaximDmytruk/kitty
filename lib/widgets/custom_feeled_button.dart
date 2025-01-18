@@ -3,21 +3,21 @@ import 'package:kitty/styles/colors/colors_app.dart';
 
 import '../styles/font/fontstyle_app.dart';
 
-class KittyFeeledButton extends StatefulWidget {
+class CustomFeeledButton extends StatefulWidget {
   final Function onPressed;
   final String name;
 
-  const KittyFeeledButton({
+  const CustomFeeledButton({
     super.key,
     required this.onPressed,
     required this.name,
   });
 
   @override
-  State<KittyFeeledButton> createState() => _KittyFeeledButtonState();
+  State<CustomFeeledButton> createState() => _CustomFeeledButtonState();
 }
 
-class _KittyFeeledButtonState extends State<KittyFeeledButton> {
+class _CustomFeeledButtonState extends State<CustomFeeledButton> {
   void onPressedAction() {
     widget.onPressed();
   }

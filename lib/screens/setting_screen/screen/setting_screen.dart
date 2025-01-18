@@ -7,7 +7,7 @@ import 'package:kitty/model/user_model.dart';
 import 'package:kitty/screens/setting_screen/widgets/settings_options_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
-import 'package:kitty/widgets/kitty_status_bar.dart';
+import 'package:kitty/widgets/custom_status_bar.dart';
 import '../../../localization/app_locale.dart';
 import '../widgets/settings_app_bar.dart';
 import '../widgets/user_header_settings.dart';
@@ -56,7 +56,7 @@ class _SettingScreenState extends State<SettingScreen> {
       backgroundColor: KittyColors.white,
       body: Column(
         children: [
-          StatusBar(),
+          CustomStatusBar(),
           SettingAppBar(),
           BlocBuilder<UserCubit, User?>(
             builder: (context, user) {
