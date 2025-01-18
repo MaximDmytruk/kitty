@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-
+import 'package:kitty/screens/home_screen/widgets/total_amount.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/widgets/kitty_status_bar.dart';
-import '../../widgets/kitty_date_picker_app_bar.dart';
-import '../../widgets/kitty_home_app_bar.dart';
+import '../../../widgets/kitty_date_picker_app_bar.dart';
+import '../../../widgets/kitty_home_app_bar.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -33,6 +34,15 @@ class _HomeScreenState extends State<HomeScreen> {
             userAction: userAction,
           ),
           KittyDatePickerAppBar(),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 16.0,
+              right: 16.0,
+              top: 8.0,
+            ),
+            child: TotalAmount(),
+
+          ),
         ],
       ),
     );

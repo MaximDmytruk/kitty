@@ -21,4 +21,8 @@ class KittyColors {
   static const Color lightBlue219 = Color.fromRGBO(219, 238, 252, 1);
   static const Color lightBlue168 = Color.fromRGBO(168, 212, 250, 1);
   static const Color lightBlue115 = Color.fromRGBO(115, 187, 247, 1);
+
+  static const Color green = Color.fromRGBO(0, 137, 123, 1);
+
+  static const Color red = Color.fromRGBO(229, 57, 53, 1);
 }
