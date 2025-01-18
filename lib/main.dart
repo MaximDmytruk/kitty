@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/localization/map_lacales.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 
@@ -10,7 +12,12 @@ import 'screens/registration_screen/registration_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterLocalization.instance.ensureInitialized();
-  runApp(const MyApp());
+  runApp(
+     BlocProvider(
+      create: (_) => UserCubit(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
