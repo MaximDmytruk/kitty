@@ -24,6 +24,8 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   bool auth = false;
+  TextEditingController loginController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   void _logInAction() =>
       Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
@@ -35,6 +37,13 @@ class _AuthScreenState extends State<AuthScreen> {
     setState(() {
       auth = authenticate;
     });
+  }
+
+  @override
+  void dispose() {
+    loginController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -77,12 +86,14 @@ class _AuthScreenState extends State<AuthScreen> {
                 height: 40,
               ),
               KittyTextfield(
+                controller: loginController,
                 labelText: AppLocale.login.getString(context),
               ),
               SizedBox(
                 height: 40,
               ),
               KittyTextfield(
+                controller: passwordController,
                 labelText: AppLocale.password.getString(context),
               ),
               SizedBox(

@@ -5,11 +5,12 @@ import 'package:kitty/styles/font/fontstyle_app.dart';
 class KittyTextfield extends StatefulWidget {
   final String labelText;
   final bool addObscureText;
+  final TextEditingController controller;
 
   const KittyTextfield({
     super.key,
     required this.labelText,
-    this.addObscureText = false,
+    this.addObscureText = false, required this.controller,
   });
 
   @override
@@ -43,6 +44,7 @@ class _KittyTextfieldState extends State<KittyTextfield> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: widget.controller,
       obscureText: obscureText,
       cursorColor: KittyColors.blue106,
       maxLines: 1,

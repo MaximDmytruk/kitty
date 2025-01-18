@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:kitty/cubit/user_cubit.dart';
+import 'package:kitty/model/user_model.dart';
 
 import 'package:kitty/screens/setting_screen/widgets/settings_options_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -21,7 +24,7 @@ class _SettingScreenState extends State<SettingScreen> {
   String name = 'John Doe';
   // String firstChar = name.substring(0, 1); TODO чому так не працює ?
   String email = 'john.doe@gmail.com';
-  late String firstChar;
+  // late String firstChar;
 
   void manageCategoriesAction() {}
 
@@ -43,7 +46,7 @@ class _SettingScreenState extends State<SettingScreen> {
 
   @override
   void initState() {
-    firstChar = name.substring(0, 1).toUpperCase();
+    // firstChar = name.substring(0, 1).toUpperCase();
     super.initState();
   }
 
@@ -55,10 +58,23 @@ class _SettingScreenState extends State<SettingScreen> {
         children: [
           StatusBar(),
           SettingAppBar(),
-          UserHeaderSetting(
-            firstChar: firstChar,
-            name: name,
-            email: email,
+          BlocBuilder<UserCubit, User?>(
+            builder: (context, user) {
+              if (user != null) {
+                String firstChar = user.name.substring(0, 1).toUpperCase();
+                return UserHeaderSetting(
+                  firstChar: firstChar,
+                  name: user.name,
+                  email: user.email,
+                );
+              } else {
+                return UserHeaderSetting(
+                  firstChar: '0',
+                  name: 'NONAME',
+                  email: 'NOEMAIL',
+                );
+              }
+            },
           ),
           SettingOptionsRow(
             leadingIconName: IconsApp.category,

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
@@ -18,7 +20,43 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  void createAccountAction() {}
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController repeatPasswordController =
+      TextEditingController();
+
+  void createAccountAction() {
+    if (nameController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        passwordController.text.isEmpty ||
+        repeatPasswordController.text.isEmpty) {
+          print('Go exit =================================');
+      
+      return;
+      
+    }
+
+    final String password = passwordController.text;
+    final String repeatPassword = repeatPasswordController.text;
+
+    if (password == repeatPassword) {
+      context.read<UserCubit>().registerUser(
+            passwordController.text,
+            emailController.text,
+            nameController.text,
+          );
+    } else {}
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    repeatPasswordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +66,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     //     statusBarIconBrightness: Brightness.dark,
     //   ),
     // );
+
+    // BlocProvider(
+    //   create: (context) => UserCubit(),
     return Scaffold(
       backgroundColor: KittyColors.lightGrey250,
       body: Column(
@@ -71,16 +112,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     height: 8.0,
                   ),
                   KittyTextfield(
+                    controller: nameController,
                     labelText: AppLocale.name.getString(context),
                   ),
                   KittyTextfield(
+                    controller: emailController,
                     labelText: AppLocale.enterYourEmail.getString(context),
                   ),
                   KittyTextfield(
+                    controller: passwordController,
                     labelText: AppLocale.password.getString(context),
                     addObscureText: true,
                   ),
                   KittyTextfield(
+                    controller: repeatPasswordController,
                     labelText: AppLocale.repeatPassword.getString(context),
                     addObscureText: true,
                   ),

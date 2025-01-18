@@ -13,10 +13,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterLocalization.instance.ensureInitialized();
   runApp(
-     BlocProvider(
-      create: (_) => UserCubit(),
-      child: MyApp(),
-    ),
+     MyApp(),
   );
 }
 
@@ -45,22 +42,25 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      supportedLocales: _localization.supportedLocales,
-      localizationsDelegates: _localization.localizationsDelegates,
-      theme: ThemeData(
-        textSelectionTheme: TextSelectionThemeData(
-          selectionHandleColor: KittyColors.blue106,
+    return BlocProvider(
+      create: (_)=> UserCubit(),
+      child: MaterialApp(
+        supportedLocales: _localization.supportedLocales,
+        localizationsDelegates: _localization.localizationsDelegates,
+        theme: ThemeData(
+          textSelectionTheme: TextSelectionThemeData(
+            selectionHandleColor: KittyColors.blue106,
+          ),
         ),
+        title: 'Kitty',
+        routes: {
+          AuthScreen.routeName: (_) => const AuthScreen(),
+          RegistrationScreen.routeName: (_) => const RegistrationScreen(),
+          BottomNavigationScreen.routeName: (_) => const BottomNavigationScreen(),
+        },
+        initialRoute: AuthScreen.routeName,
       ),
-      title: 'Kitty',
-      routes: {
-        AuthScreen.routeName: (_) => const AuthScreen(),
-        RegistrationScreen.routeName: (_) => const RegistrationScreen(),
-        BottomNavigationScreen.routeName: (_) => const BottomNavigationScreen(),
-      },
-      initialRoute: AuthScreen.routeName,
     );
   }
 }
-//adasdsadsadas
+
