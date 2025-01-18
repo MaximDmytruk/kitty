@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:kitty/localization/map_lacales.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 
 import 'localization/app_locale.dart';
@@ -25,16 +26,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     _localization.init(
-      mapLocales: [
-        const MapLocale(
-          'en',
-          AppLocale.EN,
-        ),
-        MapLocale(
-          'ua',
-          AppLocale.UA,
-        )
-      ],
+      mapLocales: getMapLocales(),
       initLanguageCode: 'en',
     );
     _localization.onTranslatedLanguage = _onTranslatedLanguage;
