@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:kitty/cubit/user_cubit.dart';
+import 'package:kitty/localization/map_lacales.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 
-import 'localization/app_locale.dart';
 import 'screens/auth_screen/auth_screen.dart';
 import 'screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'screens/registration_screen/registration_screen.dart';
@@ -10,7 +12,12 @@ import 'screens/registration_screen/registration_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterLocalization.instance.ensureInitialized();
-  runApp(const MyApp());
+  runApp(
+     BlocProvider(
+      create: (_) => UserCubit(),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatefulWidget {
@@ -25,16 +32,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     _localization.init(
-      mapLocales: [
-        const MapLocale(
-          'en',
-          AppLocale.EN,
-        ),
-        MapLocale(
-          'ua',
-          AppLocale.UA,
-        )
-      ],
+      mapLocales: getMapLocales(),
       initLanguageCode: 'en',
     );
     _localization.onTranslatedLanguage = _onTranslatedLanguage;

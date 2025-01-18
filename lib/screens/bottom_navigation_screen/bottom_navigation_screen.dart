@@ -5,7 +5,7 @@ import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 
-import '../home_screen/home_screen.dart';
+import '../home_screen/screen/home_screen.dart';
 import '../setting_screen/screen/setting_screen.dart';
 
 class BottomNavigationScreen extends StatefulWidget {
@@ -42,22 +42,22 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
         items: [
           BottomNavigationBarItem(
             icon: _selectedPage == 0
-                ? SvgPicture.asset(KittyIcons.reportSelected)
-                : SvgPicture.asset(KittyIcons.report),
+                ? SvgPicture.asset(IconsApp.reportSelected)
+                : SvgPicture.asset(IconsApp.report),
             label: AppLocale.report.getString(context),
           ),
           BottomNavigationBarItem(
             icon: _selectedPage == 1
                 ? SvgPicture.asset(
-                    KittyIcons.homeSelected,
+                    IconsApp.homeSelected,
                   )
-                : SvgPicture.asset(KittyIcons.home),
+                : SvgPicture.asset(IconsApp.home),
             label: AppLocale.home.getString(context),
           ),
           BottomNavigationBarItem(
             icon: _selectedPage == 2
-                ? SvgPicture.asset(KittyIcons.settingSelected)
-                : SvgPicture.asset(KittyIcons.setting),
+                ? SvgPicture.asset(IconsApp.settingSelected)
+                : SvgPicture.asset(IconsApp.setting),
             label: AppLocale.settings.getString(context),
           ),
         ],

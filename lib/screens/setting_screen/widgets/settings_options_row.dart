@@ -54,7 +54,7 @@ class _SettingOptionsRowState extends State<SettingOptionsRow> {
             ),
             Spacer(),
             SvgPicture.asset(
-              KittyIcons.right,
+              IconsApp.right,
               width: 12.0,
               height: 12.0,
             ),

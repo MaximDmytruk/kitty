@@ -1,4 +1,4 @@
-class KittyIcons {
+class IconsApp {
   static final logoKitty = 'assets/icons/kitty_logo.svg';
   static final fingerPrint = 'assets/icons/finger_print.svg';
   static final search = 'assets/icons/search.svg';
@@ -17,4 +17,7 @@ class KittyIcons {
   static final pdf = 'assets/icons/pdf.svg';
   static final quiz = 'assets/icons/quiz.svg';
   static final translate = 'assets/icons/translate.svg';
+  static final expenses = 'assets/icons/expenses.svg';
+  static final balance = 'assets/icons/balance.svg';
+  static final income = 'assets/icons/income.svg';
 }

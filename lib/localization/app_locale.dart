@@ -19,6 +19,9 @@ mixin AppLocale {
   static const String pleaseEnterYourDetails = 'please enter your details';
   static const String name = 'name';
   static const String yourExpenseManager = 'Your expense manager';
+  static const String expenses = 'Expenses';
+  static const String balance = 'Balance';
+  static const String income = 'Income';
 
   static const Map<String, dynamic> EN = {
     chooseLanguage: 'Choose Language',
@@ -40,6 +43,9 @@ mixin AppLocale {
     createAccount: 'Create account',
     pleaseEnterYourDetails: 'please enter your details',
     yourExpenseManager: 'Your expense manager',
+    expenses: 'Expenses',
+    balance: 'Balance',
+    income: 'Income',
   };
 
   static const Map<String, dynamic> UA = {
@@ -62,5 +68,8 @@ mixin AppLocale {
     createAccount: 'Створити аккаунт',
     pleaseEnterYourDetails: 'будь ласка, введіть свої дані',
     yourExpenseManager: 'Ваш менеджер витрат',
+    expenses: 'Витрати',
+    balance: 'Баланс',
+    income: 'Дохід',
   };
 }

@@ -30,7 +30,7 @@ class _KittyHomeAppBarState extends State<KittyHomeAppBar> {
       title: Row(
         children: [
           SvgPicture.asset(
-            KittyIcons.logoKitty,
+            IconsApp.logoKitty,
             width: 40.0,
             height: 40.0,
           ),
@@ -48,7 +48,7 @@ class _KittyHomeAppBarState extends State<KittyHomeAppBar> {
           Spacer(),
           IconButton(
             onPressed: searchAction,
-            icon: SvgPicture.asset(KittyIcons.search),
+            icon: SvgPicture.asset(IconsApp.search),
           ),
           SizedBox(width: 8.0),
           InkWell(
