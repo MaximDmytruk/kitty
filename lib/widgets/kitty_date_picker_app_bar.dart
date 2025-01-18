@@ -32,7 +32,7 @@ class _KittyDatePickerAppBarState extends State<KittyDatePickerAppBar> {
           IconButton(
             onPressed: leftDateAction,
             icon: SvgPicture.asset(
-              KittyIcons.left,
+              IconsApp.left,
               width: 24.0,
               height: 24.0,
             ),
@@ -57,7 +57,7 @@ class _KittyDatePickerAppBarState extends State<KittyDatePickerAppBar> {
               child: Row(
                 children: [
                   SvgPicture.asset(
-                    KittyIcons.calendar,
+                    IconsApp.calendar,
                   ),
                   SizedBox(
                     width: 8.0,
@@ -75,7 +75,7 @@ class _KittyDatePickerAppBarState extends State<KittyDatePickerAppBar> {
           IconButton(
             onPressed: rightDateAction,
             icon: SvgPicture.asset(
-              KittyIcons.right,
+              IconsApp.right,
               width: 24.0,
               height: 24.0,
             ),

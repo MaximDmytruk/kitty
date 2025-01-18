@@ -51,7 +51,7 @@ class _AuthScreenState extends State<AuthScreen> {
           child: Column(
             children: [
               SvgPicture.asset(
-                KittyIcons.logoKitty,
+                IconsApp.logoKitty,
                 width: 120.0,
                 height: 120.0,
               ),
@@ -110,7 +110,7 @@ class _AuthScreenState extends State<AuthScreen> {
               IconButton(
                 onPressed: _authenticationAction,
                 icon: SvgPicture.asset(
-                  KittyIcons.fingerPrint,
+                  IconsApp.fingerPrint,
                   width: 64.0,
                   height: 64.0,
                 ),

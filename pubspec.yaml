@@ -39,6 +39,6 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
+    - assets/icons/category_icons/
     - assets/translations/
 
- 

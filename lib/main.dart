@@ -3,7 +3,6 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/localization/map_lacales.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 
-import 'localization/app_locale.dart';
 import 'screens/auth_screen/auth_screen.dart';
 import 'screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'screens/registration_screen/registration_screen.dart';

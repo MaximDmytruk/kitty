@@ -61,27 +61,27 @@ class _SettingScreenState extends State<SettingScreen> {
             email: email,
           ),
           SettingOptionsRow(
-            leadingIconName: KittyIcons.category,
+            leadingIconName: IconsApp.category,
             name: AppLocale.manageCategories.getString(context),
             onTap: manageCategoriesAction,
           ),
           SettingOptionsRow(
-            leadingIconName: KittyIcons.pdf,
+            leadingIconName: IconsApp.pdf,
             name: AppLocale.toPDF.getString(context),
             onTap: exportToPDFAction,
           ),
           SettingOptionsRow(
-            leadingIconName: KittyIcons.translate,
+            leadingIconName: IconsApp.translate,
             name: AppLocale.chooseLanguage.getString(context),
             onTap: chooseLanguageAction,
           ),
           SettingOptionsRow(
-            leadingIconName: KittyIcons.category,
+            leadingIconName: IconsApp.category,
             name: AppLocale.frequentlyAskedQuestions.getString(context),
             onTap: questionsAction,
           ),
           SettingOptionsRow(
-            leadingIconName: KittyIcons.logout,
+            leadingIconName: IconsApp.logout,
             name: AppLocale.logout.getString(context),
             onTap: logoutAction,
           ),

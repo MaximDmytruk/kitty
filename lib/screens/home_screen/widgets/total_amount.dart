@@ -34,7 +34,7 @@ class TotalAmount extends StatelessWidget {
             color: KittyColors.red,
             name: AppLocale.expenses.getString(context),
             icon: SvgPicture.asset(
-              KittyIcons.income,
+              IconsApp.income,
             ),
           ),
           TotalAmountIcon(
@@ -42,7 +42,7 @@ class TotalAmount extends StatelessWidget {
             color: KittyColors.green,
             name:AppLocale.balance.getString(context),
             icon: SvgPicture.asset(
-              KittyIcons.income,
+              IconsApp.income,
             ),
           ),
           TotalAmountIcon(
@@ -50,7 +50,7 @@ class TotalAmount extends StatelessWidget {
             color: KittyColors.black,
             name: AppLocale.income.getString(context),
             icon: SvgPicture.asset(
-              KittyIcons.income,
+              IconsApp.income,
             ),
           ),
         ],

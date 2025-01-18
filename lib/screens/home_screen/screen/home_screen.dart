@@ -6,7 +6,6 @@ import 'package:kitty/widgets/list_group.dart';
 import '../../../widgets/kitty_date_picker_app_bar.dart';
 import '../../../widgets/kitty_home_app_bar.dart';
 
-
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -37,20 +36,24 @@ class _HomeScreenState extends State<HomeScreen> {
           KittyDatePickerAppBar(),
           Padding(
             padding: const EdgeInsets.only(
+              top: 16.0,
               left: 16.0,
               right: 16.0,
-              top: 16.0,
             ),
             child: TotalAmount(),
-
           ),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 16.0,
-              right: 16.0,
-              top: 16.0,
+          Expanded(
+            child: ListView(
+              
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+              children: [
+                ListGroup(),
+                ListGroup(),
+                ListGroup(),
+                ListGroup(),
+              ],
             ),
-            child: ListGroup(),
           ),
         ],
       ),
