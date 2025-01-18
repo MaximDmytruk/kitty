@@ -10,7 +10,7 @@ import 'package:kitty/styles/icons/icons_app.dart';
 import '../../services/local_auth.dart';
 import '../../styles/font/fontstyle_app.dart';
 import '../../widgets/custom_feeled_button.dart';
-import '../../widgets/kitty_texfield.dart';
+import '../../widgets/custom_texfield.dart';
 import '../../widgets/custom_text_button.dart';
 
 class AuthScreen extends StatefulWidget {

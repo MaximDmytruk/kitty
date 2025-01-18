@@ -23,6 +23,7 @@ mixin AppLocale {
   static const String balance = 'Balance';
   static const String income = 'Income';
 
+  // ignore: constant_identifier_names
   static const Map<String, dynamic> EN = {
     chooseLanguage: 'Choose Language',
     frequentlyAskedQuestions: 'Frequently asked questions',
@@ -48,6 +49,7 @@ mixin AppLocale {
     income: 'Income',
   };
 
+  // ignore: constant_identifier_names
   static const Map<String, dynamic> UA = {
     chooseLanguage: 'Змінити мову',
     frequentlyAskedQuestions: 'Популярні запитання',

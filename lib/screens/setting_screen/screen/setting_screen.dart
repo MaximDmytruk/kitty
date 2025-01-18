@@ -21,15 +21,9 @@ class SettingScreen extends StatefulWidget {
 
 class _SettingScreenState extends State<SettingScreen> {
   final FlutterLocalization _localization = FlutterLocalization.instance;
-  String name = 'John Doe';
-  // String firstChar = name.substring(0, 1); TODO чому так не працює ?
-  String email = 'john.doe@gmail.com';
-  // late String firstChar;
-
+ 
   void manageCategoriesAction() {}
-
   void exportToPDFAction() {}
-
   void chooseCurrencyAction() {}
 
   void chooseLanguageAction() {
@@ -41,12 +35,10 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 
   void questionsAction() {}
-
   void logoutAction() {}
 
   @override
   void initState() {
-    // firstChar = name.substring(0, 1).toUpperCase();
     super.initState();
   }
 

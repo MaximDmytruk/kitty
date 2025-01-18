@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/cubit/user_cubit.dart';
@@ -8,7 +7,7 @@ import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 import 'package:kitty/widgets/custom_feeled_button.dart';
 
-import '../../widgets/kitty_texfield.dart';
+import '../../widgets/custom_texfield.dart';
 
 class RegistrationScreen extends StatefulWidget {
   const RegistrationScreen({super.key});
@@ -45,7 +44,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           );
     } else {
 
-      //password is incorrect 
+      //TODO:password is incorrect 
     }
   }
 
@@ -66,9 +65,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     //     statusBarIconBrightness: Brightness.dark,
     //   ),
     // );
-
-    // BlocProvider(
-    //   create: (context) => UserCubit(),
     return Scaffold(
       backgroundColor: KittyColors.lightGrey250,
       body: Column(

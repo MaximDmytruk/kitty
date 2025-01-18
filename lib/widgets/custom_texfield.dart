@@ -80,7 +80,7 @@ class _KittyTextfieldState extends State<KittyTextfield> {
           fontWeight: FontWeight.w400,
           color: KittyColors.blue106,
         ),
-        
+       //TODO: errorText: 
       ),
     );
   }
