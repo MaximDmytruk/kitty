@@ -20,4 +20,5 @@ class IconsApp {
   static final expenses = 'assets/icons/expenses.svg';
   static final balance = 'assets/icons/balance.svg';
   static final income = 'assets/icons/income.svg';
+  static final addPlusCircle = 'assets/icons/add_plus_circle.svg';
 }

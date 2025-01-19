@@ -6,11 +6,14 @@ import '../styles/font/fontstyle_app.dart';
 class CustomFeeledButton extends StatefulWidget {
   final Function onPressed;
   final String name;
+  final Widget? icon;
+  final EdgeInsets? padding;
 
   const CustomFeeledButton({
     super.key,
     required this.onPressed,
     required this.name,
+    this.icon, this.padding,
   });
 
   @override
@@ -34,9 +37,10 @@ class _CustomFeeledButtonState extends State<CustomFeeledButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return ElevatedButton.icon(
       onPressed: onPressedAction,
       style: ElevatedButton.styleFrom(
+        padding: widget.padding,
         backgroundColor: KittyColors.blue106,
         disabledBackgroundColor: KittyColors.lightGrey224,
         shape: RoundedRectangleBorder(
@@ -45,7 +49,8 @@ class _CustomFeeledButtonState extends State<CustomFeeledButton> {
           ),
         ),
       ),
-      child: Text(
+      icon: widget.icon,
+      label: Text(
         widget.name,
         style: interTextStyle(
           fontWeight: FontWeight.w500,
