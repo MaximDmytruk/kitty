@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 class CustomDropdownMenu extends StatefulWidget {
   final String selectedValue;
   final EdgeInsets? padding;
+  final ValueChanged onSelected;
 
-  const CustomDropdownMenu({super.key, required this.selectedValue, this.padding});
+  const CustomDropdownMenu(
+      {super.key,
+      required this.selectedValue,
+      this.padding,
+      required this.onSelected});
 
   @override
   State<CustomDropdownMenu> createState() => _CustomDropdownMenuState();
@@ -22,8 +27,7 @@ class _CustomDropdownMenuState extends State<CustomDropdownMenu> {
       ],
       onSelected: (value) {
         if (value != null) {
-          
-          setState(() {});
+          widget.onSelected(value);
         }
       },
     );

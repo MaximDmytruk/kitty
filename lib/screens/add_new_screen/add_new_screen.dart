@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/widgets/custom_dropdown_menu.dart';
 import 'package:kitty/widgets/custom_status_bar.dart';
@@ -28,14 +30,20 @@ class _AddNewScreenState extends State<AddNewScreen> {
         children: [
           CustomStatusBar(),
           HeaderAppBar(
-            name: 'Add new',
+            name: AppLocale.addNew.getString(context),
           ),
           CustomDropdownMenu(
             selectedValue: selectedValue,
             padding: EdgeInsets.symmetric(
               horizontal: 16.0,
-             
             ),
+            onSelected: (value) => {
+              setState(
+                () {
+                  selectedValue = value;
+                },
+              ),
+            },
           ),
         ],
       ),
