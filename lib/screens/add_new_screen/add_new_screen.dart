@@ -32,11 +32,15 @@ class _AddNewScreenState extends State<AddNewScreen> {
           HeaderAppBar(
             name: AppLocale.addNew.getString(context),
           ),
+          SizedBox(
+            height: 16.0,
+          ),
           CustomDropdownMenu(
             selectedValue: selectedValue,
             padding: EdgeInsets.symmetric(
               horizontal: 16.0,
             ),
+            label: AppLocale.categoryName.getString(context),
             onSelected: (value) => {
               setState(
                 () {
