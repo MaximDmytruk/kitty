@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:kitty/styles/colors/colors_app.dart';
+import 'package:kitty/widgets/custom_status_bar.dart';
+import 'package:kitty/widgets/header_app_bar.dart';
 
 class AddNewScreen extends StatefulWidget {
   const AddNewScreen({super.key});
@@ -9,8 +12,41 @@ class AddNewScreen extends StatefulWidget {
 }
 
 class _AddNewScreenState extends State<AddNewScreen> {
+  String? selectedValue = 'Income';
+  final List<String> options = [
+    'Income',
+    'Expense',
+  ];
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      backgroundColor: KittyColors.white,
+      body: Column(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          CustomStatusBar(),
+          HeaderAppBar(
+            name: 'Add new',
+          ),
+          DropdownMenu<String>(
+            initialSelection: selectedValue,
+            expandedInsets: EdgeInsets.symmetric(
+              horizontal: 16.0,
+            ),
+            dropdownMenuEntries: [
+              DropdownMenuEntry(value: 'Income', label: 'Income'),
+              DropdownMenuEntry(value: 'Expense', label: 'Expense'),
+            ],
+            onSelected: (value) {
+              if (value != null) {
+                selectedValue = value;
+                setState(() {});
+              }
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
