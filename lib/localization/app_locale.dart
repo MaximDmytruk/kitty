@@ -22,6 +22,7 @@ mixin AppLocale {
   static const String expenses = 'Expenses';
   static const String balance = 'Balance';
   static const String income = 'Income';
+  static const String addNew = 'Add new';
 
   // ignore: constant_identifier_names
   static const Map<String, dynamic> EN = {
@@ -47,6 +48,7 @@ mixin AppLocale {
     expenses: 'Expenses',
     balance: 'Balance',
     income: 'Income',
+     addNew: 'Add new',
   };
 
   // ignore: constant_identifier_names
@@ -73,5 +75,6 @@ mixin AppLocale {
     expenses: 'Витрати',
     balance: 'Баланс',
     income: 'Дохід',
+     addNew: 'Додати',
   };
 }

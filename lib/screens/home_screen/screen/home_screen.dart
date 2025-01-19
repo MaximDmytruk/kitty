@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/screens/add_new_screen/add_new_screen.dart';
 import 'package:kitty/screens/home_screen/widgets/total_amount.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
@@ -31,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void leftDateAction() {}
   void rightDateAction() {}
   void datePickerAction() {}
-  void addNew() {}
+  void addNew() => Navigator.of(context).pushNamed(AddNewScreen.routeName);
 
   @override
   Widget build(BuildContext context) {
@@ -68,19 +71,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   ) {
                     return _listGroups[index];
                   },
-                  
                   itemCount: _listGroups.length,
                 ),
               ),
             ],
           ),
+          //Button AddNew
           Padding(
             padding: const EdgeInsets.only(
               bottom: 16.0,
             ),
             child: CustomFeeledButton(
               onPressed: addNew,
-              name: 'Add new',
+              name: AppLocale.addNew.getString(context),
               icon: SvgPicture.asset(
                 IconsApp.addPlusCircle,
               ),

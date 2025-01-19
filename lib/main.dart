@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/localization/map_lacales.dart';
+import 'package:kitty/screens/add_new_screen/add_new_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 
 import 'screens/auth_screen/auth_screen.dart';
@@ -58,6 +59,7 @@ class _MyAppState extends State<MyApp> {
           AuthScreen.routeName: (_) => const AuthScreen(),
           RegistrationScreen.routeName: (_) => const RegistrationScreen(),
           BottomNavigationScreen.routeName: (_) => const BottomNavigationScreen(),
+          AddNewScreen.routeName: (_) => const AddNewScreen(),
         },
         initialRoute: AuthScreen.routeName,
       ),
