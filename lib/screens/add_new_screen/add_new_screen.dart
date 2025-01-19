@@ -47,47 +47,60 @@ class _AddNewScreenState extends State<AddNewScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: KittyColors.white,
-      body: Column(
-        mainAxisSize: MainAxisSize.max,
+      body: Stack(
         children: [
-          CustomStatusBar(),
-          HeaderAppBar(
-            name: AppLocale.addNew.getString(context),
-          ),
-          Expanded(
-            child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              children: [
-                SizedBox(height: 16.0,),
-                CustomDropdownMenu(
-                  padding: EdgeInsets.symmetric(horizontal: 0.0),
-                  selectedValue: selectedValue,
-                  onSelected: (value) => {
-                    setState(
-                      () {
-                        selectedValue = value;
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              CustomStatusBar(),
+              HeaderAppBar(
+                name: AppLocale.addNew.getString(context),
+              ),
+              Expanded(
+                child: ListView(
+                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  children: [
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    CustomDropdownMenu(
+                      padding: EdgeInsets.symmetric(horizontal: 0.0),
+                      selectedValue: selectedValue,
+                      onSelected: (value) => {
+                        setState(
+                          () {
+                            selectedValue = value;
+                          },
+                        ),
                       },
                     ),
-                  },
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    CustomTextfield(
+                      labelText: AppLocale.categoryName.getString(context),
+                      controller: categoryNameController,
+                    ),
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    CustomTextfield(
+                      labelText: AppLocale.enterAmount.getString(context),
+                      controller: enterAmountController,
+                    ),
+                    SizedBox(
+                      height: 16.0,
+                    ),
+                    CustomTextfield(
+                      labelText: AppLocale.description.getString(context),
+                      controller: descriptionController,
+                    ),
+                  ],
                 ),
-                 SizedBox(height: 16.0,),
-                CustomTextfield(
-                  labelText: AppLocale.categoryName.getString(context),
-                  controller: categoryNameController,
-                ),
-                 SizedBox(height: 16.0,),
-                CustomTextfield(
-                  labelText: AppLocale.enterAmount.getString(context),
-                  controller: enterAmountController,
-                ),
-                 SizedBox(height: 16.0,),
-                CustomTextfield(
-                  labelText: AppLocale.description.getString(context),
-                  controller: descriptionController,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
+          // CustomFeeledButton(onPressed: onPressed, name: 'add new expense')
         ],
       ),
     );
