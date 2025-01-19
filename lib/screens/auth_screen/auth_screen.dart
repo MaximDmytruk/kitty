@@ -85,14 +85,14 @@ class _AuthScreenState extends State<AuthScreen> {
               SizedBox(
                 height: 40,
               ),
-              KittyTextfield(
+              CustomTextfield(
                 controller: loginController,
                 labelText: AppLocale.login.getString(context),
               ),
               SizedBox(
                 height: 40,
               ),
-              KittyTextfield(
+              CustomTextfield(
                 controller: passwordController,
                 labelText: AppLocale.password.getString(context),
               ),

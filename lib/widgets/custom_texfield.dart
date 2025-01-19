@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 
-class KittyTextfield extends StatefulWidget {
+class CustomTextfield extends StatefulWidget {
   final String labelText;
   final bool addObscureText;
   final TextEditingController controller;
 
-  const KittyTextfield({
+  const CustomTextfield({
     super.key,
     required this.labelText,
     this.addObscureText = false,
@@ -15,10 +15,10 @@ class KittyTextfield extends StatefulWidget {
   });
 
   @override
-  State<KittyTextfield> createState() => _KittyTextfieldState();
+  State<CustomTextfield> createState() => _CustomTextfieldState();
 }
 
-class _KittyTextfieldState extends State<KittyTextfield> {
+class _CustomTextfieldState extends State<CustomTextfield> {
   bool obscureText = false;
 
   Icon visibility = Icon(Icons.visibility);

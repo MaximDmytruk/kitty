@@ -107,20 +107,20 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   SizedBox(
                     height: 8.0,
                   ),
-                  KittyTextfield(
+                  CustomTextfield(
                     controller: nameController,
                     labelText: AppLocale.name.getString(context),
                   ),
-                  KittyTextfield(
+                  CustomTextfield(
                     controller: emailController,
                     labelText: AppLocale.enterYourEmail.getString(context),
                   ),
-                  KittyTextfield(
+                  CustomTextfield(
                     controller: passwordController,
                     labelText: AppLocale.password.getString(context),
                     addObscureText: true,
                   ),
-                  KittyTextfield(
+                  CustomTextfield(
                     controller: repeatPasswordController,
                     labelText: AppLocale.repeatPassword.getString(context),
                     addObscureText: true,
