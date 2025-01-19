@@ -54,33 +54,39 @@ class _AddNewScreenState extends State<AddNewScreen> {
           HeaderAppBar(
             name: AppLocale.addNew.getString(context),
           ),
-          SizedBox(
-            height: 16.0,
-          ),
-          CustomDropdownMenu(
-            selectedValue: selectedValue,
-            padding: EdgeInsets.symmetric(
-              horizontal: 16.0,
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              children: [
+                SizedBox(height: 16.0,),
+                CustomDropdownMenu(
+                  padding: EdgeInsets.symmetric(horizontal: 0.0),
+                  selectedValue: selectedValue,
+                  onSelected: (value) => {
+                    setState(
+                      () {
+                        selectedValue = value;
+                      },
+                    ),
+                  },
+                ),
+                 SizedBox(height: 16.0,),
+                CustomTextfield(
+                  labelText: AppLocale.categoryName.getString(context),
+                  controller: categoryNameController,
+                ),
+                 SizedBox(height: 16.0,),
+                CustomTextfield(
+                  labelText: AppLocale.enterAmount.getString(context),
+                  controller: enterAmountController,
+                ),
+                 SizedBox(height: 16.0,),
+                CustomTextfield(
+                  labelText: AppLocale.description.getString(context),
+                  controller: descriptionController,
+                ),
+              ],
             ),
-            onSelected: (value) => {
-              setState(
-                () {
-                  selectedValue = value;
-                },
-              ),
-            },
-          ),
-          CustomTextfield(
-            labelText: AppLocale.categoryName.getString(context),
-            controller: categoryNameController,
-          ),
-          CustomTextfield(
-            labelText: AppLocale.enterAmount.getString(context),
-            controller: enterAmountController,
-          ),
-          CustomTextfield(
-            labelText: AppLocale.description.getString(context),
-            controller: descriptionController,
           ),
         ],
       ),
