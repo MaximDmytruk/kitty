@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
+import 'package:kitty/widgets/custom_dropdown_menu.dart';
 import 'package:kitty/widgets/custom_status_bar.dart';
 import 'package:kitty/widgets/header_app_bar.dart';
 
@@ -12,7 +13,7 @@ class AddNewScreen extends StatefulWidget {
 }
 
 class _AddNewScreenState extends State<AddNewScreen> {
-  String? selectedValue = 'Income';
+  String selectedValue = 'Income';
   final List<String> options = [
     'Income',
     'Expense',
@@ -29,21 +30,12 @@ class _AddNewScreenState extends State<AddNewScreen> {
           HeaderAppBar(
             name: 'Add new',
           ),
-          DropdownMenu<String>(
-            initialSelection: selectedValue,
-            expandedInsets: EdgeInsets.symmetric(
+          CustomDropdownMenu(
+            selectedValue: selectedValue,
+            padding: EdgeInsets.symmetric(
               horizontal: 16.0,
+             
             ),
-            dropdownMenuEntries: [
-              DropdownMenuEntry(value: 'Income', label: 'Income'),
-              DropdownMenuEntry(value: 'Expense', label: 'Expense'),
-            ],
-            onSelected: (value) {
-              if (value != null) {
-                selectedValue = value;
-                setState(() {});
-              }
-            },
           ),
         ],
       ),
