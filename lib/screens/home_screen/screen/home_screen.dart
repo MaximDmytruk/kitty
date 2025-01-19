@@ -16,6 +16,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<ListGroup> _listGroups = [
+    ListGroup(),
+    ListGroup(),
+    ListGroup(),
+    ListGroup(),
+  ];
+
   void searchAction() {}
   void userAction() {}
   void leftDateAction() {}
@@ -43,18 +50,20 @@ class _HomeScreenState extends State<HomeScreen> {
             child: TotalAmount(),
           ),
           Expanded(
-            child: ListView(
-              
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-              children: [
-                ListGroup(),
-                ListGroup(),
-                ListGroup(),
-                ListGroup(),
-              ],
+            child: ListView.separated(
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+              itemBuilder: (BuildContext context, int index) {
+                return ListGroup();
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  height: 1.0,
+                );
+              },
+              itemCount: _listGroups.length,
             ),
-          ),
+          )
+         
         ],
       ),
     );
