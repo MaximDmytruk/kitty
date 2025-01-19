@@ -12,21 +12,22 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-    
-
-
   cupertino_icons: ^1.0.8
   flutter_svg: ^2.0.16
   google_fonts: ^6.2.1
   local_auth: ^2.3.0
   flutter_localization: ^0.3.1
   flutter_bloc: ^9.0.0
+  freezed: ^2.5.8
+  freezed_annotation: ^2.4.4
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
   flutter_lints: ^5.0.0
+  build_runner: ^2.4.14
+  json_serializable: ^6.9.3
 
 
 flutter:

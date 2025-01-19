@@ -1,13 +1,13 @@
-
-
 class FinancialTransaction {
   final String name;
   final String category;
-  final int value;
+  final int amount;
+  final DateTime date;
 
   FinancialTransaction({
+    required this.date,
     required this.name,
     required this.category,
-    required this.value,
+    required this.amount,
   });
 }
