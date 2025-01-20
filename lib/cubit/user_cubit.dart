@@ -11,7 +11,7 @@ class UserCubit extends Cubit<User?> {
     String name,
   ) {
     emit(User(
-      password,
+      password: password,
       email: email,
       name: name,
     ));
