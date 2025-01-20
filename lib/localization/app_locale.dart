@@ -26,6 +26,7 @@ mixin AppLocale {
   static const String categoryName = 'Category name';
   static const String enterAmount = 'Enter amount';
   static const String description = 'Description (optional)';
+ 
 
   // ignore: constant_identifier_names
   static const Map<String, dynamic> EN = {

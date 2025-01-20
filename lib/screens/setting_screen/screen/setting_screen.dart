@@ -9,7 +9,7 @@ import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/widgets/custom_status_bar.dart';
 import '../../../localization/app_locale.dart';
-import '../widgets/settings_app_bar.dart';
+import '../../../widgets/header_app_bar.dart';
 import '../widgets/user_header_settings.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -21,7 +21,7 @@ class SettingScreen extends StatefulWidget {
 
 class _SettingScreenState extends State<SettingScreen> {
   final FlutterLocalization _localization = FlutterLocalization.instance;
- 
+
   void manageCategoriesAction() {}
   void exportToPDFAction() {}
   void chooseCurrencyAction() {}
@@ -49,7 +49,9 @@ class _SettingScreenState extends State<SettingScreen> {
       body: Column(
         children: [
           CustomStatusBar(),
-          SettingAppBar(),
+          HeaderAppBar(
+            name: AppLocale.settings.getString(context),
+          ),
           BlocBuilder<UserCubit, User?>(
             builder: (context, user) {
               if (user != null) {

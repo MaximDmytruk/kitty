@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/screens/statistics_screen/statistics_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 
@@ -21,7 +22,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   int _selectedPage = 1;
 
   static const List<Widget> _widgetOptions = [
-    Text('aaaaaaaaaaaaa'),
+    StatisticsScreen(),
     HomeScreen(),
     SettingScreen(),
   ];
