@@ -12,6 +12,8 @@ class User {
   });
 
   List<FinancialTransaction> listFinTransaction = [];
+
+
 }
 
 // part 'user.freezed.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/cubit/user_cubit.dart';
@@ -13,6 +14,7 @@ import 'screens/registration_screen/registration_screen.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await FlutterLocalization.instance.ensureInitialized();
+
   runApp(
      MyApp(),
   );
@@ -44,6 +46,12 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+      SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.black,
+        statusBarIconBrightness: Brightness.dark,
+      ),
+    );
     return BlocProvider(
       create: (_)=> UserCubit(),
       child: MaterialApp(

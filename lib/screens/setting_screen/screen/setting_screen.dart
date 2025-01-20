@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/model/user.dart';
-import 'package:kitty/widgets/name_of_screenHeader.dart';
+import 'package:kitty/widgets/name_of_screen_header.dart';
 
 import 'package:kitty/screens/setting_screen/widgets/settings_options_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
