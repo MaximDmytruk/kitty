@@ -50,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 searchAction: searchAction,
                 userAction: userAction,
               ),
-              CustomDatePickerAppBar(),
+              CustomDatePicker(),
               Padding(
                 padding: const EdgeInsets.only(
                   top: 16.0,

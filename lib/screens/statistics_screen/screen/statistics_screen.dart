@@ -33,7 +33,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
             name: AppLocale.statistics.getString(context),
             color: ColorsApp.white,
           ),
-          CustomDatePickerAppBar(),
+          CustomDatePicker(),
           Padding(
             padding: const EdgeInsets.symmetric(
               vertical: 8.0,
