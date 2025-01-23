@@ -30,8 +30,20 @@ class _AddNewScreenState extends State<AddNewScreen> {
     'Expense',
   ];
 
+  // Future.delayed(Duration.zero, () {
+  //     _dateController.text = AppLocalizations.of(context)!.appTitle;
+  //   });
+
   @override
   void initState() {
+
+    Future.delayed(Duration.zero, () {
+     selectedValue = AppLocale.income.getString(context); 
+     setState(() {
+       
+     });
+    });
+
     // selectedValue = AppLocale.income.getString(context); //викликає помилку
     super.initState();
   }
@@ -47,7 +59,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: KittyColors.white,
+      backgroundColor: ColorsApp.white,
       body: Stack(
         children: [
           Column(

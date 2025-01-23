@@ -66,15 +66,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     //   ),
     // );
     return Scaffold(
-      backgroundColor: KittyColors.lightGrey250,
+      backgroundColor: ColorsApp.lightGrey250,
       body: Column(
         children: [
           Container(
-            color: KittyColors.grey33WithOpacity,
+            color: ColorsApp.grey33WithOpacity,
             height: MediaQuery.of(context).padding.top,
           ),
           AppBar(
-            backgroundColor: KittyColors.lightGrey245,
+            backgroundColor: ColorsApp.lightGrey245,
             toolbarHeight: 48.0,
           ),
           Expanded(
@@ -90,7 +90,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       style: interTextStyle(
                         fontSize: 32.0,
                         fontWeight: FontWeight.w500,
-                        color: KittyColors.grey66,
+                        color: ColorsApp.grey66,
                       ),
                     ),
                   ),
@@ -100,7 +100,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       style: interTextStyle(
                         fontSize: 14.0,
                         fontWeight: FontWeight.w400,
-                        color: KittyColors.grey66,
+                        color: ColorsApp.grey66,
                       ),
                     ),
                   ),

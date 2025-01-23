@@ -49,7 +49,7 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: KittyColors.lightGrey250,
+      backgroundColor: ColorsApp.lightGrey250,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(
@@ -72,14 +72,14 @@ class _AuthScreenState extends State<AuthScreen> {
                 style: interTextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.w700,
-                  color: KittyColors.grey66,
+                  color: ColorsApp.grey66,
                 ),
               ),
               Text(
                 AppLocale.yourExpenseManager.getString(context),
                 style: interTextStyle(
                   fontWeight: FontWeight.w400,
-                  color: KittyColors.grey66,
+                  color: ColorsApp.grey66,
                 ),
               ),
               SizedBox(

@@ -39,7 +39,7 @@ class _CustomTextButtonState extends State<CustomTextButton> {
         widget.name,
         style: interTextStyle(
           fontWeight: FontWeight.w500,
-          color: KittyColors.blue106,
+          color: ColorsApp.blue106,
         ),
       ),
     );

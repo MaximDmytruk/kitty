@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class KittyColors {
+class ColorsApp {
   static const Color white = Color.fromRGBO(255, 255, 255, 1);
   static const Color black = Color.fromRGBO(33, 33, 33, 1);
   static const Color transparent = Colors.transparent;
@@ -21,8 +21,17 @@ class KittyColors {
   static const Color lightBlue219 = Color.fromRGBO(219, 238, 252, 1);
   static const Color lightBlue168 = Color.fromRGBO(168, 212, 250, 1);
   static const Color lightBlue115 = Color.fromRGBO(115, 187, 247, 1);
+  static const Color lightBlue178 = Color.fromRGBO(178 , 235, 242, 1);
 
   static const Color green = Color.fromRGBO(0, 137, 123, 1);
+  static const Color lightGreen = Color.fromRGBO(200, 230, 201, 1);
 
   static const Color red = Color.fromRGBO(229, 57, 53, 1);
+
+  static const Color pink = Color.fromRGBO(248, 187, 208, 1);
+  static const Color pink225 = Color.fromRGBO(225, 190, 231, 1);
+  static const Color pink255 = Color.fromRGBO(255, 205, 210, 1);
+
+   static const Color yellow = Color.fromRGBO(255, 236, 179, 1);
+
 }

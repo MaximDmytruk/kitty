@@ -48,7 +48,7 @@ class _SettingOptionsRowState extends State<SettingOptionsRow> {
               style: interTextStyle(
                 fontSize: 14.0,
                 fontWeight: FontWeight.w400,
-                color: KittyColors.black,
+                color: ColorsApp.black,
               ),
             ),
             Spacer(),

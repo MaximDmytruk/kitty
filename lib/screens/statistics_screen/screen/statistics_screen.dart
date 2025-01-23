@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/screens/statistics_screen/widgets/name_of_section.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
+import 'package:kitty/styles/icons/category_icons.dart';
+import 'package:kitty/widgets/list_item.dart';
 import 'package:kitty/widgets/name_of_screen_header.dart';
 import 'package:kitty/widgets/custom_date_picker_app_bar.dart';
 
@@ -21,14 +24,14 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: KittyColors.white,
+      backgroundColor: ColorsApp.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CustomStatusBar(),
           NameOfScreenHeader(
             name: AppLocale.statistics.getString(context),
-            color: KittyColors.white,
+            color: ColorsApp.white,
           ),
           CustomDatePickerAppBar(),
           Padding(
@@ -51,14 +54,23 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
           ),
           Expanded(
             child: ListView(
+              
               padding: EdgeInsets.symmetric(
                 horizontal: 16.0,
+              
               ),
               children: [
                 NameOfSection(name: AppLocale.detail.getString(context)),
+                ListItem(
+                  firstName: 'Notes will come here',
+                  secondName: 'Category name',
+                  value: -500,
+                  iconAssetName: CategoryIcons.electronics,
+                  iconBackground: ColorsApp.lightBlue178,
+                )
               ],
             ),
-          )
+          ),
         ],
       ),
     );

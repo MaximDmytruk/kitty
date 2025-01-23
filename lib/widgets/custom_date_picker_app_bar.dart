@@ -21,9 +21,11 @@ class _CustomDatePickerAppBarState extends State<CustomDatePickerAppBar> {
   void leftDateAction() {}
   @override
   Widget build(BuildContext context) {
+
+    //TODO: переробити на строку
     return AppBar(
       toolbarHeight: 48.0,
-      backgroundColor: KittyColors.white,
+      backgroundColor: ColorsApp.white,
       // centerTitle: true,
       automaticallyImplyLeading: false,
       title: Row(
@@ -47,10 +49,10 @@ class _CustomDatePickerAppBarState extends State<CustomDatePickerAppBar> {
               // ),
               style: ButtonStyle(
                 backgroundColor: WidgetStatePropertyAll(
-                  KittyColors.lightGrey245,
+                  ColorsApp.lightGrey245,
                 ),
                 foregroundColor: WidgetStatePropertyAll(
-                  KittyColors.grey66,
+                  ColorsApp.grey66,
                 ),
                 elevation: WidgetStatePropertyAll(0.0),
               ),
@@ -67,7 +69,7 @@ class _CustomDatePickerAppBarState extends State<CustomDatePickerAppBar> {
                     style: interTextStyle(
                       fontSize: 14.0,
                       fontWeight: FontWeight.w500,
-                      color: KittyColors.grey66,
+                      color: ColorsApp.grey66,
                     ),
                   )
                 ],

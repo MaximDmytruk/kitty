@@ -41,8 +41,8 @@ class _CustomFeeledButtonState extends State<CustomFeeledButton> {
       onPressed: onPressedAction,
       style: ElevatedButton.styleFrom(
         padding: widget.padding,
-        backgroundColor: KittyColors.blue106,
-        disabledBackgroundColor: KittyColors.lightGrey224,
+        backgroundColor: ColorsApp.blue106,
+        disabledBackgroundColor: ColorsApp.lightGrey224,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(
             44.0,
@@ -54,7 +54,7 @@ class _CustomFeeledButtonState extends State<CustomFeeledButton> {
         widget.name,
         style: interTextStyle(
           fontWeight: FontWeight.w500,
-          color: KittyColors.white,
+          color: ColorsApp.white,
         ),
       ),
     );

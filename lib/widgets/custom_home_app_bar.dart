@@ -26,7 +26,7 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: KittyColors.white,
+      backgroundColor: ColorsApp.white,
       title: Row(
         children: [
           SvgPicture.asset(
@@ -42,7 +42,7 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
             style: interTextStyle(
               fontSize: 20.0,
               fontWeight: FontWeight.w700,
-              color: KittyColors.grey66,
+              color: ColorsApp.grey66,
             ),
           ),
           Spacer(),
@@ -59,7 +59,7 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
               width: 32.0,
               decoration: BoxDecoration(
                 borderRadius: BorderRadiusDirectional.circular(25.0),
-                color: KittyColors.lightGrey238,
+                color: ColorsApp.lightGrey238,
               ),
               child: Center(
                 child: Text(
@@ -67,7 +67,7 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
                   style: interTextStyle(
                     fontSize: 14.0,
                     fontWeight: FontWeight.w500,
-                    color: KittyColors.grey66,
+                    color: ColorsApp.grey66,
                   ),
                 ),
               ),

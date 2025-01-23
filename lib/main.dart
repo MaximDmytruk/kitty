@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
         localizationsDelegates: _localization.localizationsDelegates,
         theme: ThemeData(
           textSelectionTheme: TextSelectionThemeData(
-            selectionHandleColor: KittyColors.blue106,
+            selectionHandleColor: ColorsApp.blue106,
           ),
         ),
         title: 'Kitty',

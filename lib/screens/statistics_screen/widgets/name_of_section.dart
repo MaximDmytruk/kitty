@@ -16,7 +16,7 @@ class NameOfSection extends StatelessWidget {
       style: interTextStyle(
         fontSize: 10.0,
         fontWeight: FontWeight.w500,
-        color: KittyColors.grey66,
+        color: ColorsApp.grey66,
       ),
     );
   }

@@ -22,7 +22,7 @@ class TotalAmount extends StatelessWidget {
           8.0,
         ),
         border: Border.all(
-          color: KittyColors.lightGrey224,
+          color: ColorsApp.lightGrey224,
         ),
       ),
       child: Row(
@@ -31,7 +31,7 @@ class TotalAmount extends StatelessWidget {
         children: [
           TotalAmountIcon(
             value: -12000,
-            color: KittyColors.red,
+            color: ColorsApp.red,
             name: AppLocale.expenses.getString(context),
             icon: SvgPicture.asset(
               IconsApp.income,
@@ -39,7 +39,7 @@ class TotalAmount extends StatelessWidget {
           ),
           TotalAmountIcon(
             value: 48000,
-            color: KittyColors.green,
+            color: ColorsApp.green,
             name:AppLocale.balance.getString(context),
             icon: SvgPicture.asset(
               IconsApp.income,
@@ -47,7 +47,7 @@ class TotalAmount extends StatelessWidget {
           ),
           TotalAmountIcon(
             value: 70000,
-            color: KittyColors.black,
+            color: ColorsApp.black,
             name: AppLocale.income.getString(context),
             icon: SvgPicture.asset(
               IconsApp.income,

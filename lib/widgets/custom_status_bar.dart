@@ -9,7 +9,7 @@ class CustomStatusBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: KittyColors.grey33WithOpacity,
+      color: ColorsApp.grey33WithOpacity,
       height: MediaQuery.of(context).padding.top,
     );
   }

@@ -46,7 +46,7 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: KittyColors.white,
+      backgroundColor: ColorsApp.white,
       body: Column(
         children: [
           CustomStatusBar(),

@@ -47,7 +47,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
     return TextField(
       controller: widget.controller,
       obscureText: obscureText,
-      cursorColor: KittyColors.blue106,
+      cursorColor: ColorsApp.blue106,
       
       maxLines: 1,
       decoration: InputDecoration(
@@ -60,25 +60,25 @@ class _CustomTextfieldState extends State<CustomTextfield> {
         border: OutlineInputBorder(),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: KittyColors.blue106,
+            color: ColorsApp.blue106,
             width: 2.0,
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(
-            color: KittyColors.grey97,
+            color: ColorsApp.grey97,
           ),
         ),
         labelText: widget.labelText,
         labelStyle: interTextStyle(
           fontSize: 16.0,
           fontWeight: FontWeight.w400,
-          color: KittyColors.grey97,
+          color: ColorsApp.grey97,
         ),
         floatingLabelStyle: interTextStyle(
           fontSize: 16.0,
           fontWeight: FontWeight.w400,
-          color: KittyColors.blue106,
+          color: ColorsApp.blue106,
         ),
        //TODO: errorText: 
       ),

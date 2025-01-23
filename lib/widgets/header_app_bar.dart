@@ -12,12 +12,12 @@ class HeaderAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: KittyColors.lightGrey245,
+      backgroundColor: ColorsApp.lightGrey245,
       title: Text(
         name,
         style: interTextStyle(
           fontSize: 16.0,
-          color: KittyColors.grey66,
+          color: ColorsApp.grey66,
         ),
       ),
     );

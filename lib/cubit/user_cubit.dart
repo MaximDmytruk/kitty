@@ -28,7 +28,7 @@ class UserCubit extends Cubit<User?> {
   }
 
   void addFinancialTransaction(FinancialTransaction finTransaction){
-    //TODO:
-    // emit(state.listFinTransaction.)
+  
+    // emit(state.copyWith(listFinTransaction: [...state.listFinTransaction, finTransaction] ));
   }
 }

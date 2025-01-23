@@ -62,8 +62,8 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
             label: AppLocale.settings.getString(context),
           ),
         ],
-        selectedItemColor: KittyColors.grey66,
-        backgroundColor: KittyColors.white,
+        selectedItemColor: ColorsApp.grey66,
+        backgroundColor: ColorsApp.white,
         onTap: onSelectedTab,
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
+import 'package:kitty/styles/icons/category_icons.dart';
 import 'package:kitty/widgets/list_item.dart';
 
 class ListGroup extends StatelessWidget {
@@ -20,7 +21,7 @@ class ListGroup extends StatelessWidget {
             8.0,
           ),
           border: Border.all(
-            color: KittyColors.lightGrey224,
+            color: ColorsApp.lightGrey224,
           ),
         ),
         child: Column(
@@ -35,7 +36,7 @@ class ListGroup extends StatelessWidget {
                   style: interTextStyle(
                     fontSize: 10.0,
                     fontWeight: FontWeight.w500,
-                    color: KittyColors.grey66,
+                    color: ColorsApp.grey66,
                   ),
                 ),
                 Text(
@@ -43,14 +44,32 @@ class ListGroup extends StatelessWidget {
                   style: interTextStyle(
                     fontSize: 10.0,
                     fontWeight: FontWeight.w500,
-                    color: KittyColors.grey66,
+                    color: ColorsApp.grey66,
                   ),
                 ),
               ],
             ),
-            ListItem(),
-            ListItem(),
-            ListItem(),
+            ListItem(
+              firstName: 'Notes will come here',
+              secondName: 'Category name',
+              value: -500,
+              iconAssetName: CategoryIcons.cafe,
+              iconBackground: const Color.fromARGB(255, 54, 212, 197),
+            ),
+            ListItem(
+              firstName: 'Notes will come here',
+              secondName: 'Category name',
+              value: -500,
+              iconAssetName: CategoryIcons.cafe,
+              iconBackground: ColorsApp.green,
+            ),
+            ListItem(
+              firstName: 'Notes will come here',
+              secondName: 'Category name',
+              value: -500,
+              iconAssetName: CategoryIcons.cafe,
+              iconBackground: ColorsApp.lightBlue168,
+            ),
           ],
         ),
       ),

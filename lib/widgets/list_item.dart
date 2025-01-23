@@ -5,8 +5,21 @@ import 'package:kitty/styles/font/fontstyle_app.dart';
 import 'package:kitty/styles/icons/category_icons.dart';
 
 class ListItem extends StatelessWidget {
+  final String firstName;
+  final String secondName;
+  final int value;
+  final int? secondValue;
+  final String iconAssetName;
+  final Color iconBackground;
+
   const ListItem({
     super.key,
+    required this.firstName,
+    required this.secondName,
+    required this.value,
+    this.secondValue,
+    required this.iconAssetName,
+    required this.iconBackground,
   });
 
   @override
@@ -19,10 +32,10 @@ class ListItem extends StatelessWidget {
           width: 40.0,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-            color: Color.fromRGBO(200, 230, 201, 1),
+            color: iconBackground,
           ),
           child: SvgPicture.asset(
-            CategoryIcons.education,
+            iconAssetName,
             height: 24.0,
             width: 24.0,
             fit: BoxFit.none,
@@ -33,23 +46,23 @@ class ListItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Notes will come here',
+              firstName,
               style: interTextStyle(),
             ),
             Text(
-              'Category name',
+              secondName,
               style: interTextStyle(
                 fontSize: 12.0,
-                color: KittyColors.grey97,
+                color: ColorsApp.grey97,
               ),
             ),
           ],
         ),
         Spacer(),
         Text(
-          '-500',
+          value.toString(),
           style: interTextStyle(
-            color: KittyColors.red,
+            color: ColorsApp.red,
           ),
         )
       ],

@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: KittyColors.white,
+      backgroundColor: ColorsApp.white,
       body: Stack(
         alignment: AlignmentDirectional.bottomCenter,
         children: [

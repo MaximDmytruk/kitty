@@ -32,7 +32,7 @@ class TotalAmountIcon extends StatelessWidget {
           name,
           style: interTextStyle(
             fontSize: 12.0,
-            color: KittyColors.grey97,
+            color: ColorsApp.grey97,
           ),
         )
       ],

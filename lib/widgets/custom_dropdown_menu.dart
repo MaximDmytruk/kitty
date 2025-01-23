@@ -26,7 +26,7 @@ class _CustomDropdownMenuState extends State<CustomDropdownMenu> {
     return DropdownMenu<String>(
       menuStyle: MenuStyle(
         backgroundColor: WidgetStatePropertyAll(
-          KittyColors.white,
+          ColorsApp.white,
         ),
       ),
       initialSelection: widget.selectedValue,
