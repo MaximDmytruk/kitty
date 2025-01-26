@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
-import 'package:kitty/styles/icons/category_icons.dart';
 
 class ListItem extends StatelessWidget {
   final String firstName;

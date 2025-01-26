@@ -3,8 +3,9 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
+import 'package:kitty/widgets/custom_outline_button.dart';
 
-Future<dynamic> showCustomModalBottomSheet({
+Future<dynamic> showCustomBottomSheet({
   required BuildContext context,
   required int length,
   required Widget? Function(BuildContext, int) itemBuilder,
@@ -48,27 +49,9 @@ Future<dynamic> showCustomModalBottomSheet({
                 padding: const EdgeInsets.only(
                   bottom: 16.0,
                 ),
-                child: ElevatedButton(
+                child: CustomOutlineButton(
                   onPressed: onPressed,
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: ColorsApp.transparent,
-                      shadowColor: ColorsApp.transparent,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          4.0,
-                        ),
-                        side: BorderSide(
-                          color: ColorsApp.grey189,
-                        ),
-                      )),
-                  child: Text(
-                    buttonName ?? 'NoName',
-                    style: interTextStyle(
-                      fontSize: 14.0,
-                      fontWeight: FontWeight.w500,
-                      color: ColorsApp.blue106,
-                    ),
-                  ),
+                  buttonName: buttonName,
                 ),
               ),
           ],
