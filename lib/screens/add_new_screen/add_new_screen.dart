@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/model/financial_transaction.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/widgets/custom_dropdown_menu.dart';
+import 'package:kitty/widgets/custom_feeled_button.dart';
 import 'package:kitty/widgets/custom_status_bar.dart';
 import 'package:kitty/widgets/custom_texfield.dart';
 import 'package:kitty/widgets/header_app_bar.dart';
@@ -21,30 +23,15 @@ class _AddNewScreenState extends State<AddNewScreen> {
   TextEditingController enterAmountController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
-  //TODO: Потрібно якось зробити з перекладом, але через ініт і напряму викликає помилку.
-  String selectedValue = 'Income';
-  // String selectedValue = AppLocale.income.getString(context);
-  //  late String selectedValue;
-  List<String> options = [];
-
-  // Future.delayed(Duration.zero, () {
-  //     _dateController.text = AppLocalizations.of(context)!.appTitle;
-  //   });
+  FinancialAction selectedValue = FinancialAction.income;
 
   @override
   void initState() {
-    Future.delayed(Duration.zero, () {
-      selectedValue = 'ssss';
-      options = [
-        AppLocale.income.getString(context),
-        AppLocale.expenses.getString(context),
-      ];
-      setState(() {});
-    });
-
-    // selectedValue = AppLocale.income.getString(context); //викликає помилку
+    // TODO: implement initState
     super.initState();
   }
+
+  void addFinOperationAction() {}
 
   @override
   void dispose() {
@@ -59,6 +46,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
     return Scaffold(
       backgroundColor: ColorsApp.white,
       body: Stack(
+        alignment: Alignment.bottomCenter,
         children: [
           Column(
             mainAxisSize: MainAxisSize.max,
@@ -77,6 +65,16 @@ class _AddNewScreenState extends State<AddNewScreen> {
                     CustomDropdownMenu(
                       padding: EdgeInsets.symmetric(horizontal: 0.0),
                       selectedValue: selectedValue,
+                      dropdownMenuEntries: [
+                        DropdownMenuEntry(
+                          value: FinancialAction.income,
+                          label: AppLocale.income.getString(context),
+                        ),
+                        DropdownMenuEntry(
+                          value: FinancialAction.expense,
+                          label: AppLocale.expenses.getString(context),
+                        ),
+                      ],
                       onSelected: (value) => {
                         setState(
                           () {
@@ -111,7 +109,17 @@ class _AddNewScreenState extends State<AddNewScreen> {
               ),
             ],
           ),
-          // CustomFeeledButton(onPressed: onPressed, name: 'add new expense')
+          Padding(
+            padding: const EdgeInsets.only(
+              bottom: 32.0,
+            ),
+            child: CustomFeeledButton(
+              onPressed: addFinOperationAction,
+              name: selectedValue == FinancialAction.expense
+                  ? AppLocale.addNewExpense.getString(context)
+                  : AppLocale.addNewIncome.getString(context),
+            ),
+          ),
         ],
       ),
     );

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/model/financial_transaction.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 
 class CustomDropdownMenu extends StatefulWidget {
-  final String selectedValue;
+  final FinancialAction selectedValue;
   final String? label;
   final EdgeInsets? padding;
-  final ValueChanged onSelected;
+  final ValueChanged<FinancialAction> onSelected;
+  final List<DropdownMenuEntry<FinancialAction>> dropdownMenuEntries;
 
   const CustomDropdownMenu({
     super.key,
@@ -16,6 +18,7 @@ class CustomDropdownMenu extends StatefulWidget {
     this.padding,
     required this.onSelected,
     this.label,
+    required this.dropdownMenuEntries,
   });
 
   @override
@@ -25,7 +28,7 @@ class CustomDropdownMenu extends StatefulWidget {
 class _CustomDropdownMenuState extends State<CustomDropdownMenu> {
   @override
   Widget build(BuildContext context) {
-    return DropdownMenu<String>(
+    return DropdownMenu<FinancialAction>(
       menuStyle: MenuStyle(
         backgroundColor: WidgetStatePropertyAll(
           ColorsApp.white,
@@ -41,18 +44,9 @@ class _CustomDropdownMenuState extends State<CustomDropdownMenu> {
               ),
             )
           : null,
-      dropdownMenuEntries: [
-        DropdownMenuEntry(
-          value: 'Income',
-          label: AppLocale.income.getString(context),
-        ),
-        DropdownMenuEntry(
-          value: 'Expense',
-          label: AppLocale.expenses.getString(context),
-        ),
-      ],
+      dropdownMenuEntries: widget.dropdownMenuEntries,
       onSelected: (value) {
-        if (value != null) {
+        if (value != null ) {
           widget.onSelected(value);
         }
       },

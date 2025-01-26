@@ -1,13 +1,20 @@
+enum FinancialAction {
+  income,
+  expense,
+}
+
 class FinancialTransaction {
-  final String name;
-  final String category;
+  final FinancialAction financialAction;
+  final String categoryName;
   final int amount;
+  final String? description;
   final DateTime date;
 
   FinancialTransaction({
-    required this.date,
-    required this.name,
-    required this.category,
+    required this.financialAction,
+    required this.categoryName,
     required this.amount,
+    this.description,
+    required this.date,
   });
 }
