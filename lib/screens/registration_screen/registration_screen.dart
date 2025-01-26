@@ -65,15 +65,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       backgroundColor: ColorsApp.lightGrey250,
       body: BlocListener<UserCubit, UserState>(
         listener: (context, state) {
-          state.map(
-            initial: (_) {
-              Navigator.of(context).pushNamed(AuthScreen.routeName);
-            },
+          state.mapOrNull(
             authenticated: (_) {
               Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
-            },
-            error: (errorState) {
-              errorText = errorState.errorText;
             },
           );
         },
@@ -140,7 +134,22 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         onPressed: createAccountAction,
                         name: AppLocale.createAccount.getString(context),
                       ),
-                    )
+                    ),
+                    Center(
+                      child: BlocBuilder<UserCubit, UserState>(
+                        builder: (context, state) => state.maybeWhen(
+                          error: (errorText) => Text(
+                            errorText,
+                            style: interTextStyle(
+                              fontSize: 14.0,
+                              fontWeight: FontWeight.w300,
+                              color: ColorsApp.red,
+                            ),
+                          ),
+                          orElse: () => Text(''), //TODO: так не дуже правильно
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

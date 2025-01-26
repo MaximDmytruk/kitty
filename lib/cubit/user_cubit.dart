@@ -20,16 +20,17 @@ class UserCubit extends Cubit<UserState> {
   ) {
     if (_currentUser != null) {
       emit(UserState.error(AppLocale.errorUserRegistered));
-      return;
+      print('USER is HERE');
+     
+    } else {
+      User newUser = User(
+        name: name,
+        password: password,
+        email: email,
+      );
+      _currentUser = newUser;
+      emit(UserState.authenticated(_currentUser!));
     }
-
-    User newUser = User(
-      name: name,
-      password: password,
-      email: email,
-    );
-    _currentUser = newUser;
-    emit(UserState.authenticated(_currentUser!));
   }
 
   void loginUser(String email, String password) {
@@ -45,7 +46,7 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
-  void removeUser(){
+  void removeUser() {
     _currentUser = null;
     emit(UserState.initial());
   }
@@ -54,7 +55,6 @@ class UserCubit extends Cubit<UserState> {
     // emit(state.copyWith(listFinTransaction: [...state.listFinTransaction, finTransaction] ));
     _currentUser!.finTransaction.add(finTransaction);
     emit(UserState.authenticated(_currentUser!));
-    
   }
 
   String getUserName() {

@@ -38,7 +38,9 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 
   void questionsAction() {}
-  void logoutAction() {}
+  void logoutAction() {
+    Navigator.popAndPushNamed(context, AuthScreen.routeName);
+  }
 
   void delUser() {
     context.read<UserCubit>().removeUser();

@@ -29,6 +29,7 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: ColorsApp.white,
+      automaticallyImplyLeading: false,
       title: Row(
         children: [
           SvgPicture.asset(
