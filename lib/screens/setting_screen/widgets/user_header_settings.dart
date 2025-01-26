@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:kitty/widgets/letter_avatar.dart';
 
 import '../../../styles/colors/colors_app.dart';
 import '../../../styles/font/fontstyle_app.dart';
 
 class UserHeaderSetting extends StatelessWidget {
+  final String firstChar;
+  final String name;
+  final String email;
+
   const UserHeaderSetting({
     super.key,
     required this.firstChar,
@@ -11,37 +16,23 @@ class UserHeaderSetting extends StatelessWidget {
     required this.email,
   });
 
-  final String firstChar;
-  final String name;
-  final String email;
-
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 88.0,
       color: ColorsApp.lightGrey238,
       child: Padding(
-        padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 16),
+        padding: const EdgeInsets.only(
+          left: 16.0,
+          right: 16.0,
+          bottom: 16,
+        ),
         child: Row(
           spacing: 8.0,
           children: [
-            Container(
-              width: 48.0,
-              height: 48.0,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: ColorsApp.white,
-              ),
-              child: Center(
-                child: Text(
-                  firstChar,
-                  style: interTextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.w500,
-                    color: ColorsApp.grey66,
-                  ),
-                ),
-              ),
+            LetterAvatar(
+              firstChar: firstChar,
+              backgroundColor: ColorsApp.white,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.center,

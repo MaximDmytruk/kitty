@@ -6,6 +6,7 @@ import 'package:kitty/styles/icons/icons_app.dart';
 import '../styles/colors/colors_app.dart';
 
 class CustomHomeAppBar extends StatefulWidget {
+  final String firstLetter;
   final Function searchAction;
   final Function userAction;
 
@@ -13,6 +14,7 @@ class CustomHomeAppBar extends StatefulWidget {
     super.key,
     required this.searchAction,
     required this.userAction,
+    required this.firstLetter,
   });
 
   @override
@@ -63,7 +65,7 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
               ),
               child: Center(
                 child: Text(
-                  'M',
+                  widget.firstLetter,
                   style: interTextStyle(
                     fontSize: 14.0,
                     fontWeight: FontWeight.w500,
@@ -72,9 +74,28 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
                 ),
               ),
             ),
-          )
+          ),
         ],
       ),
     );
   }
 }
+
+// Container(
+//               height: 32.0,
+//               width: 32.0,
+//               decoration: BoxDecoration(
+//                 borderRadius: BorderRadiusDirectional.circular(25.0),
+//                 color: ColorsApp.lightGrey238,
+//               ),
+//               child: Center(
+//                 child: Text(
+//                   'M',
+//                   style: interTextStyle(
+//                     fontSize: 14.0,
+//                     fontWeight: FontWeight.w500,
+//                     color: ColorsApp.grey66,
+//                   ),
+//                 ),
+//               ),
+//             ),

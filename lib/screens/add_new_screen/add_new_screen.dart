@@ -25,10 +25,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
   String selectedValue = 'Income';
   // String selectedValue = AppLocale.income.getString(context);
   //  late String selectedValue;
-  final List<String> options = [
-    'Income',
-    'Expense',
-  ];
+  List<String> options = [];
 
   // Future.delayed(Duration.zero, () {
   //     _dateController.text = AppLocalizations.of(context)!.appTitle;
@@ -36,12 +33,13 @@ class _AddNewScreenState extends State<AddNewScreen> {
 
   @override
   void initState() {
-
     Future.delayed(Duration.zero, () {
-     selectedValue = AppLocale.income.getString(context); 
-     setState(() {
-       
-     });
+      selectedValue = 'ssss';
+      options = [
+        AppLocale.income.getString(context),
+        AppLocale.expenses.getString(context),
+      ];
+      setState(() {});
     });
 
     // selectedValue = AppLocale.income.getString(context); //викликає помилку

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/screens/add_new_screen/add_new_screen.dart';
 import 'package:kitty/screens/home_screen/widgets/total_amount.dart';
@@ -22,12 +24,26 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  late String firstChar;
+
   final List<ListGroup> _listGroups = [
     ListGroup(),
     ListGroup(),
     ListGroup(),
     ListGroup(),
   ];
+  //TODO: чому помилка,  каже що не створено
+  // @override
+  // void initState() {
+  //   firstChar = context.read<UserCubit>().getFirstLetterName();
+  //   super.initState();
+  // }
+
+  @override
+void didChangeDependencies() {
+  super.didChangeDependencies();
+  firstChar = context.read<UserCubit>().getFirstLetterName();
+}
 
   void searchAction() {}
   void userAction() {}
@@ -47,6 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               CustomStatusBar(),
               CustomHomeAppBar(
+                firstLetter: firstChar,
                 searchAction: searchAction,
                 userAction: userAction,
               ),
