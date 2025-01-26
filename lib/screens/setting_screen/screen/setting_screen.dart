@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/cubit/user_cubit.dart';
+import 'package:kitty/screens/auth_screen/auth_screen.dart';
 import 'package:kitty/widgets/name_of_screen_header.dart';
 import 'package:kitty/screens/setting_screen/widgets/settings_options_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -38,6 +39,11 @@ class _SettingScreenState extends State<SettingScreen> {
 
   void questionsAction() {}
   void logoutAction() {}
+
+  void delUser() {
+    context.read<UserCubit>().removeUser();
+    Navigator.popAndPushNamed(context, AuthScreen.routeName);
+  }
 
   @override
   void initState() {
@@ -110,6 +116,11 @@ class _SettingScreenState extends State<SettingScreen> {
             leadingIconName: IconsApp.logout,
             name: AppLocale.logout.getString(context),
             onTap: logoutAction,
+          ),
+          SettingOptionsRow(
+            leadingIconName: IconsApp.logoKitty,
+            name: 'delete user',
+            onTap: delUser,
           ),
         ],
       ),

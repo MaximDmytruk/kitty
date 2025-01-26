@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/cubit/user_cubit.dart';
-// import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/screens/auth_screen/auth_screen.dart';
+import 'package:kitty/screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 import 'package:kitty/widgets/custom_feeled_button.dart';
-
 import '../../widgets/custom_texfield.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -20,6 +20,8 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  String? errorText;
+
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -44,8 +46,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             nameController.text,
           );
     } else {
-
-      //TODO:password is incorrect 
+      //TODO:password is incorrect
     }
   }
 
@@ -60,83 +61,92 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // SystemChrome.setSystemUIOverlayStyle(
-    //   SystemUiOverlayStyle(
-    //     statusBarColor: Colors.grey,
-    //     statusBarIconBrightness: Brightness.dark,
-    //   ),
-    // );
     return Scaffold(
       backgroundColor: ColorsApp.lightGrey250,
-      body: Column(
-        children: [
-          Container(
-            color: ColorsApp.grey33WithOpacity,
-            height: MediaQuery.of(context).padding.top,
-          ),
-          AppBar(
-            backgroundColor: ColorsApp.lightGrey245,
-            toolbarHeight: 48.0,
-          ),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.0),
-              child: Column(
-                spacing: 12,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Text(
-                      AppLocale.createAccount.getString(context),
-                      style: interTextStyle(
-                        fontSize: 32.0,
-                        fontWeight: FontWeight.w500,
-                        color: ColorsApp.grey66,
+      body: BlocListener<UserCubit, UserState>(
+        listener: (context, state) {
+          state.map(
+            initial: (_) {
+              Navigator.of(context).pushNamed(AuthScreen.routeName);
+            },
+            authenticated: (_) {
+              Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
+            },
+            error: (errorState) {
+              errorText = errorState.errorText;
+            },
+          );
+        },
+        child: Column(
+          children: [
+            Container(
+              color: ColorsApp.grey33WithOpacity,
+              height: MediaQuery.of(context).padding.top,
+            ),
+            AppBar(
+              backgroundColor: ColorsApp.lightGrey245,
+              toolbarHeight: 48.0,
+            ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                child: Column(
+                  spacing: 12,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Center(
+                      child: Text(
+                        AppLocale.createAccount.getString(context),
+                        style: interTextStyle(
+                          fontSize: 32.0,
+                          fontWeight: FontWeight.w500,
+                          color: ColorsApp.grey66,
+                        ),
                       ),
                     ),
-                  ),
-                  Center(
-                    child: Text(
-                      AppLocale.pleaseEnterYourDetails.getString(context),
-                      style: interTextStyle(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w400,
-                        color: ColorsApp.grey66,
+                    Center(
+                      child: Text(
+                        AppLocale.pleaseEnterYourDetails.getString(context),
+                        style: interTextStyle(
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.w400,
+                          color: ColorsApp.grey66,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 8.0,
-                  ),
-                  CustomTextfield(
-                    controller: nameController,
-                    labelText: AppLocale.name.getString(context),
-                  ),
-                  CustomTextfield(
-                    controller: emailController,
-                    labelText: AppLocale.enterYourEmail.getString(context),
-                  ),
-                  CustomTextfield(
-                    controller: passwordController,
-                    labelText: AppLocale.password.getString(context),
-                    addObscureText: true,
-                  ),
-                  CustomTextfield(
-                    controller: repeatPasswordController,
-                    labelText: AppLocale.repeatPassword.getString(context),
-                    addObscureText: true,
-                  ),
-                  Center(
-                    child: CustomFeeledButton(
-                      onPressed: createAccountAction,
-                      name: AppLocale.createAccount.getString(context),
+                    SizedBox(
+                      height: 8.0,
                     ),
-                  )
-                ],
+                    CustomTextfield(
+                      controller: nameController,
+                      labelText: AppLocale.name.getString(context),
+                    ),
+                    CustomTextfield(
+                      controller: emailController,
+                      labelText: AppLocale.enterYourEmail.getString(context),
+                    ),
+                    CustomTextfield(
+                      controller: passwordController,
+                      labelText: AppLocale.password.getString(context),
+                      addObscureText: true,
+                    ),
+                    CustomTextfield(
+                      controller: repeatPasswordController,
+                      labelText: AppLocale.repeatPassword.getString(context),
+                      addObscureText: true,
+                    ),
+                    Center(
+                      child: CustomFeeledButton(
+                        onPressed: createAccountAction,
+                        name: AppLocale.createAccount.getString(context),
+                      ),
+                    )
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

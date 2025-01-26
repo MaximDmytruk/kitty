@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/model/financial_category.dart';
 import 'package:kitty/model/financial_transaction.dart';
 import 'package:kitty/model/user.dart';
@@ -12,10 +13,22 @@ class UserCubit extends Cubit<UserState> {
 
   User? _currentUser;
 
-  void registerUser(String password, String email, String name) {
-    User newUser = User(name: name, password: password, email: email);
-    _currentUser = newUser;
+  void registerUser(
+    String password,
+    String email,
+    String name,
+  ) {
+    if (_currentUser != null) {
+      emit(UserState.error(AppLocale.errorUserRegistered));
+      return;
+    }
 
+    User newUser = User(
+      name: name,
+      password: password,
+      email: email,
+    );
+    _currentUser = newUser;
     emit(UserState.authenticated(_currentUser!));
   }
 
@@ -32,10 +45,16 @@ class UserCubit extends Cubit<UserState> {
     }
   }
 
+  void removeUser(){
+    _currentUser = null;
+    emit(UserState.initial());
+  }
+
   void addFinancialTransaction(FinancialTransaction finTransaction) {
     // emit(state.copyWith(listFinTransaction: [...state.listFinTransaction, finTransaction] ));
     _currentUser!.finTransaction.add(finTransaction);
     emit(UserState.authenticated(_currentUser!));
+    
   }
 
   String getUserName() {
