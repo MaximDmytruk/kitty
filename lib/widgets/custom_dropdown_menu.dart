@@ -46,7 +46,7 @@ class _CustomDropdownMenuState extends State<CustomDropdownMenu> {
           : null,
       dropdownMenuEntries: widget.dropdownMenuEntries,
       onSelected: (value) {
-        if (value != null ) {
+        if (value != null) {
           widget.onSelected(value);
         }
       },

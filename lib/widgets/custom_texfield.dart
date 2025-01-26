@@ -6,12 +6,16 @@ class CustomTextfield extends StatefulWidget {
   final String labelText;
   final bool addObscureText;
   final TextEditingController controller;
+  final bool readOnly;
+  final GestureTapCallback? onTap;
 
   const CustomTextfield({
     super.key,
     required this.labelText,
     this.addObscureText = false,
+    this.readOnly = false,
     required this.controller,
+    this.onTap,
   });
 
   @override
@@ -48,7 +52,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
       controller: widget.controller,
       obscureText: obscureText,
       cursorColor: ColorsApp.blue106,
-      
+      readOnly: widget.readOnly,
       maxLines: 1,
       decoration: InputDecoration(
         suffixIcon: widget.addObscureText
@@ -80,8 +84,9 @@ class _CustomTextfieldState extends State<CustomTextfield> {
           fontWeight: FontWeight.w400,
           color: ColorsApp.blue106,
         ),
-       //TODO: errorText: 
+        //TODO: errorText:
       ),
+      onTap: widget.onTap,
     );
   }
 }

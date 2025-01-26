@@ -63,7 +63,9 @@ class _AddNewScreenState extends State<AddNewScreen> {
                       height: 16.0,
                     ),
                     CustomDropdownMenu(
-                      padding: EdgeInsets.symmetric(horizontal: 0.0),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 0.0,
+                      ),
                       selectedValue: selectedValue,
                       dropdownMenuEntries: [
                         DropdownMenuEntry(
@@ -89,6 +91,21 @@ class _AddNewScreenState extends State<AddNewScreen> {
                     CustomTextfield(
                       labelText: AppLocale.categoryName.getString(context),
                       controller: categoryNameController,
+                      readOnly: true,
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Container(
+                              height: 400,
+                              color: Colors.white,
+                              child: Center(
+                                child: Text('Bottom Sheet Content'),
+                              ),
+                            );
+                          },
+                        );
+                      },
                     ),
                     SizedBox(
                       height: 16.0,
