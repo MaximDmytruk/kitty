@@ -7,6 +7,7 @@ import 'package:kitty/model/financial_category.dart';
 import 'package:kitty/model/financial_transaction.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
+import 'package:kitty/widgets/category_icon.dart';
 import 'package:kitty/widgets/custom_dropdown_menu.dart';
 import 'package:kitty/widgets/custom_feeled_button.dart';
 import 'package:kitty/widgets/custom_status_bar.dart';
@@ -109,30 +110,10 @@ class _AddNewScreenState extends State<AddNewScreen> {
                             String name = financialCategories[index].name;
                             Widget icon = financialCategories[index].icon;
 
-                            return Column(
-                              spacing: 4.0,
-                              children: [
-                                Container(
-                                  height: 40.0,
-                                  width: 40.0,
-                                  padding: EdgeInsets.all(
-                                    10.0,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: color,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: icon,
-                                ),
-                                Text(
-                                  name,
-                                  style: interTextStyle(
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.w400,
-                                    color: ColorsApp.grey66,
-                                  ),
-                                ),
-                              ],
+                            return CategoryIcon(
+                              color: color,
+                              icon: icon,
+                              name: name,
                             );
                           },
                         );
