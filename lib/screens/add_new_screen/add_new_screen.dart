@@ -39,6 +39,7 @@ class _AddNewScreenState extends State<AddNewScreen> {
   }
 
   void addFinOperationAction() {}
+  void addNewCategory() {}
 
   @override
   void dispose() {
@@ -103,20 +104,21 @@ class _AddNewScreenState extends State<AddNewScreen> {
                       readOnly: true,
                       onTap: () {
                         showCustomModalBottomSheet(
-                          context,
-                          financialCategories.length,
-                          (BuildContext context, int index) {
-                            Color color = financialCategories[index].color;
-                            String name = financialCategories[index].name;
-                            Widget icon = financialCategories[index].icon;
+                            context: context,
+                            length: financialCategories.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              Color color = financialCategories[index].color;
+                              String name = financialCategories[index].name;
+                              Widget icon = financialCategories[index].icon;
 
-                            return CategoryIcon(
-                              color: color,
-                              icon: icon,
-                              name: name,
-                            );
-                          },
-                        );
+                              return CategoryIcon(
+                                color: color,
+                                icon: icon,
+                                name: name,
+                              );
+                            },
+                            onPressed: addNewCategory,
+                            buttonName: AppLocale.addNewCategory.getString(context));
                       },
                     ),
                     SizedBox(
