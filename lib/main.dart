@@ -47,32 +47,25 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-      SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: Colors.black,
-        statusBarIconBrightness: Brightness.dark,
-      ),
-    );
-    return Placeholder(
-      child: BlocProvider(
-        create: (_)=> UserCubit(),
-        child: MaterialApp(
-          supportedLocales: _localization.supportedLocales,
-          localizationsDelegates: _localization.localizationsDelegates,
-          theme: ThemeData(
-            textSelectionTheme: TextSelectionThemeData(
-              selectionHandleColor: ColorsApp.blue106,
-            ),
+  
+    return BlocProvider(
+      create: (_)=> UserCubit(),
+      child: MaterialApp(
+        supportedLocales: _localization.supportedLocales,
+        localizationsDelegates: _localization.localizationsDelegates,
+        theme: ThemeData(
+          textSelectionTheme: TextSelectionThemeData(
+            selectionHandleColor: ColorsApp.blue106,
           ),
-          title: 'Kitty',
-          routes: {
-            AuthScreen.routeName: (_) => const AuthScreen(),
-            RegistrationScreen.routeName: (_) => const RegistrationScreen(),
-            BottomNavigationScreen.routeName: (_) => const BottomNavigationScreen(),
-            AddNewScreen.routeName: (_) => const AddNewScreen(),
-          },
-          initialRoute: AuthScreen.routeName,
         ),
+        title: 'Kitty',
+        routes: {
+          AuthScreen.routeName: (_) => const AuthScreen(),
+          RegistrationScreen.routeName: (_) => const RegistrationScreen(),
+          BottomNavigationScreen.routeName: (_) => const BottomNavigationScreen(),
+          AddNewScreen.routeName: (_) => const AddNewScreen(),
+        },
+        initialRoute: AuthScreen.routeName,
       ),
     );
   }

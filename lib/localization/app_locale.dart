@@ -28,6 +28,7 @@ mixin AppLocale {
   static const String description = 'Description (optional)';
   static const String overview = 'O V E R V I E W';
   static const String detail = 'D E T A I L';
+  static const String download = 'Download report';
 
   // ignore: constant_identifier_names
   static const Map<String, dynamic> EN = {
@@ -59,6 +60,7 @@ mixin AppLocale {
     description: 'Description (optional)',
     overview: 'O V E R V I E W',
     detail: 'D E T A I L',
+    download: 'Download report',
   };
 
   // ignore: constant_identifier_names
@@ -91,5 +93,6 @@ mixin AppLocale {
     description: 'Опис(необов\'язково)',
     overview: 'З А Г А Л Ь Н О',
     detail: 'Д Е Т А Л Ь Н О',
+    download: 'Скачати звіт',
   };
 }
