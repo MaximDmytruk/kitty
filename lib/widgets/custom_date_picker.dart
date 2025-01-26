@@ -21,7 +21,6 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   void leftDateAction() {}
   @override
   Widget build(BuildContext context) {
-    //TODO: переробити на строку
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/cubit/user_cubit.dart';
-import 'package:kitty/model/user.dart';
 import 'package:kitty/widgets/name_of_screen_header.dart';
-
 import 'package:kitty/screens/setting_screen/widgets/settings_options_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/widgets/custom_status_bar.dart';
 import '../../../localization/app_locale.dart';
-// import '../../../widgets/header_app_bar.dart';
+
 import '../widgets/user_header_settings.dart';
 
 class SettingScreen extends StatefulWidget {
@@ -22,6 +20,9 @@ class SettingScreen extends StatefulWidget {
 
 class _SettingScreenState extends State<SettingScreen> {
   final FlutterLocalization _localization = FlutterLocalization.instance;
+  late String userName;
+  late String firstChar;
+  late String userEmail;
 
   void manageCategoriesAction() {}
   void exportToPDFAction() {}
@@ -40,6 +41,9 @@ class _SettingScreenState extends State<SettingScreen> {
 
   @override
   void initState() {
+    userName = context.read<UserCubit>().getUserName();
+    firstChar = context.read<UserCubit>().getFirstLetterName();
+    userEmail = context.read<UserCubit>().getUserEmail();
     super.initState();
   }
 
@@ -54,24 +58,34 @@ class _SettingScreenState extends State<SettingScreen> {
             name: AppLocale.settings.getString(context),
             // color: KittyColors.lightGrey238,
           ),
-          BlocBuilder<UserCubit, User?>(
-            builder: (context, user) {
-              if (user != null) {
-                String firstChar = user.name.substring(0, 1).toUpperCase();
-                return UserHeaderSetting(
-                  firstChar: firstChar,
-                  name: user.name,
-                  email: user.email,
-                );
-              } else {
-                return UserHeaderSetting(
-                  firstChar: '0',
-                  name: 'NONAME',
-                  email: 'NOEMAIL',
-                );
-              }
-            },
+
+          UserHeaderSetting(
+            firstChar: firstChar,
+            name: userName,
+            email: userEmail,
           ),
+          //TODO:
+          // BlocBuilder<UserCubit, UserState>(
+          //   builder: (context, state) {
+          //     return state.when(
+          //       initial: () => UserHeaderSetting(
+          //         firstChar: '',
+          //         name: 'NO Name',
+          //         email: "No Email",
+          //       ),
+          //       authenticated: (user) => UserHeaderSetting(
+          //         firstChar: user.name.substring(0, 1).toUpperCase(),
+          //         name: user.name,
+          //         email: user.email,
+          //       ),
+          //       error: (error) => UserHeaderSetting(
+          //         firstChar: 'E',
+          //         name: "Error",
+          //         email: 'Error',
+          //       ),
+          //     );
+          //   },
+          // ),
           SettingOptionsRow(
             leadingIconName: IconsApp.category,
             name: AppLocale.manageCategories.getString(context),

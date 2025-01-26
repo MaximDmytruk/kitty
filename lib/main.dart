@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/cubit/user_cubit.dart';
+
 import 'package:kitty/localization/map_lacales.dart';
 import 'package:kitty/screens/add_new_screen/add_new_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -52,24 +53,26 @@ class _MyAppState extends State<MyApp> {
         statusBarIconBrightness: Brightness.dark,
       ),
     );
-    return BlocProvider(
-      create: (_)=> UserCubit(),
-      child: MaterialApp(
-        supportedLocales: _localization.supportedLocales,
-        localizationsDelegates: _localization.localizationsDelegates,
-        theme: ThemeData(
-          textSelectionTheme: TextSelectionThemeData(
-            selectionHandleColor: ColorsApp.blue106,
+    return Placeholder(
+      child: BlocProvider(
+        create: (_)=> UserCubit(),
+        child: MaterialApp(
+          supportedLocales: _localization.supportedLocales,
+          localizationsDelegates: _localization.localizationsDelegates,
+          theme: ThemeData(
+            textSelectionTheme: TextSelectionThemeData(
+              selectionHandleColor: ColorsApp.blue106,
+            ),
           ),
+          title: 'Kitty',
+          routes: {
+            AuthScreen.routeName: (_) => const AuthScreen(),
+            RegistrationScreen.routeName: (_) => const RegistrationScreen(),
+            BottomNavigationScreen.routeName: (_) => const BottomNavigationScreen(),
+            AddNewScreen.routeName: (_) => const AddNewScreen(),
+          },
+          initialRoute: AuthScreen.routeName,
         ),
-        title: 'Kitty',
-        routes: {
-          AuthScreen.routeName: (_) => const AuthScreen(),
-          RegistrationScreen.routeName: (_) => const RegistrationScreen(),
-          BottomNavigationScreen.routeName: (_) => const BottomNavigationScreen(),
-          AddNewScreen.routeName: (_) => const AddNewScreen(),
-        },
-        initialRoute: AuthScreen.routeName,
       ),
     );
   }

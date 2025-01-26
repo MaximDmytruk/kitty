@@ -9,7 +9,7 @@ import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/widgets/custom_feeled_button.dart';
 import 'package:kitty/widgets/custom_status_bar.dart';
 import 'package:kitty/widgets/list_group.dart';
-import '../../../widgets/custom_date_picker_app_bar.dart';
+import '../../../widgets/custom_date_picker.dart';
 import '../../../widgets/custom_home_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
