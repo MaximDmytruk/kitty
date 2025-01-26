@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kitty/model/financial_category.dart';
 import 'package:kitty/model/financial_transaction.dart';
 import 'package:kitty/model/user.dart';
 
@@ -53,5 +54,17 @@ class UserCubit extends Cubit<UserState> {
     return _currentUser?.email.isNotEmpty == true
         ? _currentUser!.email
         : 'No Email';
+  }
+
+  List<FinancialCategory> getFinancialCategory() {
+    if (_currentUser != null) {
+      List<FinancialCategory> categories =
+          _currentUser!.categoryService.getCategories();
+
+      return categories;
+    } else {
+      List<FinancialCategory> error = [];
+      return error;
+    }
   }
 }

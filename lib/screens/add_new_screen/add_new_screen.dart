@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/model/financial_category.dart';
 import 'package:kitty/model/financial_transaction.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
+import 'package:kitty/styles/font/fontstyle_app.dart';
 import 'package:kitty/widgets/custom_dropdown_menu.dart';
 import 'package:kitty/widgets/custom_feeled_button.dart';
 import 'package:kitty/widgets/custom_status_bar.dart';
 import 'package:kitty/widgets/custom_texfield.dart';
 import 'package:kitty/widgets/header_app_bar.dart';
+import 'package:kitty/widgets/show_custom_bottom_sheet.dart';
 // import 'package:kitty/widgets/header_app_bar.dart';
 
 class AddNewScreen extends StatefulWidget {
@@ -24,11 +29,12 @@ class _AddNewScreenState extends State<AddNewScreen> {
   TextEditingController descriptionController = TextEditingController();
 
   FinancialAction selectedValue = FinancialAction.income;
+  List<FinancialCategory> financialCategories = [];
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
+    financialCategories = context.read<UserCubit>().getFinancialCategory();
   }
 
   void addFinOperationAction() {}
@@ -57,7 +63,9 @@ class _AddNewScreenState extends State<AddNewScreen> {
               ),
               Expanded(
                 child: ListView(
-                  padding: EdgeInsets.symmetric(horizontal: 16.0),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.0,
+                  ),
                   children: [
                     SizedBox(
                       height: 16.0,
@@ -93,15 +101,38 @@ class _AddNewScreenState extends State<AddNewScreen> {
                       controller: categoryNameController,
                       readOnly: true,
                       onTap: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return Container(
-                              height: 400,
-                              color: Colors.white,
-                              child: Center(
-                                child: Text('Bottom Sheet Content'),
-                              ),
+                        showCustomModalBottomSheet(
+                          context,
+                          financialCategories.length,
+                          (BuildContext context, int index) {
+                            Color color = financialCategories[index].color;
+                            String name = financialCategories[index].name;
+                            Widget icon = financialCategories[index].icon;
+
+                            return Column(
+                              spacing: 4.0,
+                              children: [
+                                Container(
+                                  height: 40.0,
+                                  width: 40.0,
+                                  padding: EdgeInsets.all(
+                                    10.0,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: color,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: icon,
+                                ),
+                                Text(
+                                  name,
+                                  style: interTextStyle(
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.w400,
+                                    color: ColorsApp.grey66,
+                                  ),
+                                ),
+                              ],
                             );
                           },
                         );

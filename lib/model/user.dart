@@ -1,3 +1,4 @@
+import 'package:kitty/services/category_service.dart';
 import 'package:kitty/model/financial_transaction.dart';
 
 class User {
@@ -12,4 +13,5 @@ class User {
   });
 
   List<FinancialTransaction> finTransaction = [];
+  CategoryService categoryService = CategoryService();
 }

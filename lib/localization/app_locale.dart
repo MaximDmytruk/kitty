@@ -31,10 +31,21 @@ mixin AppLocale {
   static const String download = 'Download report';
   static const String addNewExpense = 'Add new expense';
   static const String addNewIncome = 'Add new income';
-  
-
-
-
+  static const String grocery = 'Grocery';
+  static const String gifts = 'Gifts';
+  static const String barAndCafe = 'Bar & Cafe';
+  static const String health = 'Health';
+  static const String commute = 'Commute';
+  static const String electronics = 'Electronics';
+  static const String laundry = 'Laundry';
+  static const String liquor = 'Liquor';
+  static const String restaurant = 'Restaurant';
+  static const String salary = 'Salary';
+  static const String wages = 'Wages';
+  static const String interest = 'Interest';
+  static const String savings = 'Savings';
+  static const String allowance = 'Allowance';
+  static const String chooseCategory = 'Choose category';
 
   // ignore: constant_identifier_names
   static const Map<String, dynamic> EN = {
@@ -68,7 +79,22 @@ mixin AppLocale {
     detail: 'D E T A I L',
     download: 'Download report',
     addNewExpense: 'Add new expense',
-    addNewIncome:'Add new income',
+    addNewIncome: 'Add new income',
+    grocery: 'Grocery',
+    gifts: 'Gifts',
+    barAndCafe: 'Bar & Cafe',
+    health: 'Health',
+    commute: 'Commute',
+    electronics: 'Electronics',
+    laundry: 'Laundry',
+    liquor: 'Liquor',
+    restaurant: 'Restaurant',
+    salary: 'Salary',
+    wages: 'Wages',
+    interest: 'Interest',
+    savings: 'Savings',
+    allowance: 'Allowance',
+    chooseCategory: 'Choose category',
   };
 
   // ignore: constant_identifier_names
@@ -103,6 +129,21 @@ mixin AppLocale {
     detail: 'Д Е Т А Л Ь Н О',
     download: 'Скачати звіт',
     addNewExpense: 'Додати витрати',
-    addNewIncome:'Додати надходження',
+    addNewIncome: 'Додати надходження',
+    grocery: 'Бакалія',
+    gifts: 'Подарунки',
+    barAndCafe: 'Бари & Кафе',
+    health: 'Здоров\'я',
+    commute: 'Транспорт',
+    electronics: 'Техніка',
+    laundry: 'Пральня',
+    liquor: 'Лікер',
+    restaurant: 'Ресторани',
+    salary: 'Зарплата',
+    wages: 'Благодійність',
+    interest: 'Відсотки',
+    savings: 'Збереження',
+    allowance: 'Надбавки',
+    chooseCategory: 'Виберіть категорію',
   };
 }

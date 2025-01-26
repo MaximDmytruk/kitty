@@ -1,5 +1,5 @@
 class CategoryIcons {
-  static final cafe = 'assets/icons/category_icons/cafe.svg';
+  static final bar = 'assets/icons/category_icons/cafe.svg';
   static final donate = 'assets/icons/category_icons/donate.svg';
   static final education = 'assets/icons/category_icons/education.svg';
   static final electronics = 'assets/icons/category_icons/electronics.svg';
@@ -18,4 +18,5 @@ class CategoryIcons {
       'assets/icons/category_icons/self_development.svg';
   static final sport = 'assets/icons/category_icons/sport.svg';
   static final transportation = 'assets/icons/category_icons/transportation.svg';
+static final interest = 'assets/icons/category_icons/interest.svg';
 }

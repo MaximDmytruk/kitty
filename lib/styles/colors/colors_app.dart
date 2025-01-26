@@ -21,17 +21,23 @@ class ColorsApp {
   static const Color lightBlue219 = Color.fromRGBO(219, 238, 252, 1);
   static const Color lightBlue168 = Color.fromRGBO(168, 212, 250, 1);
   static const Color lightBlue115 = Color.fromRGBO(115, 187, 247, 1);
-  static const Color lightBlue178 = Color.fromRGBO(178 , 235, 242, 1);
+  static const Color lightBlue178 = Color.fromRGBO(178, 235, 242, 1);
+  static const Color lightBlue179 = Color.fromRGBO(179, 229, 252, 1);
+  static const Color lightSlateBlue197 = Color.fromRGBO(197, 202, 233, 1);
 
   static const Color green = Color.fromRGBO(0, 137, 123, 1);
-  static const Color lightGreen = Color.fromRGBO(200, 230, 201, 1);
+  static const Color lightGreen200 = Color.fromRGBO(200, 230, 201, 1);
+  static const Color lightGreen220 = Color.fromRGBO(220, 237, 200, 1);
 
   static const Color red = Color.fromRGBO(229, 57, 53, 1);
 
-  static const Color pink = Color.fromRGBO(248, 187, 208, 1);
+  static const Color pink248 = Color.fromRGBO(248, 187, 208, 1);
   static const Color pink225 = Color.fromRGBO(225, 190, 231, 1);
   static const Color pink255 = Color.fromRGBO(255, 205, 210, 1);
+  static const Color peach255 = Color.fromRGBO(255, 204, 188, 1);
+  static const Color purple255 = Color.fromRGBO(255, 190, 231, 1);
 
-   static const Color yellow = Color.fromRGBO(255, 236, 179, 1);
-
+  static const Color yellow255 = Color.fromRGBO(255, 236, 179, 1);
+  static const Color yellow255249 = Color.fromRGBO(255, 249, 196, 1);
+  static const Color orange255 = Color.fromRGBO(255, 224, 179, 1);
 }
