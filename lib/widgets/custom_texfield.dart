@@ -8,6 +8,7 @@ class CustomTextfield extends StatefulWidget {
   final TextEditingController controller;
   final bool readOnly;
   final GestureTapCallback? onTap;
+   final String? errorText;
 
   const CustomTextfield({
     super.key,
@@ -15,7 +16,7 @@ class CustomTextfield extends StatefulWidget {
     this.addObscureText = false,
     this.readOnly = false,
     required this.controller,
-    this.onTap,
+    this.onTap, this.errorText,
   });
 
   @override
@@ -84,7 +85,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
           fontWeight: FontWeight.w400,
           color: ColorsApp.blue106,
         ),
-        //TODO: errorText:
+        errorText: widget.errorText, 
       ),
       onTap: widget.onTap,
     );

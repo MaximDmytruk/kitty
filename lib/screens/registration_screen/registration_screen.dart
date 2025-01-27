@@ -150,6 +150,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         ),
                       ),
                     ),
+                    // Center(
+                    //   child: BlocBuilder<UserCubit, UserState>(
+                    //     builder: (context, state) => state.mapOrNull(
+                    //       error: (value) => Text('asd'),
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
