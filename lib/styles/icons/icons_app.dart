@@ -22,4 +22,5 @@ class IconsApp {
   static final income = 'assets/icons/income.svg';
   static final addPlusCircle = 'assets/icons/add_plus_circle.svg';
   static final download = 'assets/icons/download.svg';
+  static final dragIndicator = 'assets/icons/drag_indicator.svg';
 }

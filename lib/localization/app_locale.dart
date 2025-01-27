@@ -47,7 +47,9 @@ mixin AppLocale {
   static const String allowance = 'Allowance';
   static const String chooseCategory = 'Choose category';
   static const String addNewCategory = 'Add new category';
-   static const String errorUserRegistered = 'The user is already registered in the program.';
+  static const String errorUserRegistered =
+      'The user is already registered in the program.';
+  
 
   // ignore: constant_identifier_names
   static const Map<String, dynamic> EN = {
@@ -98,7 +100,8 @@ mixin AppLocale {
     allowance: 'Allowance',
     chooseCategory: 'Choose category',
     addNewCategory: 'Add new category',
-    errorUserRegistered:'The user is already registered in the program.'
+    errorUserRegistered: 'The user is already registered in the program.',
+    
   };
 
   // ignore: constant_identifier_names
@@ -150,6 +153,7 @@ mixin AppLocale {
     allowance: 'Надбавки',
     chooseCategory: 'Виберіть категорію',
     addNewCategory: 'Добавити нову категорію',
-    errorUserRegistered:'В програмі вже зареєстрований користувач'
+    errorUserRegistered: 'В програмі вже зареєстрований користувач',
+    
   };
 }

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
-import 'package:kitty/screens/auth_screen/auth_screen.dart';
 import 'package:kitty/screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
@@ -46,7 +45,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             nameController.text,
           );
     } else {
-      //TODO:password is incorrect
+      setState(() {
+        errorText = 'Not the same password';
+      });
     }
   }
 
@@ -62,6 +63,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // resizeToAvoidBottomInset: true,
       backgroundColor: ColorsApp.lightGrey250,
       body: BlocListener<UserCubit, UserState>(
         listener: (context, state) {
@@ -71,7 +73,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             },
           );
         },
-        child: Column(
+        child: ListView(
           children: [
             Container(
               color: ColorsApp.grey33WithOpacity,
@@ -128,6 +130,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       controller: repeatPasswordController,
                       labelText: AppLocale.repeatPassword.getString(context),
                       addObscureText: true,
+                      errorText: errorText,
                     ),
                     Center(
                       child: CustomFeeledButton(
@@ -142,11 +145,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             errorText,
                             style: interTextStyle(
                               fontSize: 14.0,
-                              fontWeight: FontWeight.w300,
+                              fontWeight: FontWeight.w500,
                               color: ColorsApp.red,
                             ),
                           ),
-                          orElse: () => Text(''), //TODO: так не дуже правильно
+                          orElse: () => Text(''), //TODO: так не дуже правильно ?
                         ),
                       ),
                     ),

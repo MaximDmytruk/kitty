@@ -5,6 +5,7 @@ import 'package:kitty/cubit/user_cubit.dart';
 
 import 'package:kitty/localization/map_lacales.dart';
 import 'package:kitty/screens/add_new_screen/add_new_screen.dart';
+import 'package:kitty/screens/manage_categories_screen/screen/manage_categories_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 
 import 'screens/auth_screen/auth_screen.dart';
@@ -63,6 +64,7 @@ class _MyAppState extends State<MyApp> {
           RegistrationScreen.routeName: (_) => const RegistrationScreen(),
           BottomNavigationScreen.routeName: (_) => const BottomNavigationScreen(),
           AddNewScreen.routeName: (_) => const AddNewScreen(),
+          ManageCategoriesScreen.routeName: (_) => const ManageCategoriesScreen(),
         },
         initialRoute: AuthScreen.routeName,
       ),
