@@ -9,7 +9,7 @@ import 'package:kitty/screens/setting_screen/widgets/settings_options_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/widgets/custom_status_bar.dart';
-import '../../../localization/app_locale.dart';
+import '../../../services/localization/app_locale.dart';
 
 import '../widgets/user_header_settings.dart';
 

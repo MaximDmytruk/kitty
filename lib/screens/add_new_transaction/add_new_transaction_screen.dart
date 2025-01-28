@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/cubit/user_cubit.dart';
-import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/services/localization/app_locale.dart';
 
 import 'package:kitty/model/financial_category.dart';
 import 'package:kitty/model/financial_transaction.dart';
@@ -105,6 +105,7 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
                       readOnly: true,
                       onTap: () {
                         showCustomBottomSheet(
+                          nameHeader: AppLocale.chooseCategory.getString(context),
                             context: context,
                             length: financialCategories.length,
                             itemBuilder: (BuildContext context, int index) {

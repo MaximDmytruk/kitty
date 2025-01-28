@@ -37,7 +37,7 @@ class CategoryIconRow extends StatelessWidget {
               color: iconColor,
               shape: BoxShape.circle,
             ),
-            child: SvgPicture.asset(CategoryIcons.education),
+            child: icon,
           ),
           Text(
             name,

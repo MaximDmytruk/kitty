@@ -1,10 +1,11 @@
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/services/localization/app_locale.dart';
 import 'package:kitty/model/financial_category.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/category_icons.dart';
 
 class CategoryService {
+
   final List<FinancialCategory> _categories = [
     FinancialCategory(
       AppLocale.grocery,

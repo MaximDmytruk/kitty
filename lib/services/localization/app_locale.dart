@@ -49,6 +49,7 @@ mixin AppLocale {
   static const String addNewCategory = 'Add new category';
   static const String errorUserRegistered =
       'The user is already registered in the program.';
+      static const String chooseCategoryIcon = 'Choose category icon';
   
 
   // ignore: constant_identifier_names
@@ -101,6 +102,7 @@ mixin AppLocale {
     chooseCategory: 'Choose category',
     addNewCategory: 'Add new category',
     errorUserRegistered: 'The user is already registered in the program.',
+    chooseCategoryIcon :'Choose category icon',
     
   };
 
@@ -154,6 +156,7 @@ mixin AppLocale {
     chooseCategory: 'Виберіть категорію',
     addNewCategory: 'Добавити нову категорію',
     errorUserRegistered: 'В програмі вже зареєстрований користувач',
+    chooseCategoryIcon :'Виберіть іконку',
     
   };
 }

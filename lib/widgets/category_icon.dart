@@ -3,16 +3,16 @@ import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 
 class CategoryIcon extends StatelessWidget {
+  final Color color;
+  final Widget icon;
+  final String? name;
+
   const CategoryIcon({
     super.key,
     required this.color,
     required this.icon,
-    required this.name,
+    this.name,
   });
-
-  final Color color;
-  final Widget icon;
-  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +31,15 @@ class CategoryIcon extends StatelessWidget {
           ),
           child: icon,
         ),
-        Text(
-          name,
-          style: interTextStyle(
-            fontSize: 12.0,
-            fontWeight: FontWeight.w400,
-            color: ColorsApp.grey66,
+        if (name != null)
+          Text(
+            name ?? '',
+            style: interTextStyle(
+              fontSize: 12.0,
+              fontWeight: FontWeight.w400,
+              color: ColorsApp.grey66,
+            ),
           ),
-        ),
       ],
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/services/localization/app_locale.dart';
 import 'package:kitty/screens/home_screen/widgets/total_amount_icon.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';

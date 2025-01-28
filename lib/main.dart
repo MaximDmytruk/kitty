@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/cubit/user_cubit.dart';
 
-import 'package:kitty/localization/map_lacales.dart';
+import 'package:kitty/services/localization/map_lacales.dart';
 import 'package:kitty/screens/add_new_category/screen/add_new_category.dart';
 import 'package:kitty/screens/add_new_transaction/add_new_transaction_screen.dart';
 import 'package:kitty/screens/manage_categories_screen/screen/manage_categories_screen.dart';

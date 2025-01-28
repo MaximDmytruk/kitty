@@ -8,7 +8,7 @@ class CustomTextfield extends StatefulWidget {
   final TextEditingController controller;
   final bool readOnly;
   final GestureTapCallback? onTap;
-   final String? errorText;
+  final String? errorText;
 
   const CustomTextfield({
     super.key,
@@ -16,7 +16,8 @@ class CustomTextfield extends StatefulWidget {
     this.addObscureText = false,
     this.readOnly = false,
     required this.controller,
-    this.onTap, this.errorText,
+    this.onTap,
+    this.errorText,
   });
 
   @override
@@ -26,18 +27,18 @@ class CustomTextfield extends StatefulWidget {
 class _CustomTextfieldState extends State<CustomTextfield> {
   bool obscureText = false;
 
-  Icon visibility = Icon(Icons.visibility);
-  Icon visibilityOff = Icon(Icons.visibility_off);
-  Icon selectedVisibilityIcon = Icon(Icons.visibility_off);
+  final Icon _visibility = Icon(Icons.visibility);
+  final Icon _visibilityOff = Icon(Icons.visibility_off);
+  Icon _selectedVisibilityIcon = Icon(Icons.visibility_off);
   final FocusNode _focusNode = FocusNode();
   Color labelColor = ColorsApp.grey97;
 
   void changeVisibilityText() {
     if (obscureText == false) {
-      selectedVisibilityIcon = visibilityOff;
+      _selectedVisibilityIcon = _visibilityOff;
       obscureText = true;
     } else {
-      selectedVisibilityIcon = visibility;
+      _selectedVisibilityIcon = _visibility;
       obscureText = false;
     }
     setState(() {});
@@ -47,18 +48,15 @@ class _CustomTextfieldState extends State<CustomTextfield> {
   void initState() {
     obscureText = widget.addObscureText;
     super.initState();
-     _focusNode.addListener(() {
+    _focusNode.addListener(() {
       if (_focusNode.hasFocus) {
         setState(() {
           labelColor = ColorsApp.blue106;
         });
-        print('TextField активний');
       } else {
         setState(() {
           labelColor = ColorsApp.grey97;
         });
-        print('TextField не активний');
-        
       }
     });
   }
@@ -77,7 +75,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
         suffixIcon: widget.addObscureText
             ? InkWell(
                 onTap: changeVisibilityText,
-                child: selectedVisibilityIcon,
+                child: _selectedVisibilityIcon,
               )
             : null,
         border: OutlineInputBorder(),
@@ -101,9 +99,9 @@ class _CustomTextfieldState extends State<CustomTextfield> {
         floatingLabelStyle: interTextStyle(
           fontSize: 16.0,
           fontWeight: FontWeight.w400,
-          color: labelColor,
+          color: widget.errorText==null ? labelColor : ColorsApp.red,
         ),
-        errorText: widget.errorText, 
+        errorText: widget.errorText,
       ),
       onTap: widget.onTap,
     );

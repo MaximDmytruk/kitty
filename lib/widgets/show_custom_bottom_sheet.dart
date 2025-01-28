@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/services/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
+
 import 'package:kitty/widgets/custom_outline_button.dart';
 
 Future<dynamic> showCustomBottomSheet({
+  required String nameHeader,
   required BuildContext context,
   required int length,
-  required Widget? Function(BuildContext, int) itemBuilder,
+  required Widget? Function(BuildContext context, int index) itemBuilder,
   Function()? onPressed,
   String? buttonName,
 }) {
@@ -16,8 +18,12 @@ Future<dynamic> showCustomBottomSheet({
     context: context,
     builder: (BuildContext context) {
       return Container(
+        decoration: BoxDecoration(
+           color: ColorsApp.lightGrey250,
+           borderRadius: BorderRadius.circular(20.0)
+        ),
         height: 400,
-        color: ColorsApp.lightGrey250,
+       
         child: Column(
           spacing: 16,
           children: [
@@ -25,9 +31,9 @@ Future<dynamic> showCustomBottomSheet({
               height: 8.0,
             ),
             Text(
-              AppLocale.chooseCategory.getString(context),
+              nameHeader,
               style: interTextStyle(
-                  fontSize: 16.0,
+                  fontSize: 10.0,
                   fontWeight: FontWeight.w500,
                   color: ColorsApp.grey66),
             ),

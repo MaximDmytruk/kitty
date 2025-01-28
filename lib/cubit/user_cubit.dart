@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/services/localization/app_locale.dart';
 import 'package:kitty/model/financial_category.dart';
 import 'package:kitty/model/financial_transaction.dart';
 import 'package:kitty/model/user.dart';
