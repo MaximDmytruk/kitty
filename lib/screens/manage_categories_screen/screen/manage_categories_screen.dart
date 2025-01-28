@@ -5,13 +5,12 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/model/financial_category.dart';
+import 'package:kitty/screens/add_new_category/screen/add_new_category.dart';
 import 'package:kitty/screens/manage_categories_screen/widgets/category_icon_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 
-import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
 import 'package:kitty/widgets/custom_status_bar.dart';
-import 'package:kitty/widgets/custom_text_button.dart';
 import 'package:kitty/widgets/header_app_bar.dart';
 
 class ManageCategoriesScreen extends StatefulWidget {
@@ -25,7 +24,9 @@ class ManageCategoriesScreen extends StatefulWidget {
 class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
   void editAction() {}
   void changePositionAction() {}
-  void addNewCategoryAction() {}
+
+  void addNewCategoryAction() =>
+      Navigator.of(context).pushNamed(AddNewCategory.routeName);
 
   List<FinancialCategory> financialCategories = [];
 
@@ -55,7 +56,6 @@ class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
                     right: 16.0,
                     top: 24.0,
                     bottom: 88.0,
-                  
                   ),
                   itemCount: financialCategories.length,
                   itemBuilder: (context, index) {

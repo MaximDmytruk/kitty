@@ -4,7 +4,8 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/cubit/user_cubit.dart';
 
 import 'package:kitty/localization/map_lacales.dart';
-import 'package:kitty/screens/add_new_screen/add_new_screen.dart';
+import 'package:kitty/screens/add_new_category/screen/add_new_category.dart';
+import 'package:kitty/screens/add_new_transaction/add_new_transaction_screen.dart';
 import 'package:kitty/screens/manage_categories_screen/screen/manage_categories_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 
@@ -63,9 +64,11 @@ class _MyAppState extends State<MyApp> {
           RegistrationScreen.routeName: (_) => const RegistrationScreen(),
           BottomNavigationScreen.routeName: (_) =>
               const BottomNavigationScreen(),
-          AddNewScreen.routeName: (_) => const AddNewScreen(),
+          AddNewTransactionScreen.routeName: (_) =>
+              const AddNewTransactionScreen(),
           ManageCategoriesScreen.routeName: (_) =>
               const ManageCategoriesScreen(),
+          AddNewCategory.routeName: (_) => const AddNewCategory(),
         },
         initialRoute: AuthScreen.routeName,
       ),

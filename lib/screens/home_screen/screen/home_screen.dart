@@ -4,7 +4,7 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
-import 'package:kitty/screens/add_new_screen/add_new_screen.dart';
+import 'package:kitty/screens/add_new_transaction/add_new_transaction_screen.dart';
 import 'package:kitty/screens/home_screen/widgets/total_amount.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
@@ -50,7 +50,7 @@ void didChangeDependencies() {
   void leftDateAction() {}
   void rightDateAction() {}
   void datePickerAction() {}
-  void addNew() => Navigator.of(context).pushNamed(AddNewScreen.routeName);
+  void addNew() => Navigator.of(context).pushNamed(AddNewTransactionScreen.routeName);
 
   @override
   Widget build(BuildContext context) {

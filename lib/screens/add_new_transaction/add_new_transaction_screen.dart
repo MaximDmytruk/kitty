@@ -17,15 +17,15 @@ import 'package:kitty/widgets/header_app_bar.dart';
 import 'package:kitty/widgets/show_custom_bottom_sheet.dart';
 
 
-class AddNewScreen extends StatefulWidget {
-  const AddNewScreen({super.key});
+class AddNewTransactionScreen extends StatefulWidget {
+  const AddNewTransactionScreen({super.key});
 
   static const String routeName = '/add_new_screen';
   @override
-  State<AddNewScreen> createState() => _AddNewScreenState();
+  State<AddNewTransactionScreen> createState() => _AddNewTransactionScreenState();
 }
 
-class _AddNewScreenState extends State<AddNewScreen> {
+class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
   TextEditingController categoryNameController = TextEditingController();
   TextEditingController enterAmountController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();

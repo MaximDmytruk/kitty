@@ -29,6 +29,8 @@ class _CustomTextfieldState extends State<CustomTextfield> {
   Icon visibility = Icon(Icons.visibility);
   Icon visibilityOff = Icon(Icons.visibility_off);
   Icon selectedVisibilityIcon = Icon(Icons.visibility_off);
+  final FocusNode _focusNode = FocusNode();
+  Color labelColor = ColorsApp.grey97;
 
   void changeVisibilityText() {
     if (obscureText == false) {
@@ -45,19 +47,33 @@ class _CustomTextfieldState extends State<CustomTextfield> {
   void initState() {
     obscureText = widget.addObscureText;
     super.initState();
+     _focusNode.addListener(() {
+      if (_focusNode.hasFocus) {
+        setState(() {
+          labelColor = ColorsApp.blue106;
+        });
+        print('TextField активний');
+      } else {
+        setState(() {
+          labelColor = ColorsApp.grey97;
+        });
+        print('TextField не активний');
+        
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return TextField(
-      
+      focusNode: _focusNode,
+      keyboardAppearance: Brightness.dark,
       controller: widget.controller,
       obscureText: obscureText,
       cursorColor: ColorsApp.blue106,
       readOnly: widget.readOnly,
       maxLines: 1,
       decoration: InputDecoration(
-        helperStyle: TextStyle(color: Colors.amber) , //спробувати !
         suffixIcon: widget.addObscureText
             ? InkWell(
                 onTap: changeVisibilityText,
@@ -82,11 +98,10 @@ class _CustomTextfieldState extends State<CustomTextfield> {
           fontWeight: FontWeight.w400,
           color: ColorsApp.grey97,
         ),
-        focusColor: Colors.amber ,// спробувати ! 
         floatingLabelStyle: interTextStyle(
           fontSize: 16.0,
           fontWeight: FontWeight.w400,
-          color: ColorsApp.blue106,
+          color: labelColor,
         ),
         errorText: widget.errorText, 
       ),
