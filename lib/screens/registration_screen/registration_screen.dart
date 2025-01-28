@@ -19,7 +19,7 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  String? errorText;
+  String? errorTexts;
 
   final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -46,7 +46,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           );
     } else {
       setState(() {
-        errorText = 'Not the same password';
+        errorTexts = 'Not the same password';
       });
     }
   }
@@ -67,11 +67,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       backgroundColor: ColorsApp.lightGrey250,
       body: BlocListener<UserCubit, UserState>(
         listener: (context, state) {
-          state.mapOrNull(
-            authenticated: (_) {
-              Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
-            },
-          );
+          if (state.status == UserStatus.authenticated) {
+            Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
+          }
+
+          //TODO:  скачати пакет tost (пакет показує помилки )!
         },
         child: ListView(
           children: [
@@ -130,7 +130,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       controller: repeatPasswordController,
                       labelText: AppLocale.repeatPassword.getString(context),
                       addObscureText: true,
-                      errorText: errorText,
+                      errorText: errorTexts,
                     ),
                     Center(
                       child: CustomFeeledButton(
@@ -140,26 +140,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     ),
                     Center(
                       child: BlocBuilder<UserCubit, UserState>(
-                        builder: (context, state) => state.maybeWhen(
-                          error: (errorText) => Text(
-                            errorText,
-                            style: interTextStyle(
-                              fontSize: 14.0,
-                              fontWeight: FontWeight.w500,
-                              color: ColorsApp.red,
-                            ),
-                          ),
-                          orElse: () => Text(''), //TODO: так не дуже правильно ?
-                        ),
+                        builder: (context, state) {
+                          if (state.status == UserStatus.error) {
+                            return Text(
+                              state.errorText ?? 'ssssss',
+                              style: interTextStyle(
+                                fontSize: 14.0,
+                                fontWeight: FontWeight.w500,
+                                color: ColorsApp.red,
+                              ),
+                            );
+                          }
+                          return SizedBox.shrink();
+                        },
                       ),
-                    ),
-                    // Center(
-                    //   child: BlocBuilder<UserCubit, UserState>(
-                    //     builder: (context, state) => state.mapOrNull(
-                    //       error: (value) => Text('asd'),
-                    //     ),
-                    //   ),
-                    // ),
+                    )
                   ],
                 ),
               ),

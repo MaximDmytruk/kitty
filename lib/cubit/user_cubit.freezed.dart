@@ -16,49 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(User user) authenticated,
-    required TResult Function(String errorText) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(User user)? authenticated,
-    TResult? Function(String errorText)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(User user)? authenticated,
-    TResult Function(String errorText)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Authenticated value) authenticated,
-    required TResult Function(_Error value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Authenticated value)? authenticated,
-    TResult? Function(_Error value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Authenticated value)? authenticated,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) =>
+  UserStatus get status =>
+      throw _privateConstructorUsedError; // required DateTimeRange dateRange,
+  User? get user => throw _privateConstructorUsedError;
+  String? get errorText => throw _privateConstructorUsedError;
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $UserStateCopyWith<UserState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -66,6 +32,8 @@ mixin _$UserState {
 abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res, UserState>;
+  @useResult
+  $Res call({UserStatus status, User? user, String? errorText});
 }
 
 /// @nodoc
@@ -80,280 +48,47 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of UserState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString() {
-    return 'UserState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(User user) authenticated,
-    required TResult Function(String errorText) error,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(User user)? authenticated,
-    TResult? Function(String errorText)? error,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(User user)? authenticated,
-    TResult Function(String errorText)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Authenticated value) authenticated,
-    required TResult Function(_Error value) error,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Authenticated value)? authenticated,
-    TResult? Function(_Error value)? error,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Authenticated value)? authenticated,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements UserState {
-  const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$AuthenticatedImplCopyWith<$Res> {
-  factory _$$AuthenticatedImplCopyWith(
-          _$AuthenticatedImpl value, $Res Function(_$AuthenticatedImpl) then) =
-      __$$AuthenticatedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({User user});
-}
-
-/// @nodoc
-class __$$AuthenticatedImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$AuthenticatedImpl>
-    implements _$$AuthenticatedImplCopyWith<$Res> {
-  __$$AuthenticatedImplCopyWithImpl(
-      _$AuthenticatedImpl _value, $Res Function(_$AuthenticatedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of UserState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? user = null,
+    Object? status = null,
+    Object? user = freezed,
+    Object? errorText = freezed,
   }) {
-    return _then(_$AuthenticatedImpl(
-      null == user
+    return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as UserStatus,
+      user: freezed == user
           ? _value.user
           : user // ignore: cast_nullable_to_non_nullable
-              as User,
-    ));
+              as User?,
+      errorText: freezed == errorText
+          ? _value.errorText
+          : errorText // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
-
-class _$AuthenticatedImpl implements _Authenticated {
-  const _$AuthenticatedImpl(this.user);
-
+abstract class _$$UserStateImplCopyWith<$Res>
+    implements $UserStateCopyWith<$Res> {
+  factory _$$UserStateImplCopyWith(
+          _$UserStateImpl value, $Res Function(_$UserStateImpl) then) =
+      __$$UserStateImplCopyWithImpl<$Res>;
   @override
-  final User user;
-
-  @override
-  String toString() {
-    return 'UserState.authenticated(user: $user)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AuthenticatedImpl &&
-            (identical(other.user, user) || other.user == user));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, user);
-
-  /// Create a copy of UserState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AuthenticatedImplCopyWith<_$AuthenticatedImpl> get copyWith =>
-      __$$AuthenticatedImplCopyWithImpl<_$AuthenticatedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(User user) authenticated,
-    required TResult Function(String errorText) error,
-  }) {
-    return authenticated(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(User user)? authenticated,
-    TResult? Function(String errorText)? error,
-  }) {
-    return authenticated?.call(user);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(User user)? authenticated,
-    TResult Function(String errorText)? error,
-    required TResult orElse(),
-  }) {
-    if (authenticated != null) {
-      return authenticated(user);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Authenticated value) authenticated,
-    required TResult Function(_Error value) error,
-  }) {
-    return authenticated(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Authenticated value)? authenticated,
-    TResult? Function(_Error value)? error,
-  }) {
-    return authenticated?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Authenticated value)? authenticated,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (authenticated != null) {
-      return authenticated(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Authenticated implements UserState {
-  const factory _Authenticated(final User user) = _$AuthenticatedImpl;
-
-  User get user;
-
-  /// Create a copy of UserState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AuthenticatedImplCopyWith<_$AuthenticatedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String errorText});
+  $Res call({UserStatus status, User? user, String? errorText});
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$UserStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
+class __$$UserStateImplCopyWithImpl<$Res>
+    extends _$UserStateCopyWithImpl<$Res, _$UserStateImpl>
+    implements _$$UserStateImplCopyWith<$Res> {
+  __$$UserStateImplCopyWithImpl(
+      _$UserStateImpl _value, $Res Function(_$UserStateImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of UserState
@@ -361,127 +96,87 @@ class __$$ErrorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? errorText = null,
+    Object? status = null,
+    Object? user = freezed,
+    Object? errorText = freezed,
   }) {
-    return _then(_$ErrorImpl(
-      null == errorText
+    return _then(_$UserStateImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as UserStatus,
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as User?,
+      errorText: freezed == errorText
           ? _value.errorText
           : errorText // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ErrorImpl implements _Error {
-  const _$ErrorImpl(this.errorText);
+class _$UserStateImpl implements _UserState {
+  const _$UserStateImpl(
+      {this.status = UserStatus.initial, this.user, this.errorText});
 
   @override
-  final String errorText;
+  @JsonKey()
+  final UserStatus status;
+// required DateTimeRange dateRange,
+  @override
+  final User? user;
+  @override
+  final String? errorText;
 
   @override
   String toString() {
-    return 'UserState.error(errorText: $errorText)';
+    return 'UserState(status: $status, user: $user, errorText: $errorText)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
+            other is _$UserStateImpl &&
+            (identical(other.status, status) || other.status == status) &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.errorText, errorText) ||
                 other.errorText == errorText));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, errorText);
+  int get hashCode => Object.hash(runtimeType, status, user, errorText);
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function(User user) authenticated,
-    required TResult Function(String errorText) error,
-  }) {
-    return error(errorText);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function(User user)? authenticated,
-    TResult? Function(String errorText)? error,
-  }) {
-    return error?.call(errorText);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function(User user)? authenticated,
-    TResult Function(String errorText)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(errorText);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
-    required TResult Function(_Authenticated value) authenticated,
-    required TResult Function(_Error value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Initial value)? initial,
-    TResult? Function(_Authenticated value)? authenticated,
-    TResult? Function(_Error value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
-    TResult Function(_Authenticated value)? authenticated,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
+  _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>
+      __$$UserStateImplCopyWithImpl<_$UserStateImpl>(this, _$identity);
 }
 
-abstract class _Error implements UserState {
-  const factory _Error(final String errorText) = _$ErrorImpl;
+abstract class _UserState implements UserState {
+  const factory _UserState(
+      {final UserStatus status,
+      final User? user,
+      final String? errorText}) = _$UserStateImpl;
 
-  String get errorText;
+  @override
+  UserStatus get status; // required DateTimeRange dateRange,
+  @override
+  User? get user;
+  @override
+  String? get errorText;
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
+  _$$UserStateImplCopyWith<_$UserStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

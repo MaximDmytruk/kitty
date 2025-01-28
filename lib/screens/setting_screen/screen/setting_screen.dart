@@ -78,7 +78,7 @@ class _SettingScreenState extends State<SettingScreen> {
             name: userName,
             email: userEmail,
           ),
-          //TODO:
+          //TODO: як правильно і коректно робити це?
           // BlocBuilder<UserCubit, UserState>(
           //   builder: (context, state) {
           //     return state.when(

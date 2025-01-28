@@ -17,7 +17,7 @@ Future<void> main() async {
   await FlutterLocalization.instance.ensureInitialized();
 
   runApp(
-     MyApp(),
+    MyApp(),
   );
 }
 
@@ -30,7 +30,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final FlutterLocalization _localization = FlutterLocalization.instance;
-  
+
   @override
   void initState() {
     _localization.init(
@@ -47,9 +47,8 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-  
     return BlocProvider(
-      create: (_)=> UserCubit(),
+      create: (_) => UserCubit(),
       child: MaterialApp(
         supportedLocales: _localization.supportedLocales,
         localizationsDelegates: _localization.localizationsDelegates,
@@ -62,13 +61,14 @@ class _MyAppState extends State<MyApp> {
         routes: {
           AuthScreen.routeName: (_) => const AuthScreen(),
           RegistrationScreen.routeName: (_) => const RegistrationScreen(),
-          BottomNavigationScreen.routeName: (_) => const BottomNavigationScreen(),
+          BottomNavigationScreen.routeName: (_) =>
+              const BottomNavigationScreen(),
           AddNewScreen.routeName: (_) => const AddNewScreen(),
-          ManageCategoriesScreen.routeName: (_) => const ManageCategoriesScreen(),
+          ManageCategoriesScreen.routeName: (_) =>
+              const ManageCategoriesScreen(),
         },
         initialRoute: AuthScreen.routeName,
       ),
     );
   }
 }
-

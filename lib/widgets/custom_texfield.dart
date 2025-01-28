@@ -50,12 +50,14 @@ class _CustomTextfieldState extends State<CustomTextfield> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      
       controller: widget.controller,
       obscureText: obscureText,
       cursorColor: ColorsApp.blue106,
       readOnly: widget.readOnly,
       maxLines: 1,
       decoration: InputDecoration(
+        helperStyle: TextStyle(color: Colors.amber) , //спробувати !
         suffixIcon: widget.addObscureText
             ? InkWell(
                 onTap: changeVisibilityText,
@@ -80,6 +82,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
           fontWeight: FontWeight.w400,
           color: ColorsApp.grey97,
         ),
+        focusColor: Colors.amber ,// спробувати ! 
         floatingLabelStyle: interTextStyle(
           fontSize: 16.0,
           fontWeight: FontWeight.w400,
