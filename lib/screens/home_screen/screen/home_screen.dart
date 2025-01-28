@@ -8,7 +8,7 @@ import 'package:kitty/screens/add_new_screen/add_new_screen.dart';
 import 'package:kitty/screens/home_screen/widgets/total_amount.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
-import 'package:kitty/widgets/custom_feeled_button.dart';
+import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
 import 'package:kitty/widgets/custom_status_bar.dart';
 import 'package:kitty/widgets/list_group.dart';
 import '../../../widgets/custom_date_picker.dart';

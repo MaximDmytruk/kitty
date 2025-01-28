@@ -8,7 +8,7 @@ import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/screens/statistics_screen/widgets/name_of_section.dart';
 import 'package:kitty/styles/icons/category_icons.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
-import 'package:kitty/widgets/custom_feeled_button.dart';
+import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
 import 'package:kitty/widgets/list_item.dart';
 import 'package:kitty/widgets/name_of_screen_header.dart';
 import 'package:kitty/widgets/custom_date_picker.dart';

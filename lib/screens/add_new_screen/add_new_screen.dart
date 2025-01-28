@@ -10,7 +10,7 @@ import 'package:kitty/model/financial_transaction.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/widgets/category_icon.dart';
 import 'package:kitty/widgets/custom_dropdown_menu.dart';
-import 'package:kitty/widgets/custom_feeled_button.dart';
+import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
 import 'package:kitty/widgets/custom_status_bar.dart';
 import 'package:kitty/widgets/custom_texfield.dart';
 import 'package:kitty/widgets/header_app_bar.dart';

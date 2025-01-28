@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 
-import '../styles/font/fontstyle_app.dart';
+import '../../styles/font/fontstyle_app.dart';
 
 class CustomFeeledButton extends StatefulWidget {
   final Function onPressed;
