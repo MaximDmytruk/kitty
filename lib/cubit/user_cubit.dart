@@ -1,9 +1,13 @@
 import 'package:bloc/bloc.dart';
+import 'package:bot_toast/bot_toast.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kitty/services/localization/app_locale.dart';
 import 'package:kitty/model/financial_category.dart';
 import 'package:kitty/model/financial_transaction.dart';
 import 'package:kitty/model/user.dart';
+import 'package:kitty/styles/colors/colors_app.dart';
+import 'package:kitty/styles/font/fontstyle_app.dart';
 
 part 'user_state.dart';
 part 'user_cubit.freezed.dart';
@@ -89,7 +93,8 @@ class UserCubit extends Cubit<UserState> {
 
   void addNewCategory(FinancialCategory newCategory) {
     state.user!.categoryService.addNewCategory(newCategory);
-    
+
+    showToast(text: 'New category added successfully!');
     emit(
       state.copyWith(
         user: state.user,
@@ -141,5 +146,33 @@ class UserCubit extends Cubit<UserState> {
       List<FinancialCategory> error = [];
       return error;
     }
+  }
+
+  void showToast({required String text}) {
+    BotToast.showCustomText(
+     
+        align: Alignment.topCenter,
+        toastBuilder: (_) {
+          return Padding(
+            padding: const EdgeInsets.only(top: 60.0),
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 16.0,
+                vertical: 8.0,
+              ),
+              color: ColorsApp.grey66,
+              child: Text(
+                text,
+                style: interTextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: ColorsApp.white,
+                ),
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+          );
+        });
   }
 }

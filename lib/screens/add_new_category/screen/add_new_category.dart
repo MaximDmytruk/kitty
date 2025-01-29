@@ -6,6 +6,7 @@ import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/data/basic_icons.dart';
 import 'package:kitty/model/financial_category.dart';
 import 'package:kitty/model/icon.dart';
+import 'package:kitty/screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'package:kitty/services/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/category_icons.dart';
@@ -65,7 +66,7 @@ class _AddNewCategoryState extends State<AddNewCategory> {
     );
   }
 
-  void addNewCategoryAction() {
+  void addNewCategoryAction() async {
     if (selectedIcon != null || categoryNameController.text.isNotEmpty) {
       FinancialCategory newCategory = FinancialCategory(
         categoryNameController.text,
@@ -75,7 +76,10 @@ class _AddNewCategoryState extends State<AddNewCategory> {
 
       context.read<UserCubit>().addNewCategory(newCategory);
 
-      Navigator.pop(context);
+      await Navigator.popAndPushNamed(
+        context,
+        BottomNavigationScreen.routeName,
+      );
     }
   }
 

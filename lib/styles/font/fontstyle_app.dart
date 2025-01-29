@@ -15,5 +15,6 @@ TextStyle interTextStyle({
     fontWeight: fontWeight,
     color: color,
     
+    
   );
 }

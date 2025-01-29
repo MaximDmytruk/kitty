@@ -5,6 +5,7 @@ enum UserStatus {
   authenticated,
   error,
   loading,
+  showToast,
 }
 
 @freezed
@@ -13,5 +14,6 @@ class UserState with _$UserState {
     @Default(UserStatus.initial) UserStatus status,
     User? user,
     String? errorText,
+    String? toastText,
   }) = _UserState;
 }

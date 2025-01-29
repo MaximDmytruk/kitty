@@ -1,6 +1,9 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/services/localization/app_locale.dart';
 import 'package:kitty/screens/statistics_screen/screen/statistics_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -34,38 +37,43 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: _widgetOptions[_selectedPage]),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _selectedPage,
-        items: [
-          BottomNavigationBarItem(
-            icon: _selectedPage == 0
-                ? SvgPicture.asset(IconsApp.reportSelected)
-                : SvgPicture.asset(IconsApp.report),
-            label: AppLocale.report.getString(context),
-          ),
-          BottomNavigationBarItem(
-            icon: _selectedPage == 1
-                ? SvgPicture.asset(
-                    IconsApp.homeSelected,
-                  )
-                : SvgPicture.asset(IconsApp.home),
-            label: AppLocale.home.getString(context),
-          ),
-          BottomNavigationBarItem(
-            icon: _selectedPage == 2
-                ? SvgPicture.asset(IconsApp.settingSelected)
-                : SvgPicture.asset(IconsApp.setting),
-            label: AppLocale.settings.getString(context),
-          ),
-        ],
-        selectedItemColor: ColorsApp.grey66,
-        backgroundColor: ColorsApp.white,
-        onTap: onSelectedTab,
-      ),
-    );
+    return BlocBuilder<UserCubit, UserState>(builder: (context, state) {
+      
+   
+      return Scaffold(
+        body: Center(child: _widgetOptions[_selectedPage]),
+        bottomNavigationBar: BottomNavigationBar(
+          currentIndex: _selectedPage,
+          items: [
+            BottomNavigationBarItem(
+              icon: _selectedPage == 0
+                  ? SvgPicture.asset(IconsApp.reportSelected)
+                  : SvgPicture.asset(IconsApp.report),
+              label: AppLocale.report.getString(context),
+            ),
+            BottomNavigationBarItem(
+              icon: _selectedPage == 1
+                  ? SvgPicture.asset(
+                      IconsApp.homeSelected,
+                    )
+                  : SvgPicture.asset(IconsApp.home),
+              label: AppLocale.home.getString(context),
+            ),
+            BottomNavigationBarItem(
+              icon: _selectedPage == 2
+                  ? SvgPicture.asset(IconsApp.settingSelected)
+                  : SvgPicture.asset(IconsApp.setting),
+              label: AppLocale.settings.getString(context),
+            ),
+          ],
+          selectedItemColor: ColorsApp.grey66,
+          backgroundColor: ColorsApp.white,
+          onTap: onSelectedTab,
+        ),
+      );
+    });
   }
 }

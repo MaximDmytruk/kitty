@@ -32,12 +32,6 @@ class _HomeScreenState extends State<HomeScreen> {
     ListGroup(),
     ListGroup(),
   ];
-  //TODO: чому помилка,  каже що не створено
-  // @override
-  // void initState() {
-  //   firstChar = context.read<UserCubit>().getFirstLetterName();
-  //   super.initState();
-  // }
 
   @override
 void didChangeDependencies() {

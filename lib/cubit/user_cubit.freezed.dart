@@ -16,10 +16,10 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$UserState {
-  UserStatus get status =>
-      throw _privateConstructorUsedError; // required DateTimeRange dateRange,
+  UserStatus get status => throw _privateConstructorUsedError;
   User? get user => throw _privateConstructorUsedError;
   String? get errorText => throw _privateConstructorUsedError;
+  String? get toastText => throw _privateConstructorUsedError;
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
@@ -33,7 +33,8 @@ abstract class $UserStateCopyWith<$Res> {
   factory $UserStateCopyWith(UserState value, $Res Function(UserState) then) =
       _$UserStateCopyWithImpl<$Res, UserState>;
   @useResult
-  $Res call({UserStatus status, User? user, String? errorText});
+  $Res call(
+      {UserStatus status, User? user, String? errorText, String? toastText});
 }
 
 /// @nodoc
@@ -54,6 +55,7 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
     Object? status = null,
     Object? user = freezed,
     Object? errorText = freezed,
+    Object? toastText = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -68,6 +70,10 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
           ? _value.errorText
           : errorText // ignore: cast_nullable_to_non_nullable
               as String?,
+      toastText: freezed == toastText
+          ? _value.toastText
+          : toastText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -80,7 +86,8 @@ abstract class _$$UserStateImplCopyWith<$Res>
       __$$UserStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({UserStatus status, User? user, String? errorText});
+  $Res call(
+      {UserStatus status, User? user, String? errorText, String? toastText});
 }
 
 /// @nodoc
@@ -99,6 +106,7 @@ class __$$UserStateImplCopyWithImpl<$Res>
     Object? status = null,
     Object? user = freezed,
     Object? errorText = freezed,
+    Object? toastText = freezed,
   }) {
     return _then(_$UserStateImpl(
       status: null == status
@@ -113,6 +121,10 @@ class __$$UserStateImplCopyWithImpl<$Res>
           ? _value.errorText
           : errorText // ignore: cast_nullable_to_non_nullable
               as String?,
+      toastText: freezed == toastText
+          ? _value.toastText
+          : toastText // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -121,20 +133,24 @@ class __$$UserStateImplCopyWithImpl<$Res>
 
 class _$UserStateImpl implements _UserState {
   const _$UserStateImpl(
-      {this.status = UserStatus.initial, this.user, this.errorText});
+      {this.status = UserStatus.initial,
+      this.user,
+      this.errorText,
+      this.toastText});
 
   @override
   @JsonKey()
   final UserStatus status;
-// required DateTimeRange dateRange,
   @override
   final User? user;
   @override
   final String? errorText;
+  @override
+  final String? toastText;
 
   @override
   String toString() {
-    return 'UserState(status: $status, user: $user, errorText: $errorText)';
+    return 'UserState(status: $status, user: $user, errorText: $errorText, toastText: $toastText)';
   }
 
   @override
@@ -145,11 +161,14 @@ class _$UserStateImpl implements _UserState {
             (identical(other.status, status) || other.status == status) &&
             (identical(other.user, user) || other.user == user) &&
             (identical(other.errorText, errorText) ||
-                other.errorText == errorText));
+                other.errorText == errorText) &&
+            (identical(other.toastText, toastText) ||
+                other.toastText == toastText));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, user, errorText);
+  int get hashCode =>
+      Object.hash(runtimeType, status, user, errorText, toastText);
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.
@@ -164,14 +183,17 @@ abstract class _UserState implements UserState {
   const factory _UserState(
       {final UserStatus status,
       final User? user,
-      final String? errorText}) = _$UserStateImpl;
+      final String? errorText,
+      final String? toastText}) = _$UserStateImpl;
 
   @override
-  UserStatus get status; // required DateTimeRange dateRange,
+  UserStatus get status;
   @override
   User? get user;
   @override
   String? get errorText;
+  @override
+  String? get toastText;
 
   /// Create a copy of UserState
   /// with the given fields replaced by the non-null parameter values.

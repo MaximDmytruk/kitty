@@ -1,3 +1,4 @@
+import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
@@ -59,6 +60,8 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
         title: 'Kitty',
+        builder: BotToastInit(),
+         navigatorObservers: [BotToastNavigatorObserver()],
         routes: {
           AuthScreen.routeName: (_) => const AuthScreen(),
           RegistrationScreen.routeName: (_) => const RegistrationScreen(),
