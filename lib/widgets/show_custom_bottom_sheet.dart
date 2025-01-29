@@ -16,14 +16,22 @@ Future<dynamic> showCustomBottomSheet({
 }) {
   return showModalBottomSheet(
     context: context,
+    isDismissible: false,
+    barrierColor: ColorsApp.transparent,
     builder: (BuildContext context) {
       return Container(
         decoration: BoxDecoration(
-           color: ColorsApp.lightGrey250,
-           borderRadius: BorderRadius.circular(20.0)
-        ),
+            boxShadow: [
+              BoxShadow(
+                color: Color.fromRGBO(0, 0, 0, 0.1),
+                spreadRadius: 0,
+                blurRadius: 8,
+                offset: Offset(0, -1),
+              ),
+            ],
+            color: ColorsApp.lightGrey250,
+            borderRadius: BorderRadius.circular(20.0)),
         height: 400,
-       
         child: Column(
           spacing: 16,
           children: [

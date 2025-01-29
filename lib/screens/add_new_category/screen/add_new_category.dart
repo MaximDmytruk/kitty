@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/data/basic_icons.dart';
+import 'package:kitty/model/financial_category.dart';
 import 'package:kitty/model/icon.dart';
 import 'package:kitty/services/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
+import 'package:kitty/styles/icons/category_icons.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
 import 'package:kitty/widgets/category_icon.dart';
@@ -26,6 +30,16 @@ class _AddNewCategoryState extends State<AddNewCategory> {
   TextEditingController categoryNameController = TextEditingController();
   List<IconModel> icons = BasicIcons().getIcons();
 
+  CategoryIcon? selectedIcon;
+  String? nameOfNewCategory;
+
+  void iconCategoryOnTap(Widget icon, Color color) {
+    CategoryIcon newIcon = CategoryIcon(color: color, icon: icon);
+    setState(() {
+      selectedIcon = newIcon;
+    });
+  }
+
   void addIconAction() {
     int length = icons.length;
 
@@ -37,12 +51,33 @@ class _AddNewCategoryState extends State<AddNewCategory> {
         Color color = icons[index].color;
         Widget icon = icons[index].icon;
 
-        return CategoryIcon(color: color, icon: icon);
+        return InkWell(
+          onTap: () {
+            iconCategoryOnTap(icon, color);
+            Navigator.pop(context);
+          },
+          child: CategoryIcon(
+            color: color,
+            icon: icon,
+          ),
+        );
       },
     );
   }
 
-  void addNewCategoryAction() {}
+  void addNewCategoryAction() {
+    if (selectedIcon != null || categoryNameController.text.isNotEmpty) {
+      FinancialCategory newCategory = FinancialCategory(
+        categoryNameController.text,
+        selectedIcon!.color,
+        selectedIcon!.icon,
+      );
+
+      context.read<UserCubit>().addNewCategory(newCategory);
+
+      Navigator.pop(context);
+    }
+  }
 
   @override
   void dispose() {
@@ -75,12 +110,8 @@ class _AddNewCategoryState extends State<AddNewCategory> {
                     children: [
                       InkWell(
                         onTap: addIconAction,
-                        child: SvgPicture.asset(
-                          IconsApp.addPlusDashedLine,
-                          height: 48.0,
-                          width: 48.0,
-                          fit: BoxFit.none,
-                        ),
+                        child: selectedIcon ??
+                            SvgPicture.asset(IconsApp.addPlusDashedLine),
                       ),
                       Expanded(
                         child: SizedBox(

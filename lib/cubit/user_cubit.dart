@@ -87,6 +87,17 @@ class UserCubit extends Cubit<UserState> {
     // emit(UserState.initial());
   }
 
+  void addNewCategory(FinancialCategory newCategory) {
+    state.user!.categoryService.addNewCategory(newCategory);
+    
+    emit(
+      state.copyWith(
+        user: state.user,
+        status: UserStatus.authenticated,
+      ),
+    );
+  }
+
   void addFinancialTransaction(FinancialTransaction finTransaction) {
     // emit(state.copyWith(listFinTransaction: [...state.listFinTransaction, finTransaction] ));
 

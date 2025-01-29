@@ -22,18 +22,20 @@ class ManageCategoriesScreen extends StatefulWidget {
 }
 
 class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
+  List<FinancialCategory> financialCategories = [];
+
   void editAction() {}
   void changePositionAction() {}
 
-  void addNewCategoryAction() =>
-      Navigator.of(context).pushNamed(AddNewCategory.routeName);
-
-  List<FinancialCategory> financialCategories = [];
+  void addNewCategoryAction() => Navigator.of(context)
+          .pushNamed(AddNewCategory.routeName)
+          .whenComplete(() {
+        setState(() {});
+      });
 
   @override
   void initState() {
     super.initState();
-    financialCategories = context.read<UserCubit>().getFinancialCategory();
   }
 
   @override
@@ -50,25 +52,31 @@ class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
                 name: AppLocale.manageCategories.getString(context),
               ),
               Expanded(
-                child: ListView.builder(
-                  padding: EdgeInsets.only(
-                    left: 16.0,
-                    right: 16.0,
-                    top: 24.0,
-                    bottom: 88.0,
-                  ),
-                  itemCount: financialCategories.length,
-                  itemBuilder: (context, index) {
-                    Color color = financialCategories[index].color;
-                    String name = financialCategories[index].name;
-                    Widget icon = financialCategories[index].icon;
+                child: BlocBuilder<UserCubit, UserState>(
+                  builder: (context, state) {
+                    financialCategories =
+                        state.user!.categoryService.getCategories();
+                    return ListView.builder(
+                      padding: EdgeInsets.only(
+                        left: 16.0,
+                        right: 16.0,
+                        top: 24.0,
+                        bottom: 88.0,
+                      ),
+                      itemCount: financialCategories.length,
+                      itemBuilder: (context, index) {
+                        Color color = financialCategories[index].color;
+                        String name = financialCategories[index].name;
+                        Widget icon = financialCategories[index].icon;
 
-                    return CategoryIconRow(
-                        editOnPressed: editAction,
-                        name: name,
-                        icon: icon,
-                        iconColor: color,
-                        changePositionOnPressed: changePositionAction);
+                        return CategoryIconRow(
+                            editOnPressed: editAction,
+                            name: name,
+                            icon: icon,
+                            iconColor: color,
+                            changePositionOnPressed: changePositionAction);
+                      },
+                    );
                   },
                 ),
               ),
