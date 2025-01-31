@@ -16,7 +16,7 @@ Future<dynamic> showCustomBottomSheet({
 }) {
   return showModalBottomSheet(
     context: context,
-    isDismissible: false,
+    isDismissible: true,
     barrierColor: ColorsApp.transparent,
     builder: (BuildContext context) {
       return Container(
