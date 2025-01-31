@@ -24,23 +24,22 @@ class ManageCategoriesScreen extends StatefulWidget {
 class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
   List<FinancialCategory> financialCategories = [];
 
- void editAction(FinancialCategory financialCategory) async {
- 
-  var updatedCategory = await Navigator.of(context).pushNamed(
-    AddNewCategory.routeName,
-    arguments: financialCategory,
+  void editAction(FinancialCategory category) async {
+    Object? updatedCategory = await Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => AddNewCategory(initialCategory: category),
+    ),
   );
 
-  if (updatedCategory != null && updatedCategory is FinancialCategory) {
-    setState(() {
-      
-      int index = financialCategories.indexOf(financialCategory);
-      if (index != -1) {
-        financialCategories[index] = updatedCategory;
-      }
-    });
+    if (updatedCategory != null && updatedCategory is FinancialCategory) {
+      setState(() {
+        int index = financialCategories.indexOf(category);
+        if (index != -1) {
+          financialCategories[index] = updatedCategory;
+        }
+      });
+    }
   }
-}
 
   void changePositionAction() {}
 
@@ -74,41 +73,44 @@ class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
                     financialCategories =
                         state.user!.categoryService.getCategories();
                     return ReorderableListView(
-                        padding: EdgeInsets.only(
-                          left: 16.0,
-                          right: 16.0,
-                          top: 24.0,
-                          bottom: 88.0,
-                        ),
-                        children:
-                            List.generate(financialCategories.length, (index) {
-                          FinancialCategory category =
-                              financialCategories[index];
+                      padding: EdgeInsets.only(
+                        left: 16.0,
+                        right: 16.0,
+                        top: 24.0,
+                        bottom: 88.0,
+                      ),
+                      children:
+                          List.generate(financialCategories.length, (index) {
+                        FinancialCategory category = financialCategories[index];
 
-                          Color color = category.color;
-                          String name = category.name;
-                          Widget icon = category.icon;
+                        Color color = category.color;
+                        String name = category.name;
+                        Widget icon = category.icon;
 
-                          return CategoryIconRow(
-                              key: UniqueKey(),
-                              editOnPressed: () {
-                                editAction(category);
-                              },
-                              name: name,
-                              icon: icon,
-                              iconColor: color,
-                              changePositionOnPressed: changePositionAction);
-                        }),
-                        onReorder: (int oldIndex, int newIndex) {
-                          setState(() {
+                        return CategoryIconRow(
+                          key: UniqueKey(),
+                          editOnPressed: () {
+                            editAction(category);
+                          },
+                          name: name,
+                          icon: icon,
+                          iconColor: color,
+                          changePositionOnPressed: changePositionAction,
+                        );
+                      }),
+                      onReorder: (int oldIndex, int newIndex) {
+                        setState(
+                          () {
                             if (oldIndex < newIndex) {
                               newIndex -= 1;
                             }
                             final FinancialCategory item =
                                 financialCategories.removeAt(oldIndex);
                             financialCategories.insert(newIndex, item);
-                          });
-                        });
+                          },
+                        );
+                      },
+                    );
                   },
                 ),
               ),

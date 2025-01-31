@@ -10,7 +10,6 @@ import 'package:kitty/model/icon.dart';
 import 'package:kitty/screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'package:kitty/services/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
-import 'package:kitty/styles/icons/category_icons.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
 import 'package:kitty/widgets/category_icon.dart';
@@ -20,8 +19,11 @@ import 'package:kitty/widgets/header_app_bar.dart';
 import 'package:kitty/widgets/show_custom_bottom_sheet.dart';
 
 class AddNewCategory extends StatefulWidget {
+  final FinancialCategory? initialCategory;
+
   const AddNewCategory({
     super.key,
+    this.initialCategory,
   });
 
   static const String routeName = '/add_new_category_screen';
@@ -31,37 +33,29 @@ class AddNewCategory extends StatefulWidget {
 }
 
 class _AddNewCategoryState extends State<AddNewCategory> {
-  FinancialCategory? createdFinCategory;
-  TextEditingController categoryNameController = TextEditingController();
+  late TextEditingController categoryNameController;
   List<IconModel> icons = BasicIcons().getIcons();
   CategoryIcon? selectedIcon;
-  String? nameOfNewCategory;
 
   @override
   void initState() {
     super.initState();
-  }
 
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
+    categoryNameController = TextEditingController(
+      text: widget.initialCategory?.name ?? '',
+    );
 
-    createdFinCategory =
-        ModalRoute.of(context)?.settings.arguments as FinancialCategory?;
-
-    if (createdFinCategory != null) {
-      categoryNameController.text = createdFinCategory!.name;
+    if (widget.initialCategory != null) {
       selectedIcon = CategoryIcon(
-        color: createdFinCategory!.color,
-        icon: createdFinCategory!.icon,
+        color: widget.initialCategory!.color,
+        icon: widget.initialCategory!.icon,
       );
     }
   }
 
   void iconCategoryOnTap(Widget icon, Color color) {
-    CategoryIcon newIcon = CategoryIcon(color: color, icon: icon);
     setState(() {
-      selectedIcon = newIcon;
+      selectedIcon = CategoryIcon(color: color, icon: icon);
     });
   }
 
@@ -91,14 +85,14 @@ class _AddNewCategoryState extends State<AddNewCategory> {
   }
 
   void addNewCategoryAction() async {
-    if (selectedIcon != null || categoryNameController.text.isNotEmpty) {
+    if (selectedIcon != null && categoryNameController.text.isNotEmpty) {
       FinancialCategory newCategory = FinancialCategory(
         categoryNameController.text,
         selectedIcon!.color,
         selectedIcon!.icon,
       );
 
-      if (createdFinCategory != null) {
+      if (widget.initialCategory != null) {
         Navigator.pop(context, newCategory);
       } else {
         context.read<UserCubit>().addNewCategory(newCategory);
@@ -138,13 +132,13 @@ class _AddNewCategoryState extends State<AddNewCategory> {
                 child: SizedBox(
                   width: double.infinity,
                   child: Row(
-                    spacing: 16.0,
                     children: [
                       InkWell(
                         onTap: addIconAction,
                         child: selectedIcon ??
                             SvgPicture.asset(IconsApp.addPlusDashedLine),
                       ),
+                      const SizedBox(width: 16.0),
                       Expanded(
                         child: SizedBox(
                           height: 48.0,
@@ -160,7 +154,7 @@ class _AddNewCategoryState extends State<AddNewCategory> {
             ],
           ),
           Padding(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               bottom: 24.0,
             ),
             child: CustomFeeledButton(
