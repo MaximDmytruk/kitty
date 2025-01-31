@@ -24,7 +24,24 @@ class ManageCategoriesScreen extends StatefulWidget {
 class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
   List<FinancialCategory> financialCategories = [];
 
-  void editAction() {}
+ void editAction(FinancialCategory financialCategory) async {
+ 
+  var updatedCategory = await Navigator.of(context).pushNamed(
+    AddNewCategory.routeName,
+    arguments: financialCategory,
+  );
+
+  if (updatedCategory != null && updatedCategory is FinancialCategory) {
+    setState(() {
+      
+      int index = financialCategories.indexOf(financialCategory);
+      if (index != -1) {
+        financialCategories[index] = updatedCategory;
+      }
+    });
+  }
+}
+
   void changePositionAction() {}
 
   void addNewCategoryAction() => Navigator.of(context)
@@ -57,20 +74,26 @@ class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
                     financialCategories =
                         state.user!.categoryService.getCategories();
                     return ReorderableListView(
-                      padding: EdgeInsets.only(
-                        left: 16.0,
-                        right: 16.0,
-                        top: 24.0,
-                        bottom: 88.0,),
+                        padding: EdgeInsets.only(
+                          left: 16.0,
+                          right: 16.0,
+                          top: 24.0,
+                          bottom: 88.0,
+                        ),
                         children:
                             List.generate(financialCategories.length, (index) {
-                          Color color = financialCategories[index].color;
-                          String name = financialCategories[index].name;
-                          Widget icon = financialCategories[index].icon;
+                          FinancialCategory category =
+                              financialCategories[index];
+
+                          Color color = category.color;
+                          String name = category.name;
+                          Widget icon = category.icon;
 
                           return CategoryIconRow(
                               key: UniqueKey(),
-                              editOnPressed: editAction,
+                              editOnPressed: () {
+                                editAction(category);
+                              },
                               name: name,
                               icon: icon,
                               iconColor: color,
@@ -86,27 +109,6 @@ class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
                             financialCategories.insert(newIndex, item);
                           });
                         });
-                    // return ListView.builder(
-                    //   padding: EdgeInsets.only(
-                    //     left: 16.0,
-                    //     right: 16.0,
-                    //     top: 24.0,
-                    //     bottom: 88.0,
-                    //   ),
-                    //   itemCount: financialCategories.length,
-                    //   itemBuilder: (context, index) {
-                    //     Color color = financialCategories[index].color;
-                    //     String name = financialCategories[index].name;
-                    //     Widget icon = financialCategories[index].icon;
-
-                    //     return CategoryIconRow(
-                    //         editOnPressed: editAction,
-                    //         name: name,
-                    //         icon: icon,
-                    //         iconColor: color,
-                    //         changePositionOnPressed: changePositionAction);
-                    //   },
-                    // );
                   },
                 ),
               ),

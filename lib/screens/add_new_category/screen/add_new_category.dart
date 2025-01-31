@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/data/basic_icons.dart';
 import 'package:kitty/model/financial_category.dart';
@@ -19,7 +20,9 @@ import 'package:kitty/widgets/header_app_bar.dart';
 import 'package:kitty/widgets/show_custom_bottom_sheet.dart';
 
 class AddNewCategory extends StatefulWidget {
-  const AddNewCategory({super.key});
+  const AddNewCategory({
+    super.key,
+  });
 
   static const String routeName = '/add_new_category_screen';
 
@@ -28,11 +31,32 @@ class AddNewCategory extends StatefulWidget {
 }
 
 class _AddNewCategoryState extends State<AddNewCategory> {
+  FinancialCategory? createdFinCategory;
   TextEditingController categoryNameController = TextEditingController();
   List<IconModel> icons = BasicIcons().getIcons();
-
   CategoryIcon? selectedIcon;
   String? nameOfNewCategory;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+
+    createdFinCategory =
+        ModalRoute.of(context)?.settings.arguments as FinancialCategory?;
+
+    if (createdFinCategory != null) {
+      categoryNameController.text = createdFinCategory!.name;
+      selectedIcon = CategoryIcon(
+        color: createdFinCategory!.color,
+        icon: createdFinCategory!.icon,
+      );
+    }
+  }
 
   void iconCategoryOnTap(Widget icon, Color color) {
     CategoryIcon newIcon = CategoryIcon(color: color, icon: icon);
@@ -74,12 +98,16 @@ class _AddNewCategoryState extends State<AddNewCategory> {
         selectedIcon!.icon,
       );
 
-      context.read<UserCubit>().addNewCategory(newCategory);
+      if (createdFinCategory != null) {
+        Navigator.pop(context, newCategory);
+      } else {
+        context.read<UserCubit>().addNewCategory(newCategory);
 
-      await Navigator.popAndPushNamed(
-        context,
-        BottomNavigationScreen.routeName,
-      );
+        await Navigator.popAndPushNamed(
+          context,
+          BottomNavigationScreen.routeName,
+        );
+      }
     }
   }
 
