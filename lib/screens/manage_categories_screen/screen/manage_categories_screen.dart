@@ -56,27 +56,57 @@ class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
                   builder: (context, state) {
                     financialCategories =
                         state.user!.categoryService.getCategories();
-                    return ListView.builder(
+                    return ReorderableListView(
                       padding: EdgeInsets.only(
                         left: 16.0,
                         right: 16.0,
                         top: 24.0,
-                        bottom: 88.0,
-                      ),
-                      itemCount: financialCategories.length,
-                      itemBuilder: (context, index) {
-                        Color color = financialCategories[index].color;
-                        String name = financialCategories[index].name;
-                        Widget icon = financialCategories[index].icon;
+                        bottom: 88.0,),
+                        children:
+                            List.generate(financialCategories.length, (index) {
+                          Color color = financialCategories[index].color;
+                          String name = financialCategories[index].name;
+                          Widget icon = financialCategories[index].icon;
 
-                        return CategoryIconRow(
-                            editOnPressed: editAction,
-                            name: name,
-                            icon: icon,
-                            iconColor: color,
-                            changePositionOnPressed: changePositionAction);
-                      },
-                    );
+                          return CategoryIconRow(
+                              key: UniqueKey(),
+                              editOnPressed: editAction,
+                              name: name,
+                              icon: icon,
+                              iconColor: color,
+                              changePositionOnPressed: changePositionAction);
+                        }),
+                        onReorder: (int oldIndex, int newIndex) {
+                          setState(() {
+                            if (oldIndex < newIndex) {
+                              newIndex -= 1;
+                            }
+                            final FinancialCategory item =
+                                financialCategories.removeAt(oldIndex);
+                            financialCategories.insert(newIndex, item);
+                          });
+                        });
+                    // return ListView.builder(
+                    //   padding: EdgeInsets.only(
+                    //     left: 16.0,
+                    //     right: 16.0,
+                    //     top: 24.0,
+                    //     bottom: 88.0,
+                    //   ),
+                    //   itemCount: financialCategories.length,
+                    //   itemBuilder: (context, index) {
+                    //     Color color = financialCategories[index].color;
+                    //     String name = financialCategories[index].name;
+                    //     Widget icon = financialCategories[index].icon;
+
+                    //     return CategoryIconRow(
+                    //         editOnPressed: editAction,
+                    //         name: name,
+                    //         icon: icon,
+                    //         iconColor: color,
+                    //         changePositionOnPressed: changePositionAction);
+                    //   },
+                    // );
                   },
                 ),
               ),
