@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
@@ -42,7 +40,6 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
   }
 
   void addFinOperationAction() {
-    String financialAction = selectedFinanceAction.name;
     String categoryName = categoryNameController.text;
     int? amount = int.tryParse(enterAmountController.text);
     String description = descriptionController.text;
@@ -52,18 +49,22 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
         enterAmountController.text.isNotEmpty &&
         amount != null) {
       FinancialTransaction newFinancialTransaction = FinancialTransaction(
-          financialAction: selectedFinanceAction,
-          categoryName: categoryName,
-          amount: amount,
-          date: dateTime);
+        financialAction: selectedFinanceAction,
+        categoryName: categoryName,
+        amount: amount,
+        date: dateTime,
+        description: description,
+      );
+
       context
           .read<UserCubit>()
           .addFinancialTransaction(newFinancialTransaction);
-      Navigator.pop(context);   
+      Navigator.pop(context);
     }
   }
 
   void addNewCategory() {}
+
   void categoryNameAction() {
     showCustomBottomSheet(
         nameHeader: AppLocale.chooseCategory.getString(context),

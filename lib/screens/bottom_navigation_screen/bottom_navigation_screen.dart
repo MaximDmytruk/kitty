@@ -1,4 +1,3 @@
-import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
@@ -22,6 +21,7 @@ class BottomNavigationScreen extends StatefulWidget {
 }
 
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
+  
   int _selectedPage = 1;
 
   static const List<Widget> _widgetOptions = [
@@ -37,12 +37,9 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<UserCubit, UserState>(builder: (context, state) {
-      
-   
       return Scaffold(
         body: Center(child: _widgetOptions[_selectedPage]),
         bottomNavigationBar: BottomNavigationBar(

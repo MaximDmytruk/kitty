@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kitty/model/icon.dart';
-import 'package:kitty/services/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/category_icons.dart';
 
