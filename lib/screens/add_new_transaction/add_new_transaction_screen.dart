@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
@@ -16,13 +18,13 @@ import 'package:kitty/widgets/custom_texfield.dart';
 import 'package:kitty/widgets/header_app_bar.dart';
 import 'package:kitty/widgets/show_custom_bottom_sheet.dart';
 
-
 class AddNewTransactionScreen extends StatefulWidget {
   const AddNewTransactionScreen({super.key});
 
   static const String routeName = '/add_new_screen';
   @override
-  State<AddNewTransactionScreen> createState() => _AddNewTransactionScreenState();
+  State<AddNewTransactionScreen> createState() =>
+      _AddNewTransactionScreenState();
 }
 
 class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
@@ -30,7 +32,7 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
   TextEditingController enterAmountController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
-  FinancialAction selectedValue = FinancialAction.income;
+  FinancialAction selectedFinanceAction = FinancialAction.income;
   List<FinancialCategory> financialCategories = [];
 
   @override
@@ -39,8 +41,58 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
     financialCategories = context.read<UserCubit>().getFinancialCategory();
   }
 
-  void addFinOperationAction() {}
+  void addFinOperationAction() {
+    String financialAction = selectedFinanceAction.name;
+    String categoryName = categoryNameController.text;
+    int? amount = int.tryParse(enterAmountController.text);
+    String description = descriptionController.text;
+    DateTime dateTime = DateTime.now();
+
+    if (categoryName.isNotEmpty &&
+        enterAmountController.text.isNotEmpty &&
+        amount != null) {
+      FinancialTransaction newFinancialTransaction = FinancialTransaction(
+          financialAction: selectedFinanceAction,
+          categoryName: categoryName,
+          amount: amount,
+          date: dateTime);
+      context
+          .read<UserCubit>()
+          .addFinancialTransaction(newFinancialTransaction);
+      Navigator.pop(context);   
+    }
+  }
+
   void addNewCategory() {}
+  void categoryNameAction() {
+    showCustomBottomSheet(
+        nameHeader: AppLocale.chooseCategory.getString(context),
+        context: context,
+        length: financialCategories.length,
+        itemBuilder: (BuildContext context, int index) {
+          Color color = financialCategories[index].color;
+          String name = financialCategories[index].name;
+          Widget icon = financialCategories[index].icon;
+
+          return InkWell(
+            onTap: () {
+              chooseCategory(name);
+            },
+            child: CategoryIcon(
+              color: color,
+              icon: icon,
+              name: name,
+            ),
+          );
+        },
+        onPressed: addNewCategory,
+        buttonName: AppLocale.addNewCategory.getString(context));
+  }
+
+  void chooseCategory(String nameOfNewCategory) {
+    categoryNameController.text = nameOfNewCategory;
+    Navigator.pop(context);
+  }
 
   @override
   void dispose() {
@@ -77,7 +129,7 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
                       padding: EdgeInsets.symmetric(
                         horizontal: 0.0,
                       ),
-                      selectedValue: selectedValue,
+                      selectedValue: selectedFinanceAction,
                       dropdownMenuEntries: [
                         DropdownMenuEntry(
                           value: FinancialAction.income,
@@ -91,7 +143,7 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
                       onSelected: (value) => {
                         setState(
                           () {
-                            selectedValue = value;
+                            selectedFinanceAction = value;
                           },
                         ),
                       },
@@ -103,26 +155,7 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
                       labelText: AppLocale.categoryName.getString(context),
                       controller: categoryNameController,
                       readOnly: true,
-                      onTap: () {
-                        showCustomBottomSheet(
-                          nameHeader: AppLocale.chooseCategory.getString(context),
-                            context: context,
-                            length: financialCategories.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              Color color = financialCategories[index].color;
-                              String name = financialCategories[index].name;
-                              Widget icon = financialCategories[index].icon;
-
-                              return CategoryIcon(
-                                color: color,
-                                icon: icon,
-                                name: name,
-                              );
-                            },
-                            onPressed: addNewCategory,
-                            buttonName:
-                                AppLocale.addNewCategory.getString(context));
-                      },
+                      onTap: categoryNameAction,
                     ),
                     SizedBox(
                       height: 16.0,
@@ -149,7 +182,7 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
             ),
             child: CustomFeeledButton(
               onPressed: addFinOperationAction,
-              name: selectedValue == FinancialAction.expense
+              name: selectedFinanceAction == FinancialAction.expense
                   ? AppLocale.addNewExpense.getString(context)
                   : AppLocale.addNewIncome.getString(context),
             ),

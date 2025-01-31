@@ -75,12 +75,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         },
         child: ListView(
           children: [
-            Container(
-              color: ColorsApp.grey33WithOpacity,
-              height: MediaQuery.of(context).padding.top,
-            ),
             AppBar(
-              backgroundColor: ColorsApp.lightGrey245,
+              backgroundColor: ColorsApp.lightGrey250,
               toolbarHeight: 48.0,
             ),
             Expanded(
