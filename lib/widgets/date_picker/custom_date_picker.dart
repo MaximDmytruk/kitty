@@ -67,6 +67,13 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     }
   }
 
+  void _monthPicked(int index) {
+    selectedMonth = index + 1;
+
+    _toggleOverlay();
+    setState(() {});
+  }
+
   void _toggleOverlay() {
     if (_overlayEntry == null) {
       _showOverlay();
@@ -160,7 +167,9 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                                   splashColor: ColorsApp.blue123.withAlpha(200),
                                   highlightColor:
                                       ColorsApp.blue123.withAlpha(200),
-                                  onTap: _monthPicked,
+                                  onTap: () {
+                                    _monthPicked(index);
+                                  },
                                 ),
                               ),
                             ],
@@ -181,10 +190,6 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   void _hideOverlay() {
     _overlayEntry?.remove();
     _overlayEntry = null;
-  }
-
-  void _monthPicked() {
-    _toggleOverlay();
   }
 
   @override
@@ -220,7 +225,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                   width: 8.0,
                 ),
                 Text(
-                  '${selectedMonth.toString()} , ${selectedYear.toString()}',
+                  '${months[selectedMonth]} , ${selectedYear.toString()}',
                   style: interTextStyle(
                     fontSize: 14.0,
                     fontWeight: FontWeight.w500,
