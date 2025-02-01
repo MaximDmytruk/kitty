@@ -4,6 +4,7 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/model/financial_transaction.dart';
 import 'package:kitty/screens/add_new_transaction/add_new_transaction_screen.dart';
 import 'package:kitty/screens/home_screen/widgets/total_amount.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -25,26 +26,23 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late String firstChar;
-
-  final List<ListGroup> _listGroups = [
-    ListGroup(),
-    ListGroup(),
-    ListGroup(),
-    ListGroup(),
-  ];
+  late List<FinancialTransaction> financialTransaction = [];
 
   @override
-void didChangeDependencies() {
-  super.didChangeDependencies();
-  firstChar = context.read<UserCubit>().getFirstLetterName();
-}
+  void initState() {
+    firstChar = context.read<UserCubit>().getFirstLetterName();
+    financialTransaction = context.read<UserCubit>().getFinancialTransaction();
+    super.initState();
+  }
 
   void searchAction() {}
-  void userAction() {}
+
   void leftDateAction() {}
   void rightDateAction() {}
   void datePickerAction() {}
-  void addNew() => Navigator.of(context).pushNamed(AddNewTransactionScreen.routeName);
+
+  void addNew() =>
+      Navigator.of(context).pushNamed(AddNewTransactionScreen.routeName);
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +57,6 @@ void didChangeDependencies() {
               CustomHomeAppBar(
                 firstLetter: firstChar,
                 searchAction: searchAction,
-                userAction: userAction,
               ),
               CustomDatePicker(),
               Padding(
@@ -76,13 +73,14 @@ void didChangeDependencies() {
                     horizontal: 16.0,
                     vertical: 8.0,
                   ),
-                  itemBuilder: (
-                    BuildContext context,
-                    int index,
-                  ) {
-                    return _listGroups[index];
+                  itemBuilder: (BuildContext context, int index) {
+                    final ListGroup _listGroups = ListGroup(
+                      transactions: financialTransaction,
+                    );
+
+                    return _listGroups;
                   },
-                  itemCount: _listGroups.length,
+                  itemCount: 1,
                 ),
               ),
             ],

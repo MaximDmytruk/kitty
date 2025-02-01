@@ -8,12 +8,12 @@ import '../../styles/colors/colors_app.dart';
 class CustomHomeAppBar extends StatefulWidget {
   final String firstLetter;
   final Function searchAction;
-  final Function userAction;
+  final Function? userAction;
 
   const CustomHomeAppBar({
     super.key,
     required this.searchAction,
-    required this.userAction,
+    this.userAction,
     required this.firstLetter,
   });
 

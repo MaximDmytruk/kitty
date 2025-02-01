@@ -1,11 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:kitty/model/financial_transaction.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 import 'package:kitty/styles/icons/category_icons.dart';
 import 'package:kitty/widgets/list_item.dart';
 
-class ListGroup extends StatelessWidget {
-  const ListGroup({super.key});
+class ListGroup extends StatefulWidget {
+  final List<FinancialTransaction>? transactions;
+
+  const ListGroup({
+    super.key,
+    this.transactions,
+  });
+
+  @override
+  State<ListGroup> createState() => _ListGroupState();
+}
+
+class _ListGroupState extends State<ListGroup> {
+  late List<ListItem>? listItems;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
