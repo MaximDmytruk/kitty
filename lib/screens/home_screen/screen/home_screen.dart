@@ -3,16 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/cubit/user_cubit.dart';
-import 'package:kitty/services/localization/app_locale.dart';
+import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/screens/add_new_transaction/add_new_transaction_screen.dart';
 import 'package:kitty/screens/home_screen/widgets/total_amount.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
-import 'package:kitty/widgets/custom_status_bar.dart';
+import 'package:kitty/widgets/app_bars/custom_status_bar.dart';
 import 'package:kitty/widgets/list_group.dart';
-import '../../../widgets/custom_date_picker.dart';
-import '../../../widgets/custom_home_app_bar.dart';
+import '../../../widgets/date_picker/custom_date_picker.dart';
+import '../../../widgets/app_bars/custom_home_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

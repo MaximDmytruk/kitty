@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kitty/services/localization/app_locale.dart';
+import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'package:kitty/screens/registration_screen/registration_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -10,8 +10,8 @@ import 'package:kitty/styles/icons/icons_app.dart';
 import '../../services/local_auth.dart';
 import '../../styles/font/fontstyle_app.dart';
 import '../../widgets/buttons/custom_feeled_button.dart';
-import '../../widgets/custom_texfield.dart';
-import '../../widgets/custom_text_button.dart';
+import '../../widgets/text_fields/custom_texfield.dart';
+import '../../widgets/buttons/custom_text_button.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});

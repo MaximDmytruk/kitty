@@ -4,12 +4,12 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/cubit/user_cubit.dart';
 import 'package:kitty/screens/auth_screen/auth_screen.dart';
 import 'package:kitty/screens/manage_categories_screen/screen/manage_categories_screen.dart';
-import 'package:kitty/widgets/name_of_screen_header.dart';
+import 'package:kitty/widgets/app_bars/name_of_screen_header.dart';
 import 'package:kitty/screens/setting_screen/widgets/settings_options_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
-import 'package:kitty/widgets/custom_status_bar.dart';
-import '../../../services/localization/app_locale.dart';
+import 'package:kitty/widgets/app_bars/custom_status_bar.dart';
+import '../../../localization/app_locale.dart';
 
 import '../widgets/user_header_settings.dart';
 

@@ -8,15 +8,15 @@ import 'package:kitty/data/basic_icons.dart';
 import 'package:kitty/model/financial_category.dart';
 import 'package:kitty/model/icon.dart';
 import 'package:kitty/screens/bottom_navigation_screen/bottom_navigation_screen.dart';
-import 'package:kitty/services/localization/app_locale.dart';
+import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
 import 'package:kitty/widgets/category_icon.dart';
-import 'package:kitty/widgets/custom_status_bar.dart';
-import 'package:kitty/widgets/custom_texfield.dart';
-import 'package:kitty/widgets/header_app_bar.dart';
-import 'package:kitty/widgets/show_custom_bottom_sheet.dart';
+import 'package:kitty/widgets/app_bars/custom_status_bar.dart';
+import 'package:kitty/widgets/text_fields/custom_texfield.dart';
+import 'package:kitty/widgets/app_bars/header_app_bar.dart';
+import 'package:kitty/widgets/bottom_sheets/show_custom_bottom_sheet.dart';
 
 class AddNewCategory extends StatefulWidget {
   final FinancialCategory? initialCategory;

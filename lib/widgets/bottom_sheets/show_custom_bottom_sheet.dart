@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 
-import 'package:kitty/widgets/custom_outline_button.dart';
+import 'package:kitty/widgets/buttons/custom_outline_button.dart';
 
 Future<dynamic> showCustomBottomSheet({
   required String nameHeader,

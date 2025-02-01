@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
-import 'package:kitty/widgets/custom_text_button.dart';
+import 'package:kitty/widgets/buttons/custom_text_button.dart';
 
 class CategoryIconRow extends StatelessWidget {
   final String name;

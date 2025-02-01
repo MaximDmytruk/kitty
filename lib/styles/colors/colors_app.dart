@@ -28,6 +28,7 @@ class ColorsApp {
   static const Color lightBlue187 = Color.fromRGBO(187, 222, 251, 1);
   static const Color lightSlateBlue197 = Color.fromRGBO(197, 202, 233, 1);
 
+
   static const Color green = Color.fromRGBO(0, 137, 123, 1);
   static const Color lightGreen200 = Color.fromRGBO(200, 230, 201, 1);
   static const Color lightGreen220 = Color.fromRGBO(220, 237, 200, 1);

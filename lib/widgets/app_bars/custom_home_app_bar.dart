@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 
-import '../styles/colors/colors_app.dart';
+import '../../styles/colors/colors_app.dart';
 
 class CustomHomeAppBar extends StatefulWidget {
   final String firstLetter;
