@@ -4,11 +4,10 @@ import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/category_icons.dart';
 
 class BasicIcons {
-  final List<IconModel> _basicIcons = [
+  static final List<IconModel> _basicIcons = [
     IconModel(
       icon: SvgPicture.asset(CategoryIcons.groceries),
       color: ColorsApp.lightGreen200,
-      
     ),
     IconModel(
       icon: SvgPicture.asset(CategoryIcons.gifts),
@@ -70,22 +69,25 @@ class BasicIcons {
       icon: SvgPicture.asset(CategoryIcons.maintenance),
       color: ColorsApp.purple179,
     ),
- IconModel(
+    IconModel(
       icon: SvgPicture.asset(CategoryIcons.education),
       color: ColorsApp.lightGreen200,
     ),
-     IconModel(
+    IconModel(
       icon: SvgPicture.asset(CategoryIcons.selfDevelopment),
       color: ColorsApp.grey207,
     ),
-     IconModel(
+    IconModel(
       icon: SvgPicture.asset(CategoryIcons.sport),
       color: ColorsApp.yellowGreen230,
     ),
-
   ];
 
   List<IconModel> getIcons() {
     return _basicIcons;
+  }
+
+  IconModel getIcon(int index) {
+    return _basicIcons[index];
   }
 }

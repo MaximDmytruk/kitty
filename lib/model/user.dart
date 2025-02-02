@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kitty/TEST/testTransaction.dart';
+import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/model/financial_category.dart';
 import 'package:kitty/services/category_service.dart';
 import 'package:kitty/model/financial_transaction.dart';
+import 'package:kitty/styles/colors/colors_app.dart';
+import 'package:kitty/styles/icons/category_icons.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 
 class User {
@@ -16,39 +20,9 @@ class User {
     required this.email,
   });
 
-  List<FinancialTransaction> finTransaction = [
-    FinancialTransaction(
-      financialAction: FinancialAction.expense,
-      category: FinancialCategory(
-        'Somne New',
-        Colors.black,
-        SvgPicture.asset(IconsApp.addPlusCircle),
-      ),
-      amount: 35,
-      date: DateTime.now(),
-    ),
-    
-    // FinancialTransaction(
-    //   financialAction: FinancialAction.expense,
-    //   category: FinancialCategory(
-    //       'Somne New', Colors.black, SvgPicture.asset(IconsApp.addPlusCircle)),
-    //   amount: 35,
-    //   date: DateTime.now(),
-    // ),
-    // FinancialTransaction(
-    //   financialAction: FinancialAction.expense,
-    //   category: FinancialCategory(
-    //       'Somne New', Colors.black, SvgPicture.asset(IconsApp.addPlusCircle)),
-    //   amount: 35,
-    //   date: DateTime.now(),
-    // ),
-    // FinancialTransaction(
-    //   financialAction: FinancialAction.expense,
-    //   category: FinancialCategory(
-    //       'Somne New', Colors.black, SvgPicture.asset(IconsApp.addPlusCircle)),
-    //   amount: 35,
-    //   date: DateTime.now(),
-    // ),
-  ];
+  // List<FinancialTransaction> finTransaction = [];
+ List<FinancialTransaction> finTransaction = testingTransaction;
+
+  
   CategoryService categoryService = CategoryService();
 }

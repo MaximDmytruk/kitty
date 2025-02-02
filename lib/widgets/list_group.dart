@@ -30,7 +30,7 @@ class _ListGroupState extends State<ListGroup> {
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Container(
         padding: EdgeInsets.symmetric(
-          vertical: 16.0,
+          vertical: 8.0,
           horizontal: 16.0,
         ),
         decoration: BoxDecoration(
@@ -42,7 +42,6 @@ class _ListGroupState extends State<ListGroup> {
           ),
         ),
         child: Column(
-          spacing: 12.0,
           children: [
             Row(
               mainAxisSize: MainAxisSize.max,
@@ -72,12 +71,17 @@ class _ListGroupState extends State<ListGroup> {
               itemCount: widget.transactions.length,
               itemBuilder: (context, index) {
                 final transaction = widget.transactions[index];
-                return ListItem(
-                  firstName: transaction.category.name,
-                  secondName: transaction.category.name,
-                  value: transaction.amount,
-                  icon: transaction.category.icon,
-                  colorIconBackground: transaction.category.color,
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 8.0,
+                  ),
+                  child: ListItem(
+                    firstName: transaction.category.name,
+                    secondName: transaction.category.name,
+                    value: transaction.amount,
+                    icon: transaction.category.icon,
+                    colorIconBackground: transaction.category.color,
+                  ),
                 );
               },
             ),
