@@ -1,3 +1,5 @@
+import 'package:kitty/model/financial_category.dart';
+
 enum FinancialAction {
   income,
   expense,
@@ -5,14 +7,14 @@ enum FinancialAction {
 
 class FinancialTransaction {
   final FinancialAction financialAction;
-  final String categoryName;
+  final FinancialCategory category;
   final int amount;
   final String? description;
   final DateTime date;
 
   FinancialTransaction({
     required this.financialAction,
-    required this.categoryName,
+    required this.category,
     required this.amount,
     this.description,
     required this.date,

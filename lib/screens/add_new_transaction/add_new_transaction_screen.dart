@@ -32,6 +32,7 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
 
   FinancialAction selectedFinanceAction = FinancialAction.income;
   List<FinancialCategory> financialCategories = [];
+  FinancialCategory? selectedCategory;
 
   @override
   void initState() {
@@ -47,10 +48,11 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
 
     if (categoryName.isNotEmpty &&
         enterAmountController.text.isNotEmpty &&
-        amount != null) {
+        amount != null &&
+        selectedCategory != null) {
       FinancialTransaction newFinancialTransaction = FinancialTransaction(
         financialAction: selectedFinanceAction,
-        categoryName: categoryName,
+        category: selectedCategory!,
         amount: amount,
         date: dateTime,
         description: description,
@@ -77,7 +79,7 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
 
           return InkWell(
             onTap: () {
-              chooseCategory(name);
+              chooseCategory(name, color, icon);
             },
             child: CategoryIcon(
               color: color,
@@ -90,7 +92,8 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
         buttonName: AppLocale.addNewCategory.getString(context));
   }
 
-  void chooseCategory(String nameOfNewCategory) {
+  void chooseCategory(String nameOfNewCategory, Color color, Widget icon) {
+    selectedCategory = FinancialCategory(nameOfNewCategory, color, icon);
     categoryNameController.text = nameOfNewCategory;
     Navigator.pop(context);
   }
