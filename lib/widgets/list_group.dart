@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/model/financial_transaction.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
@@ -6,11 +7,11 @@ import 'package:kitty/styles/icons/category_icons.dart';
 import 'package:kitty/widgets/list_item.dart';
 
 class ListGroup extends StatefulWidget {
-  final List<FinancialTransaction>? transactions;
+  final List<FinancialTransaction> transactions;
 
   const ListGroup({
     super.key,
-    this.transactions,
+    required this.transactions,
   });
 
   @override
@@ -18,8 +19,6 @@ class ListGroup extends StatefulWidget {
 }
 
 class _ListGroupState extends State<ListGroup> {
-  late List<ListItem>? listItems;
-
   @override
   void initState() {
     super.initState();
@@ -67,26 +66,20 @@ class _ListGroupState extends State<ListGroup> {
                 ),
               ],
             ),
-            ListItem(
-              firstName: 'Notes will come here',
-              secondName: 'Category name',
-              value: -500,
-              iconAssetName: CategoryIcons.bar,
-              iconBackground: const Color.fromARGB(255, 54, 212, 197),
-            ),
-            ListItem(
-              firstName: 'Notes will come here',
-              secondName: 'Category name',
-              value: -500,
-              iconAssetName: CategoryIcons.bar,
-              iconBackground: ColorsApp.green,
-            ),
-            ListItem(
-              firstName: 'Notes will come here',
-              secondName: 'Category name',
-              value: -500,
-              iconAssetName: CategoryIcons.bar,
-              iconBackground: ColorsApp.lightBlue168,
+            ListView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: widget.transactions.length,
+              itemBuilder: (context, index) {
+                final transaction = widget.transactions[index];
+                return ListItem(
+                  firstName: transaction.category.name,
+                  secondName: transaction.category.name,
+                  value: transaction.amount,
+                  icon: transaction.category.icon,
+                  iconBackground: transaction.category.color,
+                );
+              },
             ),
           ],
         ),

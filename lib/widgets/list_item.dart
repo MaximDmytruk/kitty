@@ -8,7 +8,7 @@ class ListItem extends StatelessWidget {
   final String secondName;
   final int value;
   final int? secondValue;
-  final String iconAssetName;
+  final Widget icon;
   final Color iconBackground;
 
   const ListItem({
@@ -17,7 +17,7 @@ class ListItem extends StatelessWidget {
     required this.secondName,
     required this.value,
     this.secondValue,
-    required this.iconAssetName,
+    required this.icon,
     required this.iconBackground,
   });
 
@@ -33,12 +33,7 @@ class ListItem extends StatelessWidget {
             shape: BoxShape.circle,
             color: iconBackground,
           ),
-          child: SvgPicture.asset(
-            iconAssetName,
-            height: 24.0,
-            width: 24.0,
-            fit: BoxFit.none,
-          ),
+          child: icon
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.start,

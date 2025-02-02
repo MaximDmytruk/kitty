@@ -105,6 +105,7 @@ class UserCubit extends Cubit<UserState> {
             status: UserStatus.error, errorText: 'No user registered'),
       );
     }
+    print(state.user!.finTransaction.length);
   }
 
   String getUserName() => state.user?.name ?? 'No Name';

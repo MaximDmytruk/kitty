@@ -37,12 +37,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void searchAction() {}
 
-  void leftDateAction() {}
-  void rightDateAction() {}
-  void datePickerAction() {}
-
-  void addNew() =>
-      Navigator.of(context).pushNamed(AddNewTransactionScreen.routeName);
+  void addNew() => Navigator.of(context)
+          .pushNamed(AddNewTransactionScreen.routeName)
+          .whenComplete(
+        () {
+          setState(() {});
+        },
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -67,22 +68,31 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: TotalAmount(),
               ),
-              Expanded(
-                child: ListView.builder(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                    vertical: 8.0,
-                  ),
-                  itemBuilder: (BuildContext context, int index) {
-                    final ListGroup _listGroups = ListGroup(
-                      transactions: financialTransaction,
-                    );
 
-                    return _listGroups;
-                  },
-                  itemCount: 1,
-                ),
+
+              BlocBuilder<UserCubit, UserState>(
+                builder: (context, state) {
+                  return Expanded(
+                    child: ListView.builder(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                        vertical: 8.0,
+                      ),
+                      itemBuilder: (BuildContext context, int index) {
+                        final ListGroup listGroups = ListGroup(
+                          transactions: financialTransaction,
+                        );
+
+                        return listGroups;
+                      },
+                      itemCount: 1,
+                    ),
+                  );
+                },
               ),
+
+
+              
             ],
           ),
           //Button AddNew

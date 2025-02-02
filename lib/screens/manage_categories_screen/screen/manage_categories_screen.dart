@@ -41,8 +41,6 @@ class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
     }
   }
 
-  void changePositionAction() {}
-
   void addNewCategoryAction() => Navigator.of(context)
           .pushNamed(AddNewCategory.routeName)
           .whenComplete(() {
@@ -95,7 +93,7 @@ class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
                           name: name,
                           icon: icon,
                           iconColor: color,
-                          changePositionOnPressed: changePositionAction,
+                          changePositionOnPressed: (){},
                         );
                       }),
                       onReorder: (int oldIndex, int newIndex) {
