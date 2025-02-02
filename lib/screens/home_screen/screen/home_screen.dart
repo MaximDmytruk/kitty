@@ -46,6 +46,23 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       );
 
+  List<FinancialTransaction> filterForTransactions(
+      List<FinancialTransaction> allTransaction) {
+    int selectedMonth = context.read<DateCubit>().getMonth();
+    int selectedYear = context.read<DateCubit>().getYear();
+
+    List<FinancialTransaction> filteredTransactions = financialTransaction
+        .where(
+          (transaction) =>
+              transaction.date.month == selectedMonth &&
+              transaction.date.year == selectedYear,
+        )
+        .toList()
+        .reversed
+        .toList();
+    return filteredTransactions;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,15 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 builder: (context, stateUser) {
                   return BlocBuilder<DateCubit, DateState>(
                     builder: (context, stateDate) {
-                      List<FinancialTransaction> filteredTransactions = [];
-                      filteredTransactions = financialTransaction
-                          .where(
-                            (transaction) =>
-                                transaction.date.month ==
-                                stateDate.selectedMonth,
-                          )
-                          .toList();
-
+                      List<FinancialTransaction> filteredTransactions =
+                          filterForTransactions(financialTransaction);
+                      
                       return Expanded(
                         child: ListView.builder(
                           padding: EdgeInsets.symmetric(
@@ -90,6 +101,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           itemCount: filteredTransactions.length,
                           itemBuilder: (BuildContext context, int index) {
+
+
                             return ListGroup(
                               transactions: filteredTransactions,
                             );
