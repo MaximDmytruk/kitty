@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:kitty/cubit/user_cubit.dart';
+import 'package:kitty/cubit/user_cubit/user_cubit.dart';
 import 'package:kitty/screens/auth_screen/auth_screen.dart';
 import 'package:kitty/screens/manage_categories_screen/screen/manage_categories_screen.dart';
 import 'package:kitty/widgets/app_bars/name_of_screen_header.dart';
@@ -26,12 +26,20 @@ class _SettingScreenState extends State<SettingScreen> {
   late String firstChar;
   late String userEmail;
 
+  @override
+  void initState() {
+    userName = context.read<UserCubit>().getUserName();
+    firstChar = context.read<UserCubit>().getFirstLetterName();
+    userEmail = context.read<UserCubit>().getUserEmail();
+    super.initState();
+  }
+
   void manageCategoriesAction() => Navigator.of(
         context,
       ).pushNamed(
         ManageCategoriesScreen.routeName,
       );
-      
+
   void exportToPDFAction() {}
   void chooseCurrencyAction() {}
 
@@ -54,14 +62,6 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 
   @override
-  void initState() {
-    userName = context.read<UserCubit>().getUserName();
-    firstChar = context.read<UserCubit>().getFirstLetterName();
-    userEmail = context.read<UserCubit>().getUserEmail();
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorsApp.white,
@@ -72,34 +72,11 @@ class _SettingScreenState extends State<SettingScreen> {
             name: AppLocale.settings.getString(context),
             // color: KittyColors.lightGrey238,
           ),
-
           UserHeaderSetting(
             firstChar: firstChar,
             name: userName,
             email: userEmail,
           ),
-          //TODO: як правильно і коректно робити це?
-          // BlocBuilder<UserCubit, UserState>(
-          //   builder: (context, state) {
-          //     return state.when(
-          //       initial: () => UserHeaderSetting(
-          //         firstChar: '',
-          //         name: 'NO Name',
-          //         email: "No Email",
-          //       ),
-          //       authenticated: (user) => UserHeaderSetting(
-          //         firstChar: user.name.substring(0, 1).toUpperCase(),
-          //         name: user.name,
-          //         email: user.email,
-          //       ),
-          //       error: (error) => UserHeaderSetting(
-          //         firstChar: 'E',
-          //         name: "Error",
-          //         email: 'Error',
-          //       ),
-          //     );
-          //   },
-          // ),
           SettingOptionsRow(
             leadingIconName: IconsApp.category,
             name: AppLocale.manageCategories.getString(context),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:kitty/cubit/cubit/date_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
 
 import '../../styles/colors/colors_app.dart';
@@ -16,10 +18,9 @@ class CustomDatePicker extends StatefulWidget {
 
 class _CustomDatePickerState extends State<CustomDatePicker> {
   OverlayEntry? _overlayEntry;
-  late DateTime today;
 
-  late int selectedMonth = today.month;
-  late int selectedYear = today.year;
+  late int selectedMonth;
+  late int selectedYear;
 
   Map<int, String> months = {
     1: 'January',
@@ -38,7 +39,8 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
 
   @override
   void initState() {
-    today = DateTime.now();
+    selectedMonth = context.read<DateCubit>().getMonth();
+    selectedYear = context.read<DateCubit>().getYear();
     super.initState();
   }
 
@@ -46,26 +48,19 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     _toggleOverlay();
   }
 
-  void _rightDateAction() {
-    if (selectedYear == today.year) {
-      return;
-    } else {
-      selectedYear += 1;
-      setState(() {});
-    }
+  void _rightDateAction(BuildContext context) {
+    context.read<DateCubit>().nextYear();
   }
 
-  void _leftDateAction() {
-    if (selectedYear == 0) {
-      return;
-    } else {
-      selectedYear -= 1;
-      setState(() {});
-    }
+  void _leftDateAction(BuildContext context) {
+    context.read<DateCubit>().previousYear();
   }
 
-  void _monthPicked(int index) {
-    selectedMonth = index + 1;
+  void _monthPicked(BuildContext context, int indexOfMonth) {
+   
+      print(indexOfMonth);
+      context.read<DateCubit>().selectMonth(newNumOfMonth: indexOfMonth);
+    
 
     _toggleOverlay();
     setState(() {});
@@ -91,92 +86,98 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
             right: 24.0,
             bottom: 480.0,
           ),
-          child: Material(
-            shadowColor: Colors.transparent,
-            child: Container(
-              // height: 300,
-              padding: EdgeInsets.all(8.0),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black26,
-                    blurRadius: 5,
-                    spreadRadius: 2,
-                  ),
-                ],
-              ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 12.0,
-                    ),
-                    child: Text(
-                      AppLocale.pickMonth.getString(context),
-                      style: interTextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
-                        color: ColorsApp.grey66,
+          child: BlocBuilder<DateCubit, DateState>(
+            builder: (context, state) {
+              return Material(
+                shadowColor: Colors.transparent,
+                child: Container(
+                  // height: 300,
+                  padding: EdgeInsets.all(8.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black26,
+                        blurRadius: 5,
+                        spreadRadius: 2,
                       ),
-                    ),
+                    ],
                   ),
-                  Expanded(
-                    child: GridView.builder(
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        crossAxisSpacing: 40.0,
-                        mainAxisSpacing: 8.0,
-                        childAspectRatio: 2.0,
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 12.0,
+                        ),
+                        child: Text(
+                          AppLocale.pickMonth.getString(context),
+                          style: interTextStyle(
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.w500,
+                            color: ColorsApp.grey66,
+                          ),
+                        ),
                       ),
-                      itemCount: months.length,
-                      itemBuilder: (context, index) {
-                        return Stack(
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                color: ColorsApp.white,
-                                borderRadius: BorderRadius.circular(4.0),
-                                border: Border.all(
-                                  color: ColorsApp.lightGrey224,
-                                ),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  months.values.elementAt(index),
-                                  style: interTextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    color: ColorsApp.black,
+                      Expanded(
+                        child: GridView.builder(
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 40.0,
+                            mainAxisSpacing: 8.0,
+                            childAspectRatio: 2.0,
+                          ),
+                          itemCount: months.length,
+                          itemBuilder: (context, index) {
+                            return Stack(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: ColorsApp.white,
+                                    borderRadius: BorderRadius.circular(4.0),
+                                    border: Border.all(
+                                      color: ColorsApp.lightGrey224,
+                                    ),
+                                  ),
+                                  child: Center(
+                                    child: Text(
+                                      months.values.elementAt(index),
+                                      style: interTextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: ColorsApp.black,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
-                            Material(
-                              shadowColor: Colors.transparent,
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(4.0),
-                              ),
-                              clipBehavior: Clip.hardEdge,
-                              child: InkWell(
-                                borderRadius: BorderRadius.circular(4.0),
-                                splashColor: ColorsApp.blue123.withAlpha(200),
-                                highlightColor:
-                                    ColorsApp.blue123.withAlpha(200),
-                                onTap: () {
-                                  _monthPicked(index);
-                                },
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    ),
+                                Material(
+                                  shadowColor: Colors.transparent,
+                                  color: Colors.transparent,
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(4.0),
+                                  ),
+                                  clipBehavior: Clip.hardEdge,
+                                  child: InkWell(
+                                    borderRadius: BorderRadius.circular(4.0),
+                                    splashColor:
+                                        ColorsApp.blue123.withAlpha(200),
+                                    highlightColor:
+                                        ColorsApp.blue123.withAlpha(200),
+                                    onTap: () {
+                                      _monthPicked(context, index+1);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
+                ),
+              );
+            },
           ),
         );
       },
@@ -192,55 +193,59 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        IconButton(
-          onPressed: _leftDateAction,
-          icon: SvgPicture.asset(
-            IconsApp.left,
-            width: 24.0,
-            height: 24.0,
-          ),
-        ),
-        ElevatedButton(
-            onPressed: datePickerAction,
-            style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(
-                ColorsApp.lightGrey245,
+    return BlocBuilder<DateCubit, DateState>(
+      builder: (context, state) {
+        return Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            IconButton(
+              onPressed: () => _leftDateAction(context),
+              icon: SvgPicture.asset(
+                IconsApp.left,
+                width: 24.0,
+                height: 24.0,
               ),
-              foregroundColor: WidgetStatePropertyAll(
-                ColorsApp.grey66,
-              ),
-              elevation: WidgetStatePropertyAll(0.0),
             ),
-            child: Row(
-              children: [
-                SvgPicture.asset(
-                  IconsApp.calendar,
-                ),
-                SizedBox(
-                  width: 8.0,
-                ),
-                Text(
-                  '${months[selectedMonth]} , ${selectedYear.toString()}',
-                  style: interTextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w500,
-                    color: ColorsApp.grey66,
+            ElevatedButton(
+                onPressed: datePickerAction,
+                style: ButtonStyle(
+                  backgroundColor: WidgetStatePropertyAll(
+                    ColorsApp.lightGrey245,
                   ),
-                )
-              ],
-            )),
-        IconButton(
-          onPressed: _rightDateAction,
-          icon: SvgPicture.asset(
-            IconsApp.right,
-            width: 24.0,
-            height: 24.0,
-          ),
-        ),
-      ],
+                  foregroundColor: WidgetStatePropertyAll(
+                    ColorsApp.grey66,
+                  ),
+                  elevation: WidgetStatePropertyAll(0.0),
+                ),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      IconsApp.calendar,
+                    ),
+                    SizedBox(
+                      width: 8.0,
+                    ),
+                    Text(
+                      '${months[state.selectedMonth]} , ${state.selectedYear}',
+                      style: interTextStyle(
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w500,
+                        color: ColorsApp.grey66,
+                      ),
+                    )
+                  ],
+                )),
+            IconButton(
+              onPressed: () => _rightDateAction(context),
+              icon: SvgPicture.asset(
+                IconsApp.right,
+                width: 24.0,
+                height: 24.0,
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 }

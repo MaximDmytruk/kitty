@@ -2,7 +2,8 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:kitty/cubit/user_cubit.dart';
+import 'package:kitty/cubit/cubit/date_cubit.dart';
+import 'package:kitty/cubit/user_cubit/user_cubit.dart';
 
 import 'package:kitty/localization/map_lacales.dart';
 import 'package:kitty/screens/add_new_category/screen/add_new_category.dart';
@@ -49,8 +50,15 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => UserCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => UserCubit(),
+        ),
+        BlocProvider(
+          create: (context) => DateCubit(),
+        ),
+      ],
       child: MaterialApp(
         supportedLocales: _localization.supportedLocales,
         localizationsDelegates: _localization.localizationsDelegates,
@@ -61,7 +69,7 @@ class _MyAppState extends State<MyApp> {
         ),
         title: 'Kitty',
         builder: BotToastInit(),
-         navigatorObservers: [BotToastNavigatorObserver()],
+        navigatorObservers: [BotToastNavigatorObserver()],
         routes: {
           AuthScreen.routeName: (_) => const AuthScreen(),
           RegistrationScreen.routeName: (_) => const RegistrationScreen(),

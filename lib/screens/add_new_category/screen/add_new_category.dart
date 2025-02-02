@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:kitty/cubit/user_cubit.dart';
+import 'package:kitty/cubit/user_cubit/user_cubit.dart';
 import 'package:kitty/data/basic_icons.dart';
 import 'package:kitty/model/financial_category.dart';
 import 'package:kitty/model/icon.dart';
