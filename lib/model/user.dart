@@ -17,13 +17,17 @@ class User {
   });
 
   List<FinancialTransaction> finTransaction = [
-    // FinancialTransaction(
-    //   financialAction: FinancialAction.expense,
-    //   category: FinancialCategory(
-    //       'Somne New', Colors.black, SvgPicture.asset(IconsApp.addPlusCircle)),
-    //   amount: 35,
-    //   date: DateTime.now(),
-    // ),
+    FinancialTransaction(
+      financialAction: FinancialAction.expense,
+      category: FinancialCategory(
+        'Somne New',
+        Colors.black,
+        SvgPicture.asset(IconsApp.addPlusCircle),
+      ),
+      amount: 35,
+      date: DateTime.now(),
+    ),
+    
     // FinancialTransaction(
     //   financialAction: FinancialAction.expense,
     //   category: FinancialCategory(

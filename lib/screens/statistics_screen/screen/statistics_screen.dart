@@ -86,8 +86,8 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                       firstName: 'Notes will come here',
                       secondName: 'Category name',
                       value: -500,
-                      icon: SvgPicture.asset(CategoryIcons.bar),
-                      iconBackground: ColorsApp.pink225,
+                      icon: SvgPicture.asset(CategoryIcons.bar,fit: BoxFit.none,),
+                      colorIconBackground: ColorsApp.pink225,
                     );
                   },
                 ),

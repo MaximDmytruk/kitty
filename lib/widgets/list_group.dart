@@ -77,7 +77,7 @@ class _ListGroupState extends State<ListGroup> {
                   secondName: transaction.category.name,
                   value: transaction.amount,
                   icon: transaction.category.icon,
-                  iconBackground: transaction.category.color,
+                  colorIconBackground: transaction.category.color,
                 );
               },
             ),

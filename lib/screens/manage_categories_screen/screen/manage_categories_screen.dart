@@ -22,22 +22,25 @@ class ManageCategoriesScreen extends StatefulWidget {
 }
 
 class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
-  List<FinancialCategory> financialCategories = [];
-
-  void editAction(FinancialCategory category) async {
+  void editAction(
+    FinancialCategory category,
+    List<FinancialCategory> listCategories,
+  ) async {
     Object? updatedCategory = await Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) => AddNewCategory(initialCategory: category),
-    ),
-  );
+      MaterialPageRoute(
+        builder: (context) => AddNewCategory(initialCategory: category),
+      ),
+    );
 
     if (updatedCategory != null && updatedCategory is FinancialCategory) {
-      setState(() {
-        int index = financialCategories.indexOf(category);
-        if (index != -1) {
-          financialCategories[index] = updatedCategory;
-        }
-      });
+      setState(
+        () {
+          int index = listCategories.indexOf(category);
+          if (index != -1) {
+            listCategories[index] = updatedCategory;
+          }
+        },
+      );
     }
   }
 
@@ -68,8 +71,9 @@ class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
               Expanded(
                 child: BlocBuilder<UserCubit, UserState>(
                   builder: (context, state) {
-                    financialCategories =
+                    List<FinancialCategory> financialCategories =
                         state.user!.categoryService.getCategories();
+
                     return ReorderableListView(
                       padding: EdgeInsets.only(
                         left: 16.0,
@@ -88,12 +92,11 @@ class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
                         return CategoryIconRow(
                           key: UniqueKey(),
                           editOnPressed: () {
-                            editAction(category);
+                            editAction(category, financialCategories);
                           },
                           name: name,
                           icon: icon,
                           iconColor: color,
-                          changePositionOnPressed: (){},
                         );
                       }),
                       onReorder: (int oldIndex, int newIndex) {

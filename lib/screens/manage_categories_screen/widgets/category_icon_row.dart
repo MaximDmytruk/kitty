@@ -8,7 +8,7 @@ import 'package:kitty/widgets/buttons/custom_text_button.dart';
 class CategoryIconRow extends StatelessWidget {
   final String name;
   final Function editOnPressed;
-  final Function changePositionOnPressed;
+ 
   final Widget icon;
   final Color iconColor;
 
@@ -18,7 +18,7 @@ class CategoryIconRow extends StatelessWidget {
     required this.name,
     required this.icon,
     required this.iconColor,
-    required this.changePositionOnPressed,
+  
   });
 
   @override

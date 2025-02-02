@@ -68,10 +68,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: TotalAmount(),
               ),
-
-
               BlocBuilder<UserCubit, UserState>(
                 builder: (context, state) {
+                  // List<FinancialTransaction> finTransaction =
+                  //     context.read<UserCubit>().getFinancialTransaction();
+
                   return Expanded(
                     child: ListView.builder(
                       padding: EdgeInsets.symmetric(
@@ -79,20 +80,15 @@ class _HomeScreenState extends State<HomeScreen> {
                         vertical: 8.0,
                       ),
                       itemBuilder: (BuildContext context, int index) {
-                        final ListGroup listGroups = ListGroup(
+                        return ListGroup(
                           transactions: financialTransaction,
                         );
-
-                        return listGroups;
                       },
                       itemCount: 1,
                     ),
                   );
                 },
               ),
-
-
-              
             ],
           ),
           //Button AddNew

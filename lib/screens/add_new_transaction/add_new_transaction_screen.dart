@@ -57,12 +57,11 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
         date: dateTime,
         description: description,
       );
-    
+
       context
           .read<UserCubit>()
           .addFinancialTransaction(newFinancialTransaction);
       Navigator.pop(context);
-      
     }
   }
 

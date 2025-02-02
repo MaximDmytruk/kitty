@@ -8,6 +8,7 @@ class BasicIcons {
     IconModel(
       icon: SvgPicture.asset(CategoryIcons.groceries),
       color: ColorsApp.lightGreen200,
+      
     ),
     IconModel(
       icon: SvgPicture.asset(CategoryIcons.gifts),
