@@ -124,6 +124,6 @@ List<FinancialTransaction> testingTransaction = [
         SvgPicture.asset(CategoryIcons.money, fit: BoxFit.none),
       ),
       amount: (i * 15) % 500 + 20,
-      date: DateTime(2020 + (i % 6), (i % 12) + 1, (i % 28) + 1),
+      date: DateTime(2025, (i % 12) + 1, (i % 28) + 1),
     ),
 ];

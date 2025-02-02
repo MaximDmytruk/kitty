@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kitty/cubit/date_cubit/date_cubit.dart';
 import 'package:kitty/cubit/user_cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/model/financial_transaction.dart';
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void searchAction() {}
 
-  void addNew() => Navigator.of(context)
+  void addNewAction() => Navigator.of(context)
           .pushNamed(AddNewTransactionScreen.routeName)
           .whenComplete(
         () {
@@ -69,23 +70,33 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: TotalAmount(),
               ),
               BlocBuilder<UserCubit, UserState>(
-                builder: (context, state) {
-                  // List<FinancialTransaction> finTransaction =
-                  //     context.read<UserCubit>().getFinancialTransaction();
+                builder: (context, stateUser) {
+                  return BlocBuilder<DateCubit, DateState>(
+                    builder: (context, stateDate) {
+                      List<FinancialTransaction> filteredTransactions = [];
+                      filteredTransactions = financialTransaction
+                          .where(
+                            (transaction) =>
+                                transaction.date.month ==
+                                stateDate.selectedMonth,
+                          )
+                          .toList();
 
-                  return Expanded(
-                    child: ListView.builder(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 8.0,
-                      ),
-                      itemBuilder: (BuildContext context, int index) {
-                        return ListGroup(
-                          transactions: financialTransaction,
-                        );
-                      },
-                      itemCount: 1,
-                    ),
+                      return Expanded(
+                        child: ListView.builder(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                            vertical: 8.0,
+                          ),
+                          itemCount: filteredTransactions.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return ListGroup(
+                              transactions: filteredTransactions,
+                            );
+                          },
+                        ),
+                      );
+                    },
                   );
                 },
               ),
@@ -97,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
               bottom: 16.0,
             ),
             child: CustomFeeledButton(
-              onPressed: addNew,
+              onPressed: addNewAction,
               name: AppLocale.addNew.getString(context),
               icon: SvgPicture.asset(
                 IconsApp.addPlusCircle,
