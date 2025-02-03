@@ -9,6 +9,7 @@ import 'package:kitty/localization/map_lacales.dart';
 import 'package:kitty/screens/add_new_category/screen/add_new_category.dart';
 import 'package:kitty/screens/add_new_transaction/add_new_transaction_screen.dart';
 import 'package:kitty/screens/manage_categories_screen/screen/manage_categories_screen.dart';
+import 'package:kitty/screens/search_screen/screen/search_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 
 import 'screens/auth_screen/auth_screen.dart';
@@ -80,6 +81,7 @@ class _MyAppState extends State<MyApp> {
           ManageCategoriesScreen.routeName: (_) =>
               const ManageCategoriesScreen(),
           AddNewCategory.routeName: (_) => const AddNewCategory(),
+          SearchScreen.routeName: (_) => const SearchScreen(),
         },
         initialRoute: AuthScreen.routeName,
       ),

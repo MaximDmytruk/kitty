@@ -8,6 +8,7 @@ import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/model/financial_transaction.dart';
 import 'package:kitty/screens/add_new_transaction/add_new_transaction_screen.dart';
 import 'package:kitty/screens/home_screen/widgets/total_amount.dart';
+import 'package:kitty/screens/search_screen/screen/search_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
@@ -36,7 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  void searchAction() {}
+  void searchAction() =>
+      Navigator.of(context).pushNamed(SearchScreen.routeName);
 
   void addNewAction() => Navigator.of(context)
           .pushNamed(AddNewTransactionScreen.routeName)
@@ -92,7 +94,17 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (context, stateDate) {
                       List<FinancialTransaction> filteredTransactions =
                           filterForTransactions(financialTransaction);
-                      
+                      // List<List<FinancialTransaction>> listOfdays = filteredTransactions.where((transaction) =>  day.date.day,)
+                      //TODO: доробити фільтр по дню.
+
+                      // Map<int, List<FinancialTransaction>> dayListTransactions =
+                      //     {};
+                      // for (FinancialTransaction transaction
+                      //     in filteredTransactions) {
+                      //   int day = transaction.date.day;
+                      //   dayListTransactions[day]?.add(transaction);
+                      // }
+
                       return Expanded(
                         child: ListView.builder(
                           padding: EdgeInsets.symmetric(
@@ -101,8 +113,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           itemCount: filteredTransactions.length,
                           itemBuilder: (BuildContext context, int index) {
-
-
                             return ListGroup(
                               transactions: filteredTransactions,
                             );
