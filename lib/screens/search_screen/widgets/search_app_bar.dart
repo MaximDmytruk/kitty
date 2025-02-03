@@ -19,7 +19,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
   TextEditingController textController = TextEditingController();
 
   void onTapBack(BuildContext context) {
-    Navigator.of(context).pop();
+    Navigator.pop(context);
   }
 
   @override
@@ -30,48 +30,51 @@ class _SearchAppBarState extends State<SearchAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          color: ColorsApp.lightGrey245,
-          child: Column(
+    return Container(
+      decoration: BoxDecoration(
+        color: ColorsApp.lightGrey245,
+        border: Border(
+          bottom: BorderSide(
+            color: ColorsApp.lightGrey224,
+          ),
+        ),
+      ),
+      child: Column(
+        children: [
+          Row(
+            spacing: 16.0,
             children: [
-              Row(
-                spacing: 16.0,
-                children: [
-                  SizedBox(
-                    width: 0.0,
-                  ),
-                  InkWell(
-                    onTap: () {
-                      onTapBack(context);
-                    },
-                    child: Icon(Icons.arrow_back),
-                  ),
-                  Expanded(
-                    child: TextField(
-                      controller: textController,
-                      autofocus: true,
-                      cursorColor: ColorsApp.black,
-                      maxLines: 1,
-                      decoration: InputDecoration(
-                        hintText: AppLocale.searchNotesCategoriesOrLabels,
-                        border: OutlineInputBorder(
-                          borderSide: BorderSide.none,
-                        ),
-                      ),
+              SizedBox(
+                width: 0.0,
+              ),
+              InkWell(
+                onTap: () {
+                  onTapBack(context);
+                },
+                child: Icon(Icons.arrow_back),
+              ),
+              Expanded(
+                child: TextField(
+                  controller: textController,
+                  autofocus: true,
+                  cursorColor: ColorsApp.black,
+                  maxLines: 1,
+                  decoration: InputDecoration(
+                    hintText: AppLocale.searchNotesCategoriesOrLabels,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide.none,
                     ),
                   ),
-                ],
-              ),
-              TagButton(
-                iconWidget: SvgPicture.asset(CategoryIcons.groceries),
-                name: 'Gorcery',
+                ),
               ),
             ],
           ),
-        ),
-      ],
+          TagButton(
+            iconWidget: SvgPicture.asset(CategoryIcons.groceries),
+            name: 'Gorcery',
+          ),
+        ],
+      ),
     );
   }
 }
