@@ -51,6 +51,11 @@ mixin AppLocale {
       'The user is already registered in the program.';
   static const String chooseCategoryIcon = 'Choose category icon';
   static const String pickMonth = 'Pick a month';
+   static const String searchNotesCategoriesOrLabels = 'Search for notes, categories or labels';
+  
+
+
+  
 
   // ignore: constant_identifier_names
   static const Map<String, dynamic> EN = {
@@ -104,6 +109,7 @@ mixin AppLocale {
     errorUserRegistered: 'The user is already registered in the program.',
     chooseCategoryIcon: 'Choose category icon',
     pickMonth: 'Pick a month',
+    searchNotesCategoriesOrLabels: 'Search for notes, categories or labels',
   };
 
   // ignore: constant_identifier_names
@@ -158,5 +164,6 @@ mixin AppLocale {
     errorUserRegistered: 'В програмі вже зареєстрований користувач',
     chooseCategoryIcon: 'Виберіть іконку',
     pickMonth: 'Обери місяць',
+    searchNotesCategoriesOrLabels: 'Пошук нотаток, категорій або міток'
   };
 }

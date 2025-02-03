@@ -9,7 +9,7 @@ class HeaderAppBar extends StatelessWidget {
     required this.name,
   });
 
-  void onTap(BuildContext context) {
+  void onTapBack(BuildContext context) {
     Navigator.of(context).pop();
   }
 
@@ -25,10 +25,11 @@ class HeaderAppBar extends StatelessWidget {
             width: 0.0,
           ),
           InkWell(
-              onTap: () {
-                onTap(context);
-              },
-              child: Icon(Icons.arrow_back)),
+            onTap: () {
+              onTapBack(context);
+            },
+            child: Icon(Icons.arrow_back),
+          ),
           Text(
             name,
             style: interTextStyle(

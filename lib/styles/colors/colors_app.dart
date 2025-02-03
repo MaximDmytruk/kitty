@@ -9,6 +9,7 @@ class ColorsApp {
   static const Color lightGrey245 = Color.fromRGBO(245, 245, 245, 1);
   static const Color lightGrey238 = Color.fromRGBO(238, 238, 238, 1);
   static const Color lightGrey224 = Color.fromRGBO(224, 224, 224, 1);
+  static const Color grey117 = Color.fromRGBO(117, 117, 117, 1);
   static const Color grey158 = Color.fromRGBO(158, 158, 158, 1);
   static const Color grey97 = Color.fromRGBO(97, 97, 97, 1);
   static const Color grey66 = Color.fromRGBO(66, 66, 66, 1);

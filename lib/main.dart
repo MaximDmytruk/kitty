@@ -2,8 +2,8 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:kitty/cubit/date_cubit/date_cubit.dart';
-import 'package:kitty/cubit/user_cubit/user_cubit.dart';
+import 'package:kitty/cubits/date_cubit/date_cubit.dart';
+import 'package:kitty/cubits/user_cubit/user_cubit.dart';
 
 import 'package:kitty/localization/map_lacales.dart';
 import 'package:kitty/screens/add_new_category/screen/add_new_category.dart';

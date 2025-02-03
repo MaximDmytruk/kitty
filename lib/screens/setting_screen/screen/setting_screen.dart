@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:kitty/cubit/user_cubit/user_cubit.dart';
+import 'package:kitty/cubits/user_cubit/user_cubit.dart';
 import 'package:kitty/screens/auth_screen/auth_screen.dart';
 import 'package:kitty/screens/manage_categories_screen/screen/manage_categories_screen.dart';
 import 'package:kitty/widgets/app_bars/name_of_screen_header.dart';

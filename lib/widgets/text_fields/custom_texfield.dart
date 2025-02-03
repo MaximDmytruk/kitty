@@ -99,7 +99,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
         floatingLabelStyle: interTextStyle(
           fontSize: 16.0,
           fontWeight: FontWeight.w400,
-          color: widget.errorText==null ? labelColor : ColorsApp.red,
+          color: widget.errorText == null ? labelColor : ColorsApp.red,
         ),
         errorText: widget.errorText,
       ),
