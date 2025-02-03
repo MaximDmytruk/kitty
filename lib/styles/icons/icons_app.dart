@@ -23,5 +23,6 @@ class IconsApp {
   static final addPlusCircle = 'assets/icons/add_plus_circle.svg';
   static final download = 'assets/icons/download.svg';
   static final dragIndicator = 'assets/icons/drag_indicator.svg';
-   static final addPlusDashedLine = 'assets/icons/add_plus_dashed_line.svg';
+  static final addPlusDashedLine = 'assets/icons/add_plus_dashed_line.svg';
+  static final selectedOk = 'assets/icons/selected_ok.svg';
 }

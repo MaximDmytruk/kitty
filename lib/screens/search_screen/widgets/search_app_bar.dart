@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
-import 'package:kitty/styles/font/fontstyle_app.dart';
+
 import 'package:kitty/styles/icons/category_icons.dart';
+import 'package:kitty/widgets/buttons/tag_button.dart';
 
 class SearchAppBar extends StatefulWidget {
   const SearchAppBar({
@@ -24,7 +25,6 @@ class _SearchAppBarState extends State<SearchAppBar> {
   @override
   void dispose() {
     textController.dispose();
-
     super.dispose();
   }
 
@@ -64,43 +64,9 @@ class _SearchAppBarState extends State<SearchAppBar> {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(
-                        vertical: 6.0,
-                        horizontal: 8.0,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        border: Border.all(
-                          color: ColorsApp.grey189,
-                        ),
-                      ),
-                      child: Row(
-                        spacing: 4.0,
-                        children: [
-                          SvgPicture.asset(
-                            CategoryIcons.maintenance,
-                            colorFilter: const ColorFilter.mode(
-                              ColorsApp.grey117,
-                              BlendMode.srcIn,
-                            ),
-                          ),
-                          Text(
-                            'Gorcery',
-                            style: interTextStyle(
-                              color: ColorsApp.grey66,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+              TagButton(
+                iconWidget: SvgPicture.asset(CategoryIcons.groceries),
+                name: 'Gorcery',
               ),
             ],
           ),
