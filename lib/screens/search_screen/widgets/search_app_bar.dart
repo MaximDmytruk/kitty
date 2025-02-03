@@ -69,10 +69,17 @@ class _SearchAppBarState extends State<SearchAppBar> {
               ),
             ],
           ),
-          TagButton(
-            iconWidget: SvgPicture.asset(CategoryIcons.groceries),
-            name: 'Gorcery',
-          ),
+          SizedBox(
+            height:48.0,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 6,
+              itemBuilder: (context, index) => TagButton(
+                iconWidget: SvgPicture.asset(CategoryIcons.groceries),
+                name: 'Gorcery',
+              ),
+            ),
+          )
         ],
       ),
     );

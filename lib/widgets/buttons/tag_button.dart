@@ -38,7 +38,8 @@ class _TagButtonState extends State<TagButton> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        vertical: 8.0,
+        // vertical: 8.0,
+        horizontal: 8.0,
       ),
       child: InkWell(
         onTap: selectAction,
