@@ -12,7 +12,7 @@ import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
-import 'package:kitty/widgets/category_icon.dart';
+import 'package:kitty/widgets/icons/category_icon.dart';
 import 'package:kitty/widgets/app_bars/custom_status_bar.dart';
 import 'package:kitty/widgets/text_fields/custom_texfield.dart';
 import 'package:kitty/widgets/app_bars/header_app_bar.dart';
@@ -136,15 +136,19 @@ class _AddNewCategoryState extends State<AddNewCategory> {
                       InkWell(
                         onTap: addIconAction,
                         child: selectedIcon ??
-                            SvgPicture.asset(IconsApp.addPlusDashedLine),
+                            SvgPicture.asset(
+                              IconsApp.addPlusDashedLine,
+                            ),
                       ),
                       const SizedBox(width: 16.0),
                       Expanded(
                         child: SizedBox(
                           height: 48.0,
                           child: CustomTextfield(
-                              labelText: AppLocale.categoryName,
-                              controller: categoryNameController),
+                            labelText:
+                                AppLocale.categoryName.getString(context),
+                            controller: categoryNameController,
+                          ),
                         ),
                       ),
                     ],

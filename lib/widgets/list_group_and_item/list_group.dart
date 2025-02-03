@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/model/financial_transaction.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
-import 'package:kitty/styles/icons/category_icons.dart';
-import 'package:kitty/widgets/list_item.dart';
+import 'package:kitty/widgets/list_group_and_item/list_item.dart';
 
 class ListGroup extends StatefulWidget {
   final List<FinancialTransaction> transactions;

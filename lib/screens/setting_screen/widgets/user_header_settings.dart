@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kitty/widgets/letter_avatar.dart';
+import 'package:kitty/widgets/icons/letter_avatar.dart';
 
 import '../../../styles/colors/colors_app.dart';
 import '../../../styles/font/fontstyle_app.dart';

@@ -14,7 +14,7 @@ List<FinancialTransaction> testingTransaction = [
       SvgPicture.asset(CategoryIcons.groceries, fit: BoxFit.none),
     ),
     amount: 50,
-    date: DateTime(2023, 5, 12),
+    date: DateTime(2024, 5, 12),
   ),
   FinancialTransaction(
     financialAction: FinancialAction.income,
@@ -24,7 +24,7 @@ List<FinancialTransaction> testingTransaction = [
       SvgPicture.asset(CategoryIcons.money, fit: BoxFit.none),
     ),
     amount: 2000,
-    date: DateTime(2023, 5, 25),
+    date: DateTime(2024, 5, 25),
   ),
   FinancialTransaction(
     financialAction: FinancialAction.expense,
@@ -34,7 +34,7 @@ List<FinancialTransaction> testingTransaction = [
       SvgPicture.asset(CategoryIcons.restaurant, fit: BoxFit.none),
     ),
     amount: 120,
-    date: DateTime(2023, 6, 3),
+    date: DateTime(2024, 6, 3),
   ),
   FinancialTransaction(
     financialAction: FinancialAction.expense,
@@ -44,7 +44,7 @@ List<FinancialTransaction> testingTransaction = [
       SvgPicture.asset(CategoryIcons.transportation, fit: BoxFit.none),
     ),
     amount: 30,
-    date: DateTime(2023, 6, 5),
+    date: DateTime(2024, 6, 5),
   ),
   FinancialTransaction(
     financialAction: FinancialAction.income,
@@ -54,7 +54,7 @@ List<FinancialTransaction> testingTransaction = [
       SvgPicture.asset(CategoryIcons.interest, fit: BoxFit.none),
     ),
     amount: 150,
-    date: DateTime(2023, 6, 10),
+    date: DateTime(2024, 6, 10),
   ),
   FinancialTransaction(
     financialAction: FinancialAction.expense,
@@ -64,7 +64,7 @@ List<FinancialTransaction> testingTransaction = [
       SvgPicture.asset(CategoryIcons.gifts, fit: BoxFit.none),
     ),
     amount: 75,
-    date: DateTime(2023, 7, 1),
+    date: DateTime(2024, 7, 1),
   ),
   FinancialTransaction(
     financialAction: FinancialAction.expense,
@@ -74,7 +74,7 @@ List<FinancialTransaction> testingTransaction = [
       SvgPicture.asset(CategoryIcons.health, fit: BoxFit.none),
     ),
     amount: 200,
-    date: DateTime(2023, 7, 15),
+    date: DateTime(2024, 7, 15),
   ),
   FinancialTransaction(
     financialAction: FinancialAction.expense,
@@ -84,7 +84,7 @@ List<FinancialTransaction> testingTransaction = [
       SvgPicture.asset(CategoryIcons.bar, fit: BoxFit.none),
     ),
     amount: 90,
-    date: DateTime(2023, 8, 5),
+    date: DateTime(2024, 8, 5),
   ),
   FinancialTransaction(
     financialAction: FinancialAction.income,
@@ -94,7 +94,7 @@ List<FinancialTransaction> testingTransaction = [
       SvgPicture.asset(CategoryIcons.donate, fit: BoxFit.none),
     ),
     amount: 800,
-    date: DateTime(2023, 8, 20),
+    date: DateTime(2024, 8, 20),
   ),
   FinancialTransaction(
     financialAction: FinancialAction.expense,
@@ -104,7 +104,7 @@ List<FinancialTransaction> testingTransaction = [
       SvgPicture.asset(CategoryIcons.electronics, fit: BoxFit.none),
     ),
     amount: 500,
-    date: DateTime(2023, 9, 10),
+    date: DateTime(2024, 9, 10),
   ),
   for (int i = 1; i <= 90; i++)
     FinancialTransaction(

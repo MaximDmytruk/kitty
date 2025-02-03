@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
-import 'package:kitty/styles/icons/category_icons.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 
 class TagButton extends StatefulWidget {
@@ -24,7 +23,6 @@ class _TagButtonState extends State<TagButton> {
   String selectedIconAdress = IconsApp.selectedOk;
 
   void selectAction() {
-    print('tap');
     setState(() {
       if (selected) {
         selected = false;
@@ -38,7 +36,6 @@ class _TagButtonState extends State<TagButton> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
-        // vertical: 8.0,
         horizontal: 8.0,
       ),
       child: InkWell(

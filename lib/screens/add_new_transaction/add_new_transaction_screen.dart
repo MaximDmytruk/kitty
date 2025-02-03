@@ -9,8 +9,8 @@ import 'package:kitty/model/financial_transaction.dart';
 import 'package:kitty/screens/add_new_category/screen/add_new_category.dart';
 
 import 'package:kitty/styles/colors/colors_app.dart';
-import 'package:kitty/widgets/category_icon.dart';
-import 'package:kitty/widgets/custom_dropdown_menu.dart';
+import 'package:kitty/widgets/icons/category_icon.dart';
+import 'package:kitty/widgets/dropdown_menus/custom_dropdown_menu.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
 import 'package:kitty/widgets/app_bars/custom_status_bar.dart';
 import 'package:kitty/widgets/text_fields/custom_texfield.dart';
@@ -66,8 +66,9 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
     }
   }
 
-  void addNewCategory() {Navigator.of(context)
-          .pushNamed(AddNewCategory.routeName);}
+  void addNewCategory() {
+    Navigator.of(context).pushNamed(AddNewCategory.routeName);
+  }
 
   void categoryNameAction() {
     showCustomBottomSheet(

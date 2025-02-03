@@ -13,7 +13,7 @@ import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
 import 'package:kitty/widgets/app_bars/custom_status_bar.dart';
-import 'package:kitty/widgets/list_group.dart';
+import 'package:kitty/widgets/list_group_and_item/list_group.dart';
 import '../../../widgets/date_picker/custom_date_picker.dart';
 import '../../../widgets/app_bars/custom_home_app_bar.dart';
 
