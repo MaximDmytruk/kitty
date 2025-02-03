@@ -6,6 +6,7 @@ import 'package:kitty/localization/app_locale.dart';
 
 import 'package:kitty/model/financial_category.dart';
 import 'package:kitty/model/financial_transaction.dart';
+import 'package:kitty/screens/add_new_category/screen/add_new_category.dart';
 
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/widgets/category_icon.dart';
@@ -65,7 +66,8 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
     }
   }
 
-  void addNewCategory() {}
+  void addNewCategory() {Navigator.of(context)
+          .pushNamed(AddNewCategory.routeName);}
 
   void categoryNameAction() {
     showCustomBottomSheet(
