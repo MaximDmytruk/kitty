@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:kitty/cubits/date_cubit/date_cubit.dart';
+import 'package:kitty/data/cubits/date_cubit/date_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
 
 import '../../styles/colors/colors_app.dart';

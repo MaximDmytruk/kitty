@@ -2,11 +2,11 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:kitty/cubits/date_cubit/date_cubit.dart';
-import 'package:kitty/cubits/user_cubit/user_cubit.dart';
+import 'package:kitty/data/cubits/date_cubit/date_cubit.dart';
+import 'package:kitty/data/cubits/user_cubit/user_cubit.dart';
 
 import 'package:kitty/localization/map_lacales.dart';
-import 'package:kitty/screens/add_new_category/screen/add_new_category.dart';
+import 'package:kitty/screens/add_new_category_screem/screen/add_new_category_screen.dart';
 import 'package:kitty/screens/add_new_transaction/add_new_transaction_screen.dart';
 import 'package:kitty/screens/manage_categories_screen/screen/manage_categories_screen.dart';
 import 'package:kitty/screens/search_screen/screen/search_screen.dart';

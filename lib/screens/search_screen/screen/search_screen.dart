@@ -22,6 +22,7 @@ class _SearchScreenState extends State<SearchScreen> {
         children: [
           CustomStatusBar(),
           SearchAppBar(),
+          
         ],
       ),
     );

@@ -1,5 +1,5 @@
 import 'package:flutter_svg/svg.dart';
-import 'package:kitty/model/icon.dart';
+import 'package:kitty/models/icon.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/category_icons.dart';
 

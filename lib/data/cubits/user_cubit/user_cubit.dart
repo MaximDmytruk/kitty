@@ -3,9 +3,9 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kitty/localization/app_locale.dart';
-import 'package:kitty/model/financial_category.dart';
-import 'package:kitty/model/financial_transaction.dart';
-import 'package:kitty/model/user.dart';
+import 'package:kitty/models/financial_category.dart';
+import 'package:kitty/models/financial_transaction.dart';
+import 'package:kitty/models/user.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 
@@ -81,6 +81,7 @@ class UserCubit extends Cubit<UserState> {
 
   void addNewCategory(FinancialCategory newCategory) {
     state.user!.categoryService.addNewCategory(newCategory);
+    
     showToast(text: 'New category added successfully!');
     emit(
       state.copyWith(

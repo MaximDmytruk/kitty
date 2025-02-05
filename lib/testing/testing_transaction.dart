@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:kitty/model/financial_category.dart';
-import 'package:kitty/model/financial_transaction.dart';
+import 'package:kitty/models/financial_category.dart';
+import 'package:kitty/models/financial_transaction.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/category_icons.dart';
 

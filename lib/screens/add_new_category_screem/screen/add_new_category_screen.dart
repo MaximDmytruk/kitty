@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'package:kitty/cubits/user_cubit/user_cubit.dart';
+import 'package:kitty/data/cubits/user_cubit/user_cubit.dart';
 import 'package:kitty/data/basic_icons.dart';
-import 'package:kitty/model/financial_category.dart';
-import 'package:kitty/model/icon.dart';
+import 'package:kitty/models/financial_category.dart';
+import 'package:kitty/models/icon.dart';
 import 'package:kitty/screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -25,7 +25,7 @@ class AddNewCategory extends StatefulWidget {
     super.key,
     this.initialCategory,
   });
-
+  //TODO: назва екрана в залежності від дій!
   static const String routeName = '/add_new_category_screen';
 
   @override
@@ -91,7 +91,7 @@ class _AddNewCategoryState extends State<AddNewCategory> {
         selectedIcon!.color,
         selectedIcon!.icon,
       );
-
+      //edit
       if (widget.initialCategory != null) {
         Navigator.pop(context, newCategory);
       } else {
