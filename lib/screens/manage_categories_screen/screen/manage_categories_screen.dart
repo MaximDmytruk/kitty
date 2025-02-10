@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:kitty/data/cubits/fin_category_cubit/fin_category_cubit.dart';
 
-import 'package:kitty/data/cubits/user_cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
-import 'package:kitty/models/financial_category.dart';
+import 'package:kitty/data/models/financial_category/financial_category.dart';
 import 'package:kitty/screens/add_new_category_screem/screen/add_new_category_screen.dart';
 import 'package:kitty/screens/manage_categories_screen/widgets/category_icon_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -22,38 +22,23 @@ class ManageCategoriesScreen extends StatefulWidget {
 }
 
 class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
+  @override
+  void initState() {
+    context.read<FinCategoryCubit>().getFinancialCategories();
+    super.initState();
+  }
+
   void editAction(
     FinancialCategory category,
     List<FinancialCategory> listCategories,
   ) async {
-    Object? updatedCategory = await Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => AddNewCategory(initialCategory: category),
-      ),
-    );
-
-    if (updatedCategory != null && updatedCategory is FinancialCategory) {
-      setState(
-        () {
-          int index = listCategories.indexOf(category);
-          if (index != -1) {
-            listCategories[index] = updatedCategory;
-          }
-        },
-      );
-    }
+    await Navigator.of(context).push(MaterialPageRoute(
+      builder: (context) => AddNewCategory(initialCategory: category),
+    ));
   }
 
-  void addNewCategoryAction() => Navigator.of(context)
-          .pushNamed(AddNewCategory.routeName)
-          .whenComplete(() {
-        // setState(() {});
-      });
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  void addNewCategoryAction() =>
+      Navigator.of(context).pushNamed(AddNewCategory.routeName);
 
   @override
   Widget build(BuildContext context) {
@@ -69,10 +54,10 @@ class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
                 name: AppLocale.manageCategories.getString(context),
               ),
               Expanded(
-                child: BlocBuilder<UserCubit, UserState>(
+                child: BlocBuilder<FinCategoryCubit, FinCategoryState>(
                   builder: (context, state) {
                     List<FinancialCategory> financialCategories =
-                        state.user!.categoryService.getCategories();
+                        state.categories ?? [];
 
                     return ReorderableListView(
                       padding: EdgeInsets.only(
@@ -85,9 +70,9 @@ class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
                           List.generate(financialCategories.length, (index) {
                         FinancialCategory category = financialCategories[index];
 
-                        Color color = category.color;
+                        Color color = category.colorValue;
                         String name = category.name;
-                        Widget icon = category.icon;
+                        String icon = category.iconPath;
 
                         return CategoryIconRow(
                           key: UniqueKey(),
@@ -95,21 +80,14 @@ class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
                             editAction(category, financialCategories);
                           },
                           name: name,
-                          icon: icon,
+                          iconPath: icon,
                           iconColor: color,
                         );
                       }),
-                      onReorder: (int oldIndex, int newIndex) {
-                        setState(
-                          () {
-                            if (oldIndex < newIndex) {
-                              newIndex -= 1;
-                            }
-                            final FinancialCategory item =
-                                financialCategories.removeAt(oldIndex);
-                            financialCategories.insert(newIndex, item);
-                          },
-                        );
+                      onReorder: (oldIndex, newIndex) {
+                        context
+                            .read<FinCategoryCubit>()
+                            .changePosition(oldIndex, newIndex);
                       },
                     );
                   },

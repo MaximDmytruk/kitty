@@ -39,7 +39,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<UserCubit, UserState>(builder: (context, state) {
+    // return BlocBuilder<UserCubit, UserState>(builder: (context, state) {
       return Scaffold(
         body: Center(child: _widgetOptions[_selectedPage]),
         bottomNavigationBar: BottomNavigationBar(
@@ -71,6 +71,6 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           onTap: onSelectedTab,
         ),
       );
-    });
+    // });
   }
 }

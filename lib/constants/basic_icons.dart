@@ -1,84 +1,84 @@
 import 'package:flutter_svg/svg.dart';
-import 'package:kitty/models/icon.dart';
+import 'package:kitty/data/models/icon.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/category_icons.dart';
 
 class BasicIcons {
   static final List<IconModel> _basicIcons = [
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.groceries),
+      iconPath: CategoryIcons.groceries,
       color: ColorsApp.lightGreen200,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.gifts),
+      iconPath: CategoryIcons.gifts,
       color: ColorsApp.pink225,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.bar),
+      iconPath: CategoryIcons.bar,
       color: ColorsApp.yellow255,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.health),
+      iconPath:CategoryIcons.health,
       color: ColorsApp.pink248,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.transportation),
+      iconPath: CategoryIcons.transportation,
       color: ColorsApp.lightBlue178,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.laundry),
+      iconPath: CategoryIcons.laundry,
       color: ColorsApp.lightBlue179,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.liquor),
+      iconPath: CategoryIcons.liquor,
       color: ColorsApp.lightGreen220,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.restaurant),
+      iconPath: CategoryIcons.restaurant,
       color: ColorsApp.lightSlateBlue197,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.money),
+      iconPath:CategoryIcons.money,
       color: ColorsApp.peach255,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.donate),
+      iconPath: CategoryIcons.donate,
       color: ColorsApp.yellow255249,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.interest),
+      iconPath: CategoryIcons.interest,
       color: ColorsApp.orange255,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.savings),
+      iconPath: CategoryIcons.savings,
       color: ColorsApp.yellow255,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.money),
+      iconPath: CategoryIcons.money,
       color: ColorsApp.lightGreen200,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.party),
+      iconPath: CategoryIcons.party,
       color: ColorsApp.lightBlue187,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.fuel),
+      iconPath:CategoryIcons.fuel,
       color: ColorsApp.lightBrown215,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.maintenance),
+      iconPath: CategoryIcons.maintenance,
       color: ColorsApp.purple179,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.education),
+      iconPath: CategoryIcons.education,
       color: ColorsApp.lightGreen200,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.selfDevelopment),
+      iconPath: CategoryIcons.selfDevelopment,
       color: ColorsApp.grey207,
     ),
     IconModel(
-      icon: SvgPicture.asset(CategoryIcons.sport),
+      iconPath: CategoryIcons.sport,
       color: ColorsApp.yellowGreen230,
     ),
   ];

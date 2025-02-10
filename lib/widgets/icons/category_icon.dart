@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 
 class CategoryIcon extends StatelessWidget {
   final Color color;
-  final Widget icon;
+  final String iconPath;
   final String? name;
 
   const CategoryIcon({
     super.key,
     required this.color,
-    required this.icon,
+    required this.iconPath,
     this.name,
   });
 
@@ -29,7 +30,7 @@ class CategoryIcon extends StatelessWidget {
             color: color,
             shape: BoxShape.circle,
           ),
-          child: icon,
+          child: SvgPicture.asset(iconPath),
         ),
         if (name != null)
           Text(

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:kitty/data/cubits/fin_category_cubit/fin_category_cubit.dart';
 import 'package:kitty/data/cubits/user_cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
 
-import 'package:kitty/models/financial_category.dart';
-import 'package:kitty/models/financial_transaction.dart';
+import 'package:kitty/data/models/financial_category/financial_category.dart';
+import 'package:kitty/data/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/screens/add_new_category_screem/screen/add_new_category_screen.dart';
 
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -32,13 +33,12 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
   TextEditingController descriptionController = TextEditingController();
 
   FinancialAction selectedFinanceAction = FinancialAction.income;
-  List<FinancialCategory> financialCategories = [];
+  // List<FinancialCategory> financialCategories = [];
   FinancialCategory? selectedCategory;
 
   @override
   void initState() {
     super.initState();
-    financialCategories = context.read<UserCubit>().getFinancialCategory();
   }
 
   void addFinOperationAction() {
@@ -59,10 +59,10 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
         description: description,
       );
 
-      context
-          .read<UserCubit>()
-          .addFinancialTransaction(newFinancialTransaction);
-      Navigator.pop(context);
+      // context
+      //     .read<UserCubit>()
+      //     .addFinancialTransaction(newFinancialTransaction);
+      // Navigator.pop(context);
     }
   }
 
@@ -70,33 +70,41 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
     Navigator.of(context).pushNamed(AddNewCategory.routeName);
   }
 
-  void categoryNameAction() {
+  //BottomSheet
+  void categoryNameAction() async {
     showCustomBottomSheet(
         nameHeader: AppLocale.chooseCategory.getString(context),
         context: context,
-        length: financialCategories.length,
+        length: context.read<FinCategoryCubit>().state.categories?.length ?? 0,
         itemBuilder: (BuildContext context, int index) {
-          Color color = financialCategories[index].color;
-          String name = financialCategories[index].name;
-          Widget icon = financialCategories[index].icon;
-
-          return InkWell(
-            onTap: () {
-              chooseCategory(name, color, icon);
+          return BlocBuilder<FinCategoryCubit, FinCategoryState>(
+            builder: (context, state) {
+              String name = state.categories![index].name;
+              Color colorValue = state.categories![index].colorValue;
+              String iconPath = state.categories![index].iconPath;
+              return InkWell(
+                onTap: () {
+                  chooseCategory(name, colorValue, iconPath);
+                },
+                child: CategoryIcon(
+                  color: colorValue,
+                  iconPath: iconPath,
+                  name: name,
+                ),
+              );
             },
-            child: CategoryIcon(
-              color: color,
-              icon: icon,
-              name: name,
-            ),
           );
         },
         onPressed: addNewCategory,
         buttonName: AppLocale.addNewCategory.getString(context));
   }
 
-  void chooseCategory(String nameOfNewCategory, Color color, Widget icon) {
-    selectedCategory = FinancialCategory(nameOfNewCategory, color, icon);
+  void chooseCategory(String nameOfNewCategory, Color color, String iconPath) {
+    selectedCategory = FinancialCategory(
+      name: nameOfNewCategory,
+      colorValue: color,
+      iconPath: iconPath,
+    );
     categoryNameController.text = nameOfNewCategory;
     Navigator.pop(context);
   }

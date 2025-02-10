@@ -8,17 +8,16 @@ import 'package:kitty/widgets/buttons/custom_text_button.dart';
 class CategoryIconRow extends StatelessWidget {
   final String name;
   final Function editOnPressed;
- 
-  final Widget icon;
+
+  final String iconPath;
   final Color iconColor;
 
   const CategoryIconRow({
     super.key,
     required this.editOnPressed,
     required this.name,
-    required this.icon,
+    required this.iconPath,
     required this.iconColor,
-  
   });
 
   @override
@@ -36,7 +35,9 @@ class CategoryIconRow extends StatelessWidget {
               color: iconColor,
               shape: BoxShape.circle,
             ),
-            child: icon,
+            child: SvgPicture.asset(
+              iconPath,
+            ),
           ),
           Text(
             name,
@@ -52,7 +53,7 @@ class CategoryIconRow extends StatelessWidget {
           ),
           IconButton(
             iconSize: 10.0,
-            onPressed: (){},
+            onPressed: () {},
             icon: SvgPicture.asset(
               IconsApp.dragIndicator,
             ),

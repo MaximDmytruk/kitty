@@ -82,11 +82,11 @@ class _$DateStateCopyWithImpl<$Res, $Val extends DateState>
 }
 
 /// @nodoc
-abstract class _$$DateStatusImplCopyWith<$Res>
+abstract class _$$DateStateImplCopyWith<$Res>
     implements $DateStateCopyWith<$Res> {
-  factory _$$DateStatusImplCopyWith(
-          _$DateStatusImpl value, $Res Function(_$DateStatusImpl) then) =
-      __$$DateStatusImplCopyWithImpl<$Res>;
+  factory _$$DateStateImplCopyWith(
+          _$DateStateImpl value, $Res Function(_$DateStateImpl) then) =
+      __$$DateStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -97,11 +97,11 @@ abstract class _$$DateStatusImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$DateStatusImplCopyWithImpl<$Res>
-    extends _$DateStateCopyWithImpl<$Res, _$DateStatusImpl>
-    implements _$$DateStatusImplCopyWith<$Res> {
-  __$$DateStatusImplCopyWithImpl(
-      _$DateStatusImpl _value, $Res Function(_$DateStatusImpl) _then)
+class __$$DateStateImplCopyWithImpl<$Res>
+    extends _$DateStateCopyWithImpl<$Res, _$DateStateImpl>
+    implements _$$DateStateImplCopyWith<$Res> {
+  __$$DateStateImplCopyWithImpl(
+      _$DateStateImpl _value, $Res Function(_$DateStateImpl) _then)
       : super(_value, _then);
 
   /// Create a copy of DateState
@@ -114,7 +114,7 @@ class __$$DateStatusImplCopyWithImpl<$Res>
     Object? selectedYear = null,
     Object? selectedMonth = null,
   }) {
-    return _then(_$DateStatusImpl(
+    return _then(_$DateStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -137,8 +137,8 @@ class __$$DateStatusImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DateStatusImpl implements _DateStatus {
-  const _$DateStatusImpl(
+class _$DateStateImpl implements _DateState {
+  const _$DateStateImpl(
       {this.status = DateStatus.initial,
       this.errorText,
       required this.selectedYear,
@@ -163,7 +163,7 @@ class _$DateStatusImpl implements _DateStatus {
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DateStatusImpl &&
+            other is _$DateStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.errorText, errorText) ||
                 other.errorText == errorText) &&
@@ -182,16 +182,16 @@ class _$DateStatusImpl implements _DateStatus {
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DateStatusImplCopyWith<_$DateStatusImpl> get copyWith =>
-      __$$DateStatusImplCopyWithImpl<_$DateStatusImpl>(this, _$identity);
+  _$$DateStateImplCopyWith<_$DateStateImpl> get copyWith =>
+      __$$DateStateImplCopyWithImpl<_$DateStateImpl>(this, _$identity);
 }
 
-abstract class _DateStatus implements DateState {
-  const factory _DateStatus(
+abstract class _DateState implements DateState {
+  const factory _DateState(
       {final DateStatus status,
       final String? errorText,
       required final int selectedYear,
-      required final int selectedMonth}) = _$DateStatusImpl;
+      required final int selectedMonth}) = _$DateStateImpl;
 
   @override
   DateStatus get status;
@@ -206,6 +206,6 @@ abstract class _DateStatus implements DateState {
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DateStatusImplCopyWith<_$DateStatusImpl> get copyWith =>
+  _$$DateStateImplCopyWith<_$DateStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

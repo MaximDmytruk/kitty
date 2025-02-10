@@ -8,7 +8,7 @@ class ListItem extends StatelessWidget {
   final String secondName;
   final int value;
   final int? secondValue;
-  final Widget icon;
+  final String iconPath;
   final Color colorIconBackground;
 
   const ListItem({
@@ -17,7 +17,7 @@ class ListItem extends StatelessWidget {
     required this.secondName,
     required this.value,
     this.secondValue,
-    required this.icon,
+    required this.iconPath,
     required this.colorIconBackground,
   });
 
@@ -28,7 +28,7 @@ class ListItem extends StatelessWidget {
       children: [
         CategoryIcon(
           color: colorIconBackground,
-          icon: icon,
+          iconPath: iconPath,
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.start,

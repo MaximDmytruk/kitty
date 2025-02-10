@@ -35,6 +35,8 @@ abstract class $UserStateCopyWith<$Res> {
   @useResult
   $Res call(
       {UserStatus status, User? user, String? errorText, String? toastText});
+
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc
@@ -76,6 +78,20 @@ class _$UserStateCopyWithImpl<$Res, $Val extends UserState>
               as String?,
     ) as $Val);
   }
+
+  /// Create a copy of UserState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $UserCopyWith<$Res>? get user {
+    if (_value.user == null) {
+      return null;
+    }
+
+    return $UserCopyWith<$Res>(_value.user!, (value) {
+      return _then(_value.copyWith(user: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -88,6 +104,9 @@ abstract class _$$UserStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {UserStatus status, User? user, String? errorText, String? toastText});
+
+  @override
+  $UserCopyWith<$Res>? get user;
 }
 
 /// @nodoc

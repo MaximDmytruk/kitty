@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kitty/data/cubits/fin_category_cubit/fin_category_cubit.dart';
 
 import 'package:kitty/data/cubits/user_cubit/user_cubit.dart';
-import 'package:kitty/data/basic_icons.dart';
-import 'package:kitty/models/financial_category.dart';
-import 'package:kitty/models/icon.dart';
+import 'package:kitty/constants/basic_icons.dart';
+import 'package:kitty/data/models/financial_category/financial_category.dart';
+import 'package:kitty/data/models/icon.dart';
 import 'package:kitty/screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -47,15 +48,15 @@ class _AddNewCategoryState extends State<AddNewCategory> {
 
     if (widget.initialCategory != null) {
       selectedIcon = CategoryIcon(
-        color: widget.initialCategory!.color,
-        icon: widget.initialCategory!.icon,
+        color: widget.initialCategory!.colorValue,
+        iconPath: widget.initialCategory!.iconPath,
       );
     }
   }
 
-  void iconCategoryOnTap(Widget icon, Color color) {
+  void iconCategoryOnTap(String iconPath, Color color) {
     setState(() {
-      selectedIcon = CategoryIcon(color: color, icon: icon);
+      selectedIcon = CategoryIcon(color: color, iconPath: iconPath);
     });
   }
 
@@ -68,16 +69,16 @@ class _AddNewCategoryState extends State<AddNewCategory> {
       length: length,
       itemBuilder: (context, index) {
         Color color = icons[index].color;
-        Widget icon = icons[index].icon;
+        String iconPath = icons[index].iconPath;
 
         return InkWell(
           onTap: () {
-            iconCategoryOnTap(icon, color);
+            iconCategoryOnTap(iconPath, color);
             Navigator.pop(context);
           },
           child: CategoryIcon(
             color: color,
-            icon: icon,
+            iconPath: iconPath,
           ),
         );
       },
@@ -86,16 +87,22 @@ class _AddNewCategoryState extends State<AddNewCategory> {
 
   void addNewCategoryAction() async {
     if (selectedIcon != null && categoryNameController.text.isNotEmpty) {
-      FinancialCategory newCategory = FinancialCategory(
-        categoryNameController.text,
-        selectedIcon!.color,
-        selectedIcon!.icon,
-      );
       //edit
       if (widget.initialCategory != null) {
-        Navigator.pop(context, newCategory);
+        FinancialCategory updatedCategory = widget.initialCategory!.copyWith(
+          name: categoryNameController.text,
+          colorValue: selectedIcon!.color,
+          iconPath: selectedIcon!.iconPath,
+        );
+        context.read<FinCategoryCubit>().updateCategory(updatedCategory);
+        Navigator.pop(context);
       } else {
-        context.read<UserCubit>().addNewCategory(newCategory);
+        FinancialCategory newCategory = FinancialCategory(
+          name: categoryNameController.text,
+          colorValue: selectedIcon!.color,
+          iconPath: selectedIcon!.iconPath,
+        );
+        context.read<FinCategoryCubit>().addCategory(newCategory);
 
         await Navigator.popAndPushNamed(
           context,

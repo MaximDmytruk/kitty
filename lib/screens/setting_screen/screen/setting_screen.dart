@@ -56,7 +56,7 @@ class _SettingScreenState extends State<SettingScreen> {
     Navigator.popAndPushNamed(context, AuthScreen.routeName);
   }
 
-  void delUser() {
+  void removeUser() {
     context.read<UserCubit>().removeUser();
     Navigator.popAndPushNamed(context, AuthScreen.routeName);
   }
@@ -105,7 +105,7 @@ class _SettingScreenState extends State<SettingScreen> {
           SettingOptionsRow(
             leadingIconName: IconsApp.logoKitty,
             name: 'delete user',
-            onTap: delUser,
+            onTap: removeUser,
           ),
         ],
       ),

@@ -5,7 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/data/cubits/date_cubit/date_cubit.dart';
 import 'package:kitty/data/cubits/user_cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
-import 'package:kitty/models/financial_transaction.dart';
+import 'package:kitty/data/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/screens/add_new_transaction/add_new_transaction_screen.dart';
 import 'package:kitty/screens/home_screen/widgets/total_amount.dart';
 import 'package:kitty/screens/search_screen/screen/search_screen.dart';
@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     firstChar = context.read<UserCubit>().getFirstLetterName();
-    financialTransaction = context.read<UserCubit>().getFinancialTransaction();
+    // financialTransaction = context.read<UserCubit>().getFinancialTransaction();
     super.initState();
   }
 
@@ -88,41 +88,41 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: TotalAmount(),
               ),
-              BlocBuilder<UserCubit, UserState>(
-                builder: (context, stateUser) {
-                  return BlocBuilder<DateCubit, DateState>(
-                    builder: (context, stateDate) {
-                      List<FinancialTransaction> filteredTransactions =
-                          filterForTransactions(financialTransaction);
-                      // List<List<FinancialTransaction>> listOfdays = filteredTransactions.where((transaction) =>  day.date.day,)
-                      //TODO: доробити фільтр по дню.
+              // BlocBuilder<UserCubit, UserState>(
+              //   builder: (context, stateUser) {
+              //     return BlocBuilder<DateCubit, DateState>(
+              //       builder: (context, stateDate) {
+              //         List<FinancialTransaction> filteredTransactions =
+              //             filterForTransactions(financialTransaction);
+              //         // List<List<FinancialTransaction>> listOfdays = filteredTransactions.where((transaction) =>  day.date.day,)
+              //         //TODO: доробити фільтр по дню.
 
-                      // Map<int, List<FinancialTransaction>> dayListTransactions =
-                      //     {};
-                      // for (FinancialTransaction transaction
-                      //     in filteredTransactions) {
-                      //   int day = transaction.date.day;
-                      //   dayListTransactions[day]?.add(transaction);
-                      // }
+              //         // Map<int, List<FinancialTransaction>> dayListTransactions =
+              //         //     {};
+              //         // for (FinancialTransaction transaction
+              //         //     in filteredTransactions) {
+              //         //   int day = transaction.date.day;
+              //         //   dayListTransactions[day]?.add(transaction);
+              //         // }
 
-                      return Expanded(
-                        child: ListView.builder(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 16.0,
-                            vertical: 8.0,
-                          ),
-                          itemCount: filteredTransactions.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return ListGroup(
-                              transactions: filteredTransactions,
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  );
-                },
-              ),
+              //         return Expanded(
+              //           child: ListView.builder(
+              //             padding: EdgeInsets.symmetric(
+              //               horizontal: 16.0,
+              //               vertical: 8.0,
+              //             ),
+              //             itemCount: filteredTransactions.length,
+              //             itemBuilder: (BuildContext context, int index) {
+              //               return ListGroup(
+              //                 transactions: filteredTransactions,
+              //               );
+              //             },
+              //           ),
+              //         );
+              //       },
+              //     );
+              //   },
+              // ),
             ],
           ),
           //Button AddNew

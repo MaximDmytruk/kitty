@@ -15,5 +15,5 @@ class DateState with _$DateState {
     String? errorText,
     required int selectedYear,
     required int selectedMonth,
-  }) = _DateStatus;
+  }) = _DateState;
 }

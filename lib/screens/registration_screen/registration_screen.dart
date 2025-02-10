@@ -71,7 +71,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
           }
 
-          //TODO:  скачати пакет tost (пакет показує помилки )!
         },
         child: ListView(
           children: [

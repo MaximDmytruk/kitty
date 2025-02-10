@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class IconModel {
-  final Widget icon;
+  final String iconPath;
   final Color color;
 
   IconModel({
-    required this.icon,
+    required this.iconPath,
     required this.color,
   });
 }

@@ -1,4 +1,4 @@
-import 'package:kitty/models/financial_category.dart';
+import 'package:kitty/data/models/financial_category/financial_category.dart';
 
 enum FinancialAction {
   income,

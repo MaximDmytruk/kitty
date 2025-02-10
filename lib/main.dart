@@ -2,8 +2,11 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:kitty/data/cubits/fin_category_cubit/fin_category_cubit.dart';
 import 'package:kitty/data/cubits/date_cubit/date_cubit.dart';
 import 'package:kitty/data/cubits/user_cubit/user_cubit.dart';
+import 'package:kitty/data/repositories/financial_category_repository/fin_category_repository.dart';
+import 'package:kitty/data/repositories/user_repository/user_repository.dart';
 
 import 'package:kitty/localization/map_lacales.dart';
 import 'package:kitty/screens/add_new_category_screem/screen/add_new_category_screen.dart';
@@ -54,11 +57,13 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => UserCubit(),
+          create: (context) => UserCubit(UserRepository()),
         ),
         BlocProvider(
           create: (context) => DateCubit(),
         ),
+        BlocProvider(
+            create: (context) => FinCategoryCubit(FinCategoryRepository())),
       ],
       child: MaterialApp(
         supportedLocales: _localization.supportedLocales,

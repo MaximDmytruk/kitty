@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kitty/models/financial_transaction.dart';
+import 'package:kitty/data/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 import 'package:kitty/widgets/list_group_and_item/list_item.dart';
@@ -73,13 +73,13 @@ class _ListGroupState extends State<ListGroup> {
                   padding: const EdgeInsets.symmetric(
                     vertical: 8.0,
                   ),
-                  child: ListItem(
-                    firstName: transaction.category.name,
-                    secondName: transaction.category.name,
-                    value: transaction.amount,
-                    icon: transaction.category.icon,
-                    colorIconBackground: transaction.category.color,
-                  ),
+                  // child: ListItem(
+                  //   firstName: transaction.category.name,
+                  //   secondName: transaction.category.name,
+                  //   value: transaction.amount,
+                  //   icon: transaction.category.icon,
+                  //   colorIconBackground: transaction.category.color,
+                  // ),
                 );
               },
             ),
