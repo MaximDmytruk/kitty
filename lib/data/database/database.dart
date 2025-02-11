@@ -49,6 +49,24 @@ class AppDatabase {
     )
   ''');
     print('Categories table created');
+
+  await db.execute('''
+    CREATE TABLE IF NOT EXISTS transactions (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      financialAction TEXT NOT NULL,
+      category_id INTEGER NOT NULL,
+      amount INTEGER NOT NULL,
+      description TEXT,
+      date TEXT NOT NULL
+    )
+  ''');
+    print('Categories table transaction');
+
+
+
+
+
+
     print('Database created !!!');
   }
 

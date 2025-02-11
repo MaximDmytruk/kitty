@@ -1,22 +1,26 @@
 import 'package:kitty/data/models/financial_category/financial_category.dart';
+import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'financial_transaction.freezed.dart';
+part 'financial_transaction.g.dart';
 
 enum FinancialAction {
   income,
   expense,
 }
 
-class FinancialTransaction {
-  final FinancialAction financialAction;
-  final FinancialCategory category;
-  final int amount;
-  final String? description;
-  final DateTime date;
+@freezed
+class FinancialTransaction with _$FinancialTransaction {
+  const factory FinancialTransaction({
+    int? id,
+    required FinancialAction financialAction,
+    required FinancialCategory category,
+    required int amount,
+    String? description,
+    required DateTime date,
+  }) = _FinancialTransaction;
 
-  FinancialTransaction({
-    required this.financialAction,
-    required this.category,
-    required this.amount,
-    this.description,
-    required this.date,
-  });
+  factory FinancialTransaction.fromJson(Map<String, dynamic> json) =>
+      _$FinancialTransactionFromJson(json);
 }

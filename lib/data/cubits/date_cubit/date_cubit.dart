@@ -25,6 +25,7 @@ class DateCubit extends Cubit<DateState> {
   }
 
   void previousYear() {
+     
     if (state.selectedYear == 1950) {
       return;
     } else {

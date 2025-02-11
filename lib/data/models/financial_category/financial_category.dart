@@ -6,6 +6,7 @@ part 'financial_category.g.dart';
 
 @freezed
 class FinancialCategory with _$FinancialCategory {
+  
   const factory FinancialCategory({
     int? id,
     required String name,

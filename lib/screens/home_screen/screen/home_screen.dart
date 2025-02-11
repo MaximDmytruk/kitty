@@ -48,22 +48,22 @@ class _HomeScreenState extends State<HomeScreen> {
         },
       );
 
-  List<FinancialTransaction> filterForTransactions(
-      List<FinancialTransaction> allTransaction) {
-    int selectedMonth = context.read<DateCubit>().getMonth();
-    int selectedYear = context.read<DateCubit>().getYear();
+  // List<FinancialTransaction> filterForTransactions(
+  //     List<FinancialTransaction> allTransaction) {
+  //   int selectedMonth = context.read<DateCubit>().getMonth();
+  //   int selectedYear = context.read<DateCubit>().getYear();
 
-    List<FinancialTransaction> filteredTransactions = financialTransaction
-        .where(
-          (transaction) =>
-              transaction.date.month == selectedMonth &&
-              transaction.date.year == selectedYear,
-        )
-        .toList()
-        .reversed
-        .toList();
-    return filteredTransactions;
-  }
+  //   List<FinancialTransaction> filteredTransactions = financialTransaction
+  //       .where(
+  //         (transaction) =>
+  //             transaction.date.month == selectedMonth &&
+  //             transaction.date.year == selectedYear,
+  //       )
+  //       .toList()
+  //       .reversed
+  //       .toList();
+  //   return filteredTransactions;
+  // }
 
   @override
   Widget build(BuildContext context) {
