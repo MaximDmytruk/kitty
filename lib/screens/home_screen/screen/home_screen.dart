@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/blocs/date_cubit/date_cubit.dart';
+import 'package:kitty/blocs/fin_category_cubit/fin_category_cubit.dart';
 import 'package:kitty/blocs/fin_transaction_cubit/fin_transaction_cubit.dart';
 import 'package:kitty/blocs/user_cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
@@ -30,13 +31,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late String firstChar;
   late List<FinancialTransaction> financialTransaction = [];
-   
+
   @override
   void initState() {
-    
     firstChar = context.read<UserCubit>().getFirstLetterName();
     // context.read<FinTransactionCubit>().getTransactions(date: );
-    
+    context.read<FinCategoryCubit>().getFinancialCategories();
     super.initState();
   }
 
@@ -50,26 +50,6 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() {});
         },
       );
-
-  List<FinancialTransaction> filterForTransactions( // фільтрувати з sql !
-    List<FinancialTransaction> allTransaction,
-  ) {
-    int selectedMonth = context.read<DateCubit>().getMonth();
-    int selectedYear = context.read<DateCubit>().getYear();
-
-    List<FinancialTransaction> filteredTransactions = allTransaction
-        .where(
-          (transaction) =>
-              transaction.date.month == selectedMonth &&
-              transaction.date.year == selectedYear,
-        )
-        .toList()
-        .reversed
-        .toList();
-        print('FILTEREDTRANSACTIONS IN METHODS');
-        print(filteredTransactions);
-    return filteredTransactions;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,20 +80,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (context, stateDate) {
                       List<FinancialTransaction>? transaction =
                           stateTransactions.transactions;
-                          
-
-
-
-                      print('TRANSACTION IN HOMESCREEN');
-                      print(transaction);
-                      List<FinancialTransaction> filteredTransactions = transaction ?? [];
-
-                      if (transaction != null) {
-                        filteredTransactions = 
-                            filterForTransactions(transaction);
-                        print('filteredTransactions IN HOMESCREEN');
-                        print(filteredTransactions);
-                      }
 
                       return Expanded(
                         child: ListView.builder(
@@ -121,10 +87,10 @@ class _HomeScreenState extends State<HomeScreen> {
                             horizontal: 16.0,
                             vertical: 8.0,
                           ),
-                          itemCount: filteredTransactions!.length,
+                          itemCount: transaction?.length ?? 0,
                           itemBuilder: (BuildContext context, int index) {
                             return ListGroup(
-                              transactions: filteredTransactions,
+                              transactions: transaction!,
                             );
                           },
                         ),

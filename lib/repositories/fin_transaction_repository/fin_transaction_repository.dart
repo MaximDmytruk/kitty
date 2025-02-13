@@ -9,7 +9,8 @@ class FinTransactionRepository {
 
   Future<void> insertTransaction(FinancialTransaction transaction) async {
     Database db = await database.database;
-
+    print(
+        'Transaction have date - ${transaction.date.toIso8601String()}--------------------------------');
     await db.insert(
       'transactions',
       {
@@ -29,23 +30,31 @@ class FinTransactionRepository {
   Future<List<FinancialTransaction>> getAllTransactions({
     DateTime? date,
   }) async {
-
-
-
-
     Database db = await database.database;
-    final List<Map<String, dynamic>> result = await db.rawQuery('''
+    final List<Map<String, dynamic>> result;
+
+    if (date == null) {
+      result = await db.rawQuery('''
       SELECT t.*, c.id as categoryId, c.name, c.colorValue, c.iconPath, c.position 
       FROM transactions t 
       JOIN categories c ON t.categoryId = c.id
-      
     ''');
-    // WHERE DATE(datetime) = '2009-10-20
-  // where -  умова по даті у таблиці пошуку,
+    } else {
+      String month = '';
+      if (date.month < 10) {
+        month = '0' + date.month.toString();
+      }
 
+      result = await db.rawQuery('''
+      SELECT t.*, c.id as categoryId, c.name, c.colorValue, c.iconPath, c.position 
+      FROM transactions t 
+      JOIN categories c ON t.categoryId = c.id
+      WHERE strftime('%m', date) = '$month'
+    ''');
+    }
 
     return result.map((row) {
-      final category = FinancialCategory(
+      final FinancialCategory category = FinancialCategory(
         id: row['categoryId'] as int,
         name: row['name'] as String,
         colorValue: Color(row['colorValue'] as int),
