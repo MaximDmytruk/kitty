@@ -52,7 +52,7 @@ mixin AppLocale {
   static const String chooseCategoryIcon = 'Choose category icon';
   static const String pickMonth = 'Pick a month';
    static const String searchNotesCategoriesOrLabels = 'Search for notes, categories or labels';
-  
+  static const String editCategory = 'Edit';
 
 
   
@@ -110,6 +110,7 @@ mixin AppLocale {
     chooseCategoryIcon: 'Choose category icon',
     pickMonth: 'Pick a month',
     searchNotesCategoriesOrLabels: 'Search for notes, categories or labels',
+    editCategory: 'Edit Category',
   };
 
   // ignore: constant_identifier_names
@@ -164,6 +165,8 @@ mixin AppLocale {
     errorUserRegistered: 'В програмі вже зареєстрований користувач',
     chooseCategoryIcon: 'Виберіть іконку',
     pickMonth: 'Обери місяць',
-    searchNotesCategoriesOrLabels: 'Пошук нотаток, категорій або міток'
+    searchNotesCategoriesOrLabels: 'Пошук нотаток, категорій або міток',
+    editCategory: 'Редагування категорії',
+ 
   };
 }

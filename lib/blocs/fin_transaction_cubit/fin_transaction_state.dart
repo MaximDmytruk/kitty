@@ -12,7 +12,7 @@ enum FinTransactionStatus {
 class FinTransactionState with _$FinTransactionState {
   const factory FinTransactionState({
     @Default(FinTransactionStatus.initial) FinTransactionStatus status,
-    List<FinancialCategory>? categories,
+    List<FinancialTransaction>? transactions,
     String? errorText,
     String? toastText,
   }) = _FinTransactionState;

@@ -4,7 +4,6 @@ import 'package:sqflite/sqflite.dart';
 class AppDatabase {
   static final AppDatabase instance = AppDatabase._init();
   static Database? _database;
-  
 
   AppDatabase._init();
 
@@ -21,9 +20,9 @@ class AppDatabase {
 
     return await openDatabase(
       path,
-      version: 2,
+      version: 1,
       onCreate: _onCreate,
-      onUpgrade: _onUpgrade,
+      
     );
   }
 
@@ -50,29 +49,24 @@ class AppDatabase {
   ''');
     print('Categories table created');
 
-  await db.execute('''
+    await db.execute('''
     CREATE TABLE IF NOT EXISTS transactions (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       financialAction TEXT NOT NULL,
-      category_id INTEGER NOT NULL,
+      categoryId INTEGER NOT NULL,
       amount INTEGER NOT NULL,
       description TEXT,
-      date TEXT NOT NULL
-    )
+      date TEXT NOT NULL,
+      FOREIGN KEY (categoryId) REFERENCES categories (id) ON DELETE CASCADE
+  )
   ''');
+  //TODO:delete забрати !
+
+    //іконка має привязана до кольору.
     print('Categories table transaction');
-
-
-
-
-
 
     print('Database created !!!');
   }
 
-  Future<void> _onUpgrade(Database db, int oldVersion, int newVersion) async {
-    if (oldVersion < 2) {
-      await db.execute('ALTER TABLE categories ADD COLUMN index INTEGER');
-    }
-  }
+ 
 }

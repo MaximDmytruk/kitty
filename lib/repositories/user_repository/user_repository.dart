@@ -1,5 +1,5 @@
-import 'package:kitty/data/database/database.dart';
-import 'package:kitty/data/models/user/user.dart';
+import 'package:kitty/database/database.dart';
+import 'package:kitty/models/user/user.dart';
 
 class UserRepository {
   final AppDatabase dbHelper = AppDatabase.instance;

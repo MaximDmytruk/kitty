@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kitty/data/cubits/fin_category_cubit/fin_category_cubit.dart';
+import 'package:kitty/blocs/fin_category_cubit/fin_category_cubit.dart';
 
-import 'package:kitty/data/cubits/user_cubit/user_cubit.dart';
-import 'package:kitty/constants/basic_icons.dart';
-import 'package:kitty/data/models/financial_category/financial_category.dart';
-import 'package:kitty/data/models/icon.dart';
+import 'package:kitty/blocs/user_cubit/user_cubit.dart';
+import 'package:kitty/utils/basic_icons.dart';
+import 'package:kitty/models/financial_category/financial_category.dart';
+import 'package:kitty/models/icon/icon.dart';
 import 'package:kitty/screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -129,7 +129,9 @@ class _AddNewCategoryState extends State<AddNewCategory> {
             children: [
               CustomStatusBar(),
               HeaderAppBar(
-                name: AppLocale.addNewCategory.getString(context),
+                name: widget.initialCategory != null
+                    ? AppLocale.editCategory.getString(context)
+                    : AppLocale.addNewCategory.getString(context),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(
@@ -147,7 +149,9 @@ class _AddNewCategoryState extends State<AddNewCategory> {
                               IconsApp.addPlusDashedLine,
                             ),
                       ),
-                      const SizedBox(width: 16.0),
+                      const SizedBox(
+                        width: 16.0,
+                      ),
                       Expanded(
                         child: SizedBox(
                           height: 48.0,
@@ -170,7 +174,9 @@ class _AddNewCategoryState extends State<AddNewCategory> {
             ),
             child: CustomFeeledButton(
               onPressed: addNewCategoryAction,
-              name: AppLocale.addNewCategory.getString(context),
+              name: widget.initialCategory != null
+                  ? AppLocale.editCategory.getString(context)
+                  : AppLocale.addNewCategory.getString(context),
             ),
           ),
         ],

@@ -17,7 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$FinTransactionState {
   FinTransactionStatus get status => throw _privateConstructorUsedError;
-  List<FinancialCategory>? get categories => throw _privateConstructorUsedError;
+  List<FinancialTransaction>? get transactions =>
+      throw _privateConstructorUsedError;
   String? get errorText => throw _privateConstructorUsedError;
   String? get toastText => throw _privateConstructorUsedError;
 
@@ -36,7 +37,7 @@ abstract class $FinTransactionStateCopyWith<$Res> {
   @useResult
   $Res call(
       {FinTransactionStatus status,
-      List<FinancialCategory>? categories,
+      List<FinancialTransaction>? transactions,
       String? errorText,
       String? toastText});
 }
@@ -57,7 +58,7 @@ class _$FinTransactionStateCopyWithImpl<$Res, $Val extends FinTransactionState>
   @override
   $Res call({
     Object? status = null,
-    Object? categories = freezed,
+    Object? transactions = freezed,
     Object? errorText = freezed,
     Object? toastText = freezed,
   }) {
@@ -66,10 +67,10 @@ class _$FinTransactionStateCopyWithImpl<$Res, $Val extends FinTransactionState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FinTransactionStatus,
-      categories: freezed == categories
-          ? _value.categories
-          : categories // ignore: cast_nullable_to_non_nullable
-              as List<FinancialCategory>?,
+      transactions: freezed == transactions
+          ? _value.transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<FinancialTransaction>?,
       errorText: freezed == errorText
           ? _value.errorText
           : errorText // ignore: cast_nullable_to_non_nullable
@@ -92,7 +93,7 @@ abstract class _$$FinTransactionStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {FinTransactionStatus status,
-      List<FinancialCategory>? categories,
+      List<FinancialTransaction>? transactions,
       String? errorText,
       String? toastText});
 }
@@ -111,7 +112,7 @@ class __$$FinTransactionStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? categories = freezed,
+    Object? transactions = freezed,
     Object? errorText = freezed,
     Object? toastText = freezed,
   }) {
@@ -120,10 +121,10 @@ class __$$FinTransactionStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as FinTransactionStatus,
-      categories: freezed == categories
-          ? _value._categories
-          : categories // ignore: cast_nullable_to_non_nullable
-              as List<FinancialCategory>?,
+      transactions: freezed == transactions
+          ? _value._transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<FinancialTransaction>?,
       errorText: freezed == errorText
           ? _value.errorText
           : errorText // ignore: cast_nullable_to_non_nullable
@@ -141,20 +142,20 @@ class __$$FinTransactionStateImplCopyWithImpl<$Res>
 class _$FinTransactionStateImpl implements _FinTransactionState {
   const _$FinTransactionStateImpl(
       {this.status = FinTransactionStatus.initial,
-      final List<FinancialCategory>? categories,
+      final List<FinancialTransaction>? transactions,
       this.errorText,
       this.toastText})
-      : _categories = categories;
+      : _transactions = transactions;
 
   @override
   @JsonKey()
   final FinTransactionStatus status;
-  final List<FinancialCategory>? _categories;
+  final List<FinancialTransaction>? _transactions;
   @override
-  List<FinancialCategory>? get categories {
-    final value = _categories;
+  List<FinancialTransaction>? get transactions {
+    final value = _transactions;
     if (value == null) return null;
-    if (_categories is EqualUnmodifiableListView) return _categories;
+    if (_transactions is EqualUnmodifiableListView) return _transactions;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(value);
   }
@@ -166,7 +167,7 @@ class _$FinTransactionStateImpl implements _FinTransactionState {
 
   @override
   String toString() {
-    return 'FinTransactionState(status: $status, categories: $categories, errorText: $errorText, toastText: $toastText)';
+    return 'FinTransactionState(status: $status, transactions: $transactions, errorText: $errorText, toastText: $toastText)';
   }
 
   @override
@@ -176,7 +177,7 @@ class _$FinTransactionStateImpl implements _FinTransactionState {
             other is _$FinTransactionStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality()
-                .equals(other._categories, _categories) &&
+                .equals(other._transactions, _transactions) &&
             (identical(other.errorText, errorText) ||
                 other.errorText == errorText) &&
             (identical(other.toastText, toastText) ||
@@ -185,7 +186,7 @@ class _$FinTransactionStateImpl implements _FinTransactionState {
 
   @override
   int get hashCode => Object.hash(runtimeType, status,
-      const DeepCollectionEquality().hash(_categories), errorText, toastText);
+      const DeepCollectionEquality().hash(_transactions), errorText, toastText);
 
   /// Create a copy of FinTransactionState
   /// with the given fields replaced by the non-null parameter values.
@@ -200,14 +201,14 @@ class _$FinTransactionStateImpl implements _FinTransactionState {
 abstract class _FinTransactionState implements FinTransactionState {
   const factory _FinTransactionState(
       {final FinTransactionStatus status,
-      final List<FinancialCategory>? categories,
+      final List<FinancialTransaction>? transactions,
       final String? errorText,
       final String? toastText}) = _$FinTransactionStateImpl;
 
   @override
   FinTransactionStatus get status;
   @override
-  List<FinancialCategory>? get categories;
+  List<FinancialTransaction>? get transactions;
   @override
   String? get errorText;
   @override

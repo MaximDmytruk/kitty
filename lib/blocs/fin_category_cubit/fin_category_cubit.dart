@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kitty/data/models/financial_category/financial_category.dart';
-import 'package:kitty/data/repositories/financial_category_repository/fin_category_repository.dart';
+import 'package:kitty/models/financial_category/financial_category.dart';
+import 'package:kitty/repositories/financial_category_repository/fin_category_repository.dart';
 
 part 'fin_category_state.dart';
 part 'fin_category_cubit.freezed.dart';
@@ -47,32 +47,6 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
     );
   }
 
-  // Future<List<FinancialCategory>> getFinancialCategories() async {
-  //   emit(state.copyWith(status: FinCategoryStatus.loading));
-
-  //   List<FinancialCategory> categories =
-  //       await repository.getFinancialCategories();
-
-  //   if (categories.isNotEmpty) {
-  //     emit(
-  //       state.copyWith(
-  //         status: FinCategoryStatus.loaded,
-  //         categories: categories,
-  //       ),
-  //     );
-  //     return categories;
-  //   } else {
-  //     emit(
-  //       state.copyWith(
-  //         status: FinCategoryStatus.error,
-  //         errorText: 'No categories',
-  //       ),
-  //     );
-  //     List<FinancialCategory> error = [];
-  //     return error;
-  //   }
-  // }
-
   // void addNewCategory(FinancialCategory category) async {
   //   emit(state.copyWith(status: FinCategoryStatus.loading));
   //   FinancialCategory categoryWithPosition =
@@ -90,11 +64,26 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
   //     ),
   //   );
   // }
+  // Future<void> addCategory(FinancialCategory category) async {
+  //   emit(state.copyWith(status: FinCategoryStatus.loading));
+
+  //   await repository.addNewCategory(category);
+  //   List<FinancialCategory> categories = await repository.getAllCategories();
+  //   emit(
+  //     state.copyWith(status: FinCategoryStatus.loaded, categories: categories),
+  //   );
+  // }
+
   Future<void> addCategory(FinancialCategory category) async {
     emit(state.copyWith(status: FinCategoryStatus.loading));
 
-    await repository.addNewCategory(category);
+    final FinancialCategory savedCategory =
+        await repository.addNewCategory(category);
+
+    print('savedCategory haveId -  ${savedCategory.id}');
+
     List<FinancialCategory> categories = await repository.getAllCategories();
+
     emit(
       state.copyWith(status: FinCategoryStatus.loaded, categories: categories),
     );
@@ -119,7 +108,7 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
           .map((e) => e.value.copyWith(position: e.key))
           .toList();
 
-      await repository.updatePositions(updatedCategories);
+      repository.updatePositions(updatedCategories);
       emit(
         state.copyWith(
           status: FinCategoryStatus.loaded,
@@ -144,7 +133,7 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
 
   //     for (int i = 0; i < updatedCategories.length; i++) {
   //       updatedCategories[i] = updatedCategories[i].copyWith(position: i);
-  //       await repository.updateCategory(updatedCategories[i]);
+  //       // await repository.updateCategory(updatedCategories[i]);
   //     }
 
   //     emit(

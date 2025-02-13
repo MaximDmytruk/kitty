@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:kitty/data/cubits/fin_category_cubit/fin_category_cubit.dart';
-import 'package:kitty/data/cubits/user_cubit/user_cubit.dart';
+import 'package:kitty/blocs/fin_category_cubit/fin_category_cubit.dart';
+import 'package:kitty/blocs/fin_transaction_cubit/fin_transaction_cubit.dart';
+import 'package:kitty/blocs/user_cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
 
-import 'package:kitty/data/models/financial_category/financial_category.dart';
-import 'package:kitty/data/models/financial_transaction/financial_transaction.dart';
+import 'package:kitty/models/financial_category/financial_category.dart';
+import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/screens/add_new_category_screem/screen/add_new_category_screen.dart';
 
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -33,7 +34,6 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
   TextEditingController descriptionController = TextEditingController();
 
   FinancialAction selectedFinanceAction = FinancialAction.income;
-  // List<FinancialCategory> financialCategories = [];
   FinancialCategory? selectedCategory;
 
   @override
@@ -41,7 +41,7 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
     super.initState();
   }
 
-  void addFinOperationAction() {
+  void addFinOperationAction() async {
     String categoryName = categoryNameController.text;
     int? amount = int.tryParse(enterAmountController.text);
     String description = descriptionController.text;
@@ -59,10 +59,11 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
         description: description,
       );
 
-      // context
-      //     .read<UserCubit>()
-      //     .addFinancialTransaction(newFinancialTransaction);
-      // Navigator.pop(context);
+      await context
+          .read<FinTransactionCubit>()
+          .addTransaction(newFinancialTransaction);
+
+      Navigator.pop(context);
     }
   }
 
@@ -77,19 +78,19 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
         context: context,
         length: context.read<FinCategoryCubit>().state.categories?.length ?? 0,
         itemBuilder: (BuildContext context, int index) {
+          
           return BlocBuilder<FinCategoryCubit, FinCategoryState>(
             builder: (context, state) {
-              String name = state.categories![index].name;
-              Color colorValue = state.categories![index].colorValue;
-              String iconPath = state.categories![index].iconPath;
+              FinancialCategory category = state.categories![index];
+
               return InkWell(
                 onTap: () {
-                  chooseCategory(name, colorValue, iconPath);
+                  chooseCategory(category);
                 },
                 child: CategoryIcon(
-                  color: colorValue,
-                  iconPath: iconPath,
-                  name: name,
+                  color: category.colorValue,
+                  iconPath: category.iconPath,
+                  name: category.name,
                 ),
               );
             },
@@ -99,13 +100,17 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
         buttonName: AppLocale.addNewCategory.getString(context));
   }
 
-  void chooseCategory(String nameOfNewCategory, Color color, String iconPath) {
-    selectedCategory = FinancialCategory(
-      name: nameOfNewCategory,
-      colorValue: color,
-      iconPath: iconPath,
-    );
-    categoryNameController.text = nameOfNewCategory;
+  void chooseCategory(FinancialCategory category) {
+    selectedCategory = category;
+
+    categoryNameController.text = selectedCategory!.name;
+
+    if (selectedCategory?.id != null) {
+      print('selected category ID ${selectedCategory?.id}');
+    } else {
+      print('ID IN CHOOSECATEGORY NO FOUND');
+    }
+
     Navigator.pop(context);
   }
 

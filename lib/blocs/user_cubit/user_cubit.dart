@@ -2,8 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kitty/data/models/user/user.dart';
-import 'package:kitty/data/repositories/user_repository/user_repository.dart';
+import 'package:kitty/models/user/user.dart';
+import 'package:kitty/repositories/user_repository/user_repository.dart';
 import 'package:kitty/localization/app_locale.dart';
 
 import 'package:kitty/styles/colors/colors_app.dart';
