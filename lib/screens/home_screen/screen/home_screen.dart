@@ -13,6 +13,7 @@ import 'package:kitty/screens/home_screen/widgets/total_amount.dart';
 import 'package:kitty/screens/search_screen/screen/search_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
+import 'package:kitty/testing/testing_transaction.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
 import 'package:kitty/widgets/app_bars/custom_status_bar.dart';
 import 'package:kitty/widgets/list_group_and_item/list_group.dart';
@@ -30,12 +31,12 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late String firstChar;
-  late List<FinancialTransaction> financialTransaction = [];
 
   @override
   void initState() {
     firstChar = context.read<UserCubit>().getFirstLetterName();
     context.read<FinCategoryCubit>().getFinancialCategories();
+    context.read<FinTransactionCubit>().addTestTransactions(); //TODO: Testing transations!
     super.initState();
   }
 
@@ -51,7 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
       );
 
   List<List<FinancialTransaction>> filteredTransactionsByDay(
-      List<FinancialTransaction> transactions) {
+    List<FinancialTransaction> transactions,
+  ) {
     Map<int, List<FinancialTransaction>> grouped = {};
 
     for (var transaction in transactions) {
@@ -98,7 +100,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       context,
                       stateDate,
                     ) {
-                      context.read<FinTransactionCubit>().getTransactions(dateMonth: stateDate.selectedMonth);
+                      context
+                          .read<FinTransactionCubit>()
+                          .getTransactions(dateMonth: stateDate.selectedMonth);
                       List<FinancialTransaction> transactions =
                           stateTransactions.transactions ?? [];
                       List<List<FinancialTransaction>> transactionOfDay =

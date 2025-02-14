@@ -39,18 +39,6 @@ class FinCategoryRepository {
     return newCategory.copyWith(id: categoryId);
   }
 
-  // Future<void> addNewCategory(FinancialCategory category) async {
-  //   final Database db = await database.database;
-  //   final maxPosition = await _getMaxPosition();
-  //   final newCategory = category.copyWith(position: maxPosition + 1);
-
-  //   await db.insert(
-  //     'categories',
-  //     newCategory.toJson(),
-  //     conflictAlgorithm: ConflictAlgorithm.replace,
-  //   );
-  // }
-
   Future<int> _getMaxPosition() async {
     final Database db = await database.database;
     final result = await db.rawQuery(
@@ -85,19 +73,5 @@ class FinCategoryRepository {
     await batch.commit();
   }
 
-  // Future<void> updateCategory(FinancialCategory category) async {
-  //   if (category.position == null) {
-  //     print('Position is null');
-  //     return;
-  //   }
-  //   final db = await dbHelper.database;
-  //   await db.update(
-  //     'categories',
-  //     category.toJson(),
-  //     // where: 'name = ?',
-  //     // whereArgs: [category.name],
-  //     where: 'position = ?',
-  //     whereArgs: [category.position],
-  //   );
-  // }
+  
 }

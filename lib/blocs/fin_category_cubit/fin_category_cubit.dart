@@ -47,32 +47,6 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
     );
   }
 
-  // void addNewCategory(FinancialCategory category) async {
-  //   emit(state.copyWith(status: FinCategoryStatus.loading));
-  //   FinancialCategory categoryWithPosition =
-  //       category.copyWith(position: state.categories!.length + 1);
-
-  //   await repository.addNewCategory(categoryWithPosition);
-
-  //   List<FinancialCategory> updatedCategories =
-  //       await repository.getFinancialCategories();
-
-  //   emit(
-  //     state.copyWith(
-  //       status: FinCategoryStatus.loaded,
-  //       categories: updatedCategories,
-  //     ),
-  //   );
-  // }
-  // Future<void> addCategory(FinancialCategory category) async {
-  //   emit(state.copyWith(status: FinCategoryStatus.loading));
-
-  //   await repository.addNewCategory(category);
-  //   List<FinancialCategory> categories = await repository.getAllCategories();
-  //   emit(
-  //     state.copyWith(status: FinCategoryStatus.loaded, categories: categories),
-  //   );
-  // }
 
   Future<void> addCategory(FinancialCategory category) async {
     emit(state.copyWith(status: FinCategoryStatus.loading));
@@ -118,30 +92,4 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
     }
   }
 
-  // void changePosition(int oldIndex, int newIndex) async {
-  //   emit(state.copyWith(status: FinCategoryStatus.loading));
-
-  //   if (state.categories != null && state.categories!.isNotEmpty) {
-  //     List<FinancialCategory> updatedCategories = state.categories!.toList();
-
-  //     if (oldIndex < newIndex) {
-  //       newIndex -= 1;
-  //     }
-
-  //     FinancialCategory item = updatedCategories.removeAt(oldIndex);
-  //     updatedCategories.insert(newIndex, item);
-
-  //     for (int i = 0; i < updatedCategories.length; i++) {
-  //       updatedCategories[i] = updatedCategories[i].copyWith(position: i);
-  //       // await repository.updateCategory(updatedCategories[i]);
-  //     }
-
-  //     emit(
-  //       state.copyWith(
-  //         status: FinCategoryStatus.loaded,
-  //         categories: updatedCategories,
-  //       ),
-  //     );
-  //   }
-  // }
 }

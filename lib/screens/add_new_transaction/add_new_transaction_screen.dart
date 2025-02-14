@@ -78,7 +78,6 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
         context: context,
         length: context.read<FinCategoryCubit>().state.categories?.length ?? 0,
         itemBuilder: (BuildContext context, int index) {
-          
           return BlocBuilder<FinCategoryCubit, FinCategoryState>(
             builder: (context, state) {
               FinancialCategory category = state.categories![index];
@@ -104,13 +103,6 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
     selectedCategory = category;
 
     categoryNameController.text = selectedCategory!.name;
-
-    if (selectedCategory?.id != null) {
-      print('selected category ID ${selectedCategory?.id}');
-    } else {
-      print('ID IN CHOOSECATEGORY NO FOUND');
-    }
-
     Navigator.pop(context);
   }
 
