@@ -19,7 +19,7 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
         );
 
   Future<void> getTransactions({
-    DateTime? date,
+    int? dateMonth,
   }) async {
     emit(
       state.copyWith(
@@ -29,7 +29,7 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
 
     List<FinancialTransaction> transactions =
         await finTransactionRepository.getAllTransactions(
-      date: date,
+      dateMonth: dateMonth,
     );
     emit(
       state.copyWith(
@@ -37,6 +37,7 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
         transactions: transactions,
       ),
     );
+   
   }
 
   Future<void> addTransaction(

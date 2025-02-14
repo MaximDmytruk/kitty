@@ -28,12 +28,12 @@ class FinTransactionRepository {
   }
 
   Future<List<FinancialTransaction>> getAllTransactions({
-    DateTime? date,
+    int? dateMonth,
   }) async {
     Database db = await database.database;
     final List<Map<String, dynamic>> result;
 
-    if (date == null) {
+    if (dateMonth == null) {
       result = await db.rawQuery('''
       SELECT t.*, c.id as categoryId, c.name, c.colorValue, c.iconPath, c.position 
       FROM transactions t 
@@ -41,8 +41,8 @@ class FinTransactionRepository {
     ''');
     } else {
       String month = '';
-      if (date.month < 10) {
-        month = '0' + date.month.toString();
+      if (dateMonth < 10) {
+        month = '0${dateMonth}';
       }
 
       result = await db.rawQuery('''
@@ -74,56 +74,3 @@ class FinTransactionRepository {
     }).toList();
   }
 }
-
-
-
-  // Future<int> addTransaction(FinancialTransaction transaction) async {
-  //   final Database db = await database.database;
-  //   return await db.insert(
-  //     'transactions',
-  //     {
-  //       'financialAction': transaction.financialAction.name,
-  //       'category_id': transaction.category.id,
-  //       'amount': transaction.amount,
-  //       'description': transaction.description,
-  //       'date': transaction.date.toIso8601String(),
-  //     },
-  //   );
-  // }
-
-  // // Future<int> addTransaction(FinancialTransaction transaction) async {
-  // //   final Database db = await database.database;
-  // //   return await db.insert(
-  // //     'transactions',
-  // //     transaction.toJson(),
-  // //   );
-  // // }
-
-  // //TODO: доробити, витягнути з таблиці.
-  // Future<List<FinancialTransaction>> getAllTransaction() async {
-  //   Database db = await database.database;
-  //   List<Map<String, Object?>> result = await db.query('transactions');
-
-  //   for (var res in result) {
-  //     print(res.keys);
-  //     print(res.entries);
-  //   }
-
-  //   return result
-  //       .map((transaction) => FinancialTransaction.fromJson(transaction))
-  //       .toList();
-  // }
-
-  // Future<List<FinancialTransaction>> getTransactions() async {
-  //   Database db = await database.database;
-
-  //   final result = await db.query(
-  //     'transactions',
-  //     orderBy: 'date DESC',
-  //   );
-
-  //   return result.map((json) {
-  //     return FinancialTransaction.fromJson(json);
-  //   }).toList();
-  // }
-

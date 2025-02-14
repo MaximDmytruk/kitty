@@ -35,7 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     firstChar = context.read<UserCubit>().getFirstLetterName();
-    // context.read<FinTransactionCubit>().getTransactions(date: );
     context.read<FinCategoryCubit>().getFinancialCategories();
     super.initState();
   }
@@ -50,6 +49,21 @@ class _HomeScreenState extends State<HomeScreen> {
           setState(() {});
         },
       );
+
+  List<List<FinancialTransaction>> filteredTransactionsByDay(
+      List<FinancialTransaction> transactions) {
+    Map<int, List<FinancialTransaction>> grouped = {};
+
+    for (var transaction in transactions) {
+      int dateKey = transaction.date.day;
+      if (!grouped.containsKey(dateKey)) {
+        grouped[dateKey] = [];
+      }
+      grouped[dateKey]!.add(transaction);
+    }
+
+    return grouped.values.toList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +89,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: TotalAmount(),
               ),
               BlocBuilder<FinTransactionCubit, FinTransactionState>(
-                builder: (context, stateTransactions) {
+                builder: (
+                  context,
+                  stateTransactions,
+                ) {
                   return BlocBuilder<DateCubit, DateState>(
-                    builder: (context, stateDate) {
-                      List<FinancialTransaction>? transaction =
-                          stateTransactions.transactions;
+                    builder: (
+                      context,
+                      stateDate,
+                    ) {
+                      context.read<FinTransactionCubit>().getTransactions(dateMonth: stateDate.selectedMonth);
+                      List<FinancialTransaction> transactions =
+                          stateTransactions.transactions ?? [];
+                      List<List<FinancialTransaction>> transactionOfDay =
+                          filteredTransactionsByDay(transactions);
 
                       return Expanded(
                         child: ListView.builder(
@@ -87,10 +110,13 @@ class _HomeScreenState extends State<HomeScreen> {
                             horizontal: 16.0,
                             vertical: 8.0,
                           ),
-                          itemCount: transaction?.length ?? 0,
-                          itemBuilder: (BuildContext context, int index) {
+                          itemCount: transactionOfDay.length,
+                          itemBuilder: (
+                            BuildContext context,
+                            int index,
+                          ) {
                             return ListGroup(
-                              transactions: transaction!,
+                              transactions: transactionOfDay[index],
                             );
                           },
                         ),
@@ -99,41 +125,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
               ),
-              // BlocBuilder<UserCubit, UserState>(
-              //   builder: (context, stateUser) {
-              //     return BlocBuilder<DateCubit, DateState>(
-              //       builder: (context, stateDate) {
-              //         List<FinancialTransaction> filteredTransactions =
-              //             filterForTransactions(financialTransaction);
-              //         // List<List<FinancialTransaction>> listOfdays = filteredTransactions.where((transaction) =>  day.date.day,)
-              //         //TODO: доробити фільтр по дню.
-
-              //         // Map<int, List<FinancialTransaction>> dayListTransactions =
-              //         //     {};
-              //         // for (FinancialTransaction transaction
-              //         //     in filteredTransactions) {
-              //         //   int day = transaction.date.day;
-              //         //   dayListTransactions[day]?.add(transaction);
-              //         // }
-
-              //         return Expanded(
-              //           child: ListView.builder(
-              //             padding: EdgeInsets.symmetric(
-              //               horizontal: 16.0,
-              //               vertical: 8.0,
-              //             ),
-              //             itemCount: filteredTransactions.length,
-              //             itemBuilder: (BuildContext context, int index) {
-              //               return ListGroup(
-              //                 transactions: filteredTransactions,
-              //               );
-              //             },
-              //           ),
-              //         );
-              //       },
-              //     );
-              //   },
-              // ),
             ],
           ),
           //Button AddNew
