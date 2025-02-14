@@ -36,20 +36,21 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     firstChar = context.read<UserCubit>().getFirstLetterName();
     context.read<FinCategoryCubit>().getFinancialCategories();
-    context.read<FinTransactionCubit>().addTestTransactions(); //TODO: Testing transations!
+    context.read<FinTransactionCubit>().getTransactions();
+    // context.read<FinTransactionCubit>().addTestTransactions(); //TODO: Testing transations!
     super.initState();
   }
 
   void searchAction() =>
       Navigator.of(context).pushNamed(SearchScreen.routeName);
 
-  void addNewAction() => Navigator.of(context)
-          .pushNamed(AddNewTransactionScreen.routeName)
-          .whenComplete(
-        () {
-          setState(() {});
-        },
-      );
+  void addNewAction() =>
+      Navigator.of(context).pushNamed(AddNewTransactionScreen.routeName)
+  .whenComplete(
+  () {
+    setState(() {});
+  },
+  );
 
   List<List<FinancialTransaction>> filteredTransactionsByDay(
     List<FinancialTransaction> transactions,
@@ -107,6 +108,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           stateTransactions.transactions ?? [];
                       List<List<FinancialTransaction>> transactionOfDay =
                           filteredTransactionsByDay(transactions);
+                      print('i m REFREEESH ----------------------');
+                      print(transactions.length);
 
                       return Expanded(
                         child: ListView.builder(

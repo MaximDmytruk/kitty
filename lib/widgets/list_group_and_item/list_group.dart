@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
@@ -17,8 +18,15 @@ class ListGroup extends StatefulWidget {
 }
 
 class _ListGroupState extends State<ListGroup> {
+  List<FinancialTransaction> transaction = [];
+  String dateOfTransaction = '';
+
   @override
   void initState() {
+    transaction = widget.transactions;
+    // transaction.sort((a, b) => a.date.compareTo(b.date));
+    transaction.reversed;
+    dateOfTransaction = DateFormat('d/M/y').format(transaction.first.date);
     super.initState();
   }
 
@@ -46,7 +54,7 @@ class _ListGroupState extends State<ListGroup> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'data'.toUpperCase(),
+                  dateOfTransaction,
                   style: interTextStyle(
                     fontSize: 10.0,
                     fontWeight: FontWeight.w500,
@@ -66,19 +74,18 @@ class _ListGroupState extends State<ListGroup> {
             ListView.builder(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: widget.transactions.length,
+              itemCount: transaction.length,
               itemBuilder: (context, index) {
-                final transaction = widget.transactions[index];
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 8.0,
                   ),
                   child: ListItem(
-                    firstName: transaction.category.name,
-                    secondName: transaction.category.name,
-                    value: transaction.amount,
-                    iconPath: transaction.category.iconPath,
-                    colorIconBackground: transaction.category.colorValue,
+                    firstName: transaction[index].category.name,
+                    secondName: transaction[index].category.name,
+                    value: transaction[index].amount,
+                    iconPath: transaction[index].category.iconPath,
+                    colorIconBackground: transaction[index].category.colorValue,
                   ),
                 );
               },
