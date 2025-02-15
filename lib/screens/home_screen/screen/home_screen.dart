@@ -31,20 +31,14 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late String firstChar;
 
+  //TODO: заупскається 2 рази!
   @override
   void initState() {
-    context.read<DateCubit>().selectMonth(
-          newNumOfMonth: DateTime.now().month,
-        );
-
-    firstChar = context.read<UserCubit>().getFirstLetterName();
+    super.initState();
+    print("initState HomeScreen");
     context.read<FinCategoryCubit>().getFinancialCategories();
     context.read<FinTransactionCubit>().getTransactions();
-
-    // context
-    //     .read<FinTransactionCubit>()
-    //     .addTestTransactions(); //TODO: TESTING TRANSACTIONS:
-    super.initState();
+    firstChar = context.read<UserCubit>().getFirstLetterName();
   }
 
   void searchAction() =>

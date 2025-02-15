@@ -15,8 +15,9 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
 
   Future<void> getFinancialCategories() async {
     emit(state.copyWith(status: FinCategoryStatus.loading));
-
+    print('IN getFinancialCategories Cubit');
     List<FinancialCategory> categories = await repository.getAllCategories();
+
 
     if (categories.isNotEmpty) {
       print('NOT FIRST');

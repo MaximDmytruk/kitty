@@ -24,7 +24,7 @@ class ManageCategoriesScreen extends StatefulWidget {
 class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
   @override
   void initState() {
-    context.read<FinCategoryCubit>().getFinancialCategories();
+    
     super.initState();
   }
 
@@ -39,8 +39,6 @@ class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
 
   void addNewCategoryAction() =>
       Navigator.of(context).pushNamed(AddNewCategory.routeName);
-
-      
 
   @override
   Widget build(BuildContext context) {

@@ -20,6 +20,7 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
   Future<void> getTransactions({
     int? dateMonth,
   }) async {
+    print('FIN TRANSACTION CUBIT -getTransactions ');
     emit(
       state.copyWith(
         status: FinTransactionStatus.loading,
@@ -61,15 +62,15 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
   }
 
 //TODO: TESTING TRANSACTIONS:
-  Future<void> addTestTransactions() async {
-    finTransactionRepository.insertTestTransactions();
-    List<FinancialTransaction> transactions =
-        await finTransactionRepository.getAllTransactions();
-    emit(
-      state.copyWith(
-        status: FinTransactionStatus.loaded,
-        transactions: transactions,
-      ),
-    );
-  }
+  // Future<void> addTestTransactions() async {
+  //   finTransactionRepository.insertTestTransactions();
+  //   List<FinancialTransaction> transactions =
+  //       await finTransactionRepository.getAllTransactions();
+  //   emit(
+  //     state.copyWith(
+  //       status: FinTransactionStatus.loaded,
+  //       transactions: transactions,
+  //     ),
+  //   );
+  // }
 }

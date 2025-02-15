@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:kitty/blocs/fin_category_cubit/fin_category_cubit.dart';
 
 import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/models/financial_category/financial_category.dart';
 
 import 'package:kitty/screens/statistics_screen/widgets/name_of_section.dart';
 import 'package:kitty/styles/icons/category_icons.dart';
@@ -50,7 +53,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                   name: AppLocale.overview.getString(context),
                 ),
               ),
-              //TODO: Кольоровий графіка
+              //TODO: Кольоровий графік
               Padding(
                 padding: const EdgeInsets.symmetric(
                   horizontal: 16.0,
@@ -70,27 +73,33 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                     const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
                 child: NameOfSection(name: AppLocale.detail.getString(context)),
               ),
-              Expanded(
-                child: ListView.separated(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                  ),
-                  itemCount: 8,
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(
-                      height: 8.0,
-                    );
-                  },
-                  itemBuilder: (BuildContext context, int index) {
-                    return ListItem(
-                      firstName: 'Notes will come here',
-                      secondName: 'Category name',
-                      value: -500,
-                      iconPath: CategoryIcons.bar,
-                      colorIconBackground: ColorsApp.pink225,
-                    );
-                  },
-                ),
+              BlocBuilder<FinCategoryCubit, FinCategoryState>(
+                builder: (context, state) {
+                   List<FinancialCategory> financialCategories =
+                        state.categories ?? [];
+                  return Expanded(
+                    child: ListView.separated(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                      ),
+                      itemCount: financialCategories.length,
+                      separatorBuilder: (BuildContext context, int index) {
+                        return SizedBox(
+                          height: 8.0,
+                        );
+                      },
+                      itemBuilder: (BuildContext context, int index) {
+                        return ListItem(
+                          firstName: 'Notes will come here',
+                          secondName: 'Category name',
+                          value: -500,
+                          iconPath: CategoryIcons.bar,
+                          colorIconBackground: ColorsApp.pink225,
+                        );
+                      },
+                    ),
+                  );
+                },
               ),
             ],
           ),

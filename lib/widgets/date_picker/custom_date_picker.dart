@@ -57,10 +57,13 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   }
 
   void _monthPicked(BuildContext context, int indexOfMonth) {
+    selectedMonth = context.read<DateCubit>().getMonth();
+
     context.read<DateCubit>().selectMonth(newNumOfMonth: indexOfMonth);
-    print('Selected month: $selectedMonth');
+    
     _toggleOverlay();
     setState(() {});
+
   }
 
   void _toggleOverlay() {

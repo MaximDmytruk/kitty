@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/localization/app_locale.dart';
@@ -22,11 +23,11 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   
   int _selectedPage = 1;
 
-  static const List<Widget> _widgetOptions = [
-    StatisticsScreen(),
-    HomeScreen(),
-    SettingScreen(),
-  ];
+  // static const List<Widget> _widgetOptions = [
+  //   StatisticsScreen(),
+  //   HomeScreen(),
+  //   SettingScreen(),
+  // ];
 
   void onSelectedTab(int index) {
     if (_selectedPage == index) return;
@@ -35,11 +36,24 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
     });
   }
 
+  Widget _getScreen(int index) {
+  switch (index) {
+    case 0:
+      return const StatisticsScreen();
+    case 1:
+      return const HomeScreen();
+    case 2:
+      return const SettingScreen();
+    default:
+      return const HomeScreen();
+  }
+}
+
   @override
   Widget build(BuildContext context) {
     // return BlocBuilder<UserCubit, UserState>(builder: (context, state) {
       return Scaffold(
-        body: Center(child: _widgetOptions[_selectedPage]),
+        body: Center(child: _getScreen(_selectedPage)),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _selectedPage,
           items: [

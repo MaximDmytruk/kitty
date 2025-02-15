@@ -11,7 +11,7 @@ class FinCategoryRepository {
     Batch batch = db.batch();
 
     final List<FinancialCategory> defaultCategories = getDefaultCategories();
-    for (var category in defaultCategories) {
+    for (FinancialCategory  category in defaultCategories) {
       batch.insert('categories', category.toJson());
     }
     await batch.commit();
