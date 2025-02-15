@@ -59,11 +59,11 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
         description: description,
       );
 
-      await context
+       context
           .read<FinTransactionCubit>()
           .addTransaction(newFinancialTransaction);
 
-      Navigator.pop(context);
+      Navigator.of(context).pop();
     }
   }
 

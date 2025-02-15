@@ -3,7 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/repositories/fin_transaction_repository/fin_transaction_repository.dart';
 
-
 part 'fin_transaction_state.dart';
 part 'fin_transaction_cubit.freezed.dart';
 
@@ -48,7 +47,7 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
       ),
     );
 
-    await finTransactionRepository.insertTransaction(
+    finTransactionRepository.insertTransaction(
       transaction,
     );
     List<FinancialTransaction> transactions =

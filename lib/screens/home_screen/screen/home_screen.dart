@@ -9,6 +9,7 @@ import 'package:kitty/blocs/user_cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/screens/add_new_transaction/add_new_transaction_screen.dart';
+import 'package:kitty/screens/home_screen/widgets/custom_list_view.dart';
 import 'package:kitty/screens/home_screen/widgets/total_amount.dart';
 import 'package:kitty/screens/search_screen/screen/search_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -37,6 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
     firstChar = context.read<UserCubit>().getFirstLetterName();
     context.read<FinCategoryCubit>().getFinancialCategories();
     context.read<FinTransactionCubit>().getTransactions();
+
     // context.read<FinTransactionCubit>().addTestTransactions(); //TODO: Testing transations!
     super.initState();
   }
@@ -45,19 +47,19 @@ class _HomeScreenState extends State<HomeScreen> {
       Navigator.of(context).pushNamed(SearchScreen.routeName);
 
   void addNewAction() =>
-      Navigator.of(context).pushNamed(AddNewTransactionScreen.routeName)
-  .whenComplete(
-  () {
-    setState(() {});
-  },
-  );
+      Navigator.of(context).pushNamed(AddNewTransactionScreen.routeName);
+  //     .whenComplete(
+  //   () {
+  //     setState(() {});
+  //   },
+  // );
 
   List<List<FinancialTransaction>> filteredTransactionsByDay(
     List<FinancialTransaction> transactions,
   ) {
     Map<int, List<FinancialTransaction>> grouped = {};
 
-    for (var transaction in transactions) {
+    for (FinancialTransaction transaction in transactions) {
       int dateKey = transaction.date.day;
       if (!grouped.containsKey(dateKey)) {
         grouped[dateKey] = [];
@@ -91,46 +93,28 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: TotalAmount(),
               ),
-              BlocBuilder<FinTransactionCubit, FinTransactionState>(
-                builder: (
-                  context,
-                  stateTransactions,
-                ) {
-                  return BlocBuilder<DateCubit, DateState>(
-                    builder: (
-                      context,
-                      stateDate,
-                    ) {
-                      context
-                          .read<FinTransactionCubit>()
-                          .getTransactions(dateMonth: stateDate.selectedMonth);
-                      List<FinancialTransaction> transactions =
-                          stateTransactions.transactions ?? [];
-                      List<List<FinancialTransaction>> transactionOfDay =
-                          filteredTransactionsByDay(transactions);
-                      print('i m REFREEESH ----------------------');
-                      print(transactions.length);
-
-                      return Expanded(
-                        child: ListView.builder(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 16.0,
-                            vertical: 8.0,
-                          ),
-                          itemCount: transactionOfDay.length,
-                          itemBuilder: (
-                            BuildContext context,
-                            int index,
-                          ) {
-                            return ListGroup(
-                              transactions: transactionOfDay[index],
-                            );
-                          },
-                        ),
-                      );
-                    },
-                  );
+              BlocListener<DateCubit, DateState>(
+                listener: (context, stateDate) {
+                  context
+                      .read<FinTransactionCubit>()
+                      .getTransactions(dateMonth: stateDate.selectedMonth);
                 },
+                child: BlocBuilder<FinTransactionCubit, FinTransactionState>(
+                  builder: (
+                    context,
+                    stateTransactions,
+                  ) {
+                    List<List<FinancialTransaction>> transactionOfDay = [];
+                    transactionOfDay = filteredTransactionsByDay(
+                        stateTransactions.transactions ?? []);
+                    if (transactionOfDay.isNotEmpty) {
+                      print('transactionOfDay');
+                      print(transactionOfDay.first.length);
+                      print('');
+                    }
+                    return CustomListView(transactionOfDay: transactionOfDay);
+                  },
+                ),
               ),
             ],
           ),

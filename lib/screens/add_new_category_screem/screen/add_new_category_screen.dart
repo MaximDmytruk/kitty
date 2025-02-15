@@ -26,7 +26,7 @@ class AddNewCategory extends StatefulWidget {
     super.key,
     this.initialCategory,
   });
-  //TODO: назва екрана в залежності від дій!
+ 
   static const String routeName = '/add_new_category_screen';
 
   @override
@@ -104,10 +104,11 @@ class _AddNewCategoryState extends State<AddNewCategory> {
         );
         context.read<FinCategoryCubit>().addCategory(newCategory);
 
-        await Navigator.popAndPushNamed(
+         Navigator.popAndPushNamed(
           context,
           BottomNavigationScreen.routeName,
         );
+      
       }
     }
   }

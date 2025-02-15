@@ -1,5 +1,4 @@
 import 'package:kitty/models/financial_category/financial_category.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'financial_transaction.freezed.dart';
@@ -25,20 +24,17 @@ class FinancialTransaction with _$FinancialTransaction {
       _$FinancialTransactionFromJson(json);
 }
 
-
 class FinancialCategoryConverter
     implements JsonConverter<FinancialCategory, int> {
   const FinancialCategoryConverter();
 
   @override
   FinancialCategory fromJson(int id) {
-   
     throw UnimplementedError('fromJson( помилка в роботі fromJson!!!)');
   }
 
   @override
   int toJson(FinancialCategory category) {
-    
     return category.id!;
   }
 }

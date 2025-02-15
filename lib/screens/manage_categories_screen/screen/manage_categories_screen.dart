@@ -40,6 +40,8 @@ class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
   void addNewCategoryAction() =>
       Navigator.of(context).pushNamed(AddNewCategory.routeName);
 
+      
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
