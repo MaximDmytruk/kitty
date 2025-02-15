@@ -9,6 +9,7 @@ import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/models/financial_category/financial_category.dart';
 import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/screens/add_new_category_screem/screen/add_new_category_screen.dart';
+import 'package:kitty/screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/widgets/icons/category_icon.dart';
@@ -59,11 +60,12 @@ class _AddNewTransactionScreenState extends State<AddNewTransactionScreen> {
         description: description,
       );
 
-       context
+      context
           .read<FinTransactionCubit>()
           .addTransaction(newFinancialTransaction);
 
       Navigator.of(context).pop();
+      context.read<FinTransactionCubit>().getTransactions();
     }
   }
 

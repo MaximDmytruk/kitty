@@ -18,19 +18,22 @@ class ListGroup extends StatefulWidget {
 }
 
 class _ListGroupState extends State<ListGroup> {
-  List<FinancialTransaction> transaction = [];
+  
   String dateOfTransaction = '';
 
   @override
   void initState() {
-    print('Im in LISTGROUP!!');
-    transaction = widget.transactions;
-    print(transaction);
+    print('Im in LISTGROUP!!----------------');
+   
+    print(widget.transactions);
     // transaction.sort((a, b) => a.date.compareTo(b.date));
-    transaction.reversed;
+    widget.transactions.reversed;
     print('');
-    print(transaction);
-    dateOfTransaction = DateFormat('d/M/y').format(transaction.first.date);
+    print(widget.transactions);
+    dateOfTransaction = DateFormat('d/M/y').format(widget.transactions.first.date);
+    print('IN ListGroup' );
+    print(widget.transactions.length);
+    print('');
     super.initState();
   }
 
@@ -78,18 +81,18 @@ class _ListGroupState extends State<ListGroup> {
             ListView.builder(
               physics: NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: transaction.length,
+              itemCount: widget.transactions.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 8.0,
                   ),
                   child: ListItem(
-                    firstName: transaction[index].category.name,
-                    secondName: transaction[index].category.name,
-                    value: transaction[index].amount,
-                    iconPath: transaction[index].category.iconPath,
-                    colorIconBackground: transaction[index].category.colorValue,
+                    firstName: widget.transactions[index].category.name,
+                    secondName: widget.transactions[index].category.name,
+                    value: widget.transactions[index].amount,
+                    iconPath: widget.transactions[index].category.iconPath,
+                    colorIconBackground: widget.transactions[index].category.colorValue,
                   ),
                 );
               },

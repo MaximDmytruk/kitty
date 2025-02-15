@@ -4,8 +4,9 @@ import 'package:kitty/widgets/list_group_and_item/list_group.dart';
 
 class CustomListView extends StatefulWidget {
   final List<List<FinancialTransaction>> transactionOfDay;
-  
-  const CustomListView({ super.key,
+
+  const CustomListView({
+    super.key,
     required this.transactionOfDay,
   });
 
@@ -14,6 +15,13 @@ class CustomListView extends StatefulWidget {
 }
 
 class _CustomListViewState extends State<CustomListView> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -22,11 +30,20 @@ class _CustomListViewState extends State<CustomListView> {
           horizontal: 16.0,
           vertical: 8.0,
         ),
-        itemCount:widget.transactionOfDay.length,
+        itemCount: widget.transactionOfDay.length,
         itemBuilder: (
           BuildContext context,
           int index,
         ) {
+          for (var element in widget.transactionOfDay) {
+            print('In CustomListView');
+            print(element.length) ;
+            
+          }
+          print('');
+
+          print(widget.transactionOfDay[index].length);
+          print('END IN CustomListView');
           return ListGroup(
             transactions: widget.transactionOfDay[index],
           );

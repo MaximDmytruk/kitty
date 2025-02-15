@@ -26,7 +26,7 @@ class AddNewCategory extends StatefulWidget {
     super.key,
     this.initialCategory,
   });
- 
+
   static const String routeName = '/add_new_category_screen';
 
   @override
@@ -104,11 +104,7 @@ class _AddNewCategoryState extends State<AddNewCategory> {
         );
         context.read<FinCategoryCubit>().addCategory(newCategory);
 
-         Navigator.popAndPushNamed(
-          context,
-          BottomNavigationScreen.routeName,
-        );
-      
+        Navigator.of(context).pop();
       }
     }
   }
