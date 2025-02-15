@@ -23,11 +23,9 @@ class _ListGroupState extends State<ListGroup> {
 
   @override
   void initState() {
-    print('Im in LISTGROUP!!----------------');
    
-    print(widget.transactions);
     // transaction.sort((a, b) => a.date.compareTo(b.date));
-    widget.transactions.reversed;
+    // widget.transactions;
     print('');
     print(widget.transactions);
     dateOfTransaction = DateFormat('d/M/y').format(widget.transactions.first.date);

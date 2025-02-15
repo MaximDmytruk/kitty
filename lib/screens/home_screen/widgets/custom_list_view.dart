@@ -15,7 +15,6 @@ class CustomListView extends StatefulWidget {
 }
 
 class _CustomListViewState extends State<CustomListView> {
-
   @override
   void initState() {
     // TODO: implement initState
@@ -35,15 +34,6 @@ class _CustomListViewState extends State<CustomListView> {
           BuildContext context,
           int index,
         ) {
-          for (var element in widget.transactionOfDay) {
-            print('In CustomListView');
-            print(element.length) ;
-            
-          }
-          print('');
-
-          print(widget.transactionOfDay[index].length);
-          print('END IN CustomListView');
           return ListGroup(
             transactions: widget.transactionOfDay[index],
           );

@@ -60,16 +60,16 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
     );
   }
 
-//TODO: TESTING TRANSACTIONS
-  // Future<void> addTestTransactions() async {
-  //   finTransactionRepository.insertTestTransactions();
-  //   List<FinancialTransaction> transactions =
-  //       await finTransactionRepository.getAllTransactions();
-  //   emit(
-  //     state.copyWith(
-  //       status: FinTransactionStatus.loaded,
-  //       transactions: transactions,
-  //     ),
-  //   );
-  // }
+//TODO: TESTING TRANSACTIONS:
+  Future<void> addTestTransactions() async {
+    finTransactionRepository.insertTestTransactions();
+    List<FinancialTransaction> transactions =
+        await finTransactionRepository.getAllTransactions();
+    emit(
+      state.copyWith(
+        status: FinTransactionStatus.loaded,
+        transactions: transactions,
+      ),
+    );
+  }
 }

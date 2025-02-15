@@ -14,10 +14,8 @@ import 'package:kitty/screens/home_screen/widgets/total_amount.dart';
 import 'package:kitty/screens/search_screen/screen/search_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
-import 'package:kitty/testing/testing_transaction.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
 import 'package:kitty/widgets/app_bars/custom_status_bar.dart';
-import 'package:kitty/widgets/list_group_and_item/list_group.dart';
 import '../../../widgets/date_picker/custom_date_picker.dart';
 import '../../../widgets/app_bars/custom_home_app_bar.dart';
 
@@ -35,11 +33,17 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    context.read<DateCubit>().selectMonth(
+          newNumOfMonth: DateTime.now().month,
+        );
+
     firstChar = context.read<UserCubit>().getFirstLetterName();
     context.read<FinCategoryCubit>().getFinancialCategories();
     context.read<FinTransactionCubit>().getTransactions();
 
-    // context.read<FinTransactionCubit>().addTestTransactions(); //TODO: Testing transations!
+    // context
+    //     .read<FinTransactionCubit>()
+    //     .addTestTransactions(); //TODO: TESTING TRANSACTIONS:
     super.initState();
   }
 
@@ -48,11 +52,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void addNewAction() =>
       Navigator.of(context).pushNamed(AddNewTransactionScreen.routeName);
-  //     .whenComplete(
-  //   () {
-  //     setState(() {});
-  //   },
-  // );
 
   List<List<FinancialTransaction>> filteredTransactionsByDay(
     List<FinancialTransaction> transactions,
@@ -106,13 +105,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   ) {
                     List<List<FinancialTransaction>> transactionOfDay = [];
                     transactionOfDay = filteredTransactionsByDay(
-                        stateTransactions.transactions ?? []);
-                    if (transactionOfDay.isNotEmpty) {
-                      print('transactionOfDay');
-                      print(transactionOfDay.first.length);
-                      print('');
-                    }
-                    return CustomListView(transactionOfDay: transactionOfDay);
+                      stateTransactions.transactions ?? [],
+                    );
+
+                    return CustomListView(
+                      transactionOfDay: transactionOfDay,
+                    );
                   },
                 ),
               ),

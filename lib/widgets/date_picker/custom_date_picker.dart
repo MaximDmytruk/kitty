@@ -57,11 +57,8 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
   }
 
   void _monthPicked(BuildContext context, int indexOfMonth) {
-   
-      print(indexOfMonth);
-      context.read<DateCubit>().selectMonth(newNumOfMonth: indexOfMonth);
-    
-
+    context.read<DateCubit>().selectMonth(newNumOfMonth: indexOfMonth);
+    print('Selected month: $selectedMonth');
     _toggleOverlay();
     setState(() {});
   }
@@ -164,7 +161,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                                     highlightColor:
                                         ColorsApp.blue123.withAlpha(200),
                                     onTap: () {
-                                      _monthPicked(context, index+1);
+                                      _monthPicked(context, index + 1);
                                     },
                                   ),
                                 ),
