@@ -32,18 +32,14 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
 
   Map<int, int> categoryTotalAmount = {}; //суми певної категоріїї
   Map<int, double> categoryPercentages = {}; //відсотки категорій
-
-  @override
-  void initState() {
-    super.initState();
-  }
+  Map<int, Color> categoryColors = {}; //Кольори категорій
 
   Future<void> _calculateCategory(DateState stateDate) async {
     categoryTotalAmount.clear();
     categoryPercentages.clear();
     int overallTotal = 0;
 
-    for (var category in financialCategories) {
+    for (FinancialCategory category in financialCategories) {
       final int totalAmount = await context
           .read<FinTransactionCubit>()
           .getTotalAmountByMonth(
@@ -51,14 +47,17 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
 
       categoryTotalAmount[category.id!] = totalAmount;
       overallTotal += totalAmount;
+      categoryColors[category.id!] = category.colorValue; //Кольори
     }
 
     //відсотки
     if (overallTotal > 0) {
-      categoryTotalAmount.forEach((categoryId, categoryTotal) {
-        double percentage = (categoryTotal / overallTotal) * 100;
-        categoryPercentages[categoryId] = percentage;
-      });
+      categoryTotalAmount.forEach(
+        (categoryId, categoryTotal) {
+          double percentage = (categoryTotal / overallTotal) * 100;
+          categoryPercentages[categoryId] = percentage;
+        },
+      );
     }
   }
 
@@ -106,14 +105,13 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                           horizontal: 16.0,
                         ),
                         child: CustomPaint(
-                          size: Size(328, 36), 
+                          size: Size(double.infinity, 36),
+                          //Кольорова статистика
+
                           painter: ColorStripPainter(
-                            colors: [
-                              Colors.red,
-                              Colors.green,
-                              Colors.blue
-                            ], 
-                            percentages: [40, 30, 30], // Відсотки
+                            colors: categoryColors.values.toList(),
+                            percentages:
+                                categoryPercentages.values.toList(), // Відсотки
                           ),
                         ),
                       ),
