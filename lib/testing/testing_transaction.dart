@@ -70,19 +70,19 @@ Future<List<FinancialTransaction>> getTestingTransaction() async => [
         amount: 800,
         date: DateTime(2025, 8, 20),
       ),
-      FinancialTransaction(
-        financialAction: FinancialAction.expense,
-        category: categories
-            .firstWhere((category) => category.name == AppLocale.electronics),
-        amount: 500,
-        date: DateTime(2025, 9, 10),
-      ),
-      for (int i = 1; i <= 90; i++)
-        FinancialTransaction(
-          financialAction:
-              i % 2 == 0 ? FinancialAction.income : FinancialAction.expense,
-          category: categories[i % categories.length],
-          amount: (i * 15) % 500 + 20,
-          date: DateTime(2025, (i % 12) + 1, (i % 28) + 1),
-        ),
+      // FinancialTransaction(
+      //   financialAction: FinancialAction.expense,
+      //   category: categories
+      //       .firstWhere((category) => category.name == AppLocale.electronics),
+      //   amount: 500,
+      //   date: DateTime(2025, 9, 10),
+      // ),
+      // for (int i = 1; i <= 90; i++)
+      //   FinancialTransaction(
+      //     financialAction:
+      //         i % 2 == 0 ? FinancialAction.income : FinancialAction.expense,
+      //     category: categories[i % categories.length],
+      //     amount: (i * 15) % 500 + 20,
+      //     date: DateTime(2025, (i % 12) + 1, (i % 28) + 1),
+      //   ),
     ];

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:kitty/blocs/fin_category_cubit/fin_category_cubit.dart';
+import 'package:kitty/blocs/fin_transaction_cubit/fin_transaction_cubit.dart';
 import 'package:kitty/blocs/user_cubit/user_cubit.dart';
 import 'package:kitty/screens/auth_screen/auth_screen.dart';
 import 'package:kitty/screens/manage_categories_screen/screen/manage_categories_screen.dart';
@@ -29,6 +31,7 @@ class _SettingScreenState extends State<SettingScreen> {
   @override
   void initState() {
     print('SETTING SCREEN');
+    context.read<FinCategoryCubit>().getFinancialCategories();
     userName = context.read<UserCubit>().getUserName();
     firstChar = context.read<UserCubit>().getFirstLetterName();
     userEmail = context.read<UserCubit>().getUserEmail();
@@ -62,6 +65,11 @@ class _SettingScreenState extends State<SettingScreen> {
     Navigator.popAndPushNamed(context, AuthScreen.routeName);
   }
 
+  void generateTransactions() {
+    context.read<FinTransactionCubit>().addTestTransactions();
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +79,7 @@ class _SettingScreenState extends State<SettingScreen> {
           CustomStatusBar(),
           NameOfScreenHeader(
             name: AppLocale.settings.getString(context),
-            // color: KittyColors.lightGrey238,
+          
           ),
           UserHeaderSetting(
             firstChar: firstChar,
@@ -107,6 +115,11 @@ class _SettingScreenState extends State<SettingScreen> {
             leadingIconName: IconsApp.logoKitty,
             name: 'delete user',
             onTap: removeUser,
+          ),
+          SettingOptionsRow(
+            leadingIconName: IconsApp.logoKitty,
+            name: 'generate transaction',
+            onTap: generateTransactions,
           ),
         ],
       ),

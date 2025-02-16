@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     print("initState HomeScreen");
-    context.read<FinCategoryCubit>().getFinancialCategories();
+    // context.read<FinCategoryCubit>().getFinancialCategories();
     context.read<FinTransactionCubit>().getTransactions();
     firstChar = context.read<UserCubit>().getFirstLetterName();
   }
@@ -46,6 +46,22 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void addNewAction() =>
       Navigator.of(context).pushNamed(AddNewTransactionScreen.routeName);
+
+  // List<List<FinancialTransaction>> filteredTransactionsByDay(
+  //   List<FinancialTransaction> transactions,
+  // ) {
+  //   Map<int, List<FinancialTransaction>> grouped = {};
+
+  //   for (FinancialTransaction transaction in transactions) {
+  //     int dateKey = transaction.date.day;
+  //     if (!grouped.containsKey(dateKey)) {
+  //       grouped[dateKey] = [];
+  //     }
+  //     grouped[dateKey]!.add(transaction);
+  //   }
+
+  //   return grouped.values.toList();
+  // }
 
   List<List<FinancialTransaction>> filteredTransactionsByDay(
     List<FinancialTransaction> transactions,
@@ -60,7 +76,10 @@ class _HomeScreenState extends State<HomeScreen> {
       grouped[dateKey]!.add(transaction);
     }
 
-    return grouped.values.toList();
+    List<int> sortedKeys = grouped.keys.toList();
+    sortedKeys.sort();
+
+    return sortedKeys.map((key) => grouped[key]!).toList();
   }
 
   @override
@@ -86,27 +105,30 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 child: TotalAmount(),
               ),
-              BlocListener<DateCubit, DateState>(
-                listener: (context, stateDate) {
+              BlocBuilder<DateCubit, DateState>(
+                builder: (context, stateDate) {
                   context
                       .read<FinTransactionCubit>()
                       .getTransactions(dateMonth: stateDate.selectedMonth);
-                },
-                child: BlocBuilder<FinTransactionCubit, FinTransactionState>(
-                  builder: (
-                    context,
-                    stateTransactions,
-                  ) {
-                    List<List<FinancialTransaction>> transactionOfDay = [];
-                    transactionOfDay = filteredTransactionsByDay(
-                      stateTransactions.transactions ?? [],
-                    );
+                  print(
+                      'HomeScreen selected date is - ${stateDate.selectedMonth}');
 
-                    return CustomListView(
-                      transactionOfDay: transactionOfDay,
-                    );
-                  },
-                ),
+                  return BlocBuilder<FinTransactionCubit, FinTransactionState>(
+                    builder: (
+                      context,
+                      stateTransactions,
+                    ) {
+                      List<List<FinancialTransaction>> transactionOfDay = [];
+                      transactionOfDay = filteredTransactionsByDay(
+                        stateTransactions.transactions ?? [],
+                      );
+
+                      return CustomListView(
+                        transactionOfDay: transactionOfDay,
+                      );
+                    },
+                  );
+                },
               ),
             ],
           ),
