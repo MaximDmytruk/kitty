@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 import 'package:kitty/widgets/icons/category_icon.dart';
 
 class ListItem extends StatelessWidget {
-  final String firstName;
-  final String secondName;
-  final int value;
-  final int? secondValue;
-  final String iconPath;
-  final Color colorIconBackground;
+  final FinancialTransaction transaction;
 
   const ListItem({
     super.key,
-    required this.firstName,
-    required this.secondName,
-    required this.value,
-    this.secondValue,
-    required this.iconPath,
-    required this.colorIconBackground,
+    required this.transaction,
   });
 
   @override
@@ -27,19 +18,19 @@ class ListItem extends StatelessWidget {
       spacing: 8.0,
       children: [
         CategoryIcon(
-          color: colorIconBackground,
-          iconPath: iconPath,
+          color: transaction.category.colorValue,
+          iconPath: transaction.category.iconPath,
         ),
         Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              firstName,
+              transaction.category.name,
               style: interTextStyle(),
             ),
             Text(
-              secondName,
+              transaction.description ?? '',
               style: interTextStyle(
                 fontSize: 12.0,
                 color: ColorsApp.grey97,
@@ -49,7 +40,7 @@ class ListItem extends StatelessWidget {
         ),
         Spacer(),
         Text(
-          value.toString(),
+          transaction.amount.toString(),
           style: interTextStyle(
             color: ColorsApp.red,
           ),

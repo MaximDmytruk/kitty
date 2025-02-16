@@ -18,21 +18,28 @@ class ListGroup extends StatefulWidget {
 }
 
 class _ListGroupState extends State<ListGroup> {
-  
   String dateOfTransaction = '';
 
   @override
   void initState() {
-   
-    // transaction.sort((a, b) => a.date.compareTo(b.date));
-    // widget.transactions;
-    print('');
-    print(widget.transactions);
-    dateOfTransaction = DateFormat('d/M/y').format(widget.transactions.first.date);
-    print('IN ListGroup' );
-    print(widget.transactions.length);
-    print('');
+    nameOfDate(date: widget.transactions.first.date);
     super.initState();
+  }
+
+  void nameOfDate({required DateTime date}) {
+    DateTime now = DateTime.now();
+
+    if (date.year == now.year &&
+        date.month == now.month &&
+        date.day == now.day) {
+      dateOfTransaction = 'T O D A Y';
+    } else if (date.year == now.year &&
+        date.month == now.month &&
+        date.day == now.day - 1) {
+      dateOfTransaction = 'Y e s t e r d a y';
+    } else {
+      dateOfTransaction = DateFormat('d/M/y').format(date);
+    }
   }
 
   @override
@@ -81,16 +88,16 @@ class _ListGroupState extends State<ListGroup> {
               shrinkWrap: true,
               itemCount: widget.transactions.length,
               itemBuilder: (context, index) {
+                //Reverse for transactions
+                final int reversedIndex =
+                    widget.transactions.length - 1 - index;
+
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                     vertical: 8.0,
                   ),
                   child: ListItem(
-                    firstName: widget.transactions[index].category.name,
-                    secondName: widget.transactions[index].category.name,
-                    value: widget.transactions[index].amount,
-                    iconPath: widget.transactions[index].category.iconPath,
-                    colorIconBackground: widget.transactions[index].category.colorValue,
+                    transaction: widget.transactions[reversedIndex],
                   ),
                 );
               },

@@ -16,12 +16,6 @@ class CustomListView extends StatefulWidget {
 
 class _CustomListViewState extends State<CustomListView> {
   @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Expanded(
       child: ListView.builder(
@@ -34,8 +28,9 @@ class _CustomListViewState extends State<CustomListView> {
           BuildContext context,
           int index,
         ) {
+          final int  reversedIndex = widget.transactionOfDay.length - 1 - index;
           return ListGroup(
-            transactions: widget.transactionOfDay[index],
+            transactions: widget.transactionOfDay[reversedIndex],
           );
         },
       ),

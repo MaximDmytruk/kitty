@@ -106,7 +106,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       transactionOfDay = filteredTransactionsByDay(
                         stateTransactions.transactions ?? [],
                       );
-                    transactionOfDay.reversed;
 
                       return CustomListView(
                         transactionOfDay: transactionOfDay,
