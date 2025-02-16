@@ -112,7 +112,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                               Colors.red,
                               Colors.green,
                               Colors.blue
-                            ], // Ваші кольори
+                            ], 
                             percentages: [40, 30, 30], // Відсотки
                           ),
                         ),
