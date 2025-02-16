@@ -9,6 +9,11 @@ part 'fin_transaction_cubit.freezed.dart';
 class FinTransactionCubit extends Cubit<FinTransactionState> {
   final FinTransactionRepository finTransactionRepository;
 
+  Future<int> getTotalAmountByMonth(
+      {required int categoryId, required int month}) async {
+    return await finTransactionRepository.getTotalAmount(categoryId, month);
+  }
+
   FinTransactionCubit(
     this.finTransactionRepository,
   ) : super(
@@ -30,6 +35,7 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
         await finTransactionRepository.getAllTransactions(
       dateMonth: dateMonth,
     );
+
     emit(
       state.copyWith(
         status: FinTransactionStatus.loaded,

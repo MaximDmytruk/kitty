@@ -10,10 +10,27 @@ import 'package:sqflite/sqflite.dart';
 class FinTransactionRepository {
   final AppDatabase database = AppDatabase.instance;
 
+  Future<int> getTotalAmount(
+    int categoryId,
+    int dateMonth,
+  ) async {
+    Database db = await database.database;
+    String month = '';
+    if (dateMonth < 10) {
+      month = '0$dateMonth';
+    }
+
+    final result = await db.rawQuery('''
+    SELECT COALESCE(SUM(amount), 0) as totalAmount 
+    FROM transactions 
+    WHERE categoryId = ? AND strftime('%m', date) = ? 
+  ''', [categoryId, month]);
+
+    return result.first['totalAmount'] as int;
+  }
+
   Future<void> insertTransaction(FinancialTransaction transaction) async {
     Database db = await database.database;
-  
-     
     await db.insert(
       'transactions',
       {
@@ -25,9 +42,6 @@ class FinTransactionRepository {
       },
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-    print('SAVED IN SQL TRANSACTION');
-    print(transaction);
-    print('');
   }
 
   Future<List<FinancialTransaction>> getAllTransactions({
@@ -81,7 +95,7 @@ class FinTransactionRepository {
   Future<void> insertTestTransactions() async {
     Database db = await database.database;
 
-    final Random random = Random();
+    Random random = Random();
 
     List<FinancialCategory> categories =
         await FinCategoryRepository().getAllCategories();
@@ -109,8 +123,11 @@ class FinTransactionRepository {
       // int day = random.nextInt(29);
       // DateTime date = DateTime(2025, month, day);
 
-      DateTime date =
-          DateTime.now().subtract(Duration(days: random.nextInt(30)));
+      DateTime date = DateTime.now().subtract(
+        Duration(
+          days: random.nextInt(30),
+        ),
+      );
 
       transactions.add({
         'financialAction': financialAction.toString(),
@@ -122,8 +139,8 @@ class FinTransactionRepository {
     }
 
     if (transactions.isNotEmpty) {
-      await db.transaction((txn) async {
-        Batch batch = txn.batch();
+      await db.transaction((trans) async {
+        Batch batch = trans.batch();
         for (Map<String, dynamic> transaction in transactions) {
           batch.insert(
             'transactions',
