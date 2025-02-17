@@ -62,7 +62,6 @@ class AppDatabase {
   ''');
   //TODO:delete забрати !
 
-    //іконка має привязана до кольору.
     print('Categories table transaction');
 
     print('Database created !!!');

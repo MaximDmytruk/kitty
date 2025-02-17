@@ -21,11 +21,11 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   String? errorTexts;
 
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController nameController = TextEditingController(text: 's');
+  final TextEditingController emailController = TextEditingController(text: 's');
+  final TextEditingController passwordController = TextEditingController(text: 's');
   final TextEditingController repeatPasswordController =
-      TextEditingController();
+      TextEditingController(text: 's');
 
   void createAccountAction() {
     if (nameController.text.isEmpty ||

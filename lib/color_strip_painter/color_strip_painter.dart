@@ -16,11 +16,12 @@ class ColorStripPainter extends CustomPainter {
       final Paint paint = Paint()..color = colors[i];
 
       double segmentWidth = size.width * (percentages[i] / 100);
-
+      
       canvas.drawRect(
         Rect.fromLTWH(startX, 0, segmentWidth, size.height),
         paint,
       );
+      
 
       startX += segmentWidth;
     }
