@@ -25,4 +25,6 @@ class IconsApp {
   static final dragIndicator = 'assets/icons/drag_indicator.svg';
   static final addPlusDashedLine = 'assets/icons/add_plus_dashed_line.svg';
   static final selectedOk = 'assets/icons/selected_ok.svg';
+  static final history = 'assets/icons/history.svg';
+  static final northWestArrow = 'assets/icons/north_west_arrow.svg';
 }
