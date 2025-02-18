@@ -14,7 +14,7 @@ class FinancialTransaction with _$FinancialTransaction {
   const factory FinancialTransaction({
     int? id,
     required FinancialAction financialAction,
-    @FinancialCategoryConverter() required FinancialCategory category,
+     required FinancialCategory category,
     required int amount,
     String? description,
     required DateTime date,
@@ -24,17 +24,17 @@ class FinancialTransaction with _$FinancialTransaction {
       _$FinancialTransactionFromJson(json);
 }
 
-class FinancialCategoryConverter
-    implements JsonConverter<FinancialCategory, int> {
-  const FinancialCategoryConverter();
+// class FinancialCategoryConverter
+//     implements JsonConverter<FinancialCategory, int> {
+//   const FinancialCategoryConverter();
 
-  @override
-  FinancialCategory fromJson(int id) {
-    throw UnimplementedError('fromJson( помилка в роботі fromJson!!!)');
-  }
+//   @override
+//   FinancialCategory fromJson(int id) {
+//     throw UnimplementedError('fromJson( помилка в роботі fromJson!!!)');
+//   }
 
-  @override
-  int toJson(FinancialCategory category) {
-    return category.id!;
-  }
-}
+//   @override
+//   int toJson(FinancialCategory category) {
+//     return category.id!;
+//   }
+// }

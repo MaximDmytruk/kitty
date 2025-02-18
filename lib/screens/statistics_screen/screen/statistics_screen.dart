@@ -33,33 +33,37 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
   Map<int, double> categoryPercentages = {}; //відсотки категорій
   Map<int, Color> categoryColors = {}; //Кольори категорій
 
+  @override
+  void initState() {
+    final stateDate = context.read<DateCubit>().state;
+    _loadCategories(stateDate);
+    super.initState();
+  }
+
   Future<void> _calculateCategory(DateState stateDate) async {
     categoryTotalAmount.clear();
     categoryPercentages.clear();
     int overallTotal = 0;
 
     for (FinancialCategory category in financialCategories) {
-      final int totalAmount =
+      int totalAmount =
           await context.read<FinTransactionCubit>().getTotalAmountByMonth(
                 categoryId: category.id!,
                 month: stateDate.selectedMonth,
               );
-      print('TOTAL AMOUNT = $totalAmount');
-
       categoryTotalAmount[category.id!] = totalAmount;
       overallTotal += totalAmount;
-      categoryColors[category.id!] = category.colorValue; //Кольори
+      categoryColors[category.id!] = category.colorValue;
     }
 
-    //відсотки
     if (overallTotal > 0) {
-      categoryTotalAmount.forEach(
-        (categoryId, categoryTotal) {
-          double percentage = (categoryTotal / overallTotal) * 100;
-          categoryPercentages[categoryId] = percentage;
-        },
-      );
+      categoryTotalAmount.forEach((categoryId, categoryTotal) {
+        double percentage = (categoryTotal / overallTotal) * 100;
+        categoryPercentages[categoryId] = percentage;
+      });
     }
+
+    setState(() {});
   }
 
   void _loadCategories(DateState stateDate) {
@@ -77,10 +81,10 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
       backgroundColor: ColorsApp.white,
       body: BlocBuilder<DateCubit, DateState>(
         builder: (context, stateDate) {
-          _loadCategories(stateDate);
-
           return BlocBuilder<FinTransactionCubit, FinTransactionState>(
             builder: (context, stateTransaction) {
+              print('');
+              print(categoryPercentages);
               return Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
@@ -103,24 +107,21 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0,
-                        ),
-                        child: categoryColors.isNotEmpty &&
-                                categoryPercentages.isNotEmpty
-                            ? CustomPaint(
-                                size: Size(double.infinity, 36),
-                                painter: ColorStripPainter(
-                                  colors: categoryColors.values.toList(),
-                                  percentages:
-                                      categoryPercentages.values.toList(),
-                                ),
-                              )
-                            : SizedBox(),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                          ),
+                          child: CustomPaint(
+                            size: Size(double.infinity, 36),
+                            painter: ColorStripPainter(
+                              colors: categoryColors.values.toList(),
+                              percentages: categoryPercentages.values.toList(),
+                            ),
+                          )),
+                      SizedBox(
+                        height: 16.0,
                       ),
-                      SizedBox(height: 16.0),
                       Padding(
-                        padding:  EdgeInsets.symmetric(
+                        padding: EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 16.0),
                         child: NameOfSection(
                           name: AppLocale.detail.getString(context),
@@ -145,8 +146,8 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                             double percentage =
                                 categoryPercentages[category.id!] ?? 0;
 
-                                print('TOTAL in widgety = $totalAmount');
-                                 print('TOTAL  percwnte in widget = $percentage');
+                            print('TOTAL in widgety = $totalAmount');
+                            print('TOTAL  percwnte in widget = $percentage');
 
                             return CategoryResultItem(
                               category: category,

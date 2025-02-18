@@ -12,8 +12,8 @@ _$FinancialTransactionImpl _$$FinancialTransactionImplFromJson(
       id: (json['id'] as num?)?.toInt(),
       financialAction:
           $enumDecode(_$FinancialActionEnumMap, json['financialAction']),
-      category: const FinancialCategoryConverter()
-          .fromJson((json['category'] as num).toInt()),
+      category:
+          FinancialCategory.fromJson(json['category'] as Map<String, dynamic>),
       amount: (json['amount'] as num).toInt(),
       description: json['description'] as String?,
       date: DateTime.parse(json['date'] as String),
@@ -24,7 +24,7 @@ Map<String, dynamic> _$$FinancialTransactionImplToJson(
     <String, dynamic>{
       'id': instance.id,
       'financialAction': _$FinancialActionEnumMap[instance.financialAction]!,
-      'category': const FinancialCategoryConverter().toJson(instance.category),
+      'category': instance.category,
       'amount': instance.amount,
       'description': instance.description,
       'date': instance.date.toIso8601String(),
