@@ -31,12 +31,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   late String firstChar;
 
-  //TODO: заупскається 2 рази!
   @override
   void initState() {
     super.initState();
     print("initState HomeScreen");
-    // context.read<FinCategoryCubit>().getFinancialCategories();
+    context.read<FinCategoryCubit>().getFinancialCategories();
     context.read<FinTransactionCubit>().getTransactions();
     firstChar = context.read<UserCubit>().getFirstLetterName();
   }

@@ -30,6 +30,7 @@ class _CustomListViewState extends State<CustomListView> {
         ) {
           final int  reversedIndex = widget.transactionOfDay.length - 1 - index;
           return ListGroup(
+            key: ValueKey(widget.transactionOfDay.first.first.date), // перевірити чи все ок з довжиною.
             transactions: widget.transactionOfDay[reversedIndex],
           );
         },
@@ -37,3 +38,4 @@ class _CustomListViewState extends State<CustomListView> {
     );
   }
 }
+//TODO: appbar колір під час роботи listView!

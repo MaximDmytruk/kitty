@@ -60,10 +60,19 @@ class AppDatabase {
       FOREIGN KEY (categoryId) REFERENCES categories (id) ON DELETE CASCADE
   )
   ''');
-  //TODO:delete забрати !
+  print('Categories table transaction');
 
+  //   await db.execute('''
+  //   CREATE TABLE IF NOT EXISTS history (
+  //     id INTEGER PRIMARY KEY AUTOINCREMENT,
+  //     name TEXT NOT NULL
+  //   )
+  // ''');
+
+  
+  
+    print('Categories table created');//TODO:delete забрати !
     print('Categories table transaction');
-
     print('Database created !!!');
   }
 

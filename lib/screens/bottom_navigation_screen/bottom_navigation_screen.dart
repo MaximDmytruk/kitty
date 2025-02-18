@@ -13,21 +13,20 @@ import '../setting_screen/screen/setting_screen.dart';
 class BottomNavigationScreen extends StatefulWidget {
   const BottomNavigationScreen({super.key});
 
-  static const String routeName = '/bottom_navigation_screen';
+  static const String routeName = 'bottom_navigation_screen';
 
   @override
   State<BottomNavigationScreen> createState() => _BottomNavigationScreenState();
 }
 
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
-  
   int _selectedPage = 1;
-
-  // static const List<Widget> _widgetOptions = [
-  //   StatisticsScreen(),
-  //   HomeScreen(),
-  //   SettingScreen(),
-  // ];
+  
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   void onSelectedTab(int index) {
     if (_selectedPage == index) return;

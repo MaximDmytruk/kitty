@@ -22,8 +22,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String? errorTexts;
 
   final TextEditingController nameController = TextEditingController(text: 's');
-  final TextEditingController emailController = TextEditingController(text: 's');
-  final TextEditingController passwordController = TextEditingController(text: 's');
+  final TextEditingController emailController =
+      TextEditingController(text: 's');
+  final TextEditingController passwordController =
+      TextEditingController(text: 's');
   final TextEditingController repeatPasswordController =
       TextEditingController(text: 's');
 
@@ -63,14 +65,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // resizeToAvoidBottomInset: true,
       backgroundColor: ColorsApp.lightGrey250,
       body: BlocListener<UserCubit, UserState>(
         listener: (context, state) {
           if (state.status == UserStatus.authenticated) {
-            Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
+            Navigator.of(context).pushReplacementNamed(
+              BottomNavigationScreen.routeName,
+            );
           }
-
         },
         child: ListView(
           children: [
@@ -80,7 +82,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ),
             Expanded(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 16.0,
+                ),
                 child: Column(
                   spacing: 12,
                   crossAxisAlignment: CrossAxisAlignment.start,

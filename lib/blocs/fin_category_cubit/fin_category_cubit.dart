@@ -14,11 +14,9 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
       : super(FinCategoryState(status: FinCategoryStatus.initial));
 
   Future<void> getFinancialCategories() async {
-    print('IN getFinancialCategories Cubit');
     List<FinancialCategory> categories = await repository.getAllCategories();
 
     if (categories.isNotEmpty) {
-      print('NOT FIRST');
       emit(
         state.copyWith(
           status: FinCategoryStatus.loaded,
@@ -26,7 +24,6 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
         ),
       );
     } else if (state.status == FinCategoryStatus.initial) {
-      print('First Enter');
       repository.initDefaultCategories();
       categories = await repository.getAllCategories();
       emit(
@@ -49,10 +46,7 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
   Future<void> addCategory(FinancialCategory category) async {
     emit(state.copyWith(status: FinCategoryStatus.loading));
 
-    final FinancialCategory savedCategory =
-        await repository.addNewCategory(category);
-
-    print('savedCategory haveId -  ${savedCategory.id}');
+    await repository.addNewCategory(category);
 
     List<FinancialCategory> categories = await repository.getAllCategories();
 

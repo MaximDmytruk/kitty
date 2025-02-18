@@ -66,7 +66,7 @@ class _AuthScreenState extends State<AuthScreen> {
       body: BlocListener<UserCubit, UserState>(
         listener: (context, state) {
           if (state.status == UserStatus.authenticated) {
-            Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
+           // Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
           }
         },
         child: SingleChildScrollView(

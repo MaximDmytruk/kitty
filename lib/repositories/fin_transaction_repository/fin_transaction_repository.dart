@@ -26,6 +26,16 @@ class FinTransactionRepository {
     WHERE categoryId = ? AND strftime('%m', date) = ? 
   ''', [categoryId, month]);
 
+    // final result2 = await db.query(
+    //   'transactions',
+    //   columns: ['amount'],
+    //   where: 'categoryId',
+    //   whereArgs: [categoryId, month],
+    // );
+
+    // print('RESULT TEST :');
+    // print(result2.first);
+    // print('');
     return result.first['totalAmount'] as int;
   }
 

@@ -126,73 +126,9 @@ class UserCubit extends Cubit<UserState> {
     );
   }
 
-  // void addNewCategory(FinancialCategory newCategory) {
-  //   state.user!.categoryService.addNewCategory(newCategory);
-
-  //   showToast(text: 'New category added successfully!');
-  //   emit(
-  //     state.copyWith(
-  //       user: state.user,
-  //       status: UserStatus.authenticated,
-  //     ),
-  //   );
-  // }
-
-  // void addFinancialTransaction(FinancialTransaction finTransaction) {
-  //   if (state.user != null) {
-  //     state.user!.finTransaction.add(finTransaction);
-  //     emit(
-  //       state.copyWith(
-  //         user: state.user,
-  //         status: UserStatus.authenticated,
-  //       ),
-  //     );
-  //   } else {
-  //     emit(
-  //       state.copyWith(
-  //           status: UserStatus.error, errorText: 'No user registered'),
-  //     );
-  //   }
-  //   print(state.user!.finTransaction.length);
-  // }
-
   String getUserName() => state.user?.name ?? 'No Name';
   String getFirstLetterName() => state.user?.name[0].toUpperCase() ?? '-';
   String getUserEmail() => state.user?.email ?? 'No Email';
-
-  // List<FinancialCategory> getFinancialCategory() {
-  //   if (state.user != null) {
-  //     List<FinancialCategory> categories =
-  //         state.user!.categoryService.getCategories();
-
-  //     return categories;
-  //   } else {
-  //     emit(
-  //       state.copyWith(
-  //         status: UserStatus.error,
-  //         errorText: '"No user registered"',
-  //       ),
-  //     );
-  //     List<FinancialCategory> error = [];
-  //     return error;
-  //   }
-  // }
-
-  // List<FinancialTransaction> getFinancialTransaction() {
-  //   if (state.user != null) {
-  //     List<FinancialTransaction> transactions = state.user!.finTransaction;
-  //     return transactions;
-  //   } else {
-  //     emit(
-  //       state.copyWith(
-  //         status: UserStatus.error,
-  //         errorText: '"No user registered"',
-  //       ),
-  //     );
-  //     List<FinancialTransaction> error = [];
-  //     return error;
-  //   }
-  // }
 
   void showToast({required String text}) {
     BotToast.showCustomText(

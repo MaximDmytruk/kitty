@@ -22,6 +22,7 @@ FinancialTransaction _$FinancialTransactionFromJson(Map<String, dynamic> json) {
 mixin _$FinancialTransaction {
   int? get id => throw _privateConstructorUsedError;
   FinancialAction get financialAction => throw _privateConstructorUsedError;
+  @FinancialCategoryConverter()
   FinancialCategory get category => throw _privateConstructorUsedError;
   int get amount => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
@@ -46,7 +47,7 @@ abstract class $FinancialTransactionCopyWith<$Res> {
   $Res call(
       {int? id,
       FinancialAction financialAction,
-      FinancialCategory category,
+      @FinancialCategoryConverter() FinancialCategory category,
       int amount,
       String? description,
       DateTime date});
@@ -127,7 +128,7 @@ abstract class _$$FinancialTransactionImplCopyWith<$Res>
   $Res call(
       {int? id,
       FinancialAction financialAction,
-      FinancialCategory category,
+      @FinancialCategoryConverter() FinancialCategory category,
       int amount,
       String? description,
       DateTime date});
@@ -191,7 +192,7 @@ class _$FinancialTransactionImpl implements _FinancialTransaction {
   const _$FinancialTransactionImpl(
       {this.id,
       required this.financialAction,
-      required this.category,
+      @FinancialCategoryConverter() required this.category,
       required this.amount,
       this.description,
       required this.date});
@@ -204,6 +205,7 @@ class _$FinancialTransactionImpl implements _FinancialTransaction {
   @override
   final FinancialAction financialAction;
   @override
+  @FinancialCategoryConverter()
   final FinancialCategory category;
   @override
   final int amount;
@@ -260,7 +262,7 @@ abstract class _FinancialTransaction implements FinancialTransaction {
   const factory _FinancialTransaction(
       {final int? id,
       required final FinancialAction financialAction,
-      required final FinancialCategory category,
+      @FinancialCategoryConverter() required final FinancialCategory category,
       required final int amount,
       final String? description,
       required final DateTime date}) = _$FinancialTransactionImpl;
@@ -273,6 +275,7 @@ abstract class _FinancialTransaction implements FinancialTransaction {
   @override
   FinancialAction get financialAction;
   @override
+  @FinancialCategoryConverter()
   FinancialCategory get category;
   @override
   int get amount;

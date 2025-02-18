@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/blocs/fin_category_cubit/fin_category_cubit.dart';
+import 'package:kitty/screens/bottom_navigation_screen/bottom_navigation_screen.dart';
 import 'package:kitty/utils/basic_icons.dart';
 import 'package:kitty/models/financial_category/financial_category.dart';
 import 'package:kitty/models/icon/icon.dart';
@@ -101,7 +102,7 @@ class _AddNewCategoryState extends State<AddNewCategory> {
         );
         context.read<FinCategoryCubit>().addCategory(newCategory);
 
-        Navigator.of(context).pop();
+        Navigator.of(context).popAndPushNamed(BottomNavigationScreen.routeName);
       }
     }
   }

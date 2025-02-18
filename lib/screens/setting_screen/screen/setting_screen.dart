@@ -30,8 +30,6 @@ class _SettingScreenState extends State<SettingScreen> {
 
   @override
   void initState() {
-    print('SETTING SCREEN');
-    context.read<FinCategoryCubit>().getFinancialCategories();
     userName = context.read<UserCubit>().getUserName();
     firstChar = context.read<UserCubit>().getFirstLetterName();
     userEmail = context.read<UserCubit>().getUserEmail();
