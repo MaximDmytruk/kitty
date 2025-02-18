@@ -69,7 +69,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       body: BlocListener<UserCubit, UserState>(
         listener: (context, state) {
           if (state.status == UserStatus.authenticated) {
-            Navigator.of(context).pushReplacementNamed(
+            Navigator.of(context).pushNamed(
               BottomNavigationScreen.routeName,
             );
           }

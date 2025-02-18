@@ -39,10 +39,12 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
     int overallTotal = 0;
 
     for (FinancialCategory category in financialCategories) {
-      final int totalAmount = await context
-          .read<FinTransactionCubit>()
-          .getTotalAmountByMonth(
-              categoryId: category.id!, month: stateDate.selectedMonth);
+      final int totalAmount =
+          await context.read<FinTransactionCubit>().getTotalAmountByMonth(
+                categoryId: category.id!,
+                month: stateDate.selectedMonth,
+              );
+      print('TOTAL AMOUNT = $totalAmount');
 
       categoryTotalAmount[category.id!] = totalAmount;
       overallTotal += totalAmount;
@@ -63,6 +65,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
   void _loadCategories(DateState stateDate) {
     financialCategories =
         context.read<FinCategoryCubit>().state.categories ?? [];
+
     _calculateCategory(stateDate);
   }
 
@@ -103,20 +106,21 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                         padding: const EdgeInsets.symmetric(
                           horizontal: 16.0,
                         ),
-                        child: CustomPaint(
-                          size: Size(double.infinity, 36),
-                          //Кольорова статистика
-
-                          painter: ColorStripPainter(
-                            colors: categoryColors.values.toList(),
-                            percentages:
-                                categoryPercentages.values.toList(), // Відсотки
-                          ),
-                        ),
+                        child: categoryColors.isNotEmpty &&
+                                categoryPercentages.isNotEmpty
+                            ? CustomPaint(
+                                size: Size(double.infinity, 36),
+                                painter: ColorStripPainter(
+                                  colors: categoryColors.values.toList(),
+                                  percentages:
+                                      categoryPercentages.values.toList(),
+                                ),
+                              )
+                            : SizedBox(),
                       ),
                       SizedBox(height: 16.0),
                       Padding(
-                        padding: const EdgeInsets.symmetric(
+                        padding:  EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 16.0),
                         child: NameOfSection(
                           name: AppLocale.detail.getString(context),
@@ -134,12 +138,15 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                             );
                           },
                           itemBuilder: (BuildContext context, int index) {
-                            final FinancialCategory category =
+                            FinancialCategory category =
                                 financialCategories[index];
-                            final int totalAmount =
+                            int totalAmount =
                                 categoryTotalAmount[category.id!] ?? 0;
-                            final double percentage =
+                            double percentage =
                                 categoryPercentages[category.id!] ?? 0;
+
+                                print('TOTAL in widgety = $totalAmount');
+                                 print('TOTAL  percwnte in widget = $percentage');
 
                             return CategoryResultItem(
                               category: category,
