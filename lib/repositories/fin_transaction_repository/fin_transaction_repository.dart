@@ -10,6 +10,18 @@ import 'package:sqflite/sqflite.dart';
 class FinTransactionRepository {
   final AppDatabase database = AppDatabase.instance;
 
+  //Some 
+  Future<List<FinancialTransaction>> searchTransactions(String query) async {
+    Database db = await database.database;
+    final List<Map<String, dynamic>> maps = await db.query(
+      'transactions',
+      where: 'description LIKE ? OR amount LIKE ?',
+      whereArgs: ['%$query%', '%$query%'],
+    );
+
+    return maps.map((map) => FinancialTransaction.fromJson(map)).toList();
+  }
+
   Future<int> getTotalAmount(
     int categoryId,
     int dateMonth,
