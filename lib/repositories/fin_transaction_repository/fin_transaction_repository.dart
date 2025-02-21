@@ -10,18 +10,86 @@ import 'package:sqflite/sqflite.dart';
 class FinTransactionRepository {
   final AppDatabase database = AppDatabase.instance;
 
-  // //Some
-  // Future<List<FinancialTransaction>> searchTransactions(String query) async {
-  //   Database db = await database.database;
-  //   final List<Map<String, dynamic>> maps = await db.query(
-  //     'transactions',
-  //     where: 'description LIKE ? OR amount LIKE ?',
-  //     whereArgs: ['%$query%', '%$query%'],
-  //   );
+  Future<List<FinancialTransaction>> searchTransactions(String query) async {
+    Database db = await database.database;
 
-  //   return maps.map((map) => FinancialTransaction.fromJson(map)).toList();
-  // }
+    final List<Map<String, dynamic>> result = await db.rawQuery(
+      '''
+      SELECT t.*, c.id as categoryId, c.name, c.colorValue, c.iconPath, c.position 
+      FROM transactions t 
+      JOIN categories c ON t.categoryId = c.id
+      WHERE description LIKE ?''',
+      ['%$query%'],
+    );
   
+    return result.map((row) {
+      final FinancialCategory category = FinancialCategory(
+        id: row['categoryId'] as int,
+        name: row['name'] as String,
+        colorValue: Color(row['colorValue'] as int),
+        iconPath: row['iconPath'] as String,
+        position: row['position'] as int?,
+      );
+
+      return FinancialTransaction(
+        id: row['id'] as int?,
+        financialAction: FinancialAction.values
+            .firstWhere((e) => e.toString() == row['financialAction']),
+        category: category,
+        amount: row['amount'] as int,
+        description: row['description'] as String?,
+        date: DateTime.parse(row['date'] as String),
+      );
+    }).toList();
+  }
+
+  Future<List<FinancialTransaction>> getAllTransactions({
+    int? dateMonth,
+  }) async {
+    Database db = await database.database;
+    final List<Map<String, dynamic>> result;
+
+    if (dateMonth == null) {
+      result = await db.rawQuery('''
+      SELECT t.*, c.id as categoryId, c.name, c.colorValue, c.iconPath, c.position 
+      FROM transactions t 
+      JOIN categories c ON t.categoryId = c.id
+    ''');
+    } else {
+      String month = '';
+      if (dateMonth < 10) {
+        month = '0$dateMonth';
+      }
+ 
+      result = await db.rawQuery('''
+      SELECT t.*, c.id as categoryId, c.name, c.colorValue, c.iconPath, c.position 
+      FROM transactions t 
+      JOIN categories c ON t.categoryId = c.id
+      WHERE strftime('%m', date) = '$month'
+    ''');
+    }
+
+    return result.map((row) {
+      final FinancialCategory category = FinancialCategory(
+        id: row['categoryId'] as int,
+        name: row['name'] as String,
+        colorValue: Color(row['colorValue'] as int),
+        iconPath: row['iconPath'] as String,
+        position: row['position'] as int?,
+      );
+
+      return FinancialTransaction(
+        id: row['id'] as int?,
+        financialAction: FinancialAction.values
+            .firstWhere((e) => e.toString() == row['financialAction']),
+        category: category,
+        amount: row['amount'] as int,
+        description: row['description'] as String?,
+        date: DateTime.parse(row['date'] as String),
+      );
+    }).toList();
+  }
+
   Future<int> getTotalAmount(
     int categoryId,
     int dateMonth,
@@ -53,53 +121,6 @@ class FinTransactionRepository {
       },
       conflictAlgorithm: ConflictAlgorithm.replace,
     );
-  }
-
-  Future<List<FinancialTransaction>> getAllTransactions({
-    int? dateMonth,
-  }) async {
-    Database db = await database.database;
-    final List<Map<String, dynamic>> result;
-
-    if (dateMonth == null) {
-      result = await db.rawQuery('''
-      SELECT t.*, c.id as categoryId, c.name, c.colorValue, c.iconPath, c.position 
-      FROM transactions t 
-      JOIN categories c ON t.categoryId = c.id
-    ''');
-    } else {
-      String month = '';
-      if (dateMonth < 10) {
-        month = '0$dateMonth';
-      }
-
-      result = await db.rawQuery('''
-      SELECT t.*, c.id as categoryId, c.name, c.colorValue, c.iconPath, c.position 
-      FROM transactions t 
-      JOIN categories c ON t.categoryId = c.id
-      WHERE strftime('%m', date) = '$month'
-    ''');
-    }
-
-    return result.map((row) {
-      final FinancialCategory category = FinancialCategory(
-        id: row['categoryId'] as int,
-        name: row['name'] as String,
-        colorValue: Color(row['colorValue'] as int),
-        iconPath: row['iconPath'] as String,
-        position: row['position'] as int?,
-      );
-
-      return FinancialTransaction(
-        id: row['id'] as int?,
-        financialAction: FinancialAction.values
-            .firstWhere((e) => e.toString() == row['financialAction']),
-        category: category,
-        amount: row['amount'] as int,
-        description: row['description'] as String?,
-        date: DateTime.parse(row['date'] as String),
-      );
-    }).toList();
   }
 
   //TODO: TESTING TRANSACTIONS:

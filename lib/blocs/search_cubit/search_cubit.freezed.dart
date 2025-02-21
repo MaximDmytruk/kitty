@@ -20,6 +20,8 @@ mixin _$SearchState {
   List<String> get searchHistory => throw _privateConstructorUsedError;
   String? get errorText => throw _privateConstructorUsedError;
   String? get toastText => throw _privateConstructorUsedError;
+  List<FinancialTransaction> get transactions =>
+      throw _privateConstructorUsedError;
 
   /// Create a copy of SearchState
   /// with the given fields replaced by the non-null parameter values.
@@ -38,7 +40,8 @@ abstract class $SearchStateCopyWith<$Res> {
       {SearchStatus status,
       List<String> searchHistory,
       String? errorText,
-      String? toastText});
+      String? toastText,
+      List<FinancialTransaction> transactions});
 }
 
 /// @nodoc
@@ -60,6 +63,7 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
     Object? searchHistory = null,
     Object? errorText = freezed,
     Object? toastText = freezed,
+    Object? transactions = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -78,6 +82,10 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
           ? _value.toastText
           : toastText // ignore: cast_nullable_to_non_nullable
               as String?,
+      transactions: null == transactions
+          ? _value.transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<FinancialTransaction>,
     ) as $Val);
   }
 }
@@ -94,7 +102,8 @@ abstract class _$$SearchStateImplCopyWith<$Res>
       {SearchStatus status,
       List<String> searchHistory,
       String? errorText,
-      String? toastText});
+      String? toastText,
+      List<FinancialTransaction> transactions});
 }
 
 /// @nodoc
@@ -114,6 +123,7 @@ class __$$SearchStateImplCopyWithImpl<$Res>
     Object? searchHistory = null,
     Object? errorText = freezed,
     Object? toastText = freezed,
+    Object? transactions = null,
   }) {
     return _then(_$SearchStateImpl(
       status: null == status
@@ -132,6 +142,10 @@ class __$$SearchStateImplCopyWithImpl<$Res>
           ? _value.toastText
           : toastText // ignore: cast_nullable_to_non_nullable
               as String?,
+      transactions: null == transactions
+          ? _value._transactions
+          : transactions // ignore: cast_nullable_to_non_nullable
+              as List<FinancialTransaction>,
     ));
   }
 }
@@ -143,8 +157,10 @@ class _$SearchStateImpl implements _SearchState {
       {this.status = SearchStatus.initial,
       final List<String> searchHistory = const [],
       this.errorText,
-      this.toastText})
-      : _searchHistory = searchHistory;
+      this.toastText,
+      final List<FinancialTransaction> transactions = const []})
+      : _searchHistory = searchHistory,
+        _transactions = transactions;
 
   @override
   @JsonKey()
@@ -162,10 +178,18 @@ class _$SearchStateImpl implements _SearchState {
   final String? errorText;
   @override
   final String? toastText;
+  final List<FinancialTransaction> _transactions;
+  @override
+  @JsonKey()
+  List<FinancialTransaction> get transactions {
+    if (_transactions is EqualUnmodifiableListView) return _transactions;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_transactions);
+  }
 
   @override
   String toString() {
-    return 'SearchState(status: $status, searchHistory: $searchHistory, errorText: $errorText, toastText: $toastText)';
+    return 'SearchState(status: $status, searchHistory: $searchHistory, errorText: $errorText, toastText: $toastText, transactions: $transactions)';
   }
 
   @override
@@ -179,7 +203,9 @@ class _$SearchStateImpl implements _SearchState {
             (identical(other.errorText, errorText) ||
                 other.errorText == errorText) &&
             (identical(other.toastText, toastText) ||
-                other.toastText == toastText));
+                other.toastText == toastText) &&
+            const DeepCollectionEquality()
+                .equals(other._transactions, _transactions));
   }
 
   @override
@@ -188,7 +214,8 @@ class _$SearchStateImpl implements _SearchState {
       status,
       const DeepCollectionEquality().hash(_searchHistory),
       errorText,
-      toastText);
+      toastText,
+      const DeepCollectionEquality().hash(_transactions));
 
   /// Create a copy of SearchState
   /// with the given fields replaced by the non-null parameter values.
@@ -204,7 +231,8 @@ abstract class _SearchState implements SearchState {
       {final SearchStatus status,
       final List<String> searchHistory,
       final String? errorText,
-      final String? toastText}) = _$SearchStateImpl;
+      final String? toastText,
+      final List<FinancialTransaction> transactions}) = _$SearchStateImpl;
 
   @override
   SearchStatus get status;
@@ -214,6 +242,8 @@ abstract class _SearchState implements SearchState {
   String? get errorText;
   @override
   String? get toastText;
+  @override
+  List<FinancialTransaction> get transactions;
 
   /// Create a copy of SearchState
   /// with the given fields replaced by the non-null parameter values.

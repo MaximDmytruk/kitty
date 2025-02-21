@@ -14,5 +14,6 @@ class SearchState with _$SearchState {
     @Default([]) List<String> searchHistory,
     String? errorText,
     String? toastText,
+    @Default([]) List<FinancialTransaction> transactions,
   }) = _SearchState;
 }

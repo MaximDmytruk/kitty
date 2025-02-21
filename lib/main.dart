@@ -30,10 +30,13 @@ Future<void> main() async {
   await FlutterLocalization.instance.ensureInitialized();
   await Hive.initFlutter();
 
-  final searchHistoryRepository = await SearchHistoryRepository.init();
+  final SearchHistoryRepository searchHistoryRepository =
+      await SearchHistoryRepository.init();
 
   runApp(
-    MyApp(searchHistoryRepository: searchHistoryRepository),
+    MyApp(
+      searchHistoryRepository: searchHistoryRepository,
+    ),
   );
 }
 
@@ -48,7 +51,8 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final FlutterLocalization _localization = FlutterLocalization.instance;
-
+  final FinTransactionRepository finTransactionRepository =
+      FinTransactionRepository();
   @override
   void initState() {
     _localization.init(
@@ -82,7 +86,7 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => FinTransactionCubit(
-            FinTransactionRepository(),
+            finTransactionRepository,
           ),
         ),
         BlocProvider(
@@ -91,6 +95,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(
           create: (context) => SearchCubit(
             widget.searchHistoryRepository,
+            finTransactionRepository,
           ),
         ),
       ],

@@ -3,17 +3,14 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/models/financial_category/financial_category.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
-
-import 'package:kitty/styles/icons/category_icons.dart';
-import 'package:kitty/testing/testing_transaction.dart';
 import 'package:kitty/widgets/buttons/tag_button.dart';
 
 class SearchAppBar extends StatefulWidget {
   final TextEditingController textController;
   final List<FinancialCategory> categories;
-  Function? onSubmitted;
+  final Function? onSubmitted;
 
-  SearchAppBar({
+  const SearchAppBar({
     super.key,
     required this.textController,
     required this.categories,
@@ -88,10 +85,10 @@ class _SearchAppBarState extends State<SearchAppBar> {
             height: 48.0,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: categories.length,
+              itemCount: widget.categories.length,
               itemBuilder: (context, index) => TagButton(
-                iconWidget: SvgPicture.asset(categories[index].iconPath),
-                name: categories[index].name,
+                iconWidget: SvgPicture.asset(widget.categories[index].iconPath),
+                name: widget.categories[index].name,
               ),
             ),
           )

@@ -9,11 +9,12 @@ import 'package:kitty/blocs/user_cubit/user_cubit.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/screens/add_new_transaction/add_new_transaction_screen.dart';
-import 'package:kitty/screens/home_screen/widgets/custom_list_view.dart';
+import 'package:kitty/widgets/list_views/custom_list_view.dart';
 import 'package:kitty/screens/home_screen/widgets/total_amount.dart';
 import 'package:kitty/screens/search_screen/screen/search_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
+import 'package:kitty/utils/filteredTransactionsByDay.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
 import 'package:kitty/widgets/app_bars/custom_status_bar.dart';
 import '../../../widgets/date_picker/custom_date_picker.dart';
@@ -40,30 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
     firstChar = context.read<UserCubit>().getFirstLetterName();
   }
 
-  void searchAction() =>
-      Navigator.of(context).pushNamed(SearchScreen.routeName);
+  void searchAction() => Navigator.of(context).pushNamed(
+        SearchScreen.routeName,
+      );
 
-  void addNewAction() =>
-      Navigator.of(context).pushNamed(AddNewTransactionScreen.routeName);
-
-  List<List<FinancialTransaction>> filteredTransactionsByDay(
-    List<FinancialTransaction> transactions,
-  ) {
-    Map<int, List<FinancialTransaction>> grouped = {};
-
-    for (FinancialTransaction transaction in transactions) {
-      int dateKey = transaction.date.day;
-      if (!grouped.containsKey(dateKey)) {
-        grouped[dateKey] = [];
-      }
-      grouped[dateKey]!.add(transaction);
-    }
-
-    List<int> sortedKeys = grouped.keys.toList();
-    sortedKeys.sort();
-
-    return sortedKeys.map((key) => grouped[key]!).toList();
-  }
+  void addNewAction() => Navigator.of(context).pushNamed(
+        AddNewTransactionScreen.routeName,
+      );
 
   @override
   Widget build(BuildContext context) {
