@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/blocs/fin_category_cubit/fin_category_cubit.dart';
 import 'package:kitty/blocs/search_cubit/search_cubit.dart';
 import 'package:kitty/models/financial_category/financial_category.dart';
+import 'package:kitty/screens/search_screen/widgets/history_list_view.dart';
 import 'package:kitty/screens/search_screen/widgets/search_app_bar.dart';
 import 'package:kitty/screens/search_screen/widgets/search_history_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -31,12 +32,10 @@ class _SearchScreenState extends State<SearchScreen> {
 
   void onSubmitted(String value) {
     context.read<SearchCubit>().saveSearchQuery(value);
-    print('Tapp on screen --------------');
   }
 
   void historyNameAction(String name) {
     searchTextController.text = name;
-    print('HISTORY TAPPED');
     FocusScope.of(context).requestFocus(
       FocusNode(),
     );
@@ -60,24 +59,9 @@ class _SearchScreenState extends State<SearchScreen> {
                     categories: categories,
                     onSubmitted: onSubmitted,
                   ),
-                  Expanded(
-                    child: ListView.separated(
-                      padding: EdgeInsets.only(
-                        left: 16.0,
-                        right: 16.0,
-                        top: 20.0,
-                      ),
-                      separatorBuilder: (context, index) => SizedBox(
-                        height: 12.0,
-                      ),
-                      itemCount: searchHistory.length,
-                      itemBuilder: (context, index) {
-                        return SearchHistoryRow(
-                          name: searchHistory[index],
-                          onTap: historyNameAction,
-                        );
-                      },
-                    ),
+                  HistoryListView(
+                    searchHistory: searchHistory,
+                    onTap: historyNameAction,
                   ),
                 ],
               );
