@@ -22,19 +22,17 @@ class ManageCategoriesScreen extends StatefulWidget {
 }
 
 class _ManageCategoriesScreenState extends State<ManageCategoriesScreen> {
-  @override
-  void initState() {
-    
-    super.initState();
-  }
-
   void editAction(
     FinancialCategory category,
     List<FinancialCategory> listCategories,
   ) async {
-    await Navigator.of(context).push(MaterialPageRoute(
-      builder: (context) => AddNewCategory(initialCategory: category),
-    ));
+    await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => AddNewCategory(
+          initialCategory: category,
+        ),
+      ),
+    );
   }
 
   void addNewCategoryAction() =>

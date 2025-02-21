@@ -2,6 +2,7 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:kitty/blocs/cubit/statisctic_cubit.dart';
 import 'package:kitty/blocs/fin_category_cubit/fin_category_cubit.dart';
 import 'package:kitty/blocs/date_cubit/date_cubit.dart';
 import 'package:kitty/blocs/fin_transaction_cubit/fin_transaction_cubit.dart';
@@ -75,6 +76,9 @@ class _MyAppState extends State<MyApp> {
           create: (context) => FinTransactionCubit(
             FinTransactionRepository(),
           ),
+        ),
+        BlocProvider(
+          create: (context) => StatiscticCubit(),
         ),
       ],
       child: MaterialApp(

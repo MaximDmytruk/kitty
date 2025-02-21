@@ -17,8 +17,10 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
           ),
         );
 
-  Future<int> getTotalAmountByMonth(
-      {required int categoryId, required int month}) async {
+  Future<int> getTotalAmountByMonth({
+    required int categoryId,
+    required int month,
+  }) async {
     return await finTransactionRepository.getTotalAmount(
       categoryId,
       month,
