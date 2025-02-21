@@ -7,13 +7,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:kitty/main.dart';
+import 'package:kitty/repositories/search_history_repository/search_history_repository.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+    await Hive.initFlutter();
+    final searchHistoryRepository = await SearchHistoryRepository.init();
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester
+        .pumpWidget(MyApp(searchHistoryRepository: searchHistoryRepository));
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

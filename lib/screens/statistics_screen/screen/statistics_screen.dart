@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kitty/blocs/cubit/statisctic_cubit.dart';
+import 'package:kitty/blocs/statistic_cubit/statisctic_cubit.dart';
 import 'package:kitty/blocs/date_cubit/date_cubit.dart';
 import 'package:kitty/blocs/fin_category_cubit/fin_category_cubit.dart';
 import 'package:kitty/blocs/fin_transaction_cubit/fin_transaction_cubit.dart';

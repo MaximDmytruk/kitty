@@ -10,8 +10,13 @@ part 'fin_category_cubit.freezed.dart';
 class FinCategoryCubit extends Cubit<FinCategoryState> {
   final FinCategoryRepository repository;
 
-  FinCategoryCubit(this.repository)
-      : super(FinCategoryState(status: FinCategoryStatus.initial));
+  FinCategoryCubit(
+    this.repository,
+  ) : super(
+          FinCategoryState(
+            status: FinCategoryStatus.initial,
+          ),
+        );
 
   Future<void> getFinancialCategories() async {
     List<FinancialCategory> categories = await repository.getAllCategories();

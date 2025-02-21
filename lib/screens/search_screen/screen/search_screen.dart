@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/blocs/fin_category_cubit/fin_category_cubit.dart';
+import 'package:kitty/blocs/search_cubit/search_cubit.dart';
 import 'package:kitty/models/financial_category/financial_category.dart';
 import 'package:kitty/screens/search_screen/widgets/search_app_bar.dart';
+import 'package:kitty/screens/search_screen/widgets/search_history_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/font/fontstyle_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
@@ -21,59 +23,65 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController searchTextController = TextEditingController();
 
-  void historyNameAction() {}
+  @override
+  void initState() {
+    context.read<SearchCubit>().getSearchHistory();
+    super.initState();
+  }
+
+  void onSubmitted(String value) {
+    context.read<SearchCubit>().saveSearchQuery(value);
+    print('Tapp on screen --------------');
+  }
+
+  void historyNameAction(String name) {
+    searchTextController.text = name;
+    print('HISTORY TAPPED');
+    FocusScope.of(context).requestFocus(
+      FocusNode(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorsApp.lightGrey250,
       body: BlocBuilder<FinCategoryCubit, FinCategoryState>(
-        builder: (context, state) {
-          List<FinancialCategory> categories = state.categories ?? [];
-          return Column(
-            children: [
-              CustomStatusBar(),
-              SearchAppBar(
-                textController: searchTextController,
-                categories: categories,
-              ),
-              Expanded(
-                child: ListView.separated(
-                  padding: EdgeInsets.only(
-                    left: 16.0,
-                    right: 16.0,
-                    top: 20.0,
+        builder: (context, stateCategory) {
+          List<FinancialCategory> categories = stateCategory.categories ?? [];
+          return BlocBuilder<SearchCubit, SearchState>(
+            builder: (context, stateSearch) {
+              List<String> searchHistory = stateSearch.searchHistory ?? [];
+              return Column(
+                children: [
+                  CustomStatusBar(),
+                  SearchAppBar(
+                    textController: searchTextController,
+                    categories: categories,
+                    onSubmitted: onSubmitted,
                   ),
-                  separatorBuilder: (context, index) => SizedBox(
-                    height: 12.0,
-                  ),
-                  itemCount: 10,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: historyNameAction,
-                      child: Row(
-                        children: [
-                          SvgPicture.asset(
-                            IconsApp.history,
-                          ),
-                          SizedBox(
-                            width: 12.0,
-                          ),
-                          Text(
-                            'History',
-                            style: interTextStyle(),
-                          ),
-                          Spacer(),
-                          SvgPicture.asset(
-                            IconsApp.northWestArrow,
-                          ),
-                        ],
+                  Expanded(
+                    child: ListView.separated(
+                      padding: EdgeInsets.only(
+                        left: 16.0,
+                        right: 16.0,
+                        top: 20.0,
                       ),
-                    );
-                  },
-                ),
-              ),
-            ],
+                      separatorBuilder: (context, index) => SizedBox(
+                        height: 12.0,
+                      ),
+                      itemCount: searchHistory.length,
+                      itemBuilder: (context, index) {
+                        return SearchHistoryRow(
+                          name: searchHistory[index],
+                          onTap: historyNameAction,
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            },
           );
         },
       ),

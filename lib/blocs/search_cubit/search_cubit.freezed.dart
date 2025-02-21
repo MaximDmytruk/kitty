@@ -16,47 +16,15 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SearchState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(SearchStatus status, String? errorText, String? toastText)
-        $default, {
-    required TResult Function() initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            SearchStatus status, String? errorText, String? toastText)?
-        $default, {
-    TResult? Function()? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(SearchStatus status, String? errorText, String? toastText)?
-        $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_SearchState value) $default, {
-    required TResult Function(_Initial value) initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SearchState value)? $default, {
-    TResult? Function(_Initial value)? initial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SearchState value)? $default, {
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) =>
+  SearchStatus get status => throw _privateConstructorUsedError;
+  List<String> get searchHistory => throw _privateConstructorUsedError;
+  String? get errorText => throw _privateConstructorUsedError;
+  String? get toastText => throw _privateConstructorUsedError;
+
+  /// Create a copy of SearchState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  $SearchStateCopyWith<SearchState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -65,6 +33,12 @@ abstract class $SearchStateCopyWith<$Res> {
   factory $SearchStateCopyWith(
           SearchState value, $Res Function(SearchState) then) =
       _$SearchStateCopyWithImpl<$Res, SearchState>;
+  @useResult
+  $Res call(
+      {SearchStatus status,
+      List<String> searchHistory,
+      String? errorText,
+      String? toastText});
 }
 
 /// @nodoc
@@ -79,124 +53,48 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
 
   /// Create a copy of SearchState
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? status = null,
+    Object? searchHistory = null,
+    Object? errorText = freezed,
+    Object? toastText = freezed,
+  }) {
+    return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as SearchStatus,
+      searchHistory: null == searchHistory
+          ? _value.searchHistory
+          : searchHistory // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      errorText: freezed == errorText
+          ? _value.errorText
+          : errorText // ignore: cast_nullable_to_non_nullable
+              as String?,
+      toastText: freezed == toastText
+          ? _value.toastText
+          : toastText // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$InitialImplCopyWith<$Res> {
-  factory _$$InitialImplCopyWith(
-          _$InitialImpl value, $Res Function(_$InitialImpl) then) =
-      __$$InitialImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$InitialImplCopyWithImpl<$Res>
-    extends _$SearchStateCopyWithImpl<$Res, _$InitialImpl>
-    implements _$$InitialImplCopyWith<$Res> {
-  __$$InitialImplCopyWithImpl(
-      _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SearchState
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$InitialImpl implements _Initial {
-  const _$InitialImpl();
-
-  @override
-  String toString() {
-    return 'SearchState.initial()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$InitialImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(SearchStatus status, String? errorText, String? toastText)
-        $default, {
-    required TResult Function() initial,
-  }) {
-    return initial();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            SearchStatus status, String? errorText, String? toastText)?
-        $default, {
-    TResult? Function()? initial,
-  }) {
-    return initial?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(SearchStatus status, String? errorText, String? toastText)?
-        $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_SearchState value) $default, {
-    required TResult Function(_Initial value) initial,
-  }) {
-    return initial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SearchState value)? $default, {
-    TResult? Function(_Initial value)? initial,
-  }) {
-    return initial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SearchState value)? $default, {
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if (initial != null) {
-      return initial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Initial implements SearchState {
-  const factory _Initial() = _$InitialImpl;
-}
-
-/// @nodoc
-abstract class _$$SearchStateImplCopyWith<$Res> {
+abstract class _$$SearchStateImplCopyWith<$Res>
+    implements $SearchStateCopyWith<$Res> {
   factory _$$SearchStateImplCopyWith(
           _$SearchStateImpl value, $Res Function(_$SearchStateImpl) then) =
       __$$SearchStateImplCopyWithImpl<$Res>;
+  @override
   @useResult
-  $Res call({SearchStatus status, String? errorText, String? toastText});
+  $Res call(
+      {SearchStatus status,
+      List<String> searchHistory,
+      String? errorText,
+      String? toastText});
 }
 
 /// @nodoc
@@ -213,6 +111,7 @@ class __$$SearchStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? searchHistory = null,
     Object? errorText = freezed,
     Object? toastText = freezed,
   }) {
@@ -221,6 +120,10 @@ class __$$SearchStateImplCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as SearchStatus,
+      searchHistory: null == searchHistory
+          ? _value._searchHistory
+          : searchHistory // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       errorText: freezed == errorText
           ? _value.errorText
           : errorText // ignore: cast_nullable_to_non_nullable
@@ -237,11 +140,24 @@ class __$$SearchStateImplCopyWithImpl<$Res>
 
 class _$SearchStateImpl implements _SearchState {
   const _$SearchStateImpl(
-      {this.status = SearchStatus.initial, this.errorText, this.toastText});
+      {this.status = SearchStatus.initial,
+      final List<String> searchHistory = const [],
+      this.errorText,
+      this.toastText})
+      : _searchHistory = searchHistory;
 
   @override
   @JsonKey()
   final SearchStatus status;
+  final List<String> _searchHistory;
+  @override
+  @JsonKey()
+  List<String> get searchHistory {
+    if (_searchHistory is EqualUnmodifiableListView) return _searchHistory;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_searchHistory);
+  }
+
   @override
   final String? errorText;
   @override
@@ -249,7 +165,7 @@ class _$SearchStateImpl implements _SearchState {
 
   @override
   String toString() {
-    return 'SearchState(status: $status, errorText: $errorText, toastText: $toastText)';
+    return 'SearchState(status: $status, searchHistory: $searchHistory, errorText: $errorText, toastText: $toastText)';
   }
 
   @override
@@ -258,6 +174,8 @@ class _$SearchStateImpl implements _SearchState {
         (other.runtimeType == runtimeType &&
             other is _$SearchStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            const DeepCollectionEquality()
+                .equals(other._searchHistory, _searchHistory) &&
             (identical(other.errorText, errorText) ||
                 other.errorText == errorText) &&
             (identical(other.toastText, toastText) ||
@@ -265,7 +183,12 @@ class _$SearchStateImpl implements _SearchState {
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, errorText, toastText);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      const DeepCollectionEquality().hash(_searchHistory),
+      errorText,
+      toastText);
 
   /// Create a copy of SearchState
   /// with the given fields replaced by the non-null parameter values.
@@ -274,86 +197,27 @@ class _$SearchStateImpl implements _SearchState {
   @pragma('vm:prefer-inline')
   _$$SearchStateImplCopyWith<_$SearchStateImpl> get copyWith =>
       __$$SearchStateImplCopyWithImpl<_$SearchStateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>(
-    TResult Function(SearchStatus status, String? errorText, String? toastText)
-        $default, {
-    required TResult Function() initial,
-  }) {
-    return $default(status, errorText, toastText);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>(
-    TResult? Function(
-            SearchStatus status, String? errorText, String? toastText)?
-        $default, {
-    TResult? Function()? initial,
-  }) {
-    return $default?.call(status, errorText, toastText);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>(
-    TResult Function(SearchStatus status, String? errorText, String? toastText)?
-        $default, {
-    TResult Function()? initial,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(status, errorText, toastText);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>(
-    TResult Function(_SearchState value) $default, {
-    required TResult Function(_Initial value) initial,
-  }) {
-    return $default(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>(
-    TResult? Function(_SearchState value)? $default, {
-    TResult? Function(_Initial value)? initial,
-  }) {
-    return $default?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>(
-    TResult Function(_SearchState value)? $default, {
-    TResult Function(_Initial value)? initial,
-    required TResult orElse(),
-  }) {
-    if ($default != null) {
-      return $default(this);
-    }
-    return orElse();
-  }
 }
 
 abstract class _SearchState implements SearchState {
   const factory _SearchState(
       {final SearchStatus status,
+      final List<String> searchHistory,
       final String? errorText,
       final String? toastText}) = _$SearchStateImpl;
 
+  @override
   SearchStatus get status;
+  @override
+  List<String> get searchHistory;
+  @override
   String? get errorText;
+  @override
   String? get toastText;
 
   /// Create a copy of SearchState
   /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SearchStateImplCopyWith<_$SearchStateImpl> get copyWith =>
       throw _privateConstructorUsedError;

@@ -3,12 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kitty/blocs/fin_transaction_cubit/fin_transaction_cubit.dart';
 import 'package:kitty/models/financial_category/financial_category.dart';
+import 'package:kitty/repositories/search_history_repository/search_history_repository.dart';
 
 part 'statisctic_state.dart';
 part 'statisctic_cubit.freezed.dart';
 
 class StatiscticCubit extends Cubit<StatisticsState> {
-  StatiscticCubit() : super(StatisticsState(status: StatisticsStatus.initial));
+  StatiscticCubit()
+      : super(
+          StatisticsState(
+            status: StatisticsStatus.initial,
+          ),
+        );
 
   Future<void> calculateCategory(
     List<FinancialCategory> categories,

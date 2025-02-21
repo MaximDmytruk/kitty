@@ -11,11 +11,13 @@ import 'package:kitty/widgets/buttons/tag_button.dart';
 class SearchAppBar extends StatefulWidget {
   final TextEditingController textController;
   final List<FinancialCategory> categories;
+  Function? onSubmitted;
 
-  const SearchAppBar({
+  SearchAppBar({
     super.key,
     required this.textController,
     required this.categories,
+    this.onSubmitted,
   });
 
   @override
@@ -60,6 +62,14 @@ class _SearchAppBarState extends State<SearchAppBar> {
               ),
               Expanded(
                 child: TextField(
+                  onSubmitted: (value) {
+                    if (widget.onSubmitted != null) {
+                      widget.onSubmitted!(value);
+                    }
+
+                    print('DONE IS TAPPED');
+                    print(value);
+                  },
                   controller: widget.textController,
                   autofocus: true,
                   cursorColor: ColorsApp.black,
