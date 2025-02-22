@@ -31,7 +31,7 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
     return AppBar(
       backgroundColor: ColorsApp.white,
       automaticallyImplyLeading: false,
-      scrolledUnderElevation: 0,
+      scrolledUnderElevation: 0, //Щоб не змінювався колір під час скролу
       title: Row(
         children: [
           SvgPicture.asset(
@@ -83,22 +83,3 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
     );
   }
 }
-
-// Container(
-//               height: 32.0,
-//               width: 32.0,
-//               decoration: BoxDecoration(
-//                 borderRadius: BorderRadiusDirectional.circular(25.0),
-//                 color: ColorsApp.lightGrey238,
-//               ),
-//               child: Center(
-//                 child: Text(
-//                   'M',
-//                   style: interTextStyle(
-//                     fontSize: 14.0,
-//                     fontWeight: FontWeight.w500,
-//                     color: ColorsApp.grey66,
-//                   ),
-//                 ),
-//               ),
-//             ),
