@@ -102,6 +102,7 @@ class FinTransactionRepository {
 
   Future<List<FinancialTransaction>> getAllTransactions({
     int? dateMonth,
+    int? year,
   }) async {
     Database db = await database.database;
     final List<Map<String, dynamic>> result;
@@ -122,7 +123,7 @@ class FinTransactionRepository {
       SELECT t.*, c.id as categoryId, c.name, c.colorValue, c.iconPath, c.position 
       FROM transactions t 
       JOIN categories c ON t.categoryId = c.id
-      WHERE strftime('%m', date) = '$month'
+      WHERE strftime('%m', date) = '$month' AND strftime('%Y', date) = '$year'
     ''');
     }
 
@@ -150,6 +151,7 @@ class FinTransactionRepository {
   Future<int> getTotalAmount(
     int categoryId,
     int dateMonth,
+    int year,
   ) async {
     Database db = await database.database;
     String month = '';
@@ -160,8 +162,12 @@ class FinTransactionRepository {
     final result = await db.rawQuery('''
     SELECT COALESCE(SUM(amount), 0) as totalAmount 
     FROM transactions 
-    WHERE categoryId = ? AND strftime('%m', date) = ? 
-  ''', [categoryId, month]);
+    WHERE categoryId = ? AND strftime('%m', date) = ? AND strftime('%Y', date) = ?
+  ''', [
+      categoryId,
+      month,
+      year.toString(),
+    ]);
     return result.first['totalAmount'] as int;
   }
 

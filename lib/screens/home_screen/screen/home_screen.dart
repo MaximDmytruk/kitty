@@ -82,9 +82,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       context,
                       stateTransactions,
                     ) {
-                      context
-                          .read<FinTransactionCubit>()
-                          .getTransactions(dateMonth: stateDate.selectedMonth);
+                      context.read<FinTransactionCubit>().getTransactions(
+                            dateMonth: stateDate.selectedMonth,
+                            year: stateDate.selectedYear,
+                          );
                       List<List<FinancialTransaction>> transactionOfDay = [];
                       transactionOfDay = filteredTransactionsByDay(
                         stateTransactions.transactions ?? [],

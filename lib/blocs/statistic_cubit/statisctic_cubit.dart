@@ -19,6 +19,7 @@ class StatiscticCubit extends Cubit<StatisticsState> {
   Future<void> calculateCategory(
     List<FinancialCategory> categories,
     int month,
+    int year,
     FinTransactionCubit transactionCubit,
   ) async {
     emit(
@@ -36,6 +37,7 @@ class StatiscticCubit extends Cubit<StatisticsState> {
         final int totalAmount = await transactionCubit.getTotalAmountByMonth(
           categoryId: category.id!,
           month: month,
+          year: year,
         );
         categoryTotalAmount[category.id!] = totalAmount;
         overallTotal += totalAmount;

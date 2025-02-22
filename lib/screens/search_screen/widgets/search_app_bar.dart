@@ -86,8 +86,8 @@ class _SearchAppBarState extends State<SearchAppBar> {
           SizedBox(
             height: 48.0,
             child: ListView.builder(
-              padding: EdgeInsets.symmetric(
-                vertical: 4.0,
+              padding: EdgeInsets.only(
+                bottom: 8.0,
               ),
               scrollDirection: Axis.horizontal,
               itemCount: widget.categories.length,

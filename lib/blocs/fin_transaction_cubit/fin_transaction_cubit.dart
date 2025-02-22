@@ -20,16 +20,19 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
   Future<int> getTotalAmountByMonth({
     required int categoryId,
     required int month,
+    required int year,
   }) async {
     return await finTransactionRepository.getTotalAmount(
       categoryId,
       month,
+      year,
     );
   }
 
-  Future<void> getTransactions({
-    int? dateMonth,
-  }) async {
+  Future<void> getTransactions({int? dateMonth, int? year}) async {
+    print(year);
+    print('');
+    
     emit(
       state.copyWith(
         status: FinTransactionStatus.loading,
@@ -39,6 +42,7 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
     List<FinancialTransaction> transactions =
         await finTransactionRepository.getAllTransactions(
       dateMonth: dateMonth,
+      year: year,
     );
 
     emit(

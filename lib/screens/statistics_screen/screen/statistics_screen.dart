@@ -76,6 +76,7 @@ Widget build(BuildContext context) {
                 context.read<StatiscticCubit>().calculateCategory(
                   financialCategories,
                   stateDate.selectedMonth,
+                  stateDate.selectedYear,
                   context.read<FinTransactionCubit>(),
                 );
 
