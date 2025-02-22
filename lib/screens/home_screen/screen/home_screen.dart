@@ -55,49 +55,46 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         alignment: AlignmentDirectional.bottomCenter,
         children: [
-          Column(
-            children: [
-              CustomStatusBar(),
-              CustomHomeAppBar(
-                firstLetter: firstChar,
-                searchAction: searchAction,
-              ),
-              CustomDatePicker(),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 16.0,
-                  left: 16.0,
-                  right: 16.0,
-                ),
-                child: TotalAmount(),
-              ),
-              BlocBuilder<DateCubit, DateState>(
-                builder: (
-                  context,
-                  stateDate,
-                ) {
-                  return BlocBuilder<FinTransactionCubit, FinTransactionState>(
-                    builder: (
-                      context,
-                      stateTransactions,
-                    ) {
-                      context.read<FinTransactionCubit>().getTransactions(
-                            dateMonth: stateDate.selectedMonth,
-                            year: stateDate.selectedYear,
-                          );
-                      List<List<FinancialTransaction>> transactionOfDay = [];
-                      transactionOfDay = filteredTransactionsByDay(
-                        stateTransactions.transactions ?? [],
+          BlocBuilder<DateCubit, DateState>(
+            builder: (context, stateDate) {
+              return BlocBuilder<FinTransactionCubit, FinTransactionState>(
+                builder: (context, stateTransactions) {
+                  context.read<FinTransactionCubit>().getTransactions(
+                        dateMonth: stateDate.selectedMonth,
+                        year: stateDate.selectedYear,
                       );
 
-                      return CustomListView(
+                  List<FinancialTransaction> transaction =
+                      stateTransactions.transactions ?? [];
+                  List<List<FinancialTransaction>> transactionOfDay = [];
+                  transactionOfDay = filteredTransactionsByDay(transaction);
+                  return Column(
+                    children: [
+                      CustomStatusBar(),
+                      CustomHomeAppBar(
+                        firstLetter: firstChar,
+                        searchAction: searchAction,
+                      ),
+                      CustomDatePicker(),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 16.0,
+                          left: 16.0,
+                          right: 16.0,
+                        ),
+                        child: TotalAmount(
+                          key: UniqueKey(),
+                          transactions: transaction,
+                        ),
+                      ),
+                      CustomListView(
                         transactionOfDay: transactionOfDay,
-                      );
-                    },
+                      ),
+                    ],
                   );
                 },
-              ),
-            ],
+              );
+            },
           ),
           //Button AddNew
           Padding(

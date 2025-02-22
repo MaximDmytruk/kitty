@@ -30,9 +30,6 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
   }
 
   Future<void> getTransactions({int? dateMonth, int? year}) async {
-    print(year);
-    print('');
-    
     emit(
       state.copyWith(
         status: FinTransactionStatus.loading,
