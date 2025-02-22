@@ -31,6 +31,7 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
     return AppBar(
       backgroundColor: ColorsApp.white,
       automaticallyImplyLeading: false,
+      scrolledUnderElevation: 0,
       title: Row(
         children: [
           SvgPicture.asset(

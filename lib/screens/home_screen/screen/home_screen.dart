@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,10 +22,9 @@ import '../../../widgets/date_picker/custom_date_picker.dart';
 import '../../../widgets/app_bars/custom_home_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
-
-  // static const String routeName = '/home_screen';
-
+  const HomeScreen({
+    super.key,
+  });
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
@@ -35,7 +35,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    print("initState HomeScreen");
     context.read<FinCategoryCubit>().getFinancialCategories();
     context.read<FinTransactionCubit>().getTransactions();
     firstChar = context.read<UserCubit>().getFirstLetterName();
@@ -49,8 +48,14 @@ class _HomeScreenState extends State<HomeScreen> {
         AddNewTransactionScreen.routeName,
       );
 
+      
+
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  statusBarColor: Colors.blue, // фіксований колір статус бару
+));
+
     return Scaffold(
       backgroundColor: ColorsApp.white,
       body: Stack(
@@ -73,10 +78,10 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: TotalAmount(),
               ),
               BlocBuilder<DateCubit, DateState>(
-                builder: (context, stateDate) {
-                  print(
-                      'HomeScreen selected date is - ${stateDate.selectedMonth}');
-
+                builder: (
+                  context,
+                  stateDate,
+                ) {
                   return BlocBuilder<FinTransactionCubit, FinTransactionState>(
                     builder: (
                       context,

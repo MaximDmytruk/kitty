@@ -28,9 +28,11 @@ class _CustomListViewState extends State<CustomListView> {
           BuildContext context,
           int index,
         ) {
-          final int  reversedIndex = widget.transactionOfDay.length - 1 - index;
+          final int reversedIndex = widget.transactionOfDay.length - 1 - index;
           return ListGroup(
-            // key: ValueKey(widget.transactionOfDay.first.first.date), // перевірити чи все ок з довжиною.
+            key: ValueKey(
+              widget.transactionOfDay.first.first.date,
+            ),
             transactions: widget.transactionOfDay[reversedIndex],
           );
         },
