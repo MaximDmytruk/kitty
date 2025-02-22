@@ -44,7 +44,7 @@ class _SettingScreenState extends State<SettingScreen> {
         ManageCategoriesScreen.routeName,
       );
 
-  void exportToPDFAction() {}
+  void exportToPDFAction() { context.read<FinCategoryCubit>().testCategory();}
   void chooseCurrencyAction() {}
 
   void chooseLanguageAction() {

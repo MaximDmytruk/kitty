@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,10 +20,26 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
           ),
         );
 
+  Future<void> testCategory() async {
+    List<FinancialCategory> categories = await repository.getAllCategories();
+
+    for (var element in categories) {
+      print('ID');
+      print(element.id);
+      print('position');
+      print(element.position);
+    }
+  }
+
   Future<void> getFinancialCategories() async {
     List<FinancialCategory> categories = await repository.getAllCategories();
 
+    for (var element in categories) {
+      print(element.id);
+    }
+
     if (categories.isNotEmpty) {
+      print('Category status loaded');
       emit(
         state.copyWith(
           status: FinCategoryStatus.loaded,
@@ -44,7 +62,10 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
     await repository.updateCategory(updateCategory);
     List<FinancialCategory> categories = await repository.getAllCategories();
     emit(
-      state.copyWith(status: FinCategoryStatus.loaded, categories: categories),
+      state.copyWith(
+        status: FinCategoryStatus.loaded,
+        categories: categories,
+      ),
     );
   }
 
@@ -86,6 +107,9 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
           categories: updatedCategories,
         ),
       );
+      for (var element in updatedCategories) {
+        print(element.id);
+      }
     }
   }
 }

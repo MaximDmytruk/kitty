@@ -7,19 +7,31 @@ class FinCategoryRepository {
   final AppDatabase database = AppDatabase.instance;
 
   Future<void> initDefaultCategories() async {
+    print('INIT CATEGORY');
     Database db = await database.database;
     Batch batch = db.batch();
 
     final List<FinancialCategory> defaultCategories = getDefaultCategories();
-    for (FinancialCategory  category in defaultCategories) {
+    for (FinancialCategory category in defaultCategories) {
       batch.insert('categories', category.toJson());
     }
     await batch.commit();
   }
 
+  // Future<List<FinancialCategory>> getAllCategories() async {
+  //   Database db = await database.database;
+  //   List<Map<String, Object?>> result = await db.query('categories');
+  //   return result
+  //       .map((category) => FinancialCategory.fromJson(category))
+  //       .toList();
+  // }
+
   Future<List<FinancialCategory>> getAllCategories() async {
     Database db = await database.database;
-    List<Map<String, Object?>> result = await db.query('categories');
+    List<Map<String, Object?>> result = await db.query(
+      'categories',
+      orderBy: 'position ASC',
+    );
     return result
         .map((category) => FinancialCategory.fromJson(category))
         .toList();
@@ -27,7 +39,7 @@ class FinCategoryRepository {
 
   Future<FinancialCategory> addNewCategory(FinancialCategory category) async {
     Database db = await database.database;
-    final maxPosition = await _getMaxPosition();
+    final int maxPosition = await _getMaxPosition();
     final newCategory = category.copyWith(position: maxPosition + 1);
 
     int categoryId = await db.insert(
@@ -70,8 +82,8 @@ class FinCategoryRepository {
         whereArgs: [category.id],
       );
     }
+
+    print('UPDATE POSITION');
     await batch.commit();
   }
-
-  
 }
