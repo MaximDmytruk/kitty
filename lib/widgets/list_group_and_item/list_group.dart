@@ -19,11 +19,29 @@ class ListGroup extends StatefulWidget {
 
 class _ListGroupState extends State<ListGroup> {
   String dateOfTransaction = '';
+  int sum = 0;
 
   @override
   void initState() {
     nameOfDate(date: widget.transactions.first.date);
+    summ(transactions: widget.transactions);
     super.initState();
+  }
+
+  void summ({required List<FinancialTransaction> transactions}) {
+
+
+    for (FinancialTransaction trns in transactions) {
+
+      if (trns.financialAction == FinancialAction.income) {
+        sum += trns.amount;
+      } 
+
+      if (trns.financialAction == FinancialAction.expense) {
+        sum-= trns.amount;
+      }
+      
+    }
   }
 
   void nameOfDate({required DateTime date}) {
@@ -74,7 +92,7 @@ class _ListGroupState extends State<ListGroup> {
                   ),
                 ),
                 Text(
-                  '-1125',
+                  sum.toString(),
                   style: interTextStyle(
                     fontSize: 10.0,
                     fontWeight: FontWeight.w500,

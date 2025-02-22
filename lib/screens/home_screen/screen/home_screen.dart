@@ -48,14 +48,8 @@ class _HomeScreenState extends State<HomeScreen> {
         AddNewTransactionScreen.routeName,
       );
 
-      
-
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-  statusBarColor: Colors.blue, // фіксований колір статус бару
-));
-
     return Scaffold(
       backgroundColor: ColorsApp.white,
       body: Stack(

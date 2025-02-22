@@ -40,9 +40,13 @@ class ListItem extends StatelessWidget {
         ),
         Spacer(),
         Text(
-          transaction.amount.toString(),
+          transaction.financialAction == FinancialAction.income
+              ? transaction.amount.toString()
+              : ' - ${transaction.amount.toString()}',
           style: interTextStyle(
-            color: ColorsApp.red,
+            color: transaction.financialAction == FinancialAction.income
+                ? ColorsApp.green
+                : ColorsApp.red,
           ),
         )
       ],
