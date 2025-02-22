@@ -22,6 +22,8 @@ class SearchAppBar extends StatefulWidget {
 }
 
 class _SearchAppBarState extends State<SearchAppBar> {
+  List<int> selectedCategoryIds = [];
+
   void onTapBack(BuildContext context) {
     Navigator.pop(context);
   }
@@ -60,12 +62,12 @@ class _SearchAppBarState extends State<SearchAppBar> {
               Expanded(
                 child: TextField(
                   onSubmitted: (value) {
-                    if (widget.onSubmitted != null) {
-                      widget.onSubmitted!(value);
+                    if (widget.onSubmitted != null ) {
+                      widget.onSubmitted!(
+                        value,
+                        selectedCategoryIds,
+                      );
                     }
-
-                    print('DONE IS TAPPED');
-                    print(value);
                   },
                   controller: widget.textController,
                   autofocus: true,
@@ -84,14 +86,41 @@ class _SearchAppBarState extends State<SearchAppBar> {
           SizedBox(
             height: 48.0,
             child: ListView.builder(
+              padding: EdgeInsets.symmetric(
+                vertical: 4.0,
+              ),
               scrollDirection: Axis.horizontal,
               itemCount: widget.categories.length,
-              itemBuilder: (context, index) => TagButton(
-                iconWidget: SvgPicture.asset(widget.categories[index].iconPath),
-                name: widget.categories[index].name,
-              ),
+              itemBuilder: (context, index) {
+                final FinancialCategory category = widget.categories[index];
+                final bool isSelected = selectedCategoryIds.contains(
+                  category.id,
+                );
+
+                return TagButton(
+                  iconWidget: SvgPicture.asset(
+                    category.iconPath,
+                  ),
+                  name: category.name,
+                  isSelected: isSelected,
+                  onTap: () {
+                    setState(() {
+                      if (isSelected) {
+                        selectedCategoryIds.remove(category.id);
+                      } else {
+                        selectedCategoryIds.add(category.id!);
+                      }
+                    });
+
+                    widget.onSubmitted?.call(
+                      widget.textController.text,
+                      selectedCategoryIds,
+                    );
+                  },
+                );
+              },
             ),
-          )
+          ),
         ],
       ),
     );

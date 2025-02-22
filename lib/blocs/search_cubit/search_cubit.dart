@@ -15,13 +15,23 @@ class SearchCubit extends Cubit<SearchState> {
       : super(
           SearchState(status: SearchStatus.initial),
         );
-  Future<void> searchTransactions(String query) async {
-    emit(state.copyWith(status: SearchStatus.loading));
 
-    // List<FinancialTransaction> transactions =
-    //     await finTransactionRepository.getAllTransactions();
+  Future<void> searchTransactions({
+    required String query,
+    List<int>? categoryIds,
+  }) async {
+    
+    emit(
+      state.copyWith(
+        status: SearchStatus.loading,
+      ),
+    );
+
     List<FinancialTransaction> transactions =
-         await finTransactionRepository.searchTransactions(query);
+        await finTransactionRepository.searchTransactions(
+      query: query,
+      categoriesId: categoryIds,
+    );
 
     emit(state.copyWith(
       status: SearchStatus.loaded,

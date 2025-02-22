@@ -10,20 +10,41 @@ import 'package:sqflite/sqflite.dart';
 class FinTransactionRepository {
   final AppDatabase database = AppDatabase.instance;
 
-  Future<List<FinancialTransaction>> searchTransactions(String query) async {
+  Future<List<FinancialTransaction>> searchTransactions({
+    required String query,
+    List<int>? categoriesId,
+  }) async {
     Database db = await database.database;
 
-    final List<Map<String, dynamic>> result = await db.rawQuery(
-      '''
-      SELECT t.*, c.id as categoryId, c.name, c.colorValue, c.iconPath, c.position 
-      FROM transactions t 
-      JOIN categories c ON t.categoryId = c.id
-      WHERE description LIKE ?''',
-      ['%$query%'],
+    String whereClause = 't.description LIKE ?';
+    List<String> whereArgs = ['%$query%'];
+
+    if (categoriesId != null && categoriesId.isNotEmpty) {
+      String placeholders = List.filled(categoriesId.length, '?').join(',');
+      whereClause += ' AND t.categoryId IN ($placeholders)';
+      whereArgs.addAll(categoriesId.map((id) => id.toString()));
+    }
+
+    final List<Map<String, dynamic>> result = await db.query(
+      'transactions t JOIN categories c ON t.categoryId = c.id',
+      columns: [
+        't.id',
+        't.financialAction',
+        't.amount',
+        't.description',
+        't.date',
+        'c.id AS categoryId',
+        'c.name',
+        'c.colorValue',
+        'c.iconPath',
+        'c.position'
+      ],
+      where: whereClause,
+      whereArgs: whereArgs,
     );
-  
+
     return result.map((row) {
-      final FinancialCategory category = FinancialCategory(
+      final category = FinancialCategory(
         id: row['categoryId'] as int,
         name: row['name'] as String,
         colorValue: Color(row['colorValue'] as int),
@@ -43,6 +64,42 @@ class FinTransactionRepository {
     }).toList();
   }
 
+  // Future<List<FinancialTransaction>> searchTransactions({
+  //   required String query,
+  //   List<int>? categoriesId,
+  // }) async {
+  //   Database db = await database.database;
+
+  //   final List<Map<String, dynamic>> result = await db.rawQuery(
+  //     '''
+  //     SELECT t.*, c.id as categoryId, c.name, c.colorValue, c.iconPath, c.position
+  //     FROM transactions t
+  //     JOIN categories c ON t.categoryId = c.id
+  //     WHERE description LIKE ?''',
+  //     ['%$query%'],
+  //   );
+
+  //   return result.map((row) {
+  //     final FinancialCategory category = FinancialCategory(
+  //       id: row['categoryId'] as int,
+  //       name: row['name'] as String,
+  //       colorValue: Color(row['colorValue'] as int),
+  //       iconPath: row['iconPath'] as String,
+  //       position: row['position'] as int?,
+  //     );
+
+  //     return FinancialTransaction(
+  //       id: row['id'] as int?,
+  //       financialAction: FinancialAction.values
+  //           .firstWhere((e) => e.toString() == row['financialAction']),
+  //       category: category,
+  //       amount: row['amount'] as int,
+  //       description: row['description'] as String?,
+  //       date: DateTime.parse(row['date'] as String),
+  //     );
+  //   }).toList();
+  // }
+
   Future<List<FinancialTransaction>> getAllTransactions({
     int? dateMonth,
   }) async {
@@ -60,7 +117,7 @@ class FinTransactionRepository {
       if (dateMonth < 10) {
         month = '0$dateMonth';
       }
- 
+
       result = await db.rawQuery('''
       SELECT t.*, c.id as categoryId, c.name, c.colorValue, c.iconPath, c.position 
       FROM transactions t 

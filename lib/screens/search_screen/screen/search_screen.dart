@@ -41,15 +41,24 @@ class _SearchScreenState extends State<SearchScreen> {
       });
 
       if (query.isNotEmpty) {
-        context.read<SearchCubit>().searchTransactions(query);
+        context.read<SearchCubit>().searchTransactions(
+              query: query,
+            );
       }
     });
 
     super.initState();
   }
 
-  void onSubmitted(String value) {
-    context.read<SearchCubit>().saveSearchQuery(value);
+  void onSubmitted(String value, List<int> selectedCategories) {
+    context.read<SearchCubit>().searchTransactions(
+          query: value,
+          categoryIds: selectedCategories,
+        );
+
+    context.read<SearchCubit>().saveSearchQuery(
+          value,
+        );
   }
 
   void historyNameAction(String name) {
@@ -92,7 +101,9 @@ class _SearchScreenState extends State<SearchScreen> {
                           searchHistory: searchHistory,
                           onTap: historyNameAction,
                         )
-                      : CustomListView(transactionOfDay: transactionOfDay),
+                      : CustomListView(
+                          transactionOfDay: transactionOfDay,
+                        ),
                 ],
               );
             },
