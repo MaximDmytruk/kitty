@@ -38,7 +38,7 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   Widget _getScreen(int index) {
   switch (index) {
     case 0:
-      return const StatisticsScreen();
+      return const StatisticScreen();
     case 1:
       return const HomeScreen();
     case 2:

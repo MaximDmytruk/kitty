@@ -90,7 +90,7 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
         BlocProvider(
-          create: (context) => StatiscticCubit(),
+          create: (context) => StatisticCubit(),
         ),
         BlocProvider(
           create: (context) => SearchCubit(

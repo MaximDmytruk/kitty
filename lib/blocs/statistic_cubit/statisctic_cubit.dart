@@ -8,8 +8,8 @@ import 'package:kitty/repositories/search_history_repository/search_history_repo
 part 'statisctic_state.dart';
 part 'statisctic_cubit.freezed.dart';
 
-class StatiscticCubit extends Cubit<StatisticsState> {
-  StatiscticCubit()
+class StatisticCubit extends Cubit<StatisticsState> {
+  StatisticCubit()
       : super(
           StatisticsState(
             status: StatisticsStatus.initial,
