@@ -1,23 +1,16 @@
 import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show Uint8List, rootBundle;
 import 'package:kitty/models/financial_transaction/financial_transaction.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:open_file/open_file.dart';
-
-import 'dart:io';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:path_provider/path_provider.dart';
-import 'package:pdf/pdf.dart';
-import 'package:pdf/widgets.dart' as pw;
-import 'package:open_file/open_file.dart';
+
 import 'package:permission_handler/permission_handler.dart';
 
 Future<void> getReportInPdf({
   required List<FinancialTransaction> transactions,
   int? month,
+  int? year
 }) async {
   PermissionStatus status = await Permission.manageExternalStorage.status;
 
@@ -37,6 +30,22 @@ Future<void> getReportInPdf({
         pageFormat: PdfPageFormat.a4,
         build: (pw.Context context) {
           return [
+            month != null
+                ? pw.Text(
+                    'Month - $month',
+                    style: pw.TextStyle(
+                      fontSize: 32,
+                      font: ttf,
+                    ),
+                  )
+                : pw.Text(
+                    'All Transactions',
+                    style: pw.TextStyle(
+                      fontSize: 32,
+                      font: ttf,
+                    ),
+                  ),
+            pw.SizedBox(height: 10),
             ...transactions.map((trns) {
               String nameCategory = trns.category.name;
               String? discriptions = trns.description;

@@ -35,7 +35,7 @@ class _SettingScreenState extends State<SettingScreen> {
     userName = context.read<UserCubit>().getUserName();
     firstChar = context.read<UserCubit>().getFirstLetterName();
     userEmail = context.read<UserCubit>().getUserEmail();
-    context.read<FinTransactionCubit>().getTransactions();
+
     super.initState();
   }
 
@@ -45,7 +45,8 @@ class _SettingScreenState extends State<SettingScreen> {
         ManageCategoriesScreen.routeName,
       );
 
-  void exportToPDFAction() {
+  void exportToPDFAction() async {
+    await context.read<FinTransactionCubit>().getTransactions();
     List<FinancialTransaction> transactions =
         context.read<FinTransactionCubit>().state.transactions ?? [];
     getReportInPdf(

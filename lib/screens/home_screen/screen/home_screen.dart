@@ -35,9 +35,12 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+ 
+
     context.read<FinCategoryCubit>().getFinancialCategories();
     context.read<FinTransactionCubit>().getTransactions();
     firstChar = context.read<UserCubit>().getFirstLetterName();
+    
   }
 
   void searchAction() => Navigator.of(context).pushNamed(
@@ -88,7 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       CustomListView(
-                       
                         transactionOfDay: transactionOfDay,
                       ),
                     ],

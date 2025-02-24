@@ -11,13 +11,10 @@ import 'package:kitty/color_strip_painter/color_strip_painter.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/models/financial_category/financial_category.dart';
 import 'package:kitty/models/financial_transaction/financial_transaction.dart';
-
 import 'package:kitty/screens/statistics_screen/widgets/category_result_item.dart';
 import 'package:kitty/screens/statistics_screen/widgets/name_of_section.dart';
 import 'package:kitty/services/get_report_in_pdf.dart';
-import 'package:kitty/services/TEST_save_and_open_document/saveandOpendocument.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
-import 'package:kitty/testing/testing_transaction.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
 import 'package:kitty/widgets/app_bars/name_of_screen_header.dart';
 import 'package:kitty/widgets/date_picker/custom_date_picker.dart';
@@ -40,13 +37,18 @@ class _StatisticScreenState extends State<StatisticScreen> {
   Map<int, Color> categoryColors = {};
 
   void _downloadReportAction(
-    List<FinancialTransaction> transactions,
+    // List<FinancialTransaction> transactions,
     int? month,
-  )  {
-     getReportInPdf(
-      transactions: transactions,
-      month: month,
-    );
+    int? year,
+  ) async {
+   await context.read<FinTransactionCubit>().getTransactions(
+          dateMonth: month,
+          year: year,
+        );
+    List<FinancialTransaction> transactions =
+        context.read<FinTransactionCubit>().state.transactions ?? [];
+
+    getReportInPdf(transactions: transactions, month: month, year: year);
   }
 
   @override
@@ -171,11 +173,10 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                 [];
 
                             _downloadReportAction(
-                              transactions,
+                              // transactions,
                               stateDate.selectedMonth,
+                              stateDate.selectedYear,
                             );
-                            
-
                             // final simplePdfFile =
                             //     await SimplePdfApi.generateSimpleTextPdf(
                             //         'Sometext', 'Sometext');
