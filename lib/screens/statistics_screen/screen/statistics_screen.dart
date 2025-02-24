@@ -174,9 +174,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                               transactions,
                               stateDate.selectedMonth,
                             );
-                            // await getReportInPdf(
-                            //     transactions: transactions,
-                            //     month: stateDate.selectedMonth);
+                            
 
                             // final simplePdfFile =
                             //     await SimplePdfApi.generateSimpleTextPdf(

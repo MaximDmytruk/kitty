@@ -31,7 +31,7 @@ class _CustomListViewState extends State<CustomListView> {
           final int reversedIndex = widget.transactionOfDay.length - 1 - index;
           return ListGroup(
             key: ValueKey(
-              widget.transactionOfDay.first.first.date,
+              widget.transactionOfDay.first.first.amount,
             ),
             transactions: widget.transactionOfDay[reversedIndex],
           );

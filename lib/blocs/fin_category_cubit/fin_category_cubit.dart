@@ -20,16 +20,7 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
           ),
         );
 
-  Future<void> testCategory() async {
-    List<FinancialCategory> categories = await repository.getAllCategories();
 
-    for (var element in categories) {
-      print('ID');
-      print(element.id);
-      print('position');
-      print(element.position);
-    }
-  }
 
   Future<void> getFinancialCategories() async {
     List<FinancialCategory> categories = await repository.getAllCategories();

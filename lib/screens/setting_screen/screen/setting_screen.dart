@@ -4,8 +4,10 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:kitty/blocs/fin_category_cubit/fin_category_cubit.dart';
 import 'package:kitty/blocs/fin_transaction_cubit/fin_transaction_cubit.dart';
 import 'package:kitty/blocs/user_cubit/user_cubit.dart';
+import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/screens/auth_screen/auth_screen.dart';
 import 'package:kitty/screens/manage_categories_screen/screen/manage_categories_screen.dart';
+import 'package:kitty/services/get_report_in_pdf.dart';
 import 'package:kitty/widgets/app_bars/name_of_screen_header.dart';
 import 'package:kitty/screens/setting_screen/widgets/settings_options_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
@@ -30,11 +32,10 @@ class _SettingScreenState extends State<SettingScreen> {
 
   @override
   void initState() {
-    print('SETTING SCREEN');
-    
     userName = context.read<UserCubit>().getUserName();
     firstChar = context.read<UserCubit>().getFirstLetterName();
     userEmail = context.read<UserCubit>().getUserEmail();
+    context.read<FinTransactionCubit>().getTransactions();
     super.initState();
   }
 
@@ -44,7 +45,14 @@ class _SettingScreenState extends State<SettingScreen> {
         ManageCategoriesScreen.routeName,
       );
 
-  void exportToPDFAction() { context.read<FinCategoryCubit>().testCategory();}
+  void exportToPDFAction() {
+    List<FinancialTransaction> transactions =
+        context.read<FinTransactionCubit>().state.transactions ?? [];
+    getReportInPdf(
+      transactions: transactions,
+    );
+  }
+
   void chooseCurrencyAction() {}
 
   void chooseLanguageAction() {
@@ -56,6 +64,7 @@ class _SettingScreenState extends State<SettingScreen> {
   }
 
   void questionsAction() {}
+
   void logoutAction() {
     Navigator.popAndPushNamed(context, AuthScreen.routeName);
   }
@@ -67,7 +76,6 @@ class _SettingScreenState extends State<SettingScreen> {
 
   void generateTransactions() {
     context.read<FinTransactionCubit>().addTestTransactions();
-
   }
 
   @override
@@ -79,7 +87,6 @@ class _SettingScreenState extends State<SettingScreen> {
           CustomStatusBar(),
           NameOfScreenHeader(
             name: AppLocale.settings.getString(context),
-          
           ),
           UserHeaderSetting(
             firstChar: firstChar,
