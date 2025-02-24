@@ -15,7 +15,7 @@ import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/screens/statistics_screen/widgets/category_result_item.dart';
 import 'package:kitty/screens/statistics_screen/widgets/name_of_section.dart';
 import 'package:kitty/services/get_report_in_pdf.dart';
-import 'package:kitty/services/saveAndOpenDocument/saveandOpendocument.dart';
+import 'package:kitty/services/TEST_save_and_open_document/saveandOpendocument.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/testing/testing_transaction.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
@@ -39,20 +39,32 @@ class _StatisticScreenState extends State<StatisticScreen> {
   Map<int, double> categoryPercentages = {};
   Map<int, Color> categoryColors = {};
 
-  // void _downloadReportAction() async {
-  //   await generatePDF();
-  // }
+  void _downloadReportAction(
+    List<FinancialTransaction> transactions,
+    int? month,
+  )  {
+     getReportInPdf(
+      transactions: transactions,
+      month: month,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorsApp.white,
       body: BlocBuilder<DateCubit, DateState>(
-        builder: (context, stateDate) {
+        builder: (
+          context,
+          stateDate,
+        ) {
           financialCategories =
               context.read<FinCategoryCubit>().state.categories ?? [];
           return BlocBuilder<FinTransactionCubit, FinTransactionState>(
-            builder: (context, stateTransactions) {
+            builder: (
+              context,
+              stateTransactions,
+            ) {
               context.read<StatisticCubit>().calculateCategory(
                     financialCategories,
                     stateDate.selectedMonth,
@@ -65,101 +77,116 @@ class _StatisticScreenState extends State<StatisticScreen> {
                   return Stack(
                     alignment: Alignment.bottomCenter,
                     children: [
-                      BlocBuilder<StatisticCubit, StatisticsState>(
-                        builder: (context, ss) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              CustomStatusBar(),
-                              NameOfScreenHeader(
-                                name: AppLocale.statistics.getString(context),
-                                color: ColorsApp.white,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomStatusBar(),
+                          NameOfScreenHeader(
+                            name: AppLocale.statistics.getString(context),
+                            color: ColorsApp.white,
+                          ),
+                          CustomDatePicker(),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 8.0,
+                              horizontal: 16.0,
+                            ),
+                            child: NameOfSection(
+                              name: AppLocale.overview.getString(context),
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: CustomPaint(
+                              size: Size(
+                                double.infinity,
+                                36,
                               ),
-                              CustomDatePicker(),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 8.0,
-                                  horizontal: 16.0,
-                                ),
-                                child: NameOfSection(
-                                  name: AppLocale.overview.getString(context),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0),
-                                child: CustomPaint(
-                                  size: Size(double.infinity, 36),
-                                  painter: ColorStripPainter(
-                                    colors: stateStatistic.categoryColors.values
-                                            .toList()
-                                            .isEmpty
-                                        ? [Colors.amber]
-                                        : stateStatistic.categoryColors.values
-                                            .toList(),
-                                    percentages: stateStatistic
-                                        .categoryPercentages.values
+                              painter: ColorStripPainter(
+                                colors: stateStatistic.categoryColors.values
+                                        .toList()
+                                        .isEmpty
+                                    ? [Colors.amber]
+                                    : stateStatistic.categoryColors.values
                                         .toList(),
-                                  ),
-                                ),
+                                percentages: stateStatistic
+                                    .categoryPercentages.values
+                                    .toList(),
                               ),
-                              SizedBox(height: 16.0),
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 8.0, horizontal: 16.0),
-                                child: NameOfSection(
-                                  name: AppLocale.detail.getString(context),
-                                ),
-                              ),
-                              Expanded(
-                                child: ListView.separated(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 16.0),
-                                  itemCount: financialCategories.length,
-                                  separatorBuilder:
-                                      (BuildContext context, int index) {
-                                    return SizedBox(height: 8.0);
-                                  },
-                                  itemBuilder:
-                                      (BuildContext context, int index) {
-                                    FinancialCategory category =
-                                        financialCategories[index];
-                                    int totalAmount =
-                                        stateStatistic.categoryTotalAmount[
-                                                category.id!] ??
-                                            0;
-                                    double percentage =
-                                        stateStatistic.categoryPercentages[
-                                                category.id!] ??
-                                            0;
+                            ),
+                          ),
+                          SizedBox(height: 16.0),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 8.0, horizontal: 16.0),
+                            child: NameOfSection(
+                              name: AppLocale.detail.getString(context),
+                            ),
+                          ),
+                          Expanded(
+                            child: ListView.separated(
+                              padding: EdgeInsets.symmetric(horizontal: 16.0),
+                              itemCount: financialCategories.length,
+                              separatorBuilder:
+                                  (BuildContext context, int index) {
+                                return SizedBox(height: 8.0);
+                              },
+                              itemBuilder: (BuildContext context, int index) {
+                                FinancialCategory category =
+                                    financialCategories[index];
+                                int totalAmount = stateStatistic
+                                        .categoryTotalAmount[category.id!] ??
+                                    0;
+                                double percentage = stateStatistic
+                                        .categoryPercentages[category.id!] ??
+                                    0;
 
-                                    return CategoryResultItem(
-                                      category: financialCategories[index],
-                                      totalAmount: totalAmount,
-                                      percentage: percentage,
-                                    );
-                                  },
-                                ),
-                              ),
-                            ],
-                          );
-                        },
+                                return CategoryResultItem(
+                                  category: financialCategories[index],
+                                  totalAmount: totalAmount,
+                                  percentage: percentage,
+                                );
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 16.0),
-                        child: CustomFeeledButton(
-                          onPressed: () async {
-                            // List<FinancialTransaction> transactions =
-                            //     stateTransactions.transactions ?? [];
 
-                            // await generatePDF();
-                            final simplePdfFile =
-                                await SimplePdfApi.generateSimpleTextPdf(
-                                    'Sometext', 'Sometext');
-                            SaveAndOpenDocument.openPdf(simplePdfFile);
+                      //Button: Download Report
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          bottom: 16.0,
+                        ),
+                        child: CustomFeeledButton(
+                          onPressed: () {
+                            context.read<FinTransactionCubit>().getTransactions(
+                                  dateMonth: stateDate.selectedMonth,
+                                  year: stateDate.selectedYear,
+                                );
+                            List<FinancialTransaction> transactions = context
+                                    .read<FinTransactionCubit>()
+                                    .state
+                                    .transactions ??
+                                [];
+
+                            _downloadReportAction(
+                              transactions,
+                              stateDate.selectedMonth,
+                            );
+                            // await getReportInPdf(
+                            //     transactions: transactions,
+                            //     month: stateDate.selectedMonth);
+
+                            // final simplePdfFile =
+                            //     await SimplePdfApi.generateSimpleTextPdf(
+                            //         'Sometext', 'Sometext');
+                            // SaveAndOpenDocument.openPdf(simplePdfFile);
                           },
                           name: AppLocale.download.getString(context),
-                          icon: SvgPicture.asset(IconsApp.download),
+                          icon: SvgPicture.asset(
+                            IconsApp.download,
+                          ),
                         ),
                       ),
                     ],
