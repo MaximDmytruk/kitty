@@ -1,16 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/blocs/fin_category_cubit/fin_category_cubit.dart';
 import 'package:kitty/blocs/search_cubit/search_cubit.dart';
 import 'package:kitty/models/financial_category/financial_category.dart';
 import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/screens/search_screen/widgets/history_list_view.dart';
 import 'package:kitty/screens/search_screen/widgets/search_app_bar.dart';
-import 'package:kitty/screens/search_screen/widgets/search_history_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
-import 'package:kitty/styles/font/fontstyle_app.dart';
-import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/utils/filteredTransactionsByDay.dart';
 import 'package:kitty/widgets/app_bars/custom_status_bar.dart';
 import 'package:kitty/widgets/list_views/custom_list_view.dart';
@@ -32,21 +28,22 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     context.read<SearchCubit>().getSearchHistory();
+    searchTextController.addListener(
+      () {
+        final query = searchTextController.text;
 
-    searchTextController.addListener(() {
-      final query = searchTextController.text;
-
-      setState(() {
-        isQueryEmpty = searchTextController.text.isEmpty;
-      });
-
-      if (query.isNotEmpty) {
-        context.read<SearchCubit>().searchTransactions(
-              query: query,
-            );
-      }
-    });
-
+        setState(
+          () {
+            isQueryEmpty = searchTextController.text.isEmpty;
+          },
+        );
+        if (query.isNotEmpty) {
+          context.read<SearchCubit>().searchTransactions(
+                query: query,
+              );
+        }
+      },
+    );
     super.initState();
   }
 

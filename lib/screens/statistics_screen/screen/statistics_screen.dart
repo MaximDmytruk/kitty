@@ -41,7 +41,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
     int? month,
     int? year,
   ) async {
-   await context.read<FinTransactionCubit>().getTransactions(
+    await context.read<FinTransactionCubit>().getTransactions(
           dateMonth: month,
           year: year,
         );
@@ -143,7 +143,6 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                 double percentage = stateStatistic
                                         .categoryPercentages[category.id!] ??
                                     0;
-
                                 return CategoryResultItem(
                                   category: financialCategories[index],
                                   totalAmount: totalAmount,
@@ -162,18 +161,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                         ),
                         child: CustomFeeledButton(
                           onPressed: () {
-                            context.read<FinTransactionCubit>().getTransactions(
-                                  dateMonth: stateDate.selectedMonth,
-                                  year: stateDate.selectedYear,
-                                );
-                            List<FinancialTransaction> transactions = context
-                                    .read<FinTransactionCubit>()
-                                    .state
-                                    .transactions ??
-                                [];
-
                             _downloadReportAction(
-                              // transactions,
                               stateDate.selectedMonth,
                               stateDate.selectedYear,
                             );

@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/services.dart';
 import 'package:open_file/open_file.dart';
-import 'package:path_provider/path_provider.dart';
+// import 'package:path_provider/path_provider.dart';
 import 'package:pdf/widgets.dart' as pw;
 
 class SaveAndOpenDocument {
@@ -10,9 +10,9 @@ class SaveAndOpenDocument {
     required String name,
     required pw.Document pdf,
   }) async {
-    final dir = Platform.isAndroid // ЗАМІСТЬ ROOT
-        ? await getExternalStorageDirectory()
-        : await getApplicationDocumentsDirectory();
+    // final dir = Platform.isAndroid // ЗАМІСТЬ ROOT
+    //     ? await getExternalStorageDirectory()
+    //     : await getApplicationDocumentsDirectory();
 
     final root = "/storage/emulated/0/Download";
 

@@ -62,7 +62,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
               Expanded(
                 child: TextField(
                   onSubmitted: (value) {
-                    if (widget.onSubmitted != null ) {
+                    if (widget.onSubmitted != null) {
                       widget.onSubmitted!(
                         value,
                         selectedCategoryIds,
@@ -112,10 +112,12 @@ class _SearchAppBarState extends State<SearchAppBar> {
                       }
                     });
 
-                    widget.onSubmitted?.call(
-                      widget.textController.text,
-                      selectedCategoryIds,
-                    );
+                    if (widget.onSubmitted != null) {
+                      widget.onSubmitted!(
+                        widget.textController.text,
+                        selectedCategoryIds,
+                      );
+                    }
                   },
                 );
               },

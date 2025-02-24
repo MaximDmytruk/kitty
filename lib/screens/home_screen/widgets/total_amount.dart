@@ -6,7 +6,6 @@ import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/screens/home_screen/widgets/total_amount_icon.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
-import 'package:sqflite/sqflite.dart';
 
 class TotalAmount extends StatefulWidget {
   final List<FinancialTransaction> transactions;

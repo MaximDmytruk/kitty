@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -20,17 +18,10 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
           ),
         );
 
-
-
   Future<void> getFinancialCategories() async {
     List<FinancialCategory> categories = await repository.getAllCategories();
 
-    for (var element in categories) {
-      print(element.id);
-    }
-
     if (categories.isNotEmpty) {
-      print('Category status loaded');
       emit(
         state.copyWith(
           status: FinCategoryStatus.loaded,
@@ -98,9 +89,6 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
           categories: updatedCategories,
         ),
       );
-      for (var element in updatedCategories) {
-        print(element.id);
-      }
     }
   }
 }
