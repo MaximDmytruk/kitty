@@ -60,10 +60,9 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
     selectedMonth = context.read<DateCubit>().getMonth();
 
     context.read<DateCubit>().selectMonth(newNumOfMonth: indexOfMonth);
-    
+
     _toggleOverlay();
     setState(() {});
-
   }
 
   void _toggleOverlay() {
@@ -84,7 +83,7 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
             top: 150.0,
             left: 24.0,
             right: 24.0,
-            bottom: 480.0,
+            bottom: 430.0,
           ),
           child: BlocBuilder<DateCubit, DateState>(
             builder: (context, state) {
@@ -92,7 +91,10 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                 shadowColor: Colors.transparent,
                 child: Container(
                   // height: 300,
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 16.0,
+                    horizontal: 22.0,
+                  ),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
@@ -124,8 +126,8 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
                           gridDelegate:
                               SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 3,
-                            crossAxisSpacing: 40.0,
-                            mainAxisSpacing: 8.0,
+                            crossAxisSpacing: 22.0,
+                            mainAxisSpacing: 16.0,
                             childAspectRatio: 2.0,
                           ),
                           itemCount: months.length,
