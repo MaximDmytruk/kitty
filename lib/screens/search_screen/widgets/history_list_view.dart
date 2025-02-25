@@ -3,11 +3,13 @@ import 'package:kitty/screens/search_screen/widgets/search_history_row.dart';
 
 class HistoryListView extends StatefulWidget {
   final Function? onTap;
+  final Function? onDissmissed;
 
   const HistoryListView({
     super.key,
     required this.searchHistory,
     this.onTap,
+    this.onDissmissed,
   });
 
   final List<String> searchHistory;
@@ -34,6 +36,11 @@ class _HistoryListViewState extends State<HistoryListView> {
           return SearchHistoryRow(
             name: widget.searchHistory[index],
             onTap: widget.onTap,
+            onDissmissed:(name){ 
+              if (widget.onDissmissed != null) {
+                widget.onDissmissed!(name);
+              }
+            },
           );
         },
       ),

@@ -8,10 +8,10 @@ part 'search_state.dart';
 part 'search_cubit.freezed.dart';
 
 class SearchCubit extends Cubit<SearchState> {
-  final SearchHistoryRepository repository;
+  final SearchHistoryRepository historyRepository;
   final FinTransactionRepository finTransactionRepository;
 
-  SearchCubit(this.repository, this.finTransactionRepository)
+  SearchCubit(this.historyRepository, this.finTransactionRepository)
       : super(
           SearchState(status: SearchStatus.initial),
         );
@@ -20,30 +20,31 @@ class SearchCubit extends Cubit<SearchState> {
     required String query,
     List<int>? categoryIds,
   }) async {
-    
     emit(
       state.copyWith(
         status: SearchStatus.loading,
       ),
     );
-
     List<FinancialTransaction> transactions =
         await finTransactionRepository.searchTransactions(
       query: query,
       categoriesId: categoryIds,
     );
-
-    emit(state.copyWith(
-      status: SearchStatus.loaded,
-      transactions: transactions,
-    ));
+    emit(
+      state.copyWith(
+        status: SearchStatus.loaded,
+        transactions: transactions,
+      ),
+    );
   }
 
   void getSearchHistory() {
-    emit(state.copyWith(status: SearchStatus.loading));
-
-    List<String> searchHistory = repository.getSearchHistory();
-
+    emit(
+      state.copyWith(
+        status: SearchStatus.loading,
+      ),
+    );
+    List<String> searchHistory = historyRepository.getSearchHistory();
     emit(
       state.copyWith(
         status: SearchStatus.loaded,
@@ -52,11 +53,18 @@ class SearchCubit extends Cubit<SearchState> {
     );
   }
 
-  void saveSearchQuery(String query) {
-    emit(state.copyWith(status: SearchStatus.loading));
-
+  void saveSearchQuery(
+    String query,
+  ) {
+    emit(
+      state.copyWith(
+        status: SearchStatus.loading,
+      ),
+    );
     if (query != '') {
-      repository.addSearchQuery(query);
+      historyRepository.addSearchQuery(
+        query,
+      );
       getSearchHistory();
     } else {
       emit(
@@ -66,5 +74,10 @@ class SearchCubit extends Cubit<SearchState> {
         ),
       );
     }
+  }
+
+  void removeSearchQuery(String query) {
+    historyRepository.removeSearchQuery(query);
+    getSearchHistory();
   }
 }

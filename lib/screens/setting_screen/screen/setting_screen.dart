@@ -46,11 +46,22 @@ class _SettingScreenState extends State<SettingScreen> {
 
   void exportToPDFAction() async {
     await context.read<FinTransactionCubit>().getTransactions();
-    List<FinancialTransaction> transactions =
-        context.read<FinTransactionCubit>().state.transactions ?? [];
-    getReportInPdf(
-      transactions: transactions,
-    );
+
+    if (mounted) {
+      List<FinancialTransaction> transactions =
+          context.read<FinTransactionCubit>().state.transactions ?? [];
+
+      getReportInPdf(
+        transactions: transactions,
+      );
+    }
+
+    // List<FinancialTransaction> transactions =
+    //     context.read<FinTransactionCubit>().state.transactions ?? [];
+
+    // getReportInPdf(
+    //   transactions: transactions,
+    // );
   }
 
   void chooseCurrencyAction() {}

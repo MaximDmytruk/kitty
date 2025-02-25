@@ -7,11 +7,10 @@ import 'package:flutter/services.dart' show rootBundle;
 
 import 'package:permission_handler/permission_handler.dart';
 
-Future<void> getReportInPdf({
-  required List<FinancialTransaction> transactions,
-  int? month,
-  int? year
-}) async {
+Future<void> getReportInPdf(
+    {required List<FinancialTransaction> transactions,
+    int? month,
+    int? year}) async {
   PermissionStatus status = await Permission.manageExternalStorage.status;
 
   if (!status.isGranted) {
@@ -134,7 +133,8 @@ Future<void> getReportInPdf({
     // );
 
     final String dir = "/storage/emulated/0/Download";
-    final File file = File("$dir/transactions3.pdf");
+    //TODO: month and year in storage path!
+    final File file = File("$dir/transactions.pdf");
 
     await file.writeAsBytes(await pdf.save());
     print('PDF saved: ${file.path}');

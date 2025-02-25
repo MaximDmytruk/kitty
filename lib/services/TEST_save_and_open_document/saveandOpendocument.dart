@@ -25,17 +25,6 @@ class SaveAndOpenDocument {
   static Future<void> openPdf(File file) async {
     final path = file.path;
 
-//    
-//     if (await file.exists()) {
-//       print('Файл збережено успішно: ${file.path}');
-//       await Future.delayed(Duration(seconds: 1));
-//       // OpenFile.open(file.path);
-//       final result = await OpenFile.open(file.path);
-// print('результат  файлу: ${result.message}');
-//     } else {
-//       print('Не вдалося зберегти файл.');
-//     }
-
     await OpenFile.open(path);
   }
 }

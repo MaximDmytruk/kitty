@@ -33,12 +33,12 @@ class _AuthScreenState extends State<AuthScreen> {
     String passwordText = passwordController.text;
 
     if (loginText.isEmpty || passwordText.isEmpty) {
-      print('EMPTY');
       return;
     }
 
     context.read<UserCubit>().loginUser(loginText, passwordText);
     // Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
+    
   }
 
   void _signUp() =>
@@ -65,7 +65,7 @@ class _AuthScreenState extends State<AuthScreen> {
       body: BlocListener<UserCubit, UserState>(
         listener: (context, state) {
           if (state.status == UserStatus.authenticated) {
-           // Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
+            // Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
           }
         },
         child: SingleChildScrollView(

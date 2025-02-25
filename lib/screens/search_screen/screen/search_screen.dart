@@ -28,6 +28,7 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     context.read<SearchCubit>().getSearchHistory();
+    
     searchTextController.addListener(
       () {
         final query = searchTextController.text;
@@ -65,6 +66,12 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
+  void onDissmisedHistory (String query){
+    setState(() {
+      context.read<SearchCubit>().removeSearchQuery(query);
+    });
+  }
+
   @override
   void dispose() {
     // searchTextController.dispose();
@@ -97,6 +104,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       ? HistoryListView(
                           searchHistory: searchHistory,
                           onTap: historyNameAction,
+                          onDissmissed: onDissmisedHistory,
                         )
                       : CustomListView(
                           transactionOfDay: transactionOfDay,
