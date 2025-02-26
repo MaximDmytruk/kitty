@@ -142,19 +142,23 @@ class _StatisticScreenState extends State<StatisticScreen> {
 
                           //PAINTER: Color Strip
                           Padding(
-                            padding:
-                                const EdgeInsets.symmetric(horizontal: 16.0),
-                            child: CustomPaint(
-                              size: Size(
-                                double.infinity,
-                                36,
-                              ),
-                              painter: ColorStripPainter(
-                                colors: stateStatistic.categoryColors.values
-                                    .toList(),
-                                percentages: stateStatistic
-                                    .categoryPercentages.values
-                                    .toList(),
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 16.0,
+                            ),
+                            child: ClipRRect (
+                              borderRadius: BorderRadius.circular(8.0,),
+                              child: CustomPaint(
+                                size: Size(
+                                  double.infinity,
+                                  36,
+                                ),
+                                painter: ColorStripPainter(
+                                  colors: stateStatistic.categoryColors.values
+                                      .toList(),
+                                  percentages: stateStatistic
+                                      .categoryPercentages.values
+                                      .toList(),
+                                ),
                               ),
                             ),
                           ),

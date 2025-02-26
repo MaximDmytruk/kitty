@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 
@@ -21,7 +20,12 @@ class ColorStripPainter extends CustomPainter {
       double segmentWidth = size.width * (percentages[i] / 100);
 
       canvas.drawRect(
-        Rect.fromLTWH(startX, 0, segmentWidth, size.height),
+        Rect.fromLTWH(
+          startX,
+          0,
+          segmentWidth,
+          size.height,
+        ),
         paint,
       );
 
