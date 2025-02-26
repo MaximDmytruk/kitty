@@ -8,12 +8,15 @@ class CategoryResultItem extends StatelessWidget {
   final FinancialCategory category;
   final int totalAmount;
   final double percentage;
+  final Color nameColor;
 
-  const CategoryResultItem(
-      {super.key,
-      required this.category,
-      required this.totalAmount,
-      required this.percentage});
+  const CategoryResultItem({
+    super.key,
+    required this.category,
+    required this.totalAmount,
+    required this.percentage,
+    required this.nameColor,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +50,10 @@ class CategoryResultItem extends StatelessWidget {
             Text(
               totalAmount.toString(),
               style: interTextStyle(
-                color: ColorsApp.red,
+                color: nameColor,
               ),
             ),
-             Text(
+            Text(
               '${percentage.toStringAsFixed(0)}%',
               style: interTextStyle(
                 fontSize: 12.0,

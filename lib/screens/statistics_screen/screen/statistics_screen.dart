@@ -14,6 +14,7 @@ import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/screens/statistics_screen/widgets/category_result_item.dart';
 import 'package:kitty/screens/statistics_screen/widgets/name_of_section.dart';
 import 'package:kitty/services/get_report_in_pdf.dart';
+import 'package:kitty/styles/font/fontstyle_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
 import 'package:kitty/widgets/app_bars/name_of_screen_header.dart';
@@ -31,10 +32,23 @@ class StatisticScreen extends StatefulWidget {
 class _StatisticScreenState extends State<StatisticScreen> {
   List<FinancialCategory> financialCategories = [];
   int totalAmount = 0;
+  FinancialAction selectedFinAction = FinancialAction.expense;
 
   Map<int, int> categoryTotalAmount = {};
   Map<int, double> categoryPercentages = {};
   Map<int, Color> categoryColors = {};
+
+  void changeFinAction() {
+    switch (selectedFinAction) {
+      case FinancialAction.expense:
+        selectedFinAction = FinancialAction.income;
+
+      case FinancialAction.income:
+        selectedFinAction = FinancialAction.expense;
+    }
+
+    setState(() {});
+  }
 
   void _downloadReportAction(
     // List<FinancialTransaction> transactions,
@@ -45,10 +59,16 @@ class _StatisticScreenState extends State<StatisticScreen> {
           dateMonth: month,
           year: year,
         );
-    List<FinancialTransaction> transactions =
-        context.read<FinTransactionCubit>().state.transactions ?? [];
 
-    getReportInPdf(transactions: transactions, month: month, year: year);
+    if (mounted) {
+      List<FinancialTransaction> transactions =
+          context.read<FinTransactionCubit>().state.transactions ?? [];
+      getReportInPdf(
+        transactions: transactions,
+        month: month,
+        year: year,
+      );
+    }
   }
 
   @override
@@ -68,10 +88,11 @@ class _StatisticScreenState extends State<StatisticScreen> {
               stateTransactions,
             ) {
               context.read<StatisticCubit>().calculateCategory(
-                    financialCategories,
-                    stateDate.selectedMonth,
-                    stateDate.selectedYear,
-                    context.read<FinTransactionCubit>(),
+                    finAction: selectedFinAction,
+                    categories: financialCategories,
+                    month: stateDate.selectedMonth,
+                    year: stateDate.selectedYear,
+                    transactionCubit: context.read<FinTransactionCubit>(),
                   );
 
               return BlocBuilder<StatisticCubit, StatisticsState>(
@@ -85,7 +106,28 @@ class _StatisticScreenState extends State<StatisticScreen> {
                           CustomStatusBar(),
                           NameOfScreenHeader(
                             name: AppLocale.statistics.getString(context),
-                            color: ColorsApp.white,
+                            backgroundColor: ColorsApp.white,
+                            widgetOnRightSide: TextButton.icon(
+                              onPressed: changeFinAction,
+                              label: Text(
+                                selectedFinAction.name,
+                                style: interTextStyle(
+                                  fontSize: 14.0,
+                                  fontWeight: FontWeight.w500,
+                                  color: selectedFinAction.name ==
+                                          FinancialAction.expense.name
+                                      ? ColorsApp.red
+                                      : ColorsApp.green,
+                                ),
+                              ),
+                              icon: Icon(
+                                Icons.repeat,
+                                color: selectedFinAction.name ==
+                                        FinancialAction.expense.name
+                                    ? ColorsApp.red
+                                    : ColorsApp.green,
+                              ),
+                            ),
                           ),
                           CustomDatePicker(),
                           Padding(
@@ -147,6 +189,10 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                   category: financialCategories[index],
                                   totalAmount: totalAmount,
                                   percentage: percentage,
+                                  nameColor: selectedFinAction.name ==
+                                          FinancialAction.expense.name
+                                      ? ColorsApp.red
+                                      : ColorsApp.green,
                                 );
                               },
                             ),

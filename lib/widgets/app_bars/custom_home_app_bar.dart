@@ -22,8 +22,6 @@ class CustomHomeAppBar extends StatefulWidget {
 }
 
 class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
-
-
   void userAction() {}
 
   @override
@@ -53,7 +51,9 @@ class _CustomHomeAppBarState extends State<CustomHomeAppBar> {
           Spacer(),
           IconButton(
             onPressed: () => widget.searchAction(),
-            icon: SvgPicture.asset(IconsApp.search),
+            icon: SvgPicture.asset(
+              IconsApp.search,
+            ),
           ),
           SizedBox(width: 8.0),
           InkWell(

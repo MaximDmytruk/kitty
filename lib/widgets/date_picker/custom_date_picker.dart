@@ -209,34 +209,35 @@ class _CustomDatePickerState extends State<CustomDatePicker> {
               ),
             ),
             ElevatedButton(
-                onPressed: datePickerAction,
-                style: ButtonStyle(
-                  backgroundColor: WidgetStatePropertyAll(
-                    ColorsApp.lightGrey245,
-                  ),
-                  foregroundColor: WidgetStatePropertyAll(
-                    ColorsApp.grey66,
-                  ),
-                  elevation: WidgetStatePropertyAll(0.0),
+              onPressed: datePickerAction,
+              style: ButtonStyle(
+                backgroundColor: WidgetStatePropertyAll(
+                  ColorsApp.lightGrey245,
                 ),
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      IconsApp.calendar,
+                foregroundColor: WidgetStatePropertyAll(
+                  ColorsApp.grey66,
+                ),
+                elevation: WidgetStatePropertyAll(0.0),
+              ),
+              child: Row(
+                children: [
+                  SvgPicture.asset(
+                    IconsApp.calendar,
+                  ),
+                  SizedBox(
+                    width: 8.0,
+                  ),
+                  Text(
+                    '${months[state.selectedMonth]} , ${state.selectedYear}',
+                    style: interTextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.w500,
+                      color: ColorsApp.grey66,
                     ),
-                    SizedBox(
-                      width: 8.0,
-                    ),
-                    Text(
-                      '${months[state.selectedMonth]} , ${state.selectedYear}',
-                      style: interTextStyle(
-                        fontSize: 14.0,
-                        fontWeight: FontWeight.w500,
-                        color: ColorsApp.grey66,
-                      ),
-                    )
-                  ],
-                )),
+                  )
+                ],
+              ),
+            ),
             IconButton(
               onPressed: () => _rightDateAction(context),
               icon: SvgPicture.asset(

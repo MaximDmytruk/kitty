@@ -152,6 +152,7 @@ class FinTransactionRepository {
     int categoryId,
     int dateMonth,
     int year,
+    FinancialAction financialAction,
   ) async {
     Database db = await database.database;
     String month = '';
@@ -162,12 +163,14 @@ class FinTransactionRepository {
     final result = await db.rawQuery('''
     SELECT COALESCE(SUM(amount), 0) as totalAmount 
     FROM transactions 
-    WHERE categoryId = ? AND strftime('%m', date) = ? AND strftime('%Y', date) = ?
+    WHERE categoryId = ? AND strftime('%m', date) = ? AND strftime('%Y', date) = ? AND financialAction = ?
   ''', [
       categoryId,
       month,
       year.toString(),
+      financialAction.toString(),
     ]);
+
     return result.first['totalAmount'] as int;
   }
 

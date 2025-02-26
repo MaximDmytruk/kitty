@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kitty/blocs/fin_transaction_cubit/fin_transaction_cubit.dart';
 import 'package:kitty/models/financial_category/financial_category.dart';
+import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 
 part 'statisctic_state.dart';
 part 'statisctic_cubit.freezed.dart';
@@ -15,12 +16,13 @@ class StatisticCubit extends Cubit<StatisticsState> {
           ),
         );
 
-  Future<void> calculateCategory(
-    List<FinancialCategory> categories,
-    int month,
-    int year,
-    FinTransactionCubit transactionCubit,
-  ) async {
+  Future<void> calculateCategory({
+    required FinancialAction finAction,
+    required List<FinancialCategory> categories,
+    required int month,
+    required int year,
+    required FinTransactionCubit transactionCubit,
+  }) async {
     emit(
       state.copyWith(
         status: StatisticsStatus.loading,
@@ -33,10 +35,11 @@ class StatisticCubit extends Cubit<StatisticsState> {
       Map<int, Color> categoryColors = {};
 
       for (FinancialCategory category in categories) {
-        final int totalAmount = await transactionCubit.getTotalAmountByMonth(
+        final int totalAmount = await transactionCubit.getTotalAmountByDate(
           categoryId: category.id!,
           month: month,
           year: year,
+          financialAction: finAction,
         );
         categoryTotalAmount[category.id!] = totalAmount;
         overallTotal += totalAmount;
