@@ -139,6 +139,8 @@ class _StatisticScreenState extends State<StatisticScreen> {
                               name: AppLocale.overview.getString(context),
                             ),
                           ),
+
+                          //PAINTER: Color Strip
                           Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 16.0),
@@ -149,11 +151,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                               ),
                               painter: ColorStripPainter(
                                 colors: stateStatistic.categoryColors.values
-                                        .toList()
-                                        .isEmpty
-                                    ? [Colors.amber]
-                                    : stateStatistic.categoryColors.values
-                                        .toList(),
+                                    .toList(),
                                 percentages: stateStatistic
                                     .categoryPercentages.values
                                     .toList(),
@@ -163,7 +161,9 @@ class _StatisticScreenState extends State<StatisticScreen> {
                           SizedBox(height: 16.0),
                           Padding(
                             padding: const EdgeInsets.symmetric(
-                                vertical: 8.0, horizontal: 16.0),
+                              vertical: 8.0,
+                              horizontal: 16.0,
+                            ),
                             child: NameOfSection(
                               name: AppLocale.detail.getString(context),
                             ),
