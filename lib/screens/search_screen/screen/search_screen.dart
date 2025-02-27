@@ -89,6 +89,7 @@ class _SearchScreenState extends State<SearchScreen> {
             builder: (context, stateSearch) {
               List<String> searchHistory = stateSearch.searchHistory;
               List<List<FinancialTransaction>> transactionOfDay = [];
+              
               transactionOfDay = filteredTransactionsByDay(
                 stateSearch.transactions,
               );

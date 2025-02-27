@@ -55,13 +55,6 @@ class _SettingScreenState extends State<SettingScreen> {
         transactions: transactions,
       );
     }
-
-    // List<FinancialTransaction> transactions =
-    //     context.read<FinTransactionCubit>().state.transactions ?? [];
-
-    // getReportInPdf(
-    //   transactions: transactions,
-    // );
   }
 
   void chooseCurrencyAction() {}

@@ -54,7 +54,7 @@ class _ListGroupState extends State<ListGroup> {
     } else if (date.year == now.year &&
         date.month == now.month &&
         date.day == now.day - 1) {
-      dateOfTransaction = 'Y e s t e r d a y';
+      dateOfTransaction = 'Y E S T E R D A Y';
     } else {
       dateOfTransaction = DateFormat('d/M/y').format(date);
     }

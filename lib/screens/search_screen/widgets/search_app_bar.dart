@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/models/financial_category/financial_category.dart';
@@ -74,7 +75,7 @@ class _SearchAppBarState extends State<SearchAppBar> {
                   cursorColor: ColorsApp.black,
                   maxLines: 1,
                   decoration: InputDecoration(
-                    hintText: AppLocale.searchNotesCategoriesOrLabels,
+                    hintText: AppLocale.searchNotesCategoriesOrLabels.getString(context),
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
                     ),

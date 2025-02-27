@@ -51,7 +51,6 @@ class _StatisticScreenState extends State<StatisticScreen> {
   }
 
   void _downloadReportAction(
-    // List<FinancialTransaction> transactions,
     int? month,
     int? year,
   ) async {
@@ -145,8 +144,10 @@ class _StatisticScreenState extends State<StatisticScreen> {
                             padding: EdgeInsets.symmetric(
                               horizontal: 16.0,
                             ),
-                            child: ClipRRect (
-                              borderRadius: BorderRadius.circular(8.0,),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(
+                                8.0,
+                              ),
                               child: CustomPaint(
                                 size: Size(
                                   double.infinity,

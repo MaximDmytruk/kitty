@@ -1,13 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:bot_toast/bot_toast.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kitty/models/user/user.dart';
 import 'package:kitty/repositories/user_repository/user_repository.dart';
 import 'package:kitty/localization/app_locale.dart';
-
-import 'package:kitty/styles/colors/colors_app.dart';
-import 'package:kitty/styles/font/fontstyle_app.dart';
 
 part 'user_state.dart';
 part 'user_cubit.freezed.dart';
@@ -37,7 +32,6 @@ class UserCubit extends Cubit<UserState> {
     emit(state.copyWith(status: UserStatus.loading));
 
     final user = await userRepository.getUser();
-
     if (user == null) {
       emit(
         state.copyWith(
@@ -54,7 +48,6 @@ class UserCubit extends Cubit<UserState> {
     emit(state.copyWith(status: UserStatus.loading));
 
     final User? checkingUser = await userRepository.getUser();
-
     if (checkingUser != null) {
       emit(
         state.copyWith(
@@ -72,13 +65,13 @@ class UserCubit extends Cubit<UserState> {
     );
 
     await userRepository.registerUser(user: newUser);
-
     final User? registeredUser = await userRepository.getUser();
 
     emit(
       state.copyWith(
         user: registeredUser,
         status: UserStatus.authenticated,
+        errorText: null,
       ),
     );
   }
@@ -103,6 +96,7 @@ class UserCubit extends Cubit<UserState> {
         state.copyWith(
           user: registeredUser,
           status: UserStatus.authenticated,
+          errorText: null,
         ),
       );
     } else {
@@ -130,31 +124,5 @@ class UserCubit extends Cubit<UserState> {
   String getFirstLetterName() => state.user?.name[0].toUpperCase() ?? '-';
   String getUserEmail() => state.user?.email ?? 'No Email';
 
-  void showToast({required String text}) {
-    BotToast.showCustomText(
-      align: Alignment.topCenter,
-      toastBuilder: (_) {
-        return Padding(
-          padding: const EdgeInsets.only(top: 60.0),
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: 16.0,
-              vertical: 8.0,
-            ),
-            color: ColorsApp.grey66,
-            child: Text(
-              text,
-              style: interTextStyle(
-                fontWeight: FontWeight.w500,
-                color: ColorsApp.white,
-              ),
-              textAlign: TextAlign.center,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ),
-        );
-      },
-    );
-  }
+ 
 }

@@ -153,7 +153,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           return SizedBox.shrink();
                         },
                       ),
-                    )
+                    ),
                   ],
                 ),
               ),

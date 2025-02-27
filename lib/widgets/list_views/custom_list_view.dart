@@ -40,4 +40,3 @@ class _CustomListViewState extends State<CustomListView> {
     );
   }
 }
-//TODO: appbar колір під час роботи listView!

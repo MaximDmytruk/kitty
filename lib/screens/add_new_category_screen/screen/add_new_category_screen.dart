@@ -92,7 +92,10 @@ class _AddNewCategoryState extends State<AddNewCategory> {
           colorValue: selectedIcon!.color,
           iconPath: selectedIcon!.iconPath,
         );
-        context.read<FinCategoryCubit>().updateCategory(updatedCategory);
+        context.read<FinCategoryCubit>().updateCategory(
+              context,
+              updatedCategory,
+            );
         Navigator.pop(context);
       } else {
         FinancialCategory newCategory = FinancialCategory(
@@ -100,7 +103,7 @@ class _AddNewCategoryState extends State<AddNewCategory> {
           colorValue: selectedIcon!.color,
           iconPath: selectedIcon!.iconPath,
         );
-        context.read<FinCategoryCubit>().addCategory(newCategory);
+        context.read<FinCategoryCubit>().addCategory(context, newCategory);
 
         Navigator.of(context).popAndPushNamed(BottomNavigationScreen.routeName);
       }

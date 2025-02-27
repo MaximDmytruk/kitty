@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:kitty/models/financial_transaction/financial_transaction.dart';
+import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:open_file/open_file.dart';
@@ -21,127 +22,103 @@ Future<void> getReportInPdf(
     final pdf = pw.Document();
 
     //Font for PDF
-    final fontData = await rootBundle.load("assets/fonts/NotoSans-Regular.ttf");
-    final ttf = pw.Font.ttf(fontData);
+    // final fontData = await rootBundle.load("assets/fonts/NotoSans-Regular.ttf");
+    // final ttf = pw.Font.ttf(fontData);
+
+    List<String> headers = [
+      'Action',
+      'Category name',
+      ' Discriptions',
+      'Amount'
+    ];
+
+    final String image = String.fromCharCodes(
+        (await rootBundle.load(IconsApp.logoKitty)).buffer.asUint8List());
 
     pdf.addPage(
-      pw.MultiPage(
-        pageFormat: PdfPageFormat.a4,
-        build: (pw.Context context) {
-          return [
-            month != null
-                ? pw.Text(
-                    'Month - $month',
-                    style: pw.TextStyle(
-                      fontSize: 32,
-                      font: ttf,
-                    ),
-                  )
-                : pw.Text(
-                    'All Transactions',
-                    style: pw.TextStyle(
-                      fontSize: 32,
-                      font: ttf,
-                    ),
-                  ),
-            pw.SizedBox(height: 10),
-            ...transactions.map((trns) {
-              String nameCategory = trns.category.name;
-              String? discriptions = trns.description;
-              String amount = trns.amount.toString();
-              String financialAction = trns.financialAction.name;
-              return pw.Row(
-                mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-                children: [
-                  pw.Text(
-                    financialAction,
-                    style: pw.TextStyle(
-                      font: ttf,
-                    ),
-                  ),
-                  pw.Text(
-                    discriptions ?? 'Without discriptions',
-                    style: pw.TextStyle(
-                      font: ttf,
-                    ),
-                  ),
-                  pw.Text(
-                    nameCategory,
-                    style: pw.TextStyle(
-                      font: ttf,
-                    ),
-                  ),
-                  pw.Text(
-                    amount,
-                    style: pw.TextStyle(
-                      font: ttf,
-                    ),
-                  ),
-                ],
-              );
-            }),
-          ];
-        },
-      ),
+      pw.MultiPage(build: (pw.Context context) {
+        return [
+          pw.Row(
+            children: [
+              pw.SvgImage(svg: image, width: 40, height: 40.0),
+              pw.Text(
+                'Kitty',
+                style: pw.TextStyle(
+                  fontSize: 40,
+                ),
+              ),
+            ],
+          ),
+          pw.SizedBox(
+            height: 8.0,
+          ),
+          if (month != null && year != null)
+            pw.Text(
+              'Date: $month.$year',
+              style: pw.TextStyle(
+                fontSize: 20,
+              ),
+            )
+          else
+            pw.Text(
+              'All transactions',
+              style: pw.TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          pw.SizedBox(
+            height: 8.0,
+          ),
+          pw.TableHelper.fromTextArray(
+            headers: headers,
+            headerStyle: pw.TextStyle(
+              fontSize: 14,
+              fontWeight: pw.FontWeight.bold,
+            ),
+            headerCellDecoration: pw.BoxDecoration(
+              color: PdfColors.grey200,
+            ),
+            cellAlignments: {
+              3: pw.Alignment.center,
+            },
+            rowDecoration: pw.BoxDecoration(
+              color: PdfColors.white,
+            ),
+            oddRowDecoration: pw.BoxDecoration(
+              color: PdfColors.grey100,
+            ),
+            data: transactions.map((trns) {
+              final PdfColor financialActionColor =
+                  trns.financialAction.name == 'expense'
+                      ? PdfColors.red900
+                      : PdfColors.green900;
+
+              return [
+                pw.Text(trns.financialAction.name,
+                    style: pw.TextStyle(color: financialActionColor)),
+                pw.Text(
+                  trns.category.name,
+                ),
+                pw.Text(
+                  trns.description ?? '',
+                ),
+                pw.Text(
+                  trns.amount.toString(),
+                ),
+              ];
+            }).toList(),
+          ),
+        ];
+      }),
     );
 
-    // pdf.addPage(
-    //   pw.Page(
-    //     pageFormat: PdfPageFormat.a4,
-    //     build: (pw.Context context) {
-    //       return pw.ListView.builder(
-    //         spacing: 8.0,
-    //         itemCount: transactions.length,
-    //         itemBuilder: (context, index) {
-    //           String nameCategory = transactions[index].category.name;
-    //           String? discriptions = transactions[index].description;
-    //           String amount = transactions[index].amount.toString();
-    //           String financialAction = transactions[index].financialAction.name;
-    //           return pw.Row(
-    //             mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
-    //             children: [
-    //               pw.Text(
-    //                 financialAction,
-    //                 style: pw.TextStyle(
-    //                   font: ttf,
-    //                 ),
-    //               ),
-    //               pw.Text(
-    //                 discriptions ?? 'Without discriptions',
-    //                 style: pw.TextStyle(
-    //                   font: ttf,
-    //                 ),
-    //               ),
-    //               pw.Text(
-    //                 nameCategory,
-    //                 style: pw.TextStyle(
-    //                   font: ttf,
-    //                 ),
-    //               ),
-    //               pw.Text(
-    //                 amount,
-    //                 style: pw.TextStyle(
-    //                   font: ttf,
-    //                 ),
-    //               ),
-    //             ],
-    //           );
-    //         },
-    //       );
-    //     },
-    //   ),
-    // );
-
     final String dir = "/storage/emulated/0/Download";
-    //TODO: month and year in storage path!
     final File file = File("$dir/transactions.pdf");
 
     await file.writeAsBytes(await pdf.save());
-    print('PDF saved: ${file.path}');
-
-    final result = await OpenFile.open(file.path);
-    print('OpenFile result: ${result.message}');
+    await OpenFile.open(file.path);
   } else {
+    // ignore: avoid_print
     print("Немає дозволу .");
   }
 }

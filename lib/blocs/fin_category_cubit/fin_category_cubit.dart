@@ -1,8 +1,12 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/models/financial_category/financial_category.dart';
 import 'package:kitty/repositories/financial_category_repository/fin_category_repository.dart';
+import 'package:kitty/widgets/toasts/show_toast.dart';
 
 part 'fin_category_state.dart';
 part 'fin_category_cubit.freezed.dart';
@@ -40,7 +44,10 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
     }
   }
 
-  Future<void> updateCategory(FinancialCategory updateCategory) async {
+  Future<void> updateCategory(
+    BuildContext context,
+    FinancialCategory updateCategory,
+  ) async {
     await repository.updateCategory(updateCategory);
     List<FinancialCategory> categories = await repository.getAllCategories();
     emit(
@@ -49,9 +56,11 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
         categories: categories,
       ),
     );
+    showToast(text: AppLocale.categoryEdited.getString(context));
   }
 
-  Future<void> addCategory(FinancialCategory category) async {
+  Future<void> addCategory(
+      BuildContext context, FinancialCategory category) async {
     emit(state.copyWith(status: FinCategoryStatus.loading));
 
     await repository.addNewCategory(category);
@@ -61,6 +70,7 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
     emit(
       state.copyWith(status: FinCategoryStatus.loaded, categories: categories),
     );
+    showToast(text: AppLocale.newCategoryAddeddSuccessfully);
   }
 
   Future<void> changePosition(int oldIndex, int newIndex) async {

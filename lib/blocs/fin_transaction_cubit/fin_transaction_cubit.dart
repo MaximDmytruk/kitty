@@ -1,7 +1,12 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_localization/flutter_localization.dart';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/repositories/fin_transaction_repository/fin_transaction_repository.dart';
+import 'package:kitty/widgets/toasts/show_toast.dart';
 
 part 'fin_transaction_state.dart';
 part 'fin_transaction_cubit.freezed.dart';
@@ -48,7 +53,7 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
     );
   }
 
-  Future<void> addTransaction(
+  Future<void> addTransaction(BuildContext context,
     FinancialTransaction transaction,
   ) async {
     emit(
@@ -68,6 +73,7 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
         transactions: transactions,
       ),
     );
+    showToast(text: AppLocale.newTransactionAddeddSuccessfully.getString(context),);
   }
 
 //TODO: TESTING TRANSACTIONS:

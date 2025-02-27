@@ -37,15 +37,14 @@ class _AuthScreenState extends State<AuthScreen> {
     }
 
     context.read<UserCubit>().loginUser(loginText, passwordText);
-    // Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
-    
   }
 
   void _signUp() =>
       Navigator.of(context).pushNamed(RegistrationScreen.routeName);
 
   void _authenticationAction() async {
-    final authenticate = await LocalAuth.authenticate();
+    final bool authenticate = await LocalAuth.authenticate();
+
     setState(() {
       auth = authenticate;
     });
@@ -62,92 +61,91 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorsApp.lightGrey250,
-      body: BlocListener<UserCubit, UserState>(
-        listener: (context, state) {
-          if (state.status == UserStatus.authenticated) {
-            // Navigator.of(context).pushNamed(BottomNavigationScreen.routeName);
-          }
+      body: BlocBuilder<UserCubit, UserState>(
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 16.0,
+                right: 16.0,
+                top: 120.0,
+              ),
+              child: Column(
+                children: [
+                  SvgPicture.asset(
+                    IconsApp.logoKitty,
+                    width: 120.0,
+                    height: 120.0,
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text(
+                    "Kitty",
+                    style: interTextStyle(
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.w700,
+                      color: ColorsApp.grey66,
+                    ),
+                  ),
+                  Text(
+                    AppLocale.yourExpenseManager.getString(context),
+                    style: interTextStyle(
+                      fontWeight: FontWeight.w400,
+                      color: ColorsApp.grey66,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  CustomTextfield(
+                    controller: loginController,
+                    labelText: AppLocale.login.getString(context),
+                    errorText: state.errorText,
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  CustomTextfield(
+                    controller: passwordController,
+                    labelText: AppLocale.password.getString(context),
+                    errorText: state.errorText,
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Row(
+                    children: [
+                      CustomFeeledButton(
+                        onPressed: _logInAction,
+                        name: AppLocale.logIn.getString(context),
+                      ),
+                      SizedBox(
+                        width: 10.0,
+                      ),
+                      CustomTextButton(
+                        onPressed: _signUp,
+                        name: AppLocale.signUp.getString(context),
+                      ),
+                      Spacer(),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  IconButton(
+                    onPressed: _authenticationAction,
+                    icon: SvgPicture.asset(
+                      IconsApp.fingerPrint,
+                      width: 64.0,
+                      height: 64.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
         },
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.only(
-              left: 16.0,
-              right: 16.0,
-              top: 120.0,
-            ),
-            child: Column(
-              children: [
-                SvgPicture.asset(
-                  IconsApp.logoKitty,
-                  width: 120.0,
-                  height: 120.0,
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Text(
-                  "Kitty",
-                  style: interTextStyle(
-                    fontSize: 24.0,
-                    fontWeight: FontWeight.w700,
-                    color: ColorsApp.grey66,
-                  ),
-                ),
-                Text(
-                  AppLocale.yourExpenseManager.getString(context),
-                  style: interTextStyle(
-                    fontWeight: FontWeight.w400,
-                    color: ColorsApp.grey66,
-                  ),
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                CustomTextfield(
-                  controller: loginController,
-                  labelText: AppLocale.login.getString(context),
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                CustomTextfield(
-                  controller: passwordController,
-                  labelText: AppLocale.password.getString(context),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  children: [
-                    CustomFeeledButton(
-                      onPressed: _logInAction,
-                      name: AppLocale.logIn.getString(context),
-                    ),
-                    SizedBox(
-                      width: 10.0,
-                    ),
-                    CustomTextButton(
-                      onPressed: _signUp,
-                      name: AppLocale.signUp.getString(context),
-                    ),
-                    Spacer(),
-                  ],
-                ),
-                SizedBox(
-                  height: 40,
-                ),
-                IconButton(
-                  onPressed: _authenticationAction,
-                  icon: SvgPicture.asset(
-                    IconsApp.fingerPrint,
-                    width: 64.0,
-                    height: 64.0,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
       ),
     );
   }

@@ -51,11 +51,15 @@ mixin AppLocale {
       'The user is already registered in the program.';
   static const String chooseCategoryIcon = 'Choose category icon';
   static const String pickMonth = 'Pick a month';
-   static const String searchNotesCategoriesOrLabels = 'Search for notes, categories or labels';
+  static const String searchNotesCategoriesOrLabels =
+      'Search for notes, categories or labels';
   static const String editCategory = 'Edit';
+  static const String newCategoryAddeddSuccessfully =
+      'New category addedd successfully';
+      static const String newTransactionAddeddSuccessfully = 'New transaction added successfully!';
+  static const String categoryEdited = 'Category edited';
+  static const String searchForNotesCategoriesOrLabels = 'Search for notes, categories or labels';
 
-
-  
 
   // ignore: constant_identifier_names
   static const Map<String, dynamic> EN = {
@@ -111,6 +115,10 @@ mixin AppLocale {
     pickMonth: 'Pick a month',
     searchNotesCategoriesOrLabels: 'Search for notes, categories or labels',
     editCategory: 'Edit Category',
+    newCategoryAddeddSuccessfully: 'New category addedd successfully',
+    newTransactionAddeddSuccessfully: 'New transaction added successfully!',
+    categoryEdited: 'Category edited',
+   
   };
 
   // ignore: constant_identifier_names
@@ -167,6 +175,8 @@ mixin AppLocale {
     pickMonth: 'Обери місяць',
     searchNotesCategoriesOrLabels: 'Пошук нотаток, категорій або міток',
     editCategory: 'Редагування категорії',
- 
+    newCategoryAddeddSuccessfully: 'Нову категорію успішно додано!',
+    newTransactionAddeddSuccessfully: 'Нову транзакцію успішно додано!',
+    categoryEdited: 'Категорію відредаговану',
   };
 }
