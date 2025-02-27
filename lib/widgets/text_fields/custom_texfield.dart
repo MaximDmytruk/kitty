@@ -47,18 +47,18 @@ class _CustomTextfieldState extends State<CustomTextfield> {
   @override
   void initState() {
     obscureText = widget.addObscureText;
-    _focusNode.addListener(_removeLis);
+    _focusNode.addListener(_removeListener);
     super.initState();
   }
 
   @override
   void dispose() {
-    _focusNode.removeListener(_removeLis);
+    _focusNode.removeListener(_removeListener);
     _focusNode.dispose();
     super.dispose();
   }
 
-  void _removeLis() {
+  void _removeListener() {
     if (_focusNode.hasFocus) {
       setState(() {
         labelColor = ColorsApp.blue106;
@@ -69,9 +69,6 @@ class _CustomTextfieldState extends State<CustomTextfield> {
       });
     }
   }
-  //TODO: disspose!!!!
-
-  //TODO:remove all
 
   @override
   Widget build(BuildContext context) {

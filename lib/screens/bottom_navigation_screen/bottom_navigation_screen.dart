@@ -21,12 +21,6 @@ class BottomNavigationScreen extends StatefulWidget {
 
 class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
   int _selectedPage = 1;
-  
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
   void onSelectedTab(int index) {
     if (_selectedPage == index) return;
@@ -50,7 +44,6 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // return BlocBuilder<UserCubit, UserState>(builder: (context, state) {
       return Scaffold(
         body: Center(child: _getScreen(_selectedPage)),
         bottomNavigationBar: BottomNavigationBar(
@@ -82,6 +75,5 @@ class _BottomNavigationScreenState extends State<BottomNavigationScreen> {
           onTap: onSelectedTab,
         ),
       );
-    // });
   }
 }

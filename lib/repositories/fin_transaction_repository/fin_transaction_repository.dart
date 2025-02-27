@@ -158,7 +158,7 @@ class FinTransactionRepository {
     await db.delete('transactions'); 
   }
 
-  //TODO: TESTING TRANSACTIONS:
+
   Future<void> insertTestTransactions() async {
     Database db = await database.database;
 

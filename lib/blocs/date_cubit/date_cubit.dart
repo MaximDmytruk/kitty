@@ -41,14 +41,11 @@ class DateCubit extends Cubit<DateState> {
   int getMonth() => state.selectedMonth;
 
   void selectMonth({required int newNumOfMonth}) {
-    print('Select month in cubit - $newNumOfMonth');
     emit(
       state.copyWith(
         selectedMonth: newNumOfMonth,
         status: DateStatus.loaded,
       ),
     );
-    print('Select month in cubit :');
-    print(state.selectedMonth);
   }
 }

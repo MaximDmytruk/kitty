@@ -75,11 +75,12 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
       ),
     );
     showToast(
+      // ignore: use_build_context_synchronously
       text: AppLocale.newTransactionAddeddSuccessfully.getString(context),
     );
   }
 
-//TODO: TESTING TRANSACTIONS:
+
   Future<void> addTestTransactions() async {
     finTransactionRepository.insertTestTransactions();
     List<FinancialTransaction> transactions =

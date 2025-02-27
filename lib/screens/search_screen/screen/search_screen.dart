@@ -7,7 +7,7 @@ import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/screens/search_screen/widgets/history_list_view.dart';
 import 'package:kitty/screens/search_screen/widgets/search_app_bar.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
-import 'package:kitty/utils/filteredTransactionsByDay.dart';
+import 'package:kitty/utils/filtered_transactions_by_day.dart';
 import 'package:kitty/widgets/app_bars/custom_status_bar.dart';
 import 'package:kitty/widgets/list_views/custom_list_view.dart';
 

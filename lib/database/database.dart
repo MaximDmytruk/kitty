@@ -22,12 +22,10 @@ class AppDatabase {
       path,
       version: 1,
       onCreate: _onCreate,
-      
     );
   }
 
   Future<void> _onCreate(Database db, int version) async {
-    print(' Start Creating database...');
     await db.execute('''
     CREATE TABLE IF NOT EXISTS user (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,7 +34,6 @@ class AppDatabase {
       email TEXT NOT NULL
     )
   ''');
-    print('User table created');
 
     await db.execute('''
     CREATE TABLE IF NOT EXISTS categories (
@@ -47,7 +44,6 @@ class AppDatabase {
       position INTEGER
     )
   ''');
-    print('Categories table created');
 
     await db.execute('''
     CREATE TABLE IF NOT EXISTS transactions (
@@ -60,21 +56,5 @@ class AppDatabase {
       FOREIGN KEY (categoryId) REFERENCES categories (id) ON DELETE CASCADE
   )
   ''');
-  print('Categories table transaction');
-
-  //   await db.execute('''
-  //   CREATE TABLE IF NOT EXISTS history (
-  //     id INTEGER PRIMARY KEY AUTOINCREMENT,
-  //     name TEXT NOT NULL
-  //   )
-  // ''');
-
-  
-  
-    print('Categories table created');//TODO:delete забрати !
-    print('Categories table transaction');
-    print('Database created !!!');
   }
-
- 
 }

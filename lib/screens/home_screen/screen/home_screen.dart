@@ -14,7 +14,7 @@ import 'package:kitty/screens/home_screen/widgets/total_amount.dart';
 import 'package:kitty/screens/search_screen/screen/search_screen.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
-import 'package:kitty/utils/filteredTransactionsByDay.dart';
+import 'package:kitty/utils/filtered_transactions_by_day.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';
 import 'package:kitty/widgets/app_bars/custom_status_bar.dart';
 import '../../../widgets/date_picker/custom_date_picker.dart';

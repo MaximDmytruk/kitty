@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localization/flutter_localization.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kitty/localization/app_locale.dart';
 import 'package:kitty/models/financial_category/financial_category.dart';
@@ -56,7 +55,9 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
         categories: categories,
       ),
     );
-    showToast(text: AppLocale.categoryEdited.getString(context));
+    
+    
+    showToast(text: AppLocale.categoryEdited);
   }
 
   Future<void> addCategory(
