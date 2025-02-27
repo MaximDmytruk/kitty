@@ -16,7 +16,7 @@ class AppDatabase {
   Future<Database> _initDatabase() async {
     final path = join(await getDatabasesPath(), 'user_database.db');
 
-    await deleteDatabase(path); //видалити базу даних
+    // await deleteDatabase(path); //видалити базу даних
 
     return await openDatabase(
       path,

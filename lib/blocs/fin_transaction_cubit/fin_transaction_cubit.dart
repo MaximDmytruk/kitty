@@ -74,9 +74,10 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
         transactions: transactions,
       ),
     );
+   
     showToast(
       // ignore: use_build_context_synchronously
-      text: AppLocale.newTransactionAddeddSuccessfully.getString(context),
+      text: AppLocale.newTransactionAddeddSuccessfully,
     );
   }
 

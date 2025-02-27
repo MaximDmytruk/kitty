@@ -79,6 +79,7 @@ class UserCubit extends Cubit<UserState> {
     emit(state.copyWith(status: UserStatus.loading));
 
     User? registeredUser = await userRepository.getUser();
+    print(registeredUser);
 
     if (registeredUser == null) {
       emit(
@@ -97,7 +98,8 @@ class UserCubit extends Cubit<UserState> {
     emit(state.copyWith(status: UserStatus.loading));
 
     User? registeredUser = await userRepository.getUser();
-
+    print('reisetr in login :');
+    print(registeredUser);
     if (registeredUser == null) {
       emit(
         state.copyWith(
@@ -115,7 +117,9 @@ class UserCubit extends Cubit<UserState> {
           status: UserStatus.authenticated,
           errorText: null,
         ),
+        
       );
+      print('auth good');
     } else {
       emit(
         state.copyWith(
