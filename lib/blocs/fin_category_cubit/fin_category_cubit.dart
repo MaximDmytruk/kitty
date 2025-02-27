@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/utils/localization/app_locale.dart';
 import 'package:kitty/models/financial_category/financial_category.dart';
 import 'package:kitty/repositories/financial_category_repository/fin_category_repository.dart';
 import 'package:kitty/widgets/toasts/show_toast.dart';

@@ -14,7 +14,7 @@ import 'package:kitty/repositories/financial_category_repository/fin_category_re
 import 'package:kitty/repositories/search_history_repository/search_history_repository.dart';
 import 'package:kitty/repositories/user_repository/user_repository.dart';
 
-import 'package:kitty/localization/map_lacales.dart';
+import 'package:kitty/utils/localization/map_lacales.dart';
 import 'package:kitty/screens/add_new_category_screen/screen/add_new_category_screen.dart';
 import 'package:kitty/screens/add_new_transaction/add_new_transaction_screen.dart';
 import 'package:kitty/screens/manage_categories_screen/screen/manage_categories_screen.dart';

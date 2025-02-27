@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/utils/localization/app_locale.dart';
 import 'package:kitty/models/financial_category/financial_category.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/widgets/buttons/tag_button.dart';

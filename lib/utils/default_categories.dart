@@ -1,5 +1,5 @@
 import 'package:kitty/models/financial_category/financial_category.dart';
-import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/utils/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/category_icons.dart';
 

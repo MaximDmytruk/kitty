@@ -8,13 +8,13 @@ import 'package:kitty/blocs/user_cubit/user_cubit.dart';
 import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/screens/auth_screen/auth_screen.dart';
 import 'package:kitty/screens/manage_categories_screen/screen/manage_categories_screen.dart';
-import 'package:kitty/services/get_report_in_pdf.dart';
+import 'package:kitty/utils/get_report_in_pdf.dart';
 import 'package:kitty/widgets/app_bars/name_of_screen_header.dart';
 import 'package:kitty/screens/setting_screen/widgets/settings_options_row.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/widgets/app_bars/custom_status_bar.dart';
-import '../../../localization/app_locale.dart';
+import '../../../utils/localization/app_locale.dart';
 
 import '../widgets/user_header_settings.dart';
 

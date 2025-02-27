@@ -7,7 +7,7 @@ import 'package:kitty/screens/bottom_navigation_screen/bottom_navigation_screen.
 import 'package:kitty/utils/basic_icons.dart';
 import 'package:kitty/models/financial_category/financial_category.dart';
 import 'package:kitty/models/icon/icon.dart';
-import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/utils/localization/app_locale.dart';
 import 'package:kitty/styles/colors/colors_app.dart';
 import 'package:kitty/styles/icons/icons_app.dart';
 import 'package:kitty/widgets/buttons/custom_feeled_button.dart';

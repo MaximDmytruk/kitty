@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:kitty/models/user/user.dart';
 import 'package:kitty/repositories/user_repository/user_repository.dart';
-import 'package:kitty/localization/app_locale.dart';
+import 'package:kitty/utils/localization/app_locale.dart';
 
 part 'user_state.dart';
 part 'user_cubit.freezed.dart';
