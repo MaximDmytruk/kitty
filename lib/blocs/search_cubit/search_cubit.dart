@@ -80,4 +80,15 @@ class SearchCubit extends Cubit<SearchState> {
     historyRepository.removeSearchQuery(query);
     getSearchHistory();
   }
+
+  void removeAllHistory() {
+    historyRepository.clearSearchHistory();
+    emit(
+      state.copyWith(
+        status: SearchStatus.initial,
+        searchHistory: [],
+        errorText: null,
+      ),
+    );
+  }
 }

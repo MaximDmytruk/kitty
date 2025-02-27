@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:kitty/blocs/fin_category_cubit/fin_category_cubit.dart';
 import 'package:kitty/blocs/fin_transaction_cubit/fin_transaction_cubit.dart';
+import 'package:kitty/blocs/search_cubit/search_cubit.dart';
 import 'package:kitty/blocs/user_cubit/user_cubit.dart';
 import 'package:kitty/models/financial_transaction/financial_transaction.dart';
 import 'package:kitty/screens/auth_screen/auth_screen.dart';
@@ -75,6 +77,10 @@ class _SettingScreenState extends State<SettingScreen> {
 
   void removeUser() {
     context.read<UserCubit>().removeUser();
+    context.read<FinCategoryCubit>().removeAllCategories();
+    context.read<FinTransactionCubit>().removeAllTransactions();
+    context.read<SearchCubit>().removeAllHistory();
+
     Navigator.popAndPushNamed(context, AuthScreen.routeName);
   }
 

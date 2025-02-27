@@ -53,7 +53,8 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
     );
   }
 
-  Future<void> addTransaction(BuildContext context,
+  Future<void> addTransaction(
+    BuildContext context,
     FinancialTransaction transaction,
   ) async {
     emit(
@@ -73,7 +74,9 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
         transactions: transactions,
       ),
     );
-    showToast(text: AppLocale.newTransactionAddeddSuccessfully.getString(context),);
+    showToast(
+      text: AppLocale.newTransactionAddeddSuccessfully.getString(context),
+    );
   }
 
 //TODO: TESTING TRANSACTIONS:
@@ -85,6 +88,17 @@ class FinTransactionCubit extends Cubit<FinTransactionState> {
       state.copyWith(
         status: FinTransactionStatus.loaded,
         transactions: transactions,
+      ),
+    );
+  }
+
+  Future<void> removeAllTransactions() async {
+    finTransactionRepository.deleteAllTransactions();
+    emit(
+      state.copyWith(
+        status: FinTransactionStatus.initial,
+        transactions: null,
+        errorText: null,
       ),
     );
   }

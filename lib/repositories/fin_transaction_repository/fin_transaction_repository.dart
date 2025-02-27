@@ -64,42 +64,6 @@ class FinTransactionRepository {
     }).toList();
   }
 
-  // Future<List<FinancialTransaction>> searchTransactions({
-  //   required String query,
-  //   List<int>? categoriesId,
-  // }) async {
-  //   Database db = await database.database;
-
-  //   final List<Map<String, dynamic>> result = await db.rawQuery(
-  //     '''
-  //     SELECT t.*, c.id as categoryId, c.name, c.colorValue, c.iconPath, c.position
-  //     FROM transactions t
-  //     JOIN categories c ON t.categoryId = c.id
-  //     WHERE description LIKE ?''',
-  //     ['%$query%'],
-  //   );
-
-  //   return result.map((row) {
-  //     final FinancialCategory category = FinancialCategory(
-  //       id: row['categoryId'] as int,
-  //       name: row['name'] as String,
-  //       colorValue: Color(row['colorValue'] as int),
-  //       iconPath: row['iconPath'] as String,
-  //       position: row['position'] as int?,
-  //     );
-
-  //     return FinancialTransaction(
-  //       id: row['id'] as int?,
-  //       financialAction: FinancialAction.values
-  //           .firstWhere((e) => e.toString() == row['financialAction']),
-  //       category: category,
-  //       amount: row['amount'] as int,
-  //       description: row['description'] as String?,
-  //       date: DateTime.parse(row['date'] as String),
-  //     );
-  //   }).toList();
-  // }
-
   Future<List<FinancialTransaction>> getAllTransactions({
     int? dateMonth,
     int? year,
@@ -189,6 +153,11 @@ class FinTransactionRepository {
     );
   }
 
+   Future<void> deleteAllTransactions() async {
+    final Database db = await database.database;
+    await db.delete('transactions'); 
+  }
+
   //TODO: TESTING TRANSACTIONS:
   Future<void> insertTestTransactions() async {
     Database db = await database.database;
@@ -199,7 +168,6 @@ class FinTransactionRepository {
         await FinCategoryRepository().getAllCategories();
 
     if (categories.isEmpty) {
-      print("Category is null!!");
       return;
     }
 

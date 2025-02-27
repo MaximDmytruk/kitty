@@ -63,7 +63,6 @@ class UserCubit extends Cubit<UserState> {
       password: password,
       email: email,
     );
-
     await userRepository.registerUser(user: newUser);
     final User? registeredUser = await userRepository.getUser();
 
@@ -74,6 +73,24 @@ class UserCubit extends Cubit<UserState> {
         errorText: null,
       ),
     );
+  }
+
+  Future<void> authUser(bool auth) async {
+    emit(state.copyWith(status: UserStatus.loading));
+
+    User? registeredUser = await userRepository.getUser();
+
+    if (registeredUser == null) {
+      emit(
+        state.copyWith(
+          errorText: "No user registered",
+          status: UserStatus.error,
+        ),
+      );
+      return;
+    }
+
+    loginUser(registeredUser.email, registeredUser.password);
   }
 
   Future<void> loginUser(String email, String password) async {
@@ -116,6 +133,7 @@ class UserCubit extends Cubit<UserState> {
       state.copyWith(
         user: null,
         status: UserStatus.initial,
+        errorText: null,
       ),
     );
   }
@@ -123,6 +141,4 @@ class UserCubit extends Cubit<UserState> {
   String getUserName() => state.user?.name ?? 'No Name';
   String getFirstLetterName() => state.user?.name[0].toUpperCase() ?? '-';
   String getUserEmail() => state.user?.email ?? 'No Email';
-
- 
 }

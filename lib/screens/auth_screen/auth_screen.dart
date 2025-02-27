@@ -24,7 +24,6 @@ class AuthScreen extends StatefulWidget {
 }
 
 class _AuthScreenState extends State<AuthScreen> {
-  bool auth = false;
   TextEditingController loginController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -44,10 +43,9 @@ class _AuthScreenState extends State<AuthScreen> {
 
   void _authenticationAction() async {
     final bool authenticate = await LocalAuth.authenticate();
-
-    setState(() {
-      auth = authenticate;
-    });
+    if (mounted) {
+      context.read<UserCubit>().authUser(authenticate);
+    }
   }
 
   @override

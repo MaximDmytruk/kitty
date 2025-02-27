@@ -101,4 +101,16 @@ class FinCategoryCubit extends Cubit<FinCategoryState> {
       );
     }
   }
+
+  Future<void> removeAllCategories() async {
+    emit(state.copyWith(status: FinCategoryStatus.loading));
+    repository.deleteAllCategories();
+    emit(
+      state.copyWith(
+        categories: null,
+        status: FinCategoryStatus.initial,
+        errorText: null,
+      ),
+    );
+  }
 }

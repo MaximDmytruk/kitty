@@ -7,7 +7,6 @@ class FinCategoryRepository {
   final AppDatabase database = AppDatabase.instance;
 
   Future<void> initDefaultCategories() async {
-    print('INIT CATEGORY');
     Database db = await database.database;
     Batch batch = db.batch();
 
@@ -17,15 +16,7 @@ class FinCategoryRepository {
     }
     await batch.commit();
   }
-
-  // Future<List<FinancialCategory>> getAllCategories() async {
-  //   Database db = await database.database;
-  //   List<Map<String, Object?>> result = await db.query('categories');
-  //   return result
-  //       .map((category) => FinancialCategory.fromJson(category))
-  //       .toList();
-  // }
-
+  
   Future<List<FinancialCategory>> getAllCategories() async {
     Database db = await database.database;
     List<Map<String, Object?>> result = await db.query(
@@ -83,7 +74,11 @@ class FinCategoryRepository {
       );
     }
 
-    print('UPDATE POSITION');
     await batch.commit();
+  }
+
+  Future<void> deleteAllCategories() async {
+    final Database db = await database.database;
+    await db.delete('categories'); 
   }
 }
